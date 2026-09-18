@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TIME BACKの行動支援技術Behavior Assistance Systemをご紹介します。日常動作のサポート、安全設計、利用者の選択と情報保護を大切にしています。">
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <title>Behavior Assistance System｜TIME BACK</title>
+  <style>
+    :root { --ink:#153b38; --muted:#607774; --green:#087f72; --green-dark:#05645b; --mint:#dff5ef; --mint-pale:#f3fbf9; --line:#d8e7e3; --paper:#fff; --navy:#102e2c; --blue:#0b4b72; --shadow:0 18px 55px rgba(15,78,71,.1); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { min-width:320px; margin:0; color:var(--ink); background:#fff; font-family:"Yu Gothic","YuGothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif; line-height:1.8; }
+    body.archive-open { overflow:hidden; }
+    a { color:inherit; }
+    button,input { font:inherit; }
+    .skip-link { position:fixed; top:8px; left:8px; z-index:2000; padding:8px 12px; color:#fff; background:var(--navy); transform:translateY(-150%); }
+    .skip-link:focus { transform:translateY(0); }
+
+    .site-header { position:sticky; top:0; z-index:100; border-bottom:1px solid rgba(216,231,227,.88); background:rgba(255,255,255,.94); backdrop-filter:blur(14px); }
+    .header-inner { width:min(1180px,calc(100% - 40px)); min-height:76px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:30px; }
+    .brand { display:inline-flex; align-items:center; gap:11px; color:var(--ink); text-decoration:none; }
+    .brand-logo-crop { position:relative; flex:0 0 auto; width:42px; height:42px; overflow:hidden; border-radius:50%; background:#fff; }
+    .brand-logo { position:absolute; top:-13px; left:-21px; width:84px; height:84px; max-width:none; }
+    .brand-name { color:#07346e; font-size:1.14rem; font-weight:800; letter-spacing:.13em; white-space:nowrap; }
+    .global-nav ul { display:flex; align-items:center; gap:5px; margin:0; padding:0; list-style:none; }
+    .global-nav a { display:block; padding:10px 13px; border-radius:8px; font-size:.83rem; font-weight:700; text-decoration:none; transition:color .18s ease,background .18s ease; }
+    .global-nav a:hover,.global-nav a:focus-visible,.global-nav a[aria-current="page"] { color:var(--green-dark); background:var(--mint-pale); }
+    .site-search { flex:0 0 auto; }
+    .search-form { display:flex; align-items:center; overflow:hidden; border:1px solid var(--line); border-radius:9px; background:#f8fbfa; transition:border-color .18s ease,box-shadow .18s ease; }
+    .search-form:focus-within { border-color:#55aa9e; box-shadow:0 0 0 3px rgba(8,127,114,.1); }
+    .search-input { width:210px; height:42px; padding:0 12px; border:0; outline:none; color:var(--ink); background:transparent; font-size:.84rem; }
+    .search-input::placeholder { color:#82928f; }
+    .search-submit { display:grid; width:42px; height:42px; padding:0; place-items:center; border:0; color:#fff; background:var(--green); cursor:pointer; transition:background .18s ease; }
+    .search-submit:hover,.search-submit:focus-visible { background:var(--green-dark); }
+    .search-submit svg { width:17px; height:17px; }
+
+    .page-hero { position:relative; overflow:hidden; padding:78px 0 73px; color:#fff; background:linear-gradient(126deg,#092f5e 0%,#087b80 72%,#14a995 100%); }
+    .page-hero::before { content:""; position:absolute; inset:0; opacity:.24; background:repeating-linear-gradient(115deg,transparent 0,transparent 84px,rgba(255,255,255,.08) 85px,transparent 86px); }
+    .page-hero::after { content:"¥"; position:absolute; right:max(4vw,25px); top:50%; color:rgba(255,255,255,.07); font:800 clamp(13rem,25vw,22rem)/1 Arial,sans-serif; transform:translateY(-50%); }
+    .page-hero-inner { position:relative; z-index:1; width:min(960px,calc(100% - 40px)); margin:0 auto; }
+    .eyebrow { margin:0 0 10px; color:#8ce6d7; font-size:.76rem; font-weight:800; letter-spacing:.18em; }
+    .page-hero h1 { margin:0; font-size:clamp(2.2rem,5vw,3.8rem); line-height:1.35; letter-spacing:.06em; }
+    .page-hero p:last-child { max-width:650px; margin:18px 0 0; color:#d8efed; font-size:.97rem; }
+
+
+
+    .page-hero { color:var(--ink); background:linear-gradient(120deg,#eefaf6,#f4fbfc); }
+    .page-hero::before,.page-hero::after { display:none; }
+    .page-hero .eyebrow { color:var(--green-dark); letter-spacing:.12em; }
+    .page-hero h1 { font-size:clamp(1.8rem,4vw,3.2rem); }
+    .page-hero p:last-child { color:var(--muted); }
+    .tech-section { padding:72px 0; }
+    .tech-section.tint { background:var(--mint-pale); }
+    .section-inner { width:min(1060px,calc(100% - 40px)); margin:0 auto; }
+    .section-label { margin:0 0 9px; color:var(--green); font-size:.75rem; font-weight:800; letter-spacing:.15em; }
+    .tech-heading { max-width:800px; margin-bottom:30px; }
+    .tech-heading h2 { margin:0; color:var(--navy); font-size:clamp(1.4rem,3vw,2rem); line-height:1.5; overflow-wrap:anywhere; }
+    .tech-heading p:last-child { margin-top:15px; color:var(--muted); font-size:.92rem; }
+    .intro-panel { display:grid; grid-template-columns:1.3fr 1fr; gap:32px; padding:32px; border:1px solid var(--line); border-radius:15px; background:var(--mint-pale); }
+    .intro-panel h3 { margin:0 0 8px; font-size:1.1rem; }
+    .intro-panel p { margin:0; color:var(--muted); font-size:.88rem; }
+    .intro-list { display:grid; align-content:center; gap:13px; margin:0; padding:0; list-style:none; }
+    .intro-list li { padding-left:23px; position:relative; font-size:.83rem; }
+    .intro-list li::before { content:"✓"; position:absolute; left:0; color:var(--green); font-weight:800; }
+    .tech-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
+    .tech-grid.two-column { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .tech-card { padding:29px; border:1px solid var(--line); border-radius:13px; background:#fff; }
+    .card-label { display:block; margin-bottom:18px; color:var(--green); font:700 .75rem/1.5 Arial,sans-serif; letter-spacing:.1em; }
+    .tech-card h3 { margin:0; font-size:1.07rem; }
+    .tech-card p { margin:12px 0 0; color:var(--muted); font-size:.84rem; }
+    .tech-flow { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; margin:0; padding:0; list-style:none; }
+    .tech-flow li { position:relative; padding:26px; border-top:3px solid var(--green); background:var(--mint-pale); }
+    .tech-flow h3 { margin:0; font-size:1.04rem; }
+    .tech-flow p { margin:10px 0 0; color:var(--muted); font-size:.84rem; }
+    .tech-note { margin:26px 0 0; color:var(--muted); font-size:.78rem; }
+    .tech-faq { margin:0; }
+    .tech-faq div { padding:22px 0; border-bottom:1px solid var(--line); }
+    .tech-faq dt { font-weight:700; font-size:.95rem; }
+    .tech-faq dd { margin:9px 0 0; color:var(--muted); font-size:.87rem; }
+    .tech-links { display:flex; flex-wrap:wrap; gap:14px 25px; margin-top:28px; font-size:.85rem; }
+    .tech-links a { color:var(--green-dark); text-underline-offset:4px; }
+    @media(max-width:880px) { .tech-grid,.tech-grid.two-column,.tech-flow { grid-template-columns:1fr; } .intro-panel { grid-template-columns:1fr; } }
+    @media(max-width:580px) { .tech-section { padding:48px 0; } .intro-panel,.tech-card { padding:24px; } .page-hero .eyebrow { font-size:.67rem; letter-spacing:.08em; } }
+
+    .site-footer { border-top:1px solid #284946; color:#cfdbd9; background:var(--navy); }
+    .footer-inner { width:min(1180px,calc(100% - 40px)); min-height:82px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .fiction-notice { margin:0; font-size:.67rem; line-height:1.7; }
+    .archive-button { flex:0 0 auto; min-width:122px; padding:10px 14px; border:1px solid #64817e; border-radius:7px; color:#fff; background:transparent; font-size:.76rem; font-weight:800; letter-spacing:.12em; cursor:pointer; }
+    .archive-button:hover,.archive-button:focus-visible { border-color:#81dac8; color:#81dac8; }
+    .archive-overlay { position:fixed; inset:0; z-index:1000; display:grid; place-items:center; padding:20px; background:rgba(7,25,23,.72); opacity:0; visibility:hidden; transition:opacity .18s ease,visibility .18s ease; }
+    .archive-overlay.is-open { opacity:1; visibility:visible; }
+    .archive-dialog { width:min(540px,100%); max-height:min(700px,calc(100vh - 40px)); overflow:hidden; border:1px solid #a9beb9; border-radius:12px; color:var(--ink); background:#f8fbfa; box-shadow:0 25px 70px rgba(0,0,0,.36); transform:translateY(10px); transition:transform .18s ease; }
+    .archive-overlay.is-open .archive-dialog { transform:translateY(0); }
+    .archive-header { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px 20px; color:#fff; background:var(--navy); }
+    .archive-header h2 { margin:0; font-size:1.05rem; letter-spacing:.08em; }
+    .archive-close { width:35px; height:35px; padding:0; border:1px solid #68817f; border-radius:50%; color:#fff; background:transparent; font-size:1.3rem; line-height:1; cursor:pointer; }
+    .archive-content { max-height:calc(100vh - 120px); overflow:auto; padding:20px; }
+    .archive-description { margin:0 0 15px; color:var(--muted); font-size:.79rem; line-height:1.7; }
+    .archive-list { display:block; max-height:390px; margin:0; padding:0; overflow-y:auto; border-top:1px solid var(--line); list-style:none; }
+    .archive-entry { display:grid; grid-template-columns:58px 1fr; align-items:center; gap:12px; padding:12px 11px; border-bottom:1px solid var(--line); color:var(--ink); background:#fff; text-decoration:none; }
+    a.archive-entry:hover,a.archive-entry:focus-visible { background:#edfaf7; }
+    .archive-entry.is-locked { color:#94a29f; background:#f1f5f4; cursor:default; user-select:none; }
+    .archive-number { color:var(--green); font:800 .77rem/1 Consolas,monospace; }
+    .archive-entry.is-locked .archive-number { color:#94a29f; }
+    .archive-title { font-size:.86rem; }
+    .archive-entry.is-locked .archive-title { letter-spacing:.16em; }
+    .archive-tools { margin-top:16px; padding-top:14px; border-top:1px solid var(--line); }
+    .archive-reset-button,.reset-actions button { padding:8px 12px; border:1px solid #9aafaa; border-radius:6px; color:var(--ink); background:#fff; font-size:.76rem; cursor:pointer; }
+    .archive-reset-button { color:#805152; border-color:#c6a9aa; }
+    .reset-confirm { margin-top:13px; padding:14px; border-radius:8px; color:#586966; background:#eaf3f1; font-size:.79rem; }
+    .reset-confirm p { margin:0 0 11px; }
+    .reset-actions { display:flex; justify-content:flex-end; gap:8px; }
+    .reset-actions .danger { color:#fff; border-color:#97595b; background:#97595b; }
+
+    @media(max-width:1080px) { .header-inner { gap:15px; } .search-input { width:118px; } .global-nav a { padding-inline:8px; } }
+    @media(max-width:880px) { .header-inner { min-height:auto; padding:17px 0 13px; flex-direction:column; gap:9px; } .site-search { width:min(100%,500px); } .search-input { width:100%; } .global-nav { width:100%; overflow-x:auto; } .global-nav ul { justify-content:center; min-width:460px; } .pricing-grid,.value-guide { grid-template-columns:1fr; } }
+    @media(max-width:580px) {
+      .header-inner,.page-hero-inner,.section-inner,.footer-inner { width:min(100% - 28px,1180px); }
+      .brand-name { font-size:1rem; }
+      .global-nav { overflow:visible; }
+      .global-nav ul { display:grid; min-width:0; grid-template-columns:repeat(2,1fr); gap:2px 6px; }
+      .global-nav a { padding:7px 5px; font-size:.76rem; text-align:center; white-space:nowrap; }
+      .page-hero { padding:55px 0 52px; }
+      .pricing-main { padding:65px 0 76px; }
+      .pricing-card-header { padding:24px 22px; }
+      .price-table th,.price-table td { padding:15px 11px; }
+      .price-table th:first-child,.price-table td:first-child { padding-left:17px; }
+      .price-table th:last-child,.price-table td:last-child { padding-right:17px; }
+      .notice { padding:24px 22px; }
+      .footer-inner { padding:18px 0; align-items:flex-end; }
+      .fiction-notice { font-size:.59rem; }
+      .archive-button { min-width:95px; padding-inline:9px; }
+    }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="TIME BACK トップページ">
+        <span class="brand-logo-crop" aria-hidden="true"><img class="brand-logo" src="images/logo.png" width="1254" height="1254" alt=""></span>
+        <span class="brand-name">TIME BACK</span>
+      </a>
+      <nav class="global-nav" aria-label="メインナビゲーション">
+        <ul><li><a href="about.html">サービスについて</a></li><li><a href="pricing.html">料金・報酬</a></li><li><a href="safety.html">安全性について</a></li><li><a href="faq.html">よくある質問</a></li></ul>
+      </nav>
+      <div class="site-search">
+        <form class="search-form" action="search.html" method="get" role="search">
+          <label class="skip-link" for="siteSearchInput">サイト内検索</label>
+          <input class="search-input" id="siteSearchInput" name="q" type="search" placeholder="サイト内検索" autocomplete="off">
+          <button class="search-submit" type="submit" aria-label="検索する"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></button>
+        </form>
+      </div>
+    </div>
+  </header>
+
+
+
+  <main id="main">
+    <section class="page-hero"><div class="page-hero-inner"><p class="eyebrow">BEHAVIOR ASSISTANCE SYSTEM</p><h1>いつもの日常に、<br>やさしいサポートを。</h1><p>TIME BACKの行動支援システムは、利用中の自然な動作を支えるための技術です。一人ひとりのペースに寄り添い、安心できるサービス体験を届けます。</p></div></section>
+    <section class="tech-section" aria-labelledby="bas-title"><div class="section-inner">
+      <div class="tech-heading"><p class="section-label">ABOUT THE TECHNOLOGY</p><h2 id="bas-title">Behavior Assistance Systemとは</h2><p>Behavior Assistance System（BAS）は、TIME BACKの売却・購入セッションに合わせ、知覚、思考、身体動作を一体的に支援する技術です。利用者の状態と周辺環境を継続的に確認し、事前に同意した利用条件の範囲で動作します。</p></div>
+      <div class="intro-panel"><div><h3>日常の動作と、時間の体感を支える。</h3><p>売却中は仮眠に近い意識状態での安全な行動を、購入中は引き伸ばされた体感時間に合わせた思考と身体活動を支援します。予定や利用目的は本人が事前に設定し、BASはその範囲を超える行動を新たに決定しません。</p></div><ul class="intro-list"><li>本人の確認と同意をもとに作動</li><li>状態・位置・周辺環境を継続的に確認</li><li>完了よりも安全を優先して調整・停止</li></ul></div>
+    </div></section>
+    <section class="tech-section tint" aria-labelledby="mode-title"><div class="section-inner">
+      <div class="tech-heading"><p class="section-label">TWO ASSISTANCE MODES</p><h2 id="mode-title">売却と購入、それぞれに合わせた支援。</h2><p>同じBASが、セッションの種類に応じて異なる支援モードで動作します。</p></div>
+      <div class="tech-grid two-column">
+        <article class="tech-card"><span class="card-label">SELL / SAFE AUTOPILOT</span><h3>売却中の行動支援</h3><p>設定時刻または即時売却の安全確認後に作動し、利用者は仮眠に近い状態へ移ります。自宅ではベッドやソファへ身体を預け、移動中は歩行、電車やバスへの乗降、着席、吊革を使った立位保持などを、周囲の状況に合わせて支援します。終了時または緊急時には覚醒状態へ戻します。</p></article>
+        <article class="tech-card"><span class="card-label">BUY / TIME EXTENSION</span><h3>購入中の時間支援</h3><p>追加体感時間を生み出すため、知覚・思考と肉体動作を設定倍率に同期します。倍率は1.1倍から3倍、標準は2倍です。身体負荷を常時確認し、必要に応じて倍率を下げる、セッションを停止する、新規購入を一時制限するといった調整を行います。</p></article>
+      </div>
+    </div></section>
+    <section class="tech-section" aria-labelledby="support-title"><div class="section-inner">
+      <div class="tech-heading"><p class="section-label">EVERYDAY SUPPORT</p><h2 id="support-title">日常に寄り添う、3つのサポート。</h2><p>身近な動作を丁寧に支えることで、セッション中も落ち着いた時間を過ごせるよう設計しています。</p></div>
+      <div class="tech-grid">
+        <article class="tech-card"><span class="card-label">01 / MOVEMENT</span><h3>移動経路に合わせて動作</h3><p>歩行、停止、乗降を周囲の人や障害物に合わせて調整します。混雑や経路変更を検知した場合は、速度を落とす、安全な場所で待機するなど余裕のある動作を選びます。</p></article>
+        <article class="tech-card"><span class="card-label">02 / BALANCE</span><h3>姿勢とバランスを維持</h3><p>立つ、座る、身体を預けるといった動作を支援します。電車内では吊革や手すりを使い、加減速や揺れに合わせて姿勢を安定させます。</p></article>
+        <article class="tech-card"><span class="card-label">03 / COMMUNICATION</span><h3>会話時の時間差を調整</h3><p>購入中に会話や共同作業を検知すると、倍率を一時的に1倍へ近づけます。相手とは通常のテンポで会話でき、調整中は購入時間を消費しません。終了後は設定倍率へ緩やかに戻ります。</p></article>
+      </div>
+    </div></section>
+    <section class="tech-section" aria-labelledby="flow-title"><div class="section-inner">
+      <div class="tech-heading"><p class="section-label">PERSONALIZED ASSISTANCE</p><h2 id="flow-title">確認から終了まで、一人ひとりに合わせて。</h2><p>アプリと対応デバイスを連携し、利用前・利用中・利用後を一つの流れでサポートします。</p></div>
+      <ol class="tech-flow">
+        <li><span class="card-label">STEP 01 / BEFORE</span><h3>利用条件を一緒に確認</h3><p>アプリで体調や当日の予定を確認。利用可能な時間と支援の内容を案内し、本人の同意後にセッションを開始します。</p></li>
+        <li><span class="card-label">STEP 02 / DURING</span><h3>状態に合わせて補助</h3><p>動作、体調、周辺環境、身体負荷を継続的に確認。売却中は安全な行動を、購入中は設定倍率に合わせた思考と身体動作を支援します。</p></li>
+        <li><span class="card-label">STEP 03 / AFTER</span><h3>いつものリズムへ</h3><p>売却は眠りから目覚めるように覚醒し、購入は知覚と動作を通常速度へ戻します。終了後はアプリで安全記録と利用結果を確認できます。</p></li>
+      </ol><p class="tech-note">支援内容や利用可能時間は、利用前の確認結果と対応デバイスの状態に合わせて設定されます。</p>
+    </div></section>
+    <section class="tech-section tint" aria-labelledby="design-title"><div class="section-inner">
+      <div class="tech-heading"><p class="section-label">DESIGNED FOR PEACE OF MIND</p><h2 id="design-title">安心のための設計を、標準に。</h2><p>利用者の選択、無理のない利用、情報の適切な取扱いを、技術の基本方針としています。</p></div>
+      <div class="tech-grid">
+        <article class="tech-card"><span class="card-label">YOUR CHOICE</span><h3>事前に内容を確認</h3><p>支援内容、終了方法、中途終了時の取扱いを開始前に確認できます。売却中は事前指定した音声や緊急連絡先からの操作でも覚醒できます。</p></article>
+        <article class="tech-card"><span class="card-label">SAFETY FIRST</span><h3>継続よりも安全を優先</h3><p>休憩が必要な状態や通信の不安定さを確認した場合は、セッションを一時停止または終了。利用時間の完了より、安全な利用を優先します。</p></article>
+        <article class="tech-card"><span class="card-label">DATA CARE</span><h3>支援に必要な情報だけ</h3><p>動作やコンディションに関する情報は、安全支援とサービス提供に必要な範囲で取り扱います。通信の暗号化と担当者のアクセス制限で保護します。</p></article>
+      </div>
+    </div></section>
+    <section class="tech-section" aria-labelledby="questions-title"><div class="section-inner">
+      <div class="tech-heading"><p class="section-label">GOOD TO KNOW</p><h2 id="questions-title">ご利用にあたって</h2></div>
+      <dl class="tech-faq">
+        <div><dt>どのような場面で利用できますか？</dt><dd>自宅での休息、徒歩や公共交通機関での通勤・移動、仕事や学習など、利用前に登録した日常行動が対象です。自動車・自転車の運転や危険を伴う作業には利用できません。</dd></div>
+        <div><dt>支援の内容は事前に確認できますか？</dt><dd>はい。対応デバイスの接続確認後に、利用可能時間、支援内容、中止方法をアプリでご案内します。内容を確認し、同意してから利用を開始できます。</dd></div>
+        <div><dt>使い方について相談できますか？</dt><dd>利用前の設定から終了後の確認まで、TIME BACKサポートがご案内します。初めて利用する方も、お気軽にお問い合わせください。</dd></div>
+      </dl><div class="tech-links"><a href="safety.html">TIME BACKの安全性について</a><a href="faq.html">よくある質問</a><a href="contact.html">お問い合わせ</a></div>
+    </div></section>
+  </main>
+
+  <footer class="site-footer"><div class="footer-inner"><p class="fiction-notice">このサイトの内容はフィクションです。登場する人物・団体・名称等は架空のものであり、実在のものとは関係ありません。</p><button class="archive-button" id="archiveButton" type="button" aria-haspopup="dialog" aria-controls="archiveOverlay">09 / 60</button></div></footer>
+  <div class="archive-overlay" id="archiveOverlay" aria-hidden="true"><section class="archive-dialog" role="dialog" aria-modal="true" aria-labelledby="archiveTitle"><header class="archive-header"><h2 id="archiveTitle">ページアーカイブ</h2><button class="archive-close" id="archiveClose" type="button" aria-label="ページアーカイブを閉じる">×</button></header><div class="archive-content"><p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。</p><ol class="archive-list" id="archiveList"></ol><div class="archive-tools"><button class="archive-reset-button" id="archiveResetButton" type="button">アーカイブをリセット</button><div class="reset-confirm" id="resetConfirm" role="alertdialog" aria-labelledby="resetTitle" hidden><p id="resetTitle">探索済みページの記録を消去しますか？</p><div class="reset-actions"><button id="resetCancel" type="button">キャンセル</button><button class="danger" id="resetAccept" type="button">リセットする</button></div></div></div></div></section></div>
+
+  <script>
+    const archiveStorageKey='timeback-page-archive-v1',totalPages=60,archiveTitleByNumber={1:'トップページ ｜ TIME BACK',2:'サービスについて ｜ TIME BACK',3:'料金・報酬 ｜ TIME BACK',4:'安全性について ｜ TIME BACK',5:'よくある質問 ｜ TIME BACK',6:'利用規約 ｜ TIME BACK',7:'お問い合わせ ｜ TIME BACK',8:'TIME BACK MARKET ｜ TIME BACK',9:'Behavior Assistance System ｜ TIME BACK',10:'TIME BACK ID ご利用ガイド ｜ TIME BACK',13:'法人向け案内 ｜ TIME BACK for Business',14:'法人向けサービス ｜ TIME BACK for Business',15:'活用シーン ｜ TIME BACK for Business',16:'法人向け安全管理 ｜ TIME BACK for Business',17:'導入の流れ ｜ TIME BACK for Business'},currentPage={number:9,title:'Behavior Assistance System ｜ TIME BACK',href:'behavior-assistance.html'};
+    const archiveButton=document.getElementById('archiveButton'),archiveOverlay=document.getElementById('archiveOverlay'),archiveClose=document.getElementById('archiveClose'),archiveList=document.getElementById('archiveList'),archiveResetButton=document.getElementById('archiveResetButton'),resetConfirm=document.getElementById('resetConfirm'),resetCancel=document.getElementById('resetCancel'),resetAccept=document.getElementById('resetAccept');
+    function loadArchive(){try{const saved=JSON.parse(localStorage.getItem(archiveStorageKey)||'[]');if(!Array.isArray(saved))return[];return saved.map(page=>{const movedNumber={'business.html':13,'business-service.html':14,'business-cases.html':15,'business-safety.html':16,'business-flow.html':17}[page.href];const migrated=movedNumber?{...page,number:movedNumber}:page;return archiveTitleByNumber[migrated.number]?{...migrated,title:archiveTitleByNumber[migrated.number]}:migrated})}catch(error){return[]}}
+    function saveArchive(pages){try{localStorage.setItem(archiveStorageKey,JSON.stringify(pages))}catch(error){return}}
+    function registerCurrentPage(){const pages=loadArchive(),index=pages.findIndex(page=>page.number===currentPage.number);if(index>=0)pages[index]=currentPage;else pages.push(currentPage);pages.sort((a,b)=>a.number-b.number);saveArchive(pages);return pages}
+    function renderArchive(){const pages=registerCurrentPage();archiveList.textContent='';for(let pageNumber=1;pageNumber<=totalPages;pageNumber+=1){const page=pages.find(savedPage=>savedPage.number===pageNumber),item=document.createElement('li'),entry=document.createElement(page?'a':'div'),number=document.createElement('span'),title=document.createElement('span');entry.className='archive-entry';number.className='archive-number';title.className='archive-title';number.textContent=String(pageNumber).padStart(2,'0');if(page){entry.href=page.href;title.textContent=page.title}else{entry.classList.add('is-locked');title.textContent='？？？'}entry.append(number,title);item.appendChild(entry);archiveList.appendChild(item)}}
+    function openArchive(){renderArchive();resetConfirm.hidden=true;archiveOverlay.classList.add('is-open');archiveOverlay.setAttribute('aria-hidden','false');document.body.classList.add('archive-open');archiveClose.focus()}
+    function closeArchive(){resetConfirm.hidden=true;archiveOverlay.classList.remove('is-open');archiveOverlay.setAttribute('aria-hidden','true');document.body.classList.remove('archive-open');archiveButton.focus()}
+    registerCurrentPage();archiveButton.addEventListener('click',openArchive);archiveClose.addEventListener('click',closeArchive);archiveOverlay.addEventListener('click',event=>{if(event.target===archiveOverlay)closeArchive()});archiveResetButton.addEventListener('click',()=>{resetConfirm.hidden=false;resetCancel.focus()});resetCancel.addEventListener('click',()=>{resetConfirm.hidden=true;archiveResetButton.focus()});resetAccept.addEventListener('click',()=>{try{localStorage.removeItem(archiveStorageKey)}catch(error){return}window.location.href='index.html'});document.addEventListener('keydown',event=>{if(event.key!=='Escape'||!archiveOverlay.classList.contains('is-open'))return;if(!resetConfirm.hidden){resetConfirm.hidden=true;archiveResetButton.focus()}else closeArchive()});
+  </script>
+</body>
+</html>
+
+

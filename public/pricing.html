@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TIME BACKの時間売却報酬と時間購入料金をご案内します。">
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <title>料金・報酬｜TIME BACK</title>
+  <style>
+    :root { --ink:#153b38; --muted:#607774; --green:#087f72; --green-dark:#05645b; --mint:#dff5ef; --mint-pale:#f3fbf9; --line:#d8e7e3; --paper:#fff; --navy:#102e2c; --blue:#0b4b72; --shadow:0 18px 55px rgba(15,78,71,.1); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { min-width:320px; margin:0; color:var(--ink); background:#fff; font-family:"Yu Gothic","YuGothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif; line-height:1.8; }
+    body.archive-open { overflow:hidden; }
+    a { color:inherit; }
+    button,input { font:inherit; }
+    .skip-link { position:fixed; top:8px; left:8px; z-index:2000; padding:8px 12px; color:#fff; background:var(--navy); transform:translateY(-150%); }
+    .skip-link:focus { transform:translateY(0); }
+
+    .site-header { position:sticky; top:0; z-index:100; border-bottom:1px solid rgba(216,231,227,.88); background:rgba(255,255,255,.94); backdrop-filter:blur(14px); }
+    .header-inner { width:min(1180px,calc(100% - 40px)); min-height:76px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:30px; }
+    .brand { display:inline-flex; align-items:center; gap:11px; color:var(--ink); text-decoration:none; }
+    .brand-logo-crop { position:relative; flex:0 0 auto; width:42px; height:42px; overflow:hidden; border-radius:50%; background:#fff; }
+    .brand-logo { position:absolute; top:-13px; left:-21px; width:84px; height:84px; max-width:none; }
+    .brand-name { color:#07346e; font-size:1.14rem; font-weight:800; letter-spacing:.13em; white-space:nowrap; }
+    .global-nav ul { display:flex; align-items:center; gap:5px; margin:0; padding:0; list-style:none; }
+    .global-nav a { display:block; padding:10px 13px; border-radius:8px; font-size:.83rem; font-weight:700; text-decoration:none; transition:color .18s ease,background .18s ease; }
+    .global-nav a:hover,.global-nav a:focus-visible,.global-nav a[aria-current="page"] { color:var(--green-dark); background:var(--mint-pale); }
+    .site-search { flex:0 0 auto; }
+    .search-form { display:flex; align-items:center; overflow:hidden; border:1px solid var(--line); border-radius:9px; background:#f8fbfa; transition:border-color .18s ease,box-shadow .18s ease; }
+    .search-form:focus-within { border-color:#55aa9e; box-shadow:0 0 0 3px rgba(8,127,114,.1); }
+    .search-input { width:210px; height:42px; padding:0 12px; border:0; outline:none; color:var(--ink); background:transparent; font-size:.84rem; }
+    .search-input::placeholder { color:#82928f; }
+    .search-submit { display:grid; width:42px; height:42px; padding:0; place-items:center; border:0; color:#fff; background:var(--green); cursor:pointer; transition:background .18s ease; }
+    .search-submit:hover,.search-submit:focus-visible { background:var(--green-dark); }
+    .search-submit svg { width:17px; height:17px; }
+
+    .page-hero { position:relative; overflow:hidden; padding:78px 0 73px; color:#fff; background:linear-gradient(126deg,#092f5e 0%,#087b80 72%,#14a995 100%); }
+    .page-hero::before { content:""; position:absolute; inset:0; opacity:.24; background:repeating-linear-gradient(115deg,transparent 0,transparent 84px,rgba(255,255,255,.08) 85px,transparent 86px); }
+    .page-hero::after { content:"¥"; position:absolute; right:max(4vw,25px); top:50%; color:rgba(255,255,255,.07); font:800 clamp(13rem,25vw,22rem)/1 Arial,sans-serif; transform:translateY(-50%); }
+    .page-hero-inner { position:relative; z-index:1; width:min(960px,calc(100% - 40px)); margin:0 auto; }
+    .eyebrow { margin:0 0 10px; color:#8ce6d7; font-size:.76rem; font-weight:800; letter-spacing:.18em; }
+    .page-hero h1 { margin:0; font-size:clamp(2.2rem,5vw,3.8rem); line-height:1.35; letter-spacing:.06em; }
+    .page-hero p:last-child { max-width:650px; margin:18px 0 0; color:#d8efed; font-size:.97rem; }
+
+    .pricing-main { padding:85px 0 100px; background:#f7fbfa; }
+    .section-inner { width:min(1060px,calc(100% - 40px)); margin:0 auto; }
+    .pricing-intro { max-width:760px; margin-bottom:42px; }
+    .section-label { margin:0 0 7px; color:var(--green); font-size:.75rem; font-weight:800; letter-spacing:.17em; }
+    .pricing-intro h2 { margin:0; color:var(--navy); font-size:clamp(1.55rem,3vw,2.2rem); letter-spacing:.035em; }
+    .pricing-intro p:last-child { margin:14px 0 0; color:var(--muted); font-size:.92rem; }
+
+    .pricing-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:25px; }
+    .pricing-card { overflow:hidden; border:1px solid var(--line); border-radius:17px; background:#fff; box-shadow:var(--shadow); }
+    .pricing-card-header { min-height:155px; padding:27px 29px 25px; color:#fff; background:linear-gradient(135deg,#07796d,#0aa28f); }
+    .pricing-card.buy .pricing-card-header { background:linear-gradient(135deg,#0b315f,#0a6085); }
+    .mode-label { display:inline-block; margin-bottom:12px; padding:4px 10px; border:1px solid rgba(255,255,255,.35); border-radius:999px; font-size:.68rem; font-weight:900; letter-spacing:.13em; }
+    .pricing-card-header h2 { margin:0; font-size:1.55rem; letter-spacing:.04em; }
+    .pricing-card-header p { margin:8px 0 0; color:rgba(255,255,255,.82); font-size:.84rem; }
+    .table-wrap { overflow-x:auto; }
+    .price-table { width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+    .price-table th,.price-table td { padding:18px 18px; border-bottom:1px solid var(--line); text-align:right; white-space:nowrap; }
+    .price-table th:first-child,.price-table td:first-child { padding-left:26px; text-align:left; }
+    .price-table th:last-child,.price-table td:last-child { padding-right:26px; }
+    .price-table thead th { color:#718581; background:#f6faf9; font-size:.72rem; font-weight:800; }
+    .price-table tbody th { color:var(--navy); font-size:.91rem; }
+    .price-total { color:var(--green-dark); font-size:1rem; font-weight:900; }
+    .pricing-card.buy .price-total { color:var(--blue); }
+    .unit-price { color:var(--muted); font-size:.77rem; }
+    .price-table tr.recommended { background:#effaf7; }
+    .pricing-card.buy .price-table tr.recommended { background:#f0f7fb; }
+    .recommend-tag { display:block; width:max-content; margin-top:3px; padding:2px 6px; border-radius:4px; color:#fff; background:var(--green); font-size:.58rem; line-height:1.5; }
+    .pricing-card.buy .recommend-tag { background:var(--blue); }
+    .card-note { margin:0; padding:17px 25px 20px; color:var(--muted); background:#fbfdfc; font-size:.74rem; }
+
+    .value-guide { display:grid; grid-template-columns:repeat(2,1fr); gap:25px; margin-top:35px; }
+    .guide-card { padding:29px; border:1px solid var(--line); border-radius:14px; background:#fff; }
+    .guide-card h3 { margin:0; color:var(--navy); font-size:1rem; }
+    .guide-card p { margin:8px 0 0; color:var(--muted); font-size:.84rem; }
+    .guide-scale { display:flex; align-items:flex-end; gap:6px; height:52px; margin-top:19px; }
+    .guide-scale span { flex:1; background:linear-gradient(180deg,#53c7b3,var(--green)); }
+    .guide-scale span:nth-child(1) { height:34%; }
+    .guide-scale span:nth-child(2) { height:48%; }
+    .guide-scale span:nth-child(3) { height:65%; }
+    .guide-scale span:nth-child(4) { height:81%; }
+    .guide-scale span:nth-child(5) { height:100%; }
+    .guide-card.buy-guide .guide-scale { align-items:flex-start; }
+    .guide-card.buy-guide .guide-scale span { background:linear-gradient(180deg,var(--blue),#2592a1); }
+    .guide-card.buy-guide .guide-scale span:nth-child(1) { height:100%; }
+    .guide-card.buy-guide .guide-scale span:nth-child(2) { height:82%; }
+    .guide-card.buy-guide .guide-scale span:nth-child(3) { height:67%; }
+    .guide-card.buy-guide .guide-scale span:nth-child(4) { height:50%; }
+    .guide-card.buy-guide .guide-scale span:nth-child(5) { height:35%; }
+    .guide-caption { display:flex; justify-content:space-between; margin-top:6px; color:#81928f; font-size:.65rem; }
+
+    .notice { margin-top:55px; padding:28px 31px; border-left:4px solid var(--green); background:#eaf7f4; }
+    .notice h2 { margin:0; color:var(--navy); font-size:1.02rem; }
+    .notice ul { margin:10px 0 0; padding-left:1.3em; color:var(--muted); font-size:.8rem; }
+    .notice li + li { margin-top:5px; }
+
+    .site-footer { border-top:1px solid #284946; color:#cfdbd9; background:var(--navy); }
+    .footer-inner { width:min(1180px,calc(100% - 40px)); min-height:82px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .fiction-notice { margin:0; font-size:.67rem; line-height:1.7; }
+    .archive-button { flex:0 0 auto; min-width:122px; padding:10px 14px; border:1px solid #64817e; border-radius:7px; color:#fff; background:transparent; font-size:.76rem; font-weight:800; letter-spacing:.12em; cursor:pointer; }
+    .archive-button:hover,.archive-button:focus-visible { border-color:#81dac8; color:#81dac8; }
+    .archive-overlay { position:fixed; inset:0; z-index:1000; display:grid; place-items:center; padding:20px; background:rgba(7,25,23,.72); opacity:0; visibility:hidden; transition:opacity .18s ease,visibility .18s ease; }
+    .archive-overlay.is-open { opacity:1; visibility:visible; }
+    .archive-dialog { width:min(540px,100%); max-height:min(700px,calc(100vh - 40px)); overflow:hidden; border:1px solid #a9beb9; border-radius:12px; color:var(--ink); background:#f8fbfa; box-shadow:0 25px 70px rgba(0,0,0,.36); transform:translateY(10px); transition:transform .18s ease; }
+    .archive-overlay.is-open .archive-dialog { transform:translateY(0); }
+    .archive-header { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px 20px; color:#fff; background:var(--navy); }
+    .archive-header h2 { margin:0; font-size:1.05rem; letter-spacing:.08em; }
+    .archive-close { width:35px; height:35px; padding:0; border:1px solid #68817f; border-radius:50%; color:#fff; background:transparent; font-size:1.3rem; line-height:1; cursor:pointer; }
+    .archive-content { max-height:calc(100vh - 120px); overflow:auto; padding:20px; }
+    .archive-description { margin:0 0 15px; color:var(--muted); font-size:.79rem; line-height:1.7; }
+    .archive-list { display:block; max-height:390px; margin:0; padding:0; overflow-y:auto; border-top:1px solid var(--line); list-style:none; }
+    .archive-entry { display:grid; grid-template-columns:58px 1fr; align-items:center; gap:12px; padding:12px 11px; border-bottom:1px solid var(--line); color:var(--ink); background:#fff; text-decoration:none; }
+    a.archive-entry:hover,a.archive-entry:focus-visible { background:#edfaf7; }
+    .archive-entry.is-locked { color:#94a29f; background:#f1f5f4; cursor:default; user-select:none; }
+    .archive-number { color:var(--green); font:800 .77rem/1 Consolas,monospace; }
+    .archive-entry.is-locked .archive-number { color:#94a29f; }
+    .archive-title { font-size:.86rem; }
+    .archive-entry.is-locked .archive-title { letter-spacing:.16em; }
+    .archive-tools { margin-top:16px; padding-top:14px; border-top:1px solid var(--line); }
+    .archive-reset-button,.reset-actions button { padding:8px 12px; border:1px solid #9aafaa; border-radius:6px; color:var(--ink); background:#fff; font-size:.76rem; cursor:pointer; }
+    .archive-reset-button { color:#805152; border-color:#c6a9aa; }
+    .reset-confirm { margin-top:13px; padding:14px; border-radius:8px; color:#586966; background:#eaf3f1; font-size:.79rem; }
+    .reset-confirm p { margin:0 0 11px; }
+    .reset-actions { display:flex; justify-content:flex-end; gap:8px; }
+    .reset-actions .danger { color:#fff; border-color:#97595b; background:#97595b; }
+
+    @media(max-width:1080px) { .header-inner { gap:15px; } .search-input { width:118px; } .global-nav a { padding-inline:8px; } }
+    @media(max-width:880px) { .header-inner { min-height:auto; padding:17px 0 13px; flex-direction:column; gap:9px; } .site-search { width:min(100%,500px); } .search-input { width:100%; } .global-nav { width:100%; overflow-x:auto; } .global-nav ul { justify-content:center; min-width:460px; } .pricing-grid,.value-guide { grid-template-columns:1fr; } }
+    @media(max-width:580px) {
+      .header-inner,.page-hero-inner,.section-inner,.footer-inner { width:min(100% - 28px,1180px); }
+      .brand-name { font-size:1rem; }
+      .global-nav { overflow:visible; }
+      .global-nav ul { display:grid; min-width:0; grid-template-columns:repeat(2,1fr); gap:2px 6px; }
+      .global-nav a { padding:7px 5px; font-size:.76rem; text-align:center; white-space:nowrap; }
+      .page-hero { padding:55px 0 52px; }
+      .pricing-main { padding:65px 0 76px; }
+      .pricing-card-header { padding:24px 22px; }
+      .price-table th,.price-table td { padding:15px 11px; }
+      .price-table th:first-child,.price-table td:first-child { padding-left:17px; }
+      .price-table th:last-child,.price-table td:last-child { padding-right:17px; }
+      .notice { padding:24px 22px; }
+      .footer-inner { padding:18px 0; align-items:flex-end; }
+      .fiction-notice { font-size:.59rem; }
+      .archive-button { min-width:95px; padding-inline:9px; }
+    }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="TIME BACK トップページ">
+        <span class="brand-logo-crop" aria-hidden="true"><img class="brand-logo" src="images/logo.png" width="1254" height="1254" alt=""></span>
+        <span class="brand-name">TIME BACK</span>
+      </a>
+      <nav class="global-nav" aria-label="メインナビゲーション">
+        <ul><li><a href="about.html">サービスについて</a></li><li><a href="pricing.html" aria-current="page">料金・報酬</a></li><li><a href="safety.html">安全性について</a></li><li><a href="faq.html">よくある質問</a></li></ul>
+      </nav>
+      <div class="site-search">
+        <form class="search-form" action="search.html" method="get" role="search">
+          <label class="skip-link" for="siteSearchInput">サイト内検索</label>
+          <input class="search-input" id="siteSearchInput" name="q" type="search" placeholder="サイト内検索" autocomplete="off">
+          <button class="search-submit" type="submit" aria-label="検索する"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></button>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="page-hero-inner"><p class="eyebrow">PRICE &amp; REWARD</p><h1>料金・報酬</h1><p>一度に利用する時間が長いほど、売却報酬は高く、購入単価はお得になります。</p></div>
+    </section>
+
+    <section class="pricing-main" aria-labelledby="pricing-title">
+      <div class="section-inner">
+        <div class="pricing-intro"><p class="section-label">TIME BACK MARKET</p><h2 id="pricing-title">あなたの時間に合ったプランを。</h2><p>売却と購入では料金体系が異なります。表示金額にはシステム利用料が含まれています。</p></div>
+
+        <div class="pricing-grid">
+          <article class="pricing-card" aria-labelledby="sell-title">
+            <header class="pricing-card-header"><span class="mode-label">SELL TIME</span><h2 id="sell-title">時間を売る</h2><p>長い時間をまとめて売るほど、1時間あたりの報酬が上がります。</p></header>
+            <div class="table-wrap">
+              <table class="price-table"><thead><tr><th scope="col">売却時間</th><th scope="col">受取報酬</th><th scope="col">1時間あたり</th></tr></thead><tbody>
+                <tr><th scope="row">30分</th><td class="price-total">¥240</td><td class="unit-price">¥480</td></tr>
+                <tr><th scope="row">1時間</th><td class="price-total">¥520</td><td class="unit-price">¥520</td></tr>
+                <tr><th scope="row">2時間</th><td class="price-total">¥1,160</td><td class="unit-price">¥580</td></tr>
+                <tr class="recommended"><th scope="row">4時間<span class="recommend-tag">おすすめ</span></th><td class="price-total">¥2,560</td><td class="unit-price">¥640</td></tr>
+                <tr><th scope="row">6時間</th><td class="price-total">¥4,200</td><td class="unit-price">¥700</td></tr>
+              </tbody></table>
+            </div>
+            <p class="card-note">売却時間は実際に経過する時間です。報酬はセッション終了後、実施結果を確認して登録済みの受取口座へ反映されます。</p>
+          </article>
+
+          <article class="pricing-card buy" aria-labelledby="buy-title">
+            <header class="pricing-card-header"><span class="mode-label">BUY TIME</span><h2 id="buy-title">時間を買う</h2><p>長い時間をまとめて買うほど、1時間あたりの料金が安くなります。</p></header>
+            <div class="table-wrap">
+              <table class="price-table"><thead><tr><th scope="col">購入時間</th><th scope="col">支払料金</th><th scope="col">1時間あたり</th></tr></thead><tbody>
+                <tr><th scope="row">30分</th><td class="price-total">¥900</td><td class="unit-price">¥1,800</td></tr>
+                <tr><th scope="row">1時間</th><td class="price-total">¥1,650</td><td class="unit-price">¥1,650</td></tr>
+                <tr><th scope="row">2時間</th><td class="price-total">¥3,000</td><td class="unit-price">¥1,500</td></tr>
+                <tr class="recommended"><th scope="row">4時間<span class="recommend-tag">おすすめ</span></th><td class="price-total">¥5,400</td><td class="unit-price">¥1,350</td></tr>
+                <tr><th scope="row">6時間</th><td class="price-total">¥7,200</td><td class="unit-price">¥1,200</td></tr>
+              </tbody></table>
+            </div>
+            <p class="card-note">購入時間は追加される体感時間です。購入料金はセッション開始時に、登録済みのお支払い方法へ請求されます。</p>
+          </article>
+        </div>
+
+        <div class="value-guide" aria-label="長時間利用時の単価変化">
+          <article class="guide-card"><h3>売却：長時間ほど報酬単価アップ</h3><p>30分の¥480／時から、6時間では¥700／時へ段階的に上がります。</p><div class="guide-scale" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><div class="guide-caption"><span>短時間</span><span>報酬単価</span><span>長時間</span></div></article>
+          <article class="guide-card buy-guide"><h3>購入：長時間ほど料金単価ダウン</h3><p>30分の¥1,800／時から、6時間では¥1,200／時へ段階的に下がります。</p><div class="guide-scale" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><div class="guide-caption"><span>短時間</span><span>料金単価</span><span>長時間</span></div></article>
+        </div>
+
+        <aside class="notice"><h2>ご利用前にご確認ください</h2><ul><li>利用可能時間は、事前のコンディション確認結果によって変更される場合があります。</li><li>購入時の引き伸ばし倍率は1.1倍から3倍で、標準は2倍です。倍率によって購入時間を使い切るまでの実時間が異なります。</li><li>長時間の購入は、購入時に複数のセッションへ分割予約できます。自由に使える残高として保有することはできません。</li><li>開始済みの購入セッションが自己都合、体調変化、周辺トラブルなどで終了した場合、未使用分は消滅します。長時間利用では、開始前に利用者本人の同意が必要です。</li><li>TIME BACK側の障害で購入セッションが終了した場合のみ、未使用分を補償します。</li><li>売却報酬および購入料金は、需要状況により予告なく改定される場合があります。</li><li>法人向けの料金は、ビジネスプランをご確認ください。</li></ul></aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="footer-inner"><p class="fiction-notice">このサイトの内容はフィクションです。登場する人物・団体・名称等は架空のものであり、実在のものとは関係ありません。</p><button class="archive-button" id="archiveButton" type="button" aria-haspopup="dialog" aria-controls="archiveOverlay">03 / 60</button></div></footer>
+  <div class="archive-overlay" id="archiveOverlay" aria-hidden="true"><section class="archive-dialog" role="dialog" aria-modal="true" aria-labelledby="archiveTitle"><header class="archive-header"><h2 id="archiveTitle">ページアーカイブ</h2><button class="archive-close" id="archiveClose" type="button" aria-label="ページアーカイブを閉じる">×</button></header><div class="archive-content"><p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。</p><ol class="archive-list" id="archiveList"></ol><div class="archive-tools"><button class="archive-reset-button" id="archiveResetButton" type="button">アーカイブをリセット</button><div class="reset-confirm" id="resetConfirm" role="alertdialog" aria-labelledby="resetTitle" hidden><p id="resetTitle">探索済みページの記録を消去しますか？</p><div class="reset-actions"><button id="resetCancel" type="button">キャンセル</button><button class="danger" id="resetAccept" type="button">リセットする</button></div></div></div></div></section></div>
+
+  <script>
+    const archiveStorageKey='timeback-page-archive-v1',totalPages=60,archiveTitleByNumber={1:'トップページ ｜ TIME BACK',2:'サービスについて ｜ TIME BACK',3:'料金・報酬 ｜ TIME BACK',4:'安全性について ｜ TIME BACK',5:'よくある質問 ｜ TIME BACK',6:'利用規約 ｜ TIME BACK',7:'お問い合わせ ｜ TIME BACK',8:'TIME BACK MARKET ｜ TIME BACK',9:'Behavior Assistance System ｜ TIME BACK',10:'TIME BACK ID ご利用ガイド ｜ TIME BACK',13:'法人向け案内 ｜ TIME BACK for Business',14:'法人向けサービス ｜ TIME BACK for Business',15:'活用シーン ｜ TIME BACK for Business',16:'法人向け安全管理 ｜ TIME BACK for Business',17:'導入の流れ ｜ TIME BACK for Business'},currentPage={number:3,title:'料金・報酬 ｜ TIME BACK',href:'pricing.html'};
+    const archiveButton=document.getElementById('archiveButton'),archiveOverlay=document.getElementById('archiveOverlay'),archiveClose=document.getElementById('archiveClose'),archiveList=document.getElementById('archiveList'),archiveResetButton=document.getElementById('archiveResetButton'),resetConfirm=document.getElementById('resetConfirm'),resetCancel=document.getElementById('resetCancel'),resetAccept=document.getElementById('resetAccept');
+    function loadArchive(){try{const saved=JSON.parse(localStorage.getItem(archiveStorageKey)||'[]');if(!Array.isArray(saved))return[];return saved.map(page=>{const movedNumber={'business.html':13,'business-service.html':14,'business-cases.html':15,'business-safety.html':16,'business-flow.html':17}[page.href];const migrated=movedNumber?{...page,number:movedNumber}:page;return archiveTitleByNumber[migrated.number]?{...migrated,title:archiveTitleByNumber[migrated.number]}:migrated})}catch(error){return[]}}
+    function saveArchive(pages){try{localStorage.setItem(archiveStorageKey,JSON.stringify(pages))}catch(error){return}}
+    function registerCurrentPage(){const pages=loadArchive(),index=pages.findIndex(page=>page.number===currentPage.number);if(index>=0)pages[index]=currentPage;else pages.push(currentPage);pages.sort((a,b)=>a.number-b.number);saveArchive(pages);return pages}
+    function renderArchive(){const pages=registerCurrentPage();archiveList.textContent='';for(let pageNumber=1;pageNumber<=totalPages;pageNumber+=1){const page=pages.find(savedPage=>savedPage.number===pageNumber),item=document.createElement('li'),entry=document.createElement(page?'a':'div'),number=document.createElement('span'),title=document.createElement('span');entry.className='archive-entry';number.className='archive-number';title.className='archive-title';number.textContent=String(pageNumber).padStart(2,'0');if(page){entry.href=page.href;title.textContent=page.title}else{entry.classList.add('is-locked');title.textContent='？？？'}entry.append(number,title);item.appendChild(entry);archiveList.appendChild(item)}}
+    function openArchive(){renderArchive();resetConfirm.hidden=true;archiveOverlay.classList.add('is-open');archiveOverlay.setAttribute('aria-hidden','false');document.body.classList.add('archive-open');archiveClose.focus()}
+    function closeArchive(){resetConfirm.hidden=true;archiveOverlay.classList.remove('is-open');archiveOverlay.setAttribute('aria-hidden','true');document.body.classList.remove('archive-open');archiveButton.focus()}
+    registerCurrentPage();archiveButton.addEventListener('click',openArchive);archiveClose.addEventListener('click',closeArchive);archiveOverlay.addEventListener('click',event=>{if(event.target===archiveOverlay)closeArchive()});archiveResetButton.addEventListener('click',()=>{resetConfirm.hidden=false;resetCancel.focus()});resetCancel.addEventListener('click',()=>{resetConfirm.hidden=true;archiveResetButton.focus()});resetAccept.addEventListener('click',()=>{try{localStorage.removeItem(archiveStorageKey)}catch(error){return}window.location.href='index.html'});document.addEventListener('keydown',event=>{if(event.key!=='Escape'||!archiveOverlay.classList.contains('is-open'))return;if(!resetConfirm.hidden){resetConfirm.hidden=true;archiveResetButton.focus()}else closeArchive()});
+  </script>
+</body>
+</html>

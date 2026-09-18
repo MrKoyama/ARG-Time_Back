@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TIME BACKへのお問い合わせを受け付けています。">
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <title>お問い合わせ｜TIME BACK</title>
+  <style>
+    :root { --ink:#153b38; --muted:#607774; --green:#087f72; --green-dark:#05645b; --mint:#dff5ef; --mint-pale:#f3fbf9; --line:#d8e7e3; --paper:#fff; --navy:#102e2c; --shadow:0 24px 70px rgba(15,78,71,.11); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { min-width:320px; margin:0; color:var(--ink); background:#fff; font-family:"Yu Gothic","YuGothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif; line-height:1.8; }
+    body.archive-open { overflow:hidden; }
+    a { color:inherit; }
+    button,input,select,textarea { font:inherit; }
+    .skip-link { position:fixed; top:8px; left:8px; z-index:2000; padding:8px 12px; color:#fff; background:var(--navy); transform:translateY(-150%); }
+    .skip-link:focus { transform:translateY(0); }
+
+    .site-header { position:sticky; top:0; z-index:100; border-bottom:1px solid rgba(216,231,227,.88); background:rgba(255,255,255,.94); backdrop-filter:blur(14px); }
+    .header-inner { width:min(1180px,calc(100% - 40px)); min-height:76px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:30px; }
+    .brand { display:inline-flex; align-items:center; gap:11px; color:var(--ink); text-decoration:none; }
+    .brand-logo-crop { position:relative; flex:0 0 auto; width:42px; height:42px; overflow:hidden; border-radius:50%; background:#fff; }
+    .brand-logo { position:absolute; top:-13px; left:-21px; width:84px; height:84px; max-width:none; }
+    .brand-name { color:#07346e; font-size:1.14rem; font-weight:800; letter-spacing:.13em; white-space:nowrap; }
+    .global-nav ul { display:flex; align-items:center; gap:5px; margin:0; padding:0; list-style:none; }
+    .global-nav a { display:block; padding:10px 13px; border-radius:8px; font-size:.83rem; font-weight:700; text-decoration:none; transition:color .18s ease,background .18s ease; }
+    .global-nav a:hover,.global-nav a:focus-visible { color:var(--green-dark); background:var(--mint-pale); }
+    .site-search { flex:0 0 auto; }
+    .search-form { display:flex; align-items:center; overflow:hidden; border:1px solid var(--line); border-radius:9px; background:#f8fbfa; transition:border-color .18s ease,box-shadow .18s ease; }
+    .search-form:focus-within { border-color:#55aa9e; box-shadow:0 0 0 3px rgba(8,127,114,.1); }
+    .search-input { width:210px; height:42px; padding:0 12px; border:0; outline:none; color:var(--ink); background:transparent; font-size:.84rem; }
+    .search-input::placeholder { color:#82928f; }
+    .search-submit { display:grid; width:42px; height:42px; padding:0; place-items:center; border:0; color:#fff; background:var(--green); cursor:pointer; transition:background .18s ease; }
+    .search-submit:hover,.search-submit:focus-visible { background:var(--green-dark); }
+    .search-submit svg { width:17px; height:17px; }
+
+    .page-hero { background:linear-gradient(135deg,#effaf7 0%,#fff 70%,#e6f5f1 100%); }
+    .page-hero-inner { width:min(960px,calc(100% - 40px)); margin:0 auto; padding:66px 0 62px; }
+    .eyebrow { margin:0 0 10px; color:var(--green); font-size:.76rem; font-weight:800; letter-spacing:.18em; }
+    .page-hero h1 { margin:0; color:var(--navy); font-size:clamp(2rem,4vw,2.9rem); line-height:1.35; letter-spacing:.06em; }
+    .hero-lead { max-width:680px; margin:17px 0 0; color:var(--muted); font-size:.96rem; }
+
+    .contact-section { padding:78px 0 96px; background:#f7fbfa; }
+    .section-inner { width:min(960px,calc(100% - 40px)); margin:0 auto; }
+    .contact-layout { display:grid; grid-template-columns:1fr 310px; gap:42px; align-items:start; }
+    .contact-form-card { padding:38px 40px; border:1px solid var(--line); border-radius:16px; background:#fff; box-shadow:var(--shadow); }
+    .form-heading { margin-bottom:31px; }
+    .form-heading h2 { margin:0; color:var(--navy); font-size:1.35rem; }
+    .form-heading p { margin:9px 0 0; color:var(--muted); font-size:.83rem; }
+    .form-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:23px 20px; }
+    .form-field.full { grid-column:1 / -1; }
+    .form-field label { display:block; margin-bottom:7px; color:var(--ink); font-size:.83rem; font-weight:800; }
+    .required { display:inline-block; margin-left:7px; padding:1px 6px; border-radius:4px; color:#fff; background:var(--green); font-size:.62rem; line-height:1.55; vertical-align:middle; }
+    .optional { margin-left:7px; color:#8a9996; font-size:.67rem; font-weight:500; }
+    .form-control { width:100%; min-height:48px; padding:10px 13px; border:1px solid #cbdeda; border-radius:7px; outline:none; color:var(--ink); background:#fbfdfc; font-size:.9rem; transition:border-color .18s ease,box-shadow .18s ease; }
+    textarea.form-control { min-height:170px; resize:vertical; }
+    .form-control:focus { border-color:#54a99c; box-shadow:0 0 0 3px rgba(8,127,114,.1); background:#fff; }
+    .form-control::placeholder { color:#9ba8a5; }
+    .agreement { display:flex; align-items:flex-start; gap:11px; margin-top:25px; color:var(--muted); font-size:.8rem; }
+    .agreement input { flex:0 0 auto; width:17px; height:17px; margin-top:5px; accent-color:var(--green); }
+    .agreement a { color:var(--green-dark); font-weight:800; text-underline-offset:3px; }
+    .submit-row { display:flex; justify-content:flex-end; margin-top:27px; }
+    .submit-button { min-width:190px; padding:13px 22px; border:0; border-radius:7px; color:#fff; background:var(--green); font-size:.85rem; font-weight:900; cursor:pointer; transition:background .18s ease,transform .18s ease; }
+    .submit-button:hover,.submit-button:focus-visible { background:var(--green-dark); transform:translateY(-1px); }
+    .form-complete { padding:47px 30px; text-align:center; }
+    .complete-mark { display:grid; width:58px; height:58px; margin:0 auto 20px; place-items:center; border-radius:50%; color:#fff; background:var(--green); font-size:1.45rem; }
+    .form-complete h2 { margin:0; color:var(--navy); font-size:1.4rem; }
+    .form-complete p { margin:12px auto 0; max-width:470px; color:var(--muted); font-size:.88rem; }
+    .form-complete a { display:inline-block; margin-top:23px; color:var(--green-dark); font-size:.84rem; font-weight:800; }
+
+    .contact-sidebar { display:grid; gap:18px; }
+    .side-card { padding:25px 23px; border:1px solid var(--line); border-radius:13px; background:#fff; }
+    .side-card.dark { color:#fff; border-color:var(--navy); background:var(--navy); }
+    .side-card small { display:block; color:var(--green); font-size:.68rem; font-weight:900; letter-spacing:.13em; }
+    .side-card.dark small { color:#81d9c9; }
+    .side-card h2 { margin:8px 0 0; color:var(--navy); font-size:1.02rem; }
+    .side-card.dark h2 { color:#fff; }
+    .side-card p { margin:9px 0 0; color:var(--muted); font-size:.78rem; }
+    .side-card.dark p { color:#bad0cc; }
+    .side-link { display:inline-flex; align-items:center; gap:9px; margin-top:15px; color:var(--green-dark); font-size:.78rem; font-weight:900; text-decoration:none; }
+    .side-card.dark .side-link { color:#8ce0d0; }
+    .response-time { margin-top:13px; padding-top:13px; border-top:1px solid var(--line); color:var(--muted); font-size:.72rem; }
+    .side-card.dark .response-time { border-color:#31514e; color:#9fb9b5; }
+
+    .site-footer { border-top:1px solid #284946; color:#cfdbd9; background:var(--navy); }
+    .footer-inner { width:min(1180px,calc(100% - 40px)); min-height:82px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .fiction-notice { margin:0; font-size:.67rem; line-height:1.7; }
+    .archive-button { flex:0 0 auto; min-width:122px; padding:10px 14px; border:1px solid #64817e; border-radius:7px; color:#fff; background:transparent; font-size:.76rem; font-weight:800; letter-spacing:.12em; cursor:pointer; }
+    .archive-button:hover,.archive-button:focus-visible { border-color:#81dac8; color:#81dac8; }
+    .archive-overlay { position:fixed; inset:0; z-index:1000; display:grid; place-items:center; padding:20px; background:rgba(7,25,23,.72); opacity:0; visibility:hidden; transition:opacity .18s ease,visibility .18s ease; }
+    .archive-overlay.is-open { opacity:1; visibility:visible; }
+    .archive-dialog { width:min(540px,100%); max-height:min(700px,calc(100vh - 40px)); overflow:hidden; border:1px solid #a9beb9; border-radius:12px; color:var(--ink); background:#f8fbfa; box-shadow:0 25px 70px rgba(0,0,0,.36); transform:translateY(10px); transition:transform .18s ease; }
+    .archive-overlay.is-open .archive-dialog { transform:translateY(0); }
+    .archive-header { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px 20px; color:#fff; background:var(--navy); }
+    .archive-header h2 { margin:0; font-size:1.05rem; letter-spacing:.08em; }
+    .archive-close { width:35px; height:35px; padding:0; border:1px solid #68817f; border-radius:50%; color:#fff; background:transparent; font-size:1.3rem; line-height:1; cursor:pointer; }
+    .archive-content { max-height:calc(100vh - 120px); overflow:auto; padding:20px; }
+    .archive-description { margin:0 0 15px; color:var(--muted); font-size:.79rem; line-height:1.7; }
+    .archive-list { display:block; max-height:390px; margin:0; padding:0; overflow-y:auto; border-top:1px solid var(--line); list-style:none; }
+    .archive-entry { display:grid; grid-template-columns:58px 1fr; align-items:center; gap:12px; padding:12px 11px; border-bottom:1px solid var(--line); color:var(--ink); background:#fff; text-decoration:none; }
+    a.archive-entry:hover,a.archive-entry:focus-visible { background:#edfaf7; }
+    .archive-entry.is-locked { color:#94a29f; background:#f1f5f4; cursor:default; user-select:none; }
+    .archive-number { color:var(--green); font:800 .77rem/1 Consolas,monospace; }
+    .archive-entry.is-locked .archive-number { color:#94a29f; }
+    .archive-title { font-size:.86rem; }
+    .archive-entry.is-locked .archive-title { letter-spacing:.16em; }
+    .archive-tools { margin-top:16px; padding-top:14px; border-top:1px solid var(--line); }
+    .archive-reset-button,.reset-actions button { padding:8px 12px; border:1px solid #9aafaa; border-radius:6px; color:var(--ink); background:#fff; font-size:.76rem; cursor:pointer; }
+    .archive-reset-button { color:#805152; border-color:#c6a9aa; }
+    .reset-confirm { margin-top:13px; padding:14px; border-radius:8px; color:#586966; background:#eaf3f1; font-size:.79rem; }
+    .reset-confirm p { margin:0 0 11px; }
+    .reset-actions { display:flex; justify-content:flex-end; gap:8px; }
+    .reset-actions .danger { color:#fff; border-color:#97595b; background:#97595b; }
+
+    @media(max-width:1080px) { .header-inner { gap:15px; } .search-input { width:118px; } .global-nav a { padding-inline:8px; } }
+    @media(max-width:880px) {
+      .header-inner { min-height:auto; padding:17px 0 13px; flex-direction:column; gap:9px; }
+      .site-search { width:min(100%,500px); }
+      .search-input { width:100%; }
+      .global-nav { width:100%; overflow-x:auto; }
+      .global-nav ul { justify-content:center; min-width:520px; }
+      .contact-layout { grid-template-columns:1fr; }
+      .contact-sidebar { grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:580px) {
+      .header-inner,.page-hero-inner,.section-inner,.footer-inner { width:min(100% - 28px,1180px); }
+      .brand-name { font-size:1rem; }
+      .global-nav { overflow:visible; }
+      .global-nav ul { display:grid; min-width:0; grid-template-columns:repeat(2,1fr); gap:2px 6px; }
+      .global-nav a { padding:7px 5px; font-size:.76rem; text-align:center; white-space:nowrap; }
+      .page-hero-inner { padding:52px 0 49px; }
+      .page-hero h1 { font-size:1.85rem; }
+      .hero-lead { font-size:.9rem; }
+      .contact-section { padding:58px 0 72px; }
+      .contact-form-card { padding:28px 22px; }
+      .form-grid { grid-template-columns:1fr; }
+      .form-field.full { grid-column:auto; }
+      .submit-button { width:100%; }
+      .contact-sidebar { grid-template-columns:1fr; }
+      .footer-inner { padding:18px 0; align-items:flex-end; }
+      .fiction-notice { font-size:.59rem; }
+      .archive-button { min-width:95px; padding-inline:9px; }
+    }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="index.html" aria-label="TIME BACK トップページ"><span class="brand-logo-crop" aria-hidden="true"><img class="brand-logo" src="images/logo.png" width="1254" height="1254" alt=""></span><span class="brand-name">TIME BACK</span></a>
+    <nav class="global-nav" aria-label="メインナビゲーション"><ul><li><a href="about.html">サービスについて</a></li><li><a href="pricing.html">料金・報酬</a></li><li><a href="safety.html">安全性について</a></li><li><a href="faq.html">よくある質問</a></li></ul></nav>
+    <div class="site-search"><form class="search-form" action="search.html" method="get" role="search"><label class="skip-link" for="siteSearchInput">サイト内検索</label><input class="search-input" id="siteSearchInput" name="q" type="search" placeholder="サイト内検索" autocomplete="off"><button class="search-submit" type="submit" aria-label="検索する"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></button></form></div>
+  </div></header>
+
+  <main id="main">
+    <section class="page-hero"><div class="page-hero-inner"><p class="eyebrow">CONTACT</p><h1>お問い合わせ</h1><p class="hero-lead">サービスのご利用、取引、安全性、法人導入に関するご質問を受け付けています。</p></div></section>
+    <section class="contact-section"><div class="section-inner contact-layout">
+      <div class="contact-form-card" id="formCard">
+        <div class="form-heading"><h2>お問い合わせフォーム</h2><p>必要事項をご入力ください。内容を確認後、担当窓口よりご連絡します。</p></div>
+        <form id="contactForm">
+          <div class="form-grid">
+            <div class="form-field full"><label for="inquiryType">お問い合わせ種別<span class="required">必須</span></label><select class="form-control" id="inquiryType" name="inquiryType" required><option value="">選択してください</option><option value="service">サービスについて</option><option value="transaction">時間の売買について</option><option value="safety">安全性について</option><option value="account">登録・料金について</option><option value="business">法人での導入について</option><option value="other">その他</option></select></div>
+            <div class="form-field"><label for="name">お名前<span class="required">必須</span></label><input class="form-control" id="name" name="name" type="text" autocomplete="name" required></div>
+            <div class="form-field"><label for="company">会社・団体名<span class="optional">任意</span></label><input class="form-control" id="company" name="company" type="text" autocomplete="organization"></div>
+            <div class="form-field full"><label for="email">メールアドレス<span class="required">必須</span></label><input class="form-control" id="email" name="email" type="email" autocomplete="email" required></div>
+            <div class="form-field full"><label for="memberId">TIME BACK ID<span class="optional">任意</span></label><input class="form-control" id="memberId" name="memberId" type="text" placeholder="TB-00000000"></div>
+            <div class="form-field full"><label for="message">お問い合わせ内容<span class="required">必須</span></label><textarea class="form-control" id="message" name="message" required></textarea></div>
+          </div>
+          <label class="agreement"><input id="agreement" name="agreement" type="checkbox" required><span><a href="terms.html#privacy">個人情報の取扱い</a>を確認し、問い合わせ対応のために入力情報を利用することに同意します。</span></label>
+          <div class="submit-row"><button class="submit-button" type="submit">入力内容を送信する</button></div>
+        </form>
+      </div>
+      <aside class="contact-sidebar">
+        <section class="side-card"><small>BEFORE CONTACT</small><h2>よくある質問</h2><p>利用方法、料金、キャンセルなど、よくあるお問い合わせをまとめています。</p><a class="side-link" href="faq.html">FAQを確認する <span aria-hidden="true">→</span></a></section>
+        <section class="side-card dark"><small>BUSINESS SUPPORT</small><h2>法人のお客様</h2><p>法人契約に関するご相談は、お問い合わせ種別から「法人での導入について」を選択してお送りください。</p><p class="response-time">受付時間：平日 10:00–18:00</p></section>
+      </aside>
+    </div></section>
+  </main>
+
+  <footer class="site-footer"><div class="footer-inner"><p class="fiction-notice">このサイトの内容はフィクションです。登場する人物・団体・名称等は架空のものであり、実在のものとは関係ありません。</p><button class="archive-button" id="archiveButton" type="button" aria-haspopup="dialog" aria-controls="archiveOverlay">07 / 60</button></div></footer>
+  <div class="archive-overlay" id="archiveOverlay" aria-hidden="true"><section class="archive-dialog" role="dialog" aria-modal="true" aria-labelledby="archiveTitle"><header class="archive-header"><h2 id="archiveTitle">ページアーカイブ</h2><button class="archive-close" id="archiveClose" type="button" aria-label="ページアーカイブを閉じる">×</button></header><div class="archive-content"><p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。</p><ol class="archive-list" id="archiveList"></ol><div class="archive-tools"><button class="archive-reset-button" id="archiveResetButton" type="button">アーカイブをリセット</button><div class="reset-confirm" id="resetConfirm" role="alertdialog" aria-labelledby="resetTitle" hidden><p id="resetTitle">探索済みページの記録を消去しますか？</p><div class="reset-actions"><button id="resetCancel" type="button">キャンセル</button><button class="danger" id="resetAccept" type="button">リセットする</button></div></div></div></div></section></div>
+
+  <script>
+    const archiveStorageKey='timeback-page-archive-v1',totalPages=60;
+    const archiveTitleByNumber={1:'トップページ ｜ TIME BACK',2:'サービスについて ｜ TIME BACK',3:'料金・報酬 ｜ TIME BACK',4:'安全性について ｜ TIME BACK',5:'よくある質問 ｜ TIME BACK',6:'利用規約 ｜ TIME BACK',7:'お問い合わせ ｜ TIME BACK',8:'TIME BACK MARKET ｜ TIME BACK',9:'Behavior Assistance System ｜ TIME BACK',10:'TIME BACK ID ご利用ガイド ｜ TIME BACK',13:'法人向け案内 ｜ TIME BACK for Business',14:'法人向けサービス ｜ TIME BACK for Business',15:'活用シーン ｜ TIME BACK for Business',16:'法人向け安全管理 ｜ TIME BACK for Business',17:'導入の流れ ｜ TIME BACK for Business'};
+    const currentPage={number:7,title:'お問い合わせ ｜ TIME BACK',href:'contact.html'};
+    const archiveButton=document.getElementById('archiveButton'),archiveOverlay=document.getElementById('archiveOverlay'),archiveClose=document.getElementById('archiveClose'),archiveList=document.getElementById('archiveList'),archiveResetButton=document.getElementById('archiveResetButton'),resetConfirm=document.getElementById('resetConfirm'),resetCancel=document.getElementById('resetCancel'),resetAccept=document.getElementById('resetAccept');
+    function loadArchive(){try{const saved=JSON.parse(localStorage.getItem(archiveStorageKey)||'[]');if(!Array.isArray(saved))return[];return saved.map(page=>{const movedNumber={'business.html':13,'business-service.html':14,'business-cases.html':15,'business-safety.html':16,'business-flow.html':17}[page.href];const migrated=movedNumber?{...page,number:movedNumber}:page;return archiveTitleByNumber[migrated.number]?{...migrated,title:archiveTitleByNumber[migrated.number]}:migrated})}catch(error){return[]}}
+    function saveArchive(pages){try{localStorage.setItem(archiveStorageKey,JSON.stringify(pages))}catch(error){return}}
+    function registerCurrentPage(){const pages=loadArchive(),index=pages.findIndex(page=>page.number===currentPage.number);if(index>=0)pages[index]=currentPage;else pages.push(currentPage);pages.sort((a,b)=>a.number-b.number);saveArchive(pages);return pages}
+    function renderArchive(){const pages=registerCurrentPage();archiveList.textContent='';for(let pageNumber=1;pageNumber<=totalPages;pageNumber+=1){const page=pages.find(savedPage=>savedPage.number===pageNumber),item=document.createElement('li'),entry=document.createElement(page?'a':'div'),number=document.createElement('span'),title=document.createElement('span');entry.className='archive-entry';number.className='archive-number';title.className='archive-title';number.textContent=String(pageNumber).padStart(2,'0');if(page){entry.href=page.href;title.textContent=page.title}else{entry.classList.add('is-locked');title.textContent='？？？'}entry.append(number,title);item.appendChild(entry);archiveList.appendChild(item)}}
+    function openArchive(){renderArchive();resetConfirm.hidden=true;archiveOverlay.classList.add('is-open');archiveOverlay.setAttribute('aria-hidden','false');document.body.classList.add('archive-open');archiveClose.focus()}
+    function closeArchive(){resetConfirm.hidden=true;archiveOverlay.classList.remove('is-open');archiveOverlay.setAttribute('aria-hidden','true');document.body.classList.remove('archive-open');archiveButton.focus()}
+    registerCurrentPage();archiveButton.addEventListener('click',openArchive);archiveClose.addEventListener('click',closeArchive);archiveOverlay.addEventListener('click',event=>{if(event.target===archiveOverlay)closeArchive()});archiveResetButton.addEventListener('click',()=>{resetConfirm.hidden=false;resetCancel.focus()});resetCancel.addEventListener('click',()=>{resetConfirm.hidden=true;archiveResetButton.focus()});resetAccept.addEventListener('click',()=>{try{localStorage.removeItem(archiveStorageKey)}catch(error){return}window.location.href='index.html'});document.addEventListener('keydown',event=>{if(event.key!=='Escape'||!archiveOverlay.classList.contains('is-open'))return;if(!resetConfirm.hidden){resetConfirm.hidden=true;archiveResetButton.focus()}else closeArchive()});
+
+    const contactForm=document.getElementById('contactForm'),formCard=document.getElementById('formCard'),inquiryType=document.getElementById('inquiryType');
+    if(new URLSearchParams(window.location.search).get('subject')==='business')inquiryType.value='business';
+    contactForm.addEventListener('submit',event=>{event.preventDefault();const reference=`TB-${String(Date.now()).slice(-8)}`;formCard.innerHTML=`<div class="form-complete" role="status"><span class="complete-mark" aria-hidden="true">✓</span><h2>お問い合わせを受け付けました</h2><p>受付番号は <strong>${reference}</strong> です。内容を確認後、登録いただいたメールアドレスへご連絡します。</p><a href="index.html">TIME BACKトップへ戻る</a></div>`;formCard.scrollIntoView({behavior:'smooth',block:'center'})});
+  </script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Chronectが提供するTIME BACKの利用規約です。">
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <title>利用規約｜TIME BACK</title>
+  <style>
+    :root { --ink:#153b38; --muted:#607774; --green:#087f72; --green-dark:#05645b; --mint:#dff5ef; --mint-pale:#f3fbf9; --line:#d8e7e3; --paper:#fff; --navy:#102e2c; --shadow:0 20px 55px rgba(15,78,71,.09); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { min-width:320px; margin:0; color:var(--ink); background:#fff; font-family:"Yu Gothic","YuGothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif; line-height:1.85; }
+    body.archive-open { overflow:hidden; }
+    a { color:inherit; }
+    button,input { font:inherit; }
+    .skip-link { position:fixed; top:8px; left:8px; z-index:2000; padding:8px 12px; color:#fff; background:var(--navy); transform:translateY(-150%); }
+    .skip-link:focus { transform:translateY(0); }
+
+    .site-header { position:sticky; top:0; z-index:100; border-bottom:1px solid rgba(216,231,227,.88); background:rgba(255,255,255,.94); backdrop-filter:blur(14px); }
+    .header-inner { width:min(1180px,calc(100% - 40px)); min-height:76px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:30px; }
+    .brand { display:inline-flex; align-items:center; gap:11px; color:var(--ink); text-decoration:none; }
+    .brand-logo-crop { position:relative; flex:0 0 auto; width:42px; height:42px; overflow:hidden; border-radius:50%; background:#fff; }
+    .brand-logo { position:absolute; top:-13px; left:-21px; width:84px; height:84px; max-width:none; }
+    .brand-name { color:#07346e; font-size:1.14rem; font-weight:800; letter-spacing:.13em; white-space:nowrap; }
+    .global-nav ul { display:flex; align-items:center; gap:5px; margin:0; padding:0; list-style:none; }
+    .global-nav a { display:block; padding:10px 13px; border-radius:8px; font-size:.83rem; font-weight:700; text-decoration:none; transition:color .18s ease,background .18s ease; }
+    .global-nav a:hover,.global-nav a:focus-visible { color:var(--green-dark); background:var(--mint-pale); }
+    .site-search { flex:0 0 auto; }
+    .search-form { display:flex; align-items:center; overflow:hidden; border:1px solid var(--line); border-radius:9px; background:#f8fbfa; transition:border-color .18s ease,box-shadow .18s ease; }
+    .search-form:focus-within { border-color:#55aa9e; box-shadow:0 0 0 3px rgba(8,127,114,.1); }
+    .search-input { width:210px; height:42px; padding:0 12px; border:0; outline:none; color:var(--ink); background:transparent; font-size:.84rem; }
+    .search-input::placeholder { color:#82928f; }
+    .search-submit { display:grid; width:42px; height:42px; padding:0; place-items:center; border:0; color:#fff; background:var(--green); cursor:pointer; transition:background .18s ease; }
+    .search-submit:hover,.search-submit:focus-visible { background:var(--green-dark); }
+    .search-submit svg { width:17px; height:17px; }
+
+    .page-hero { border-bottom:1px solid var(--line); background:linear-gradient(135deg,#f1faf8 0%,#fff 72%); }
+    .page-hero-inner { width:min(960px,calc(100% - 40px)); margin:0 auto; padding:65px 0 61px; }
+    .eyebrow { margin:0 0 10px; color:var(--green); font-size:.76rem; font-weight:800; letter-spacing:.18em; }
+    .page-hero h1 { margin:0; color:var(--navy); font-size:clamp(2rem,4vw,2.8rem); line-height:1.35; letter-spacing:.06em; }
+    .hero-lead { max-width:680px; margin:17px 0 0; color:var(--muted); font-size:1rem; }
+    .effective-date { display:inline-block; margin-top:19px; padding:5px 10px; border:1px solid #bdd9d4; border-radius:5px; color:var(--green-dark); background:#fff; font-size:.76rem; font-weight:700; letter-spacing:.04em; }
+
+    .terms-section { padding:78px 0 96px; }
+    .section-inner { width:min(960px,calc(100% - 40px)); margin:0 auto; }
+    .terms-layout { display:grid; grid-template-columns:230px 1fr; gap:65px; align-items:start; }
+    .terms-nav { position:sticky; top:112px; max-height:calc(100vh - 140px); overflow:auto; padding:22px; border:1px solid var(--line); border-radius:12px; background:var(--mint-pale); }
+    .terms-nav strong { display:block; margin-bottom:11px; color:var(--navy); font-size:.84rem; letter-spacing:.08em; }
+    .terms-nav ol { margin:0; padding:0; list-style:none; counter-reset:terms-index; }
+    .terms-nav li { counter-increment:terms-index; }
+    .terms-nav a { display:block; padding:5px 7px; border-radius:5px; color:var(--muted); font-size:.76rem; line-height:1.55; text-decoration:none; }
+    .terms-nav a::before { content:counter(terms-index,decimal-leading-zero) " "; color:#86a39e; font-family:Consolas,monospace; }
+    .terms-nav a:hover,.terms-nav a:focus-visible { color:var(--green-dark); background:#fff; }
+    .terms-document { min-width:0; }
+    .terms-preamble { margin:0 0 43px; padding:25px 27px; border-left:4px solid var(--green); color:#48635f; background:#f7fbfa; font-size:.94rem; }
+    .terms-preamble strong { color:var(--navy); }
+    .term-article { scroll-margin-top:105px; }
+    .term-article + .term-article { margin-top:45px; padding-top:45px; border-top:1px solid var(--line); }
+    .term-article h2 { margin:0 0 16px; color:var(--navy); font-size:1.18rem; letter-spacing:.03em; }
+    .term-article p { margin:0; color:#506965; font-size:.94rem; }
+    .term-article p + p { margin-top:12px; }
+    .term-article ol,.term-article ul { margin:13px 0 0; padding-left:1.45em; color:#506965; font-size:.94rem; }
+    .term-article li + li { margin-top:8px; }
+    .term-article a { color:var(--green-dark); font-weight:800; text-underline-offset:3px; }
+    .operator-card { margin-top:52px; padding:28px; border:1px solid #bcd9d4; border-radius:13px; background:linear-gradient(135deg,#f0faf7,#fff); box-shadow:var(--shadow); }
+    .operator-card small { display:block; color:var(--green); font-size:.7rem; font-weight:900; letter-spacing:.15em; }
+    .operator-card h2 { margin:8px 0 17px; color:var(--navy); font-size:1.18rem; }
+    .operator-list { display:grid; grid-template-columns:130px 1fr; margin:0; font-size:.88rem; }
+    .operator-list dt,.operator-list dd { margin:0; padding:9px 0; border-top:1px solid var(--line); }
+    .operator-list dt { color:var(--muted); font-weight:700; }
+    .operator-list dd { color:var(--ink); font-weight:800; }
+
+    .site-footer { border-top:1px solid #284946; color:#cfdbd9; background:var(--navy); }
+    .footer-inner { width:min(1180px,calc(100% - 40px)); min-height:82px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .fiction-notice { margin:0; font-size:.67rem; line-height:1.7; }
+    .archive-button { flex:0 0 auto; min-width:122px; padding:10px 14px; border:1px solid #64817e; border-radius:7px; color:#fff; background:transparent; font-size:.76rem; font-weight:800; letter-spacing:.12em; cursor:pointer; }
+    .archive-button:hover,.archive-button:focus-visible { border-color:#81dac8; color:#81dac8; }
+    .archive-overlay { position:fixed; inset:0; z-index:1000; display:grid; place-items:center; padding:20px; background:rgba(7,25,23,.72); opacity:0; visibility:hidden; transition:opacity .18s ease,visibility .18s ease; }
+    .archive-overlay.is-open { opacity:1; visibility:visible; }
+    .archive-dialog { width:min(540px,100%); max-height:min(700px,calc(100vh - 40px)); overflow:hidden; border:1px solid #a9beb9; border-radius:12px; color:var(--ink); background:#f8fbfa; box-shadow:0 25px 70px rgba(0,0,0,.36); transform:translateY(10px); transition:transform .18s ease; }
+    .archive-overlay.is-open .archive-dialog { transform:translateY(0); }
+    .archive-header { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px 20px; color:#fff; background:var(--navy); }
+    .archive-header h2 { margin:0; font-size:1.05rem; letter-spacing:.08em; }
+    .archive-close { width:35px; height:35px; padding:0; border:1px solid #68817f; border-radius:50%; color:#fff; background:transparent; font-size:1.3rem; line-height:1; cursor:pointer; }
+    .archive-content { max-height:calc(100vh - 120px); overflow:auto; padding:20px; }
+    .archive-description { margin:0 0 15px; color:var(--muted); font-size:.79rem; line-height:1.7; }
+    .archive-list { display:block; max-height:390px; margin:0; padding:0; overflow-y:auto; border-top:1px solid var(--line); list-style:none; }
+    .archive-entry { display:grid; grid-template-columns:58px 1fr; align-items:center; gap:12px; padding:12px 11px; border-bottom:1px solid var(--line); color:var(--ink); background:#fff; text-decoration:none; }
+    a.archive-entry:hover,a.archive-entry:focus-visible { background:#edfaf7; }
+    .archive-entry.is-locked { color:#94a29f; background:#f1f5f4; cursor:default; user-select:none; }
+    .archive-number { color:var(--green); font:800 .77rem/1 Consolas,monospace; }
+    .archive-entry.is-locked .archive-number { color:#94a29f; }
+    .archive-title { font-size:.86rem; }
+    .archive-entry.is-locked .archive-title { letter-spacing:.16em; }
+    .archive-tools { margin-top:16px; padding-top:14px; border-top:1px solid var(--line); }
+    .archive-reset-button,.reset-actions button { padding:8px 12px; border:1px solid #9aafaa; border-radius:6px; color:var(--ink); background:#fff; font-size:.76rem; cursor:pointer; }
+    .archive-reset-button { color:#805152; border-color:#c6a9aa; }
+    .reset-confirm { margin-top:13px; padding:14px; border-radius:8px; color:#586966; background:#eaf3f1; font-size:.79rem; }
+    .reset-confirm p { margin:0 0 11px; }
+    .reset-actions { display:flex; justify-content:flex-end; gap:8px; }
+    .reset-actions .danger { color:#fff; border-color:#97595b; background:#97595b; }
+
+    @media(max-width:1080px) { .header-inner { gap:15px; } .search-input { width:118px; } .global-nav a { padding-inline:8px; } }
+    @media(max-width:880px) {
+      .header-inner { min-height:auto; padding:17px 0 13px; flex-direction:column; gap:9px; }
+      .site-search { width:min(100%,500px); }
+      .search-input { width:100%; }
+      .global-nav { width:100%; overflow-x:auto; }
+      .global-nav ul { justify-content:center; min-width:520px; }
+      .terms-layout { grid-template-columns:1fr; gap:35px; }
+      .terms-nav { position:static; max-height:none; }
+      .terms-nav ol { display:grid; grid-template-columns:repeat(2,1fr); column-gap:12px; }
+    }
+    @media(max-width:580px) {
+      .header-inner,.page-hero-inner,.section-inner,.footer-inner { width:min(100% - 28px,1180px); }
+      .brand-name { font-size:1rem; }
+      .global-nav { overflow:visible; }
+      .global-nav ul { display:grid; min-width:0; grid-template-columns:repeat(2,1fr); gap:2px 6px; }
+      .global-nav a { padding:7px 5px; font-size:.76rem; text-align:center; white-space:nowrap; }
+      .page-hero-inner { padding:52px 0 49px; }
+      .page-hero h1 { font-size:1.85rem; }
+      .hero-lead { font-size:.9rem; }
+      .terms-section { padding:58px 0 72px; }
+      .terms-nav { padding:19px 17px; }
+      .terms-nav ol { grid-template-columns:1fr; }
+      .terms-preamble { padding:21px 20px; font-size:.9rem; }
+      .term-article + .term-article { margin-top:35px; padding-top:35px; }
+      .term-article p,.term-article ol,.term-article ul { font-size:.9rem; }
+      .operator-card { padding:23px 20px; }
+      .operator-list { grid-template-columns:1fr; }
+      .operator-list dt { padding-bottom:0; }
+      .operator-list dd { padding-top:2px; border-top:0; }
+      .footer-inner { padding:18px 0; align-items:flex-end; }
+      .fiction-notice { font-size:.59rem; }
+      .archive-button { min-width:95px; padding-inline:9px; }
+    }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="TIME BACK トップページ">
+        <span class="brand-logo-crop" aria-hidden="true"><img class="brand-logo" src="images/logo.png" width="1254" height="1254" alt=""></span>
+        <span class="brand-name">TIME BACK</span>
+      </a>
+      <nav class="global-nav" aria-label="メインナビゲーション">
+        <ul><li><a href="about.html">サービスについて</a></li><li><a href="pricing.html">料金・報酬</a></li><li><a href="safety.html">安全性について</a></li><li><a href="faq.html">よくある質問</a></li></ul>
+      </nav>
+      <div class="site-search">
+        <form class="search-form" action="search.html" method="get" role="search">
+          <label class="skip-link" for="siteSearchInput">サイト内検索</label>
+          <input class="search-input" id="siteSearchInput" name="q" type="search" placeholder="サイト内検索" autocomplete="off">
+          <button class="search-submit" type="submit" aria-label="検索する"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></button>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <p class="eyebrow">TERMS OF SERVICE</p>
+        <h1>利用規約</h1>
+        <p class="hero-lead">TIME BACKをご利用になる前に、本規約の内容をご確認ください。</p>
+        <span class="effective-date">制定日：2025年4月1日</span>
+      </div>
+    </section>
+
+    <section class="terms-section">
+      <div class="section-inner terms-layout">
+        <nav class="terms-nav" aria-label="利用規約の目次">
+          <strong>目次</strong>
+          <ol>
+            <li><a href="#article-1">適用</a></li><li><a href="#article-2">利用登録</a></li><li><a href="#article-3">本サービスの内容</a></li><li><a href="#article-4">時間の売却</a></li><li><a href="#article-5">時間の購入</a></li><li><a href="#article-6">利用条件</a></li><li><a href="#article-7">料金および報酬</a></li><li><a href="#article-8">禁止事項</a></li><li><a href="#article-9">利用制限・停止</a></li><li><a href="#cancellation">キャンセル</a></li><li><a href="#article-11">安全支援・緊急対応</a></li><li><a href="#privacy">個人情報等の取扱い</a></li><li><a href="#article-13">知的財産権</a></li><li><a href="#article-14">免責事項</a></li><li><a href="#article-15">規約の変更</a></li><li><a href="#article-16">準拠法・管轄</a></li><li><a href="#article-17">お問い合わせ</a></li>
+          </ol>
+        </nav>
+
+        <article class="terms-document">
+          <p class="terms-preamble">Chronect（以下「当社」といいます。）は、当社が提供する時間取引サービス「TIME BACK」（関連するアプリケーションおよびウェブサイトを含み、以下「本サービス」といいます。）の利用条件を、以下のとおり定めます。</p>
+
+          <section class="term-article" id="article-1"><h2>第1条（適用）</h2><ol><li>本規約は、本サービスの利用に関する当社と利用者との間の一切の関係に適用されます。</li><li>利用者は、本規約に同意したうえで本サービスを利用するものとします。</li><li>当社が本サービス上で掲載するガイドライン、注意事項その他の個別規定は、本規約の一部を構成します。</li></ol></section>
+
+          <section class="term-article" id="article-2"><h2>第2条（利用登録）</h2><ol><li>利用希望者は、当社所定の方法により、正確かつ最新の情報を登録して利用を申し込むものとします。</li><li>本サービスは、満18歳以上で、本人確認および当社所定の審査を完了した方に限り利用できます。</li><li>当社は、申込内容に虚偽がある場合、過去に本規約への違反がある場合、または安全な利用が困難と判断した場合、登録を承認しないことがあります。</li></ol></section>
+
+          <section class="term-article" id="article-3"><h2>第3条（本サービスの内容）</h2><p>本サービスは、利用者が自己の利用可能な時間を売却し、または必要な時間を購入するための取引環境、セッション管理および安全支援を提供するものです。利用可能な機能、時間および地域は、利用者の登録状況や安全判定によって異なる場合があります。</p></section>
+
+          <section class="term-article" id="article-4"><h2>第4条（時間の売却）</h2><ol><li>利用者は、自己が適法かつ自由に処分できる時間に限り売却を申し込むことができます。</li><li>売却セッションは、設定時刻または即時売却の安全確認完了時に開始し、利用者は仮眠に近い意識状態へ移行します。</li><li>売却セッション中、当社の行動支援技術は、事前に登録された予定の範囲で、歩行、公共交通機関への乗降、立位・座位、姿勢維持、休息場所への移動その他の日常動作を支援します。</li><li>利用者は、当社が指定するデバイスを携行し、アプリの接続、位置・動作情報の取得および安全支援を有効に保つものとします。</li><li>売却中の主観的な記憶は原則として保持されません。終了時刻または緊急事態の検知時には覚醒状態へ戻り、安全記録をアプリで確認できます。</li><li>運転中、危険を伴う作業中、医療上の管理を要する状態その他当社が不適切と判断する時間は売却できません。売却状態は通常の睡眠を代替するものではありません。</li></ol></section>
+
+          <section class="term-article" id="article-5"><h2>第5条（時間の購入）</h2><ol><li>購入時間とは、行動支援技術によって追加される体感時間をいいます。</li><li>利用者は、購入申込時に利用目的、追加体感時間、利用日時、1.1倍から3倍までの引き伸ばし倍率その他当社が求める事項を登録するものとします。標準倍率は2倍です。</li><li>購入セッション中、当社は知覚、思考および身体動作を設定倍率に同期して支援します。他者との会話または共同作業を検知した場合、倍率を一時的に1倍へ近づけ、その間は購入時間を消費しません。</li><li>長時間の購入は、購入時に複数のセッションへ分割予約できます。購入時間を自由に使用できる残高として保有することはできません。</li><li>長時間利用では、中途終了時の未使用分の取扱いを含む利用条件について、利用者本人の事前同意を必要とします。</li><li>購入した時間は、登録した本人が申込時の目的に限り利用でき、第三者への譲渡、再販売、担保設定または登録目的外の利用は禁止します。</li></ol></section>
+
+          <section class="term-article" id="article-6"><h2>第6条（利用条件）</h2><ol><li>利用者は、各セッション前に当社所定のコンディション確認を受けるものとします。</li><li>当社は、体調、睡眠状況、当日の予定、周辺環境、身体負荷、デバイスの状態その他の情報をもとに、利用時間または購入倍率を変更し、開始を保留し、または利用を認めないことがあります。</li><li>購入中の身体負荷が基準を超えた場合、当社は倍率を自動的に下げ、セッションを強制終了し、または新規購入を一時的に制限できます。</li><li>利用者は、登録情報、健康状態、予定または利用環境等に重要な変化が生じた場合、速やかに当社へ申告するものとします。</li></ol></section>
+
+          <section class="term-article" id="article-7"><h2>第7条（料金および報酬）</h2><ol><li>購入料金および売却報酬は、申込時に本サービス上で表示する金額によるものとします。</li><li>購入料金は追加される体感時間を基準とし、当該時間を消費するまでの実時間は設定倍率によって異なります。</li><li>料金および報酬は、利用時間、需要状況その他当社が定める条件により変動する場合があります。</li><li>購入料金はセッション開始時に決済され、売却報酬はセッションの正常終了後に確定します。</li><li>料金体系の詳細は「<a href="pricing.html">料金・報酬</a>」ページに掲載します。</li></ol></section>
+
+          <section class="term-article" id="article-8"><h2>第8条（禁止事項）</h2><p>利用者は、本サービスの利用にあたり、以下の行為をしてはなりません。</p><ul><li>法令または公序良俗に違反する行為</li><li>虚偽の情報を登録し、または他人になりすます行為</li><li>第三者の時間、アカウントまたは決済手段を不正に利用する行為</li><li>安全支援、モニタリングまたはセッション管理を妨害する行為</li><li>当社のシステムを解析、改変し、または不正にアクセスする行為</li><li>その他、当社が本サービスの運営上不適切と判断する行為</li></ul></section>
+
+          <section class="term-article" id="article-9"><h2>第9条（利用制限および登録の停止）</h2><p>当社は、利用者が本規約に違反した場合、安全上の重大な懸念が認められた場合、料金の支払いを怠った場合、または一定期間連絡が取れない場合、事前の通知なく本サービスの全部もしくは一部の利用を制限し、または登録を停止できるものとします。</p></section>
+
+          <section class="term-article" id="cancellation"><h2>第10条（キャンセルおよび中途終了）</h2><ol><li>利用者は、セッション開始前に限り、アプリから申込をキャンセルできます。開始時刻までの残り時間に応じて、当社所定の取消料が発生する場合があります。</li><li>開始済みの購入セッションが、自己都合、体調変化、周辺環境の変化その他当社の責めに帰さない事由で終了した場合、当該セッションに割り当てられた未使用時間は消滅し、返金または別セッションへの振替は行いません。</li><li>分割予約のうち、まだ開始していないセッションは前項による消滅の対象となりません。</li><li>当社のシステムまたは設備の障害により購入セッションが終了した場合に限り、当社所定の方法で未使用分の再設定または返金を行います。</li><li>売却セッションが中途終了した場合の報酬は、実施状況および終了理由を確認のうえ個別に精算します。</li></ol></section>
+
+          <section class="term-article" id="article-11"><h2>第11条（安全支援および緊急対応）</h2><ol><li>当社は、利用前確認、セッション中の状態・位置・動作・身体負荷および周辺環境のモニタリング、行動支援ならびに利用後確認を実施します。</li><li>売却中に緊急音、接触、体調変化または周辺の危険を検知した場合、当社は利用者を直ちに覚醒状態へ戻すことができます。</li><li>購入中に身体負荷または他者との時間差が大きいと判断した場合、当社は購入倍率を自動調整できます。</li><li>異常または危険の兆候を検知した場合、当社は利用者の操作を待たずセッションを停止できるものとします。</li><li>当社は、安全確保に必要な範囲で、登録済みの緊急連絡先、医療機関、消防、警察その他の関係機関へ連絡し、必要な情報を提供することがあります。</li><li>安全支援の詳細は「<a href="safety.html">安全性について</a>」および「<a href="behavior-assistance.html">Behavior Assistance System</a>」ページに掲載します。</li></ol></section>
+
+          <section class="term-article" id="privacy"><h2>第12条（個人情報等の取扱い）</h2><ol><li>当社は、本人確認情報、連絡先、決済情報、セッション情報、状態情報、位置・動作情報、デバイス情報および操作履歴を、本サービスの提供、安全確保、不正防止、品質改善ならびに問い合わせ対応のために取得・利用します。</li><li>当社は、法令に基づく場合、安全上の緊急性がある場合、または本人の同意がある場合を除き、取得した個人情報を第三者へ提供しません。</li><li>当社は、通信の暗号化、アクセス権限の制限および操作履歴の記録等、必要な安全管理措置を講じます。</li><li>利用者は、当社所定の方法により、自己の登録情報の確認、訂正または削除を請求できます。</li></ol></section>
+
+          <section class="term-article" id="article-13"><h2>第13条（知的財産権）</h2><p>本サービスに含まれる文章、画像、プログラム、商標、技術およびデータ等に関する知的財産権は、当社または正当な権利者に帰属します。本規約に基づく利用許諾は、これらの権利の譲渡を意味しません。</p></section>
+
+          <section class="term-article" id="article-14"><h2>第14条（保証の否認および免責）</h2><ol><li>当社は、本サービスがすべての利用者、目的または環境に適合すること、ならびに中断または不具合が生じないことを保証しません。</li><li>通信障害、デバイスの故障、天災地変その他当社の合理的な管理を超える事由により生じた損害について、当社は責任を負いません。</li><li>当社の責めに帰すべき事由により利用者に損害が生じた場合、当社の責任は、法令上許される範囲で、当該取引について利用者が支払った料金または受け取る予定であった報酬の額を上限とします。</li></ol></section>
+
+          <section class="term-article" id="article-15"><h2>第15条（本規約の変更）</h2><p>当社は、法令の変更、本サービスの内容変更その他合理的な必要がある場合、本規約を変更できます。重要な変更については、効力発生日までに本サービス上で周知します。変更後に本サービスを利用した場合、利用者は変更後の規約に同意したものとみなします。</p></section>
+
+          <section class="term-article" id="article-16"><h2>第16条（準拠法および管轄）</h2><p>本規約は日本法に準拠します。本サービスに関して当社と利用者との間に紛争が生じた場合、当社本店所在地を管轄する地方裁判所を第一審の専属的合意管轄裁判所とします。</p></section>
+
+          <section class="term-article" id="article-17"><h2>第17条（お問い合わせ）</h2><p>本規約または本サービスに関するお問い合わせは、当社所定の「<a href="contact.html">お問い合わせ</a>」ページからご連絡ください。</p></section>
+
+          <aside class="operator-card" aria-labelledby="operator-title">
+            <small>SERVICE PROVIDER</small><h2 id="operator-title">サービス提供者</h2>
+            <dl class="operator-list"><dt>事業者名</dt><dd>Chronect</dd><dt>提供サービス</dt><dd>TIME BACK</dd><dt>お問い合わせ</dt><dd><a href="contact.html">専用フォームはこちら</a></dd></dl>
+          </aside>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="footer-inner"><p class="fiction-notice">このサイトの内容はフィクションです。登場する人物・団体・名称等は架空のものであり、実在のものとは関係ありません。</p><button class="archive-button" id="archiveButton" type="button" aria-haspopup="dialog" aria-controls="archiveOverlay">06 / 60</button></div></footer>
+  <div class="archive-overlay" id="archiveOverlay" aria-hidden="true"><section class="archive-dialog" role="dialog" aria-modal="true" aria-labelledby="archiveTitle"><header class="archive-header"><h2 id="archiveTitle">ページアーカイブ</h2><button class="archive-close" id="archiveClose" type="button" aria-label="ページアーカイブを閉じる">×</button></header><div class="archive-content"><p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。</p><ol class="archive-list" id="archiveList"></ol><div class="archive-tools"><button class="archive-reset-button" id="archiveResetButton" type="button">アーカイブをリセット</button><div class="reset-confirm" id="resetConfirm" role="alertdialog" aria-labelledby="resetTitle" hidden><p id="resetTitle">探索済みページの記録を消去しますか？</p><div class="reset-actions"><button id="resetCancel" type="button">キャンセル</button><button class="danger" id="resetAccept" type="button">リセットする</button></div></div></div></div></section></div>
+
+  <script>
+    const archiveStorageKey='timeback-page-archive-v1',totalPages=60;
+    const archiveTitleByNumber={1:'トップページ ｜ TIME BACK',2:'サービスについて ｜ TIME BACK',3:'料金・報酬 ｜ TIME BACK',4:'安全性について ｜ TIME BACK',5:'よくある質問 ｜ TIME BACK',6:'利用規約 ｜ TIME BACK',7:'お問い合わせ ｜ TIME BACK',8:'TIME BACK MARKET ｜ TIME BACK',9:'Behavior Assistance System ｜ TIME BACK',10:'TIME BACK ID ご利用ガイド ｜ TIME BACK',13:'法人向け案内 ｜ TIME BACK for Business',14:'法人向けサービス ｜ TIME BACK for Business',15:'活用シーン ｜ TIME BACK for Business',16:'法人向け安全管理 ｜ TIME BACK for Business',17:'導入の流れ ｜ TIME BACK for Business'};
+    const currentPage={number:6,title:'利用規約 ｜ TIME BACK',href:'terms.html'};
+    const archiveButton=document.getElementById('archiveButton'),archiveOverlay=document.getElementById('archiveOverlay'),archiveClose=document.getElementById('archiveClose'),archiveList=document.getElementById('archiveList'),archiveResetButton=document.getElementById('archiveResetButton'),resetConfirm=document.getElementById('resetConfirm'),resetCancel=document.getElementById('resetCancel'),resetAccept=document.getElementById('resetAccept');
+    function loadArchive(){try{const saved=JSON.parse(localStorage.getItem(archiveStorageKey)||'[]');if(!Array.isArray(saved))return[];return saved.map(page=>{const movedNumber={'business.html':13,'business-service.html':14,'business-cases.html':15,'business-safety.html':16,'business-flow.html':17}[page.href];const migrated=movedNumber?{...page,number:movedNumber}:page;return archiveTitleByNumber[migrated.number]?{...migrated,title:archiveTitleByNumber[migrated.number]}:migrated})}catch(error){return[]}}
+    function saveArchive(pages){try{localStorage.setItem(archiveStorageKey,JSON.stringify(pages))}catch(error){return}}
+    function registerCurrentPage(){const pages=loadArchive(),index=pages.findIndex(page=>page.number===currentPage.number);if(index>=0)pages[index]=currentPage;else pages.push(currentPage);pages.sort((a,b)=>a.number-b.number);saveArchive(pages);return pages}
+    function renderArchive(){const pages=registerCurrentPage();archiveList.textContent='';for(let pageNumber=1;pageNumber<=totalPages;pageNumber+=1){const page=pages.find(savedPage=>savedPage.number===pageNumber),item=document.createElement('li'),entry=document.createElement(page?'a':'div'),number=document.createElement('span'),title=document.createElement('span');entry.className='archive-entry';number.className='archive-number';title.className='archive-title';number.textContent=String(pageNumber).padStart(2,'0');if(page){entry.href=page.href;title.textContent=page.title}else{entry.classList.add('is-locked');title.textContent='？？？'}entry.append(number,title);item.appendChild(entry);archiveList.appendChild(item)}}
+    function openArchive(){renderArchive();resetConfirm.hidden=true;archiveOverlay.classList.add('is-open');archiveOverlay.setAttribute('aria-hidden','false');document.body.classList.add('archive-open');archiveClose.focus()}
+    function closeArchive(){resetConfirm.hidden=true;archiveOverlay.classList.remove('is-open');archiveOverlay.setAttribute('aria-hidden','true');document.body.classList.remove('archive-open');archiveButton.focus()}
+    registerCurrentPage();archiveButton.addEventListener('click',openArchive);archiveClose.addEventListener('click',closeArchive);archiveOverlay.addEventListener('click',event=>{if(event.target===archiveOverlay)closeArchive()});archiveResetButton.addEventListener('click',()=>{resetConfirm.hidden=false;resetCancel.focus()});resetCancel.addEventListener('click',()=>{resetConfirm.hidden=true;archiveResetButton.focus()});resetAccept.addEventListener('click',()=>{try{localStorage.removeItem(archiveStorageKey)}catch(error){return}window.location.href='index.html'});document.addEventListener('keydown',event=>{if(event.key!=='Escape'||!archiveOverlay.classList.contains('is-open'))return;if(!resetConfirm.hidden){resetConfirm.hidden=true;archiveResetButton.focus()}else closeArchive()});
+  </script>
+</body>
+</html>
