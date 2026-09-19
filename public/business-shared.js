@@ -15,7 +15,7 @@ const archiveTitleByNumber={
   17:'導入の流れ ｜ TIME BACK for Business'
 };
 const businessPageNumberByHref={'business.html':13,'business-service.html':14,'business-cases.html':15,'business-safety.html':16,'business-flow.html':17};
-const currentPage={
+const currentPage=document.body.dataset.pageArchive==='exclude'?null:{
   number:Number(document.body.dataset.pageNumber),
   title:document.body.dataset.pageTitle,
   href:document.body.dataset.pageHref
@@ -30,7 +30,7 @@ const resetCancel=document.getElementById('resetCancel');
 const resetAccept=document.getElementById('resetAccept');
 function loadArchive(){try{const saved=JSON.parse(localStorage.getItem(archiveStorageKey)||'[]');if(!Array.isArray(saved))return[];return saved.map(page=>businessPageNumberByHref[page.href]?{...page,number:businessPageNumberByHref[page.href]}:page).map(page=>archiveTitleByNumber[page.number]?{...page,title:archiveTitleByNumber[page.number]}:page)}catch(error){return[]}}
 function saveArchive(pages){try{localStorage.setItem(archiveStorageKey,JSON.stringify(pages))}catch(error){return}}
-function registerCurrentPage(){const pages=loadArchive(),index=pages.findIndex(page=>page.number===currentPage.number);if(index>=0)pages[index]=currentPage;else pages.push(currentPage);pages.sort((a,b)=>a.number-b.number);saveArchive(pages);return pages}
+function registerCurrentPage(){const pages=loadArchive();if(!currentPage)return pages;const index=pages.findIndex(page=>page.number===currentPage.number);if(index>=0)pages[index]=currentPage;else pages.push(currentPage);pages.sort((a,b)=>a.number-b.number);saveArchive(pages);return pages}
 function renderArchive(){const pages=registerCurrentPage();archiveList.textContent='';for(let pageNumber=1;pageNumber<=totalPages;pageNumber+=1){const page=pages.find(savedPage=>savedPage.number===pageNumber),item=document.createElement('li'),entry=document.createElement(page?'a':'div'),number=document.createElement('span'),title=document.createElement('span');entry.className='archive-entry';number.className='archive-number';title.className='archive-title';number.textContent=String(pageNumber).padStart(2,'0');if(page){entry.href=page.href;title.textContent=page.title}else{entry.classList.add('is-locked');title.textContent='？？？'}entry.append(number,title);item.appendChild(entry);archiveList.appendChild(item)}}
 function openArchive(){renderArchive();resetConfirm.hidden=true;archiveOverlay.classList.add('is-open');archiveOverlay.setAttribute('aria-hidden','false');document.body.classList.add('archive-open');archiveClose.focus()}
 function closeArchive(){resetConfirm.hidden=true;archiveOverlay.classList.remove('is-open');archiveOverlay.setAttribute('aria-hidden','true');document.body.classList.remove('archive-open');archiveButton.focus()}

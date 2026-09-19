@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DG4X4HMEC2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DG4X4HMEC2');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TIME BACK for Business法人向けサイト内の情報を検索します。">
+  <link rel="icon" href="images/logo-black.png" type="image/png">
+  <link rel="stylesheet" href="business.css">
+  <title>検索結果｜TIME BACK for Business</title>
+  <style>
+    .search-section { min-height:520px; padding:52px 0 90px; background:var(--pale); }
+    .search-summary { margin:0 0 28px; }
+    .search-title { margin:0; color:var(--navy); font-size:clamp(1.45rem,3vw,2rem); line-height:1.5; overflow-wrap:anywhere; }
+    .search-meta { margin:9px 0 0; color:var(--muted); font-size:.82rem; }
+    .search-results { display:grid; gap:15px; }
+    .result-item { padding:25px 27px; border:1px solid var(--line); border-radius:8px; background:#fff; box-shadow:0 10px 30px rgba(9,53,83,.055); }
+    .result-title { margin:0; font-size:1.12rem; }
+    .result-title a { color:var(--blue-dark); text-decoration-thickness:1px; text-underline-offset:5px; }
+    .result-title a:hover,.result-title a:focus-visible { color:var(--blue); }
+    .result-snippet { margin:10px 0 0; color:var(--muted); font-size:.9rem; }
+    .no-results { padding:38px 30px; border:1px dashed #afc7d5; border-radius:8px; color:var(--muted); background:#fff; text-align:center; }
+    .no-results p { margin:0; }
+    .no-results p + p { margin-top:8px; font-size:.83rem; }
+    @media(max-width:580px) { .search-section { min-height:430px; padding:48px 0 65px; } .result-item { padding:22px; } }
+  </style>
+</head>
+<body data-page-archive="exclude">
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="business.html" aria-label="TIME BACK FOR BUSINESS トップ"><span class="brand-logo-crop" aria-hidden="true"><img class="brand-logo" src="images/logo-black.png" width="1254" height="1254" alt=""></span><span class="brand-name">TIME BACK<small>FOR BUSINESS</small></span></a>
+    <nav class="global-nav" aria-label="法人向けサイトナビゲーション"><ul><li><a href="business-service.html">サービス</a></li><li><a href="business-cases.html">活用シーン</a></li><li><a href="business-safety.html">安全管理</a></li><li><a href="business-flow.html">導入の流れ</a></li></ul></nav>
+    <div class="header-actions"><div class="site-search"><form class="search-form" action="business-search.html" method="get" role="search"><label class="skip-link" for="businessSearchInput">法人向けサイト内検索</label><input class="search-input" id="businessSearchInput" name="q" type="search" placeholder="サイト内検索" autocomplete="off"><button class="search-submit" type="submit" aria-label="検索する"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></button></form></div></div>
+  </div></header>
+  <main id="main">
+    <section class="search-section" aria-labelledby="searchTitle"><div class="section-inner">
+      <div class="search-summary"><h2 class="search-title" id="searchTitle">「<span id="queryDisplay"></span>」の検索結果</h2><p class="search-meta" id="resultCountMeta"></p></div>
+      <div class="search-results" id="resultsContainer" aria-live="polite"></div>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="footer-inner"><p class="fiction-notice">このサイトの内容はフィクションです。登場する人物・団体・名称等は架空のものであり、実在のものとは関係ありません。</p><button class="archive-button" id="archiveButton" type="button" aria-haspopup="dialog" aria-controls="archiveOverlay">EX</button></div></footer>
+  <div class="archive-overlay" id="archiveOverlay" aria-hidden="true"><section class="archive-dialog" role="dialog" aria-modal="true" aria-labelledby="archiveTitle"><header class="archive-header"><h2 id="archiveTitle">ページアーカイブ</h2><button class="archive-close" id="archiveClose" type="button" aria-label="ページアーカイブを閉じる">×</button></header><div class="archive-content"><p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。</p><ol class="archive-list" id="archiveList"></ol><div class="archive-tools"><button class="archive-reset-button" id="archiveResetButton" type="button">アーカイブをリセット</button><div class="reset-confirm" id="resetConfirm" role="alertdialog" aria-labelledby="resetTitle" hidden><p id="resetTitle">探索済みページの記録を消去しますか？</p><div class="reset-actions"><button id="resetCancel" type="button">キャンセル</button><button class="danger" id="resetAccept" type="button">リセットする</button></div></div></div></div></section></div>
+  <script>
+    const businessSearchDatabase=[
+      {keywords:['TIME BACK FOR BUSINESS','TIME BACK for Business','法人向け案内','ビジネスプラン'],title:'TIME BACK for Business',url:'business.html',description:'法人向けの時間調達、メンバーへの配分、利用管理、安全運用の概要をご案内します。'},
+      {keywords:['サービス','法人向けサービス','時間の一括調達','時間配分','利用管理','管理者向け機能'],title:'法人向けサービス',url:'business-service.html',description:'時間の一括調達、メンバーへの配分、利用状況の可視化と管理者向け機能をご紹介します。'},
+      {keywords:['活用シーン','プロジェクト','繁忙期','研修','研究開発'],title:'活用シーン',url:'business-cases.html',description:'プロジェクト、繁忙期対応、研修、研究開発など、法人での活用方法をご紹介します。'},
+      {keywords:['安全管理','安全性','申請・承認','モニタリング','利用制限','監査'],title:'法人向け安全管理',url:'business-safety.html',description:'法人契約における利用前承認、モニタリング、権限設定と安全管理体制をご案内します。'},
+      {keywords:['導入の流れ','導入','契約','導入相談','利用開始'],title:'導入の流れ',url:'business-flow.html',description:'お問い合わせから要件整理、契約、初期設定、利用開始までの手順をご案内します。'}
+    ];
+    const params=new URLSearchParams(window.location.search);
+    const query=params.get('q');
+    const searchInput=document.getElementById('businessSearchInput');
+    const queryDisplay=document.getElementById('queryDisplay');
+    const resultCountMeta=document.getElementById('resultCountMeta');
+    const resultsContainer=document.getElementById('resultsContainer');
+    function addMessage(primary,secondary){const box=document.createElement('div'),first=document.createElement('p');box.className='no-results';first.textContent=primary;box.appendChild(first);if(secondary){const second=document.createElement('p');second.textContent=secondary;box.appendChild(second)}resultsContainer.appendChild(box)}
+    if(query&&query.trim()){
+      const sanitized=query.trim(),normalized=sanitized.toLocaleLowerCase('ja');
+      searchInput.value=sanitized;queryDisplay.textContent=sanitized;
+      const results=businessSearchDatabase.filter(item=>item.keywords.some(keyword=>keyword.toLocaleLowerCase('ja')===normalized));
+      resultCountMeta.textContent=`該当するページが ${results.length} 件見つかりました。`;
+      if(results.length){results.forEach(result=>{const article=document.createElement('article'),heading=document.createElement('h3'),link=document.createElement('a'),snippet=document.createElement('p');article.className='result-item';heading.className='result-title';link.href=result.url;link.textContent=result.title;snippet.className='result-snippet';snippet.textContent=result.description;heading.appendChild(link);article.append(heading,snippet);resultsContainer.appendChild(article)})}
+      else addMessage('入力されたキーワードに一致するページは見つかりませんでした。','別のキーワードで再度検索してください。');
+    }else{queryDisplay.textContent='未入力';resultCountMeta.textContent='キーワードを入力して検索してください。';addMessage('検索キーワードが指定されていません。')}
+  </script>
+  <script src="business-shared.js"></script>
+</body>
+</html>
