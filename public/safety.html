@@ -220,8 +220,8 @@
         <div class="principle-grid">
           <article class="principle-card"><span class="principle-number">01 / CONDITION</span><h3>利用前コンディション確認</h3><p>体調、睡眠状況、当日の予定を確認し、安全基準を満たした時間のみセッションを開始できます。</p></article>
           <article class="principle-card"><span class="principle-number">02 / MONITORING</span><h3>24時間モニタリング</h3><p>専門チームが利用中の状態を継続的に確認。変化を検知した場合は、システムが速やかに対応します。</p></article>
-          <article class="principle-card"><span class="principle-number">03 / ASSIST</span><h3>状態別のリアルタイム支援</h3><p>売却中は仮眠に近い状態での移動と姿勢を、購入中は設定倍率に同期した思考と身体動作を補助します。</p></article>
-          <article class="principle-card"><span class="principle-number">04 / RECOVERY</span><h3>覚醒・通常速度への復帰</h3><p>売却終了時は安全に覚醒し、購入終了時は知覚と身体動作を通常速度へ戻します。終了後も状態を確認します。</p></article>
+          <article class="principle-card"><span class="principle-number">03 / ASSIST</span><h3>状態別のリアルタイム支援</h3><p>売却中は仮眠に近い状態での移動と姿勢を、購入中は設定した時間反映倍率での安全な利用を補助します。</p></article>
+          <article class="principle-card"><span class="principle-number">04 / RECOVERY</span><h3>覚醒・通常利用への復帰</h3><p>売却終了時は安全に覚醒し、購入終了時は購入時間の反映を終了して通常の利用状態へ戻します。終了後も状態を確認します。</p></article>
         </div>
       </div>
     </section>
@@ -235,8 +235,8 @@
         </div>
         <ol class="monitoring-flow">
           <li><time>BEFORE SESSION</time><h3>開始可否を判定</h3><p>アプリ上の確認とデバイス情報をもとに、当日の利用時間と安全性を判定します。</p></li>
-          <li><time>DURING SESSION</time><h3>状態・周辺環境・身体負荷を確認</h3><p>混雑、足元、姿勢、会話、体調、身体負荷の変化を検知し、動作や購入倍率をリアルタイムで調整します。</p></li>
-          <li><time>IF REQUIRED</time><h3>倍率調整・覚醒・強制停止</h3><p>購入中は倍率を下げ、売却中は即座に覚醒させます。継続が適切でない場合はセッションを終了し、新規購入を一時制限します。</p></li>
+          <li><time>DURING SESSION</time><h3>状態・周辺環境・身体負荷を確認</h3><p>混雑、足元、姿勢、会話、体調、身体負荷の変化を検知し、動作や時間反映倍率をリアルタイムで調整します。</p></li>
+          <li><time>IF REQUIRED</time><h3>反映倍率調整・覚醒・強制停止</h3><p>購入中は時間反映倍率を下げ、売却中は即座に覚醒させます。継続が適切でない場合はセッションを終了し、新規購入を一時制限します。</p></li>
           <li><time>AFTER SESSION</time><h3>終了確認と記録</h3><p>利用者の状態を確認し、安全記録を保存。中途終了を含む実施結果を、売却報酬または購入利用履歴へ反映します。</p></li>
         </ol>
       </div>
@@ -251,7 +251,7 @@
         </div>
         <div class="emergency-actions">
           <div class="emergency-action"><strong>01　即時判定</strong><span>状態変化と周辺リスクを再確認</span></div>
-          <div class="emergency-action"><strong>02　安全状態へ移行</strong><span>倍率を下げる、売却者を覚醒させる、セッションを停止</span></div>
+          <div class="emergency-action"><strong>02　安全状態へ移行</strong><span>時間反映倍率を下げる、売却者を覚醒させる、セッションを停止</span></div>
           <div class="emergency-action"><strong>03　オペレーター対応</strong><span>必要に応じて連絡・保護手続きを実施</span></div>
         </div>
       </div>
@@ -284,7 +284,7 @@
     <section class="archive-dialog" role="dialog" aria-modal="true" aria-labelledby="archiveTitle">
       <header class="archive-header"><h2 id="archiveTitle">ページアーカイブ</h2><button class="archive-close" id="archiveClose" type="button" aria-label="ページアーカイブを閉じる">×</button></header>
       <div class="archive-content">
-        <p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。</p>
+        <p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。ページ番号は閲覧の目安です。順番に迷ったときは番号を参考にしつつ、気になった情報から自由にご覧ください。</p>
         <ol class="archive-list" id="archiveList"></ol>
         <div class="archive-tools"><button class="archive-reset-button" id="archiveResetButton" type="button">アーカイブをリセット</button><div class="reset-confirm" id="resetConfirm" role="alertdialog" aria-labelledby="resetTitle" hidden><p id="resetTitle">探索済みページの記録を消去しますか？</p><div class="reset-actions"><button id="resetCancel" type="button">キャンセル</button><button class="danger" id="resetAccept" type="button">リセットする</button></div></div></div>
       </div>
@@ -294,10 +294,10 @@
   <script>
     const archiveStorageKey='timeback-page-archive-v1';
     const totalPages=60;
-    const archiveTitleByNumber={1:'トップページ ｜ TIME BACK',2:'サービスについて ｜ TIME BACK',3:'料金・報酬 ｜ TIME BACK',4:'安全性について ｜ TIME BACK',5:'よくある質問 ｜ TIME BACK',6:'利用規約 ｜ TIME BACK',7:'お問い合わせ ｜ TIME BACK',8:'TIME BACK MARKET ｜ TIME BACK',9:'Behavior Assistance System ｜ TIME BACK',10:'TIME BACK ID ご利用ガイド ｜ TIME BACK',13:'法人向け案内 ｜ TIME BACK for Business',14:'法人向けサービス ｜ TIME BACK for Business',15:'活用シーン ｜ TIME BACK for Business',16:'法人向け安全管理 ｜ TIME BACK for Business',17:'導入の流れ ｜ TIME BACK for Business'};
+    const archiveTitleByNumber={1:'トップページ ｜ TIME BACK',2:'サービスについて ｜ TIME BACK',3:'料金・報酬 ｜ TIME BACK',4:'安全性について ｜ TIME BACK',5:'よくある質問 ｜ TIME BACK',6:'利用規約 ｜ TIME BACK',7:'お問い合わせ ｜ TIME BACK',8:'TIME BACK MARKET ｜ TIME BACK',9:'Behavior Assistance System ｜ TIME BACK',10:'TIME BACK ID ご利用ガイド ｜ TIME BACK',11:'法人向け案内 ｜ TIME BACK for Business',12:'法人向けサービス ｜ TIME BACK for Business',13:'導入事例 ｜ TIME BACK for Business',14:'法人向け安全管理 ｜ TIME BACK for Business',15:'導入の流れ ｜ TIME BACK for Business'};
     const currentPage={number:4,title:'安全性について ｜ TIME BACK',href:'safety.html'};
     const archiveButton=document.getElementById('archiveButton'),archiveOverlay=document.getElementById('archiveOverlay'),archiveClose=document.getElementById('archiveClose'),archiveList=document.getElementById('archiveList'),archiveResetButton=document.getElementById('archiveResetButton'),resetConfirm=document.getElementById('resetConfirm'),resetCancel=document.getElementById('resetCancel'),resetAccept=document.getElementById('resetAccept');
-    function loadArchive(){try{const saved=JSON.parse(localStorage.getItem(archiveStorageKey)||'[]');if(!Array.isArray(saved))return[];return saved.map(page=>{const movedNumber={'business.html':13,'business-service.html':14,'business-cases.html':15,'business-safety.html':16,'business-flow.html':17}[page.href];const migrated=movedNumber?{...page,number:movedNumber}:page;return archiveTitleByNumber[migrated.number]?{...migrated,title:archiveTitleByNumber[migrated.number]}:migrated})}catch(error){return[]}}
+    function loadArchive(){try{const saved=JSON.parse(localStorage.getItem(archiveStorageKey)||'[]');if(!Array.isArray(saved))return[];return saved.map(page=>{const movedNumber={'business.html':11,'business-service.html':12,'business-cases.html':13,'business-safety.html':14,'business-flow.html':15}[page.href];const migrated=movedNumber?{...page,number:movedNumber}:page;return archiveTitleByNumber[migrated.number]?{...migrated,title:archiveTitleByNumber[migrated.number]}:migrated})}catch(error){return[]}}
     function saveArchive(pages){try{localStorage.setItem(archiveStorageKey,JSON.stringify(pages))}catch(error){return}}
     function registerCurrentPage(){const pages=loadArchive(),index=pages.findIndex(page=>page.number===currentPage.number);if(index>=0)pages[index]=currentPage;else pages.push(currentPage);pages.sort((a,b)=>a.number-b.number);saveArchive(pages);return pages}
     function renderArchive(){const pages=registerCurrentPage();archiveList.textContent='';for(let pageNumber=1;pageNumber<=totalPages;pageNumber+=1){const page=pages.find(savedPage=>savedPage.number===pageNumber),item=document.createElement('li'),entry=document.createElement(page?'a':'div'),number=document.createElement('span'),title=document.createElement('span');entry.className='archive-entry';number.className='archive-number';title.className='archive-title';number.textContent=String(pageNumber).padStart(2,'0');if(page){entry.href=page.href;title.textContent=page.title}else{entry.classList.add('is-locked');title.textContent='？？？'}entry.append(number,title);item.appendChild(entry);archiveList.appendChild(item)}}

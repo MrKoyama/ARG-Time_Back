@@ -8,13 +8,19 @@ const archiveTitleByNumber={
   5:'よくある質問 ｜ TIME BACK',
   6:'利用規約 ｜ TIME BACK',
   7:'お問い合わせ ｜ TIME BACK',8:'TIME BACK MARKET ｜ TIME BACK',9:'Behavior Assistance System ｜ TIME BACK',10:'TIME BACK ID ご利用ガイド ｜ TIME BACK',
-  13:'法人向け案内 ｜ TIME BACK for Business',
-  14:'法人向けサービス ｜ TIME BACK for Business',
-  15:'活用シーン ｜ TIME BACK for Business',
-  16:'法人向け安全管理 ｜ TIME BACK for Business',
-  17:'導入の流れ ｜ TIME BACK for Business'
+  11:'法人向け案内 ｜ TIME BACK for Business',
+  12:'法人向けサービス ｜ TIME BACK for Business',
+  13:'導入事例 ｜ TIME BACK for Business',
+  14:'法人向け安全管理 ｜ TIME BACK for Business',
+  15:'導入の流れ ｜ TIME BACK for Business',
+  16:'Behavior Assistance Platform ｜ TIME BACK for Business',
+  17:'行動支援機器・システム ｜ TIME BACK for Business',
+  18:'利用前オリエンテーション ｜ TIME BACK for Business',
+  19:'提携企業一覧 ｜ TIME BACK for Business',
+  20:'トップページ ｜ 株式会社ノードリンク・ワークス',
+  21:'トップページ ｜ アクシオン・ロジスティクス株式会社'
 };
-const businessPageNumberByHref={'business.html':13,'business-service.html':14,'business-cases.html':15,'business-safety.html':16,'business-flow.html':17};
+const businessPageNumberByHref={'business.html':11,'business-service.html':12,'business-cases.html':13,'business-safety.html':14,'business-flow.html':15,'behavior-assistance-platform.html':16,'behavior-assistance-equipment.html':17,'pre-use-orientation.html':18,'partners.html':19,'nodelink-works.html':20,'axion-logistics.html':21};
 const currentPage=document.body.dataset.pageArchive==='exclude'?null:{
   number:Number(document.body.dataset.pageNumber),
   title:document.body.dataset.pageTitle,

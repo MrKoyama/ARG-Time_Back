@@ -194,7 +194,7 @@
         <button class="archive-close" id="archiveClose" type="button" aria-label="ページアーカイブを閉じる">×</button>
       </header>
       <div class="archive-content">
-        <p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。</p>
+        <p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。ページ番号は閲覧の目安です。順番に迷ったときは番号を参考にしつつ、気になった情報から自由にご覧ください。</p>
         <ol class="archive-list" id="archiveList"></ol>
         <div class="archive-tools">
           <button class="archive-reset-button" id="archiveResetButton" type="button">アーカイブをリセット</button>
@@ -225,16 +225,16 @@
         description: 'TIME BACKの行動支援システムについて、日常動作のサポート、利用の流れ、安全設計と情報保護をご紹介します。'
       },
       {
-        keywords: ['TIME BACK MARKET'],
+        keywords: ['TIME BACK MARKET', '時間プール'],
         title: 'TIME BACK MARKET',
         url: 'market.html',
-        description: '時間の取引規模、月次の市場動向、取引時間の内訳と購入した時間の活用例をご紹介します。売買はTIME BACKアプリで行えます。'
+        description: '売却時間が集約される時間プール、月次の流通動向、購入した時間の活用例をご紹介します。売買はTIME BACKアプリで行えます。'
       },
       {
         keywords: ['TIME BACK', 'タイムバック', 'サービス', '時間売却', '時間を売る'],
         title: 'TIME BACK サービス概要',
         url: 'about.html',
-        description: '使わない時間を預け、新しい価値として受け取るTIME BACKのサービス概要です。'
+        description: '使わない時間をTIME BACK MARKETの時間プールへ預け、必要な時間を購入するサービスの概要です。'
       },
       {
         keywords: ['利用方法', '使い方', '時間を選ぶ', '預ける', '報酬', 'アプリ'],
@@ -246,7 +246,7 @@
         keywords: ['時間購入', '時間を買う', '購入', '買取', '買う'],
         title: '時間を買う',
         url: 'about.html#market-choices',
-        description: '追加される体感時間を購入し、引き伸ばされた時間を仕事や学習、創作などに活用するサービスです。'
+        description: 'TIME BACK MARKETの時間プールから購入時間を受け取り、仕事や学習、創作などに活用するサービスです。'
       },
       {
         keywords: ['料金', '料金表', '価格', '売却価格', '購入料金'],
@@ -357,11 +357,11 @@
       8: 'TIME BACK MARKET ｜ TIME BACK',
       9: 'Behavior Assistance System ｜ TIME BACK',
       10: 'TIME BACK ID ご利用ガイド ｜ TIME BACK',
-      13: '法人向け案内 ｜ TIME BACK for Business',
-      14: '法人向けサービス ｜ TIME BACK for Business',
-      15: '活用シーン ｜ TIME BACK for Business',
-      16: '法人向け安全管理 ｜ TIME BACK for Business',
-      17: '導入の流れ ｜ TIME BACK for Business'
+      11: '法人向け案内 ｜ TIME BACK for Business',
+      12: '法人向けサービス ｜ TIME BACK for Business',
+      13: '導入事例 ｜ TIME BACK for Business',
+      14: '法人向け安全管理 ｜ TIME BACK for Business',
+      15: '導入の流れ ｜ TIME BACK for Business'
     };
     const archiveButton = document.getElementById('archiveButton');
     const archiveOverlay = document.getElementById('archiveOverlay');
@@ -379,7 +379,7 @@
         const pages = saved
           .filter((page) => !String(page.href || '').startsWith('search.html'))
           .map((page) => {
-            const movedNumber = {'business.html':13,'business-service.html':14,'business-cases.html':15,'business-safety.html':16,'business-flow.html':17}[page.href];
+            const movedNumber = {'business.html':11,'business-service.html':12,'business-cases.html':13,'business-safety.html':14,'business-flow.html':15}[page.href];
             const migrated = movedNumber ? { ...page, number: movedNumber } : page;
             return archiveTitleByNumber[migrated.number]
               ? { ...migrated, title: archiveTitleByNumber[migrated.number] }
