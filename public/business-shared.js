@@ -7,20 +7,20 @@ const archiveTitleByNumber={
   4:'安全性について ｜ TIME BACK',
   5:'よくある質問 ｜ TIME BACK',
   6:'利用規約 ｜ TIME BACK',
-  7:'お問い合わせ ｜ TIME BACK',8:'TIME BACK MARKET ｜ TIME BACK',9:'Behavior Assistance System ｜ TIME BACK',10:'TIME BACK ID ご利用ガイド ｜ TIME BACK',
-  11:'法人向け案内 ｜ TIME BACK for Business',
-  12:'法人向けサービス ｜ TIME BACK for Business',
-  13:'導入事例 ｜ TIME BACK for Business',
-  14:'法人向け安全管理 ｜ TIME BACK for Business',
-  15:'導入の流れ ｜ TIME BACK for Business',
-  16:'Behavior Assistance Platform ｜ TIME BACK for Business',
-  17:'行動支援機器・システム ｜ TIME BACK for Business',
-  18:'利用前オリエンテーション ｜ TIME BACK for Business',
-  19:'提携企業一覧 ｜ TIME BACK for Business',
-  20:'トップページ ｜ 株式会社ノードリンク・ワークス',
-  21:'トップページ ｜ アクシオン・ロジスティクス株式会社'
+  7:'お問い合わせ ｜ TIME BACK',8:'TIME BACK MARKET ｜ TIME BACK',9:'Behavior Assistance System ｜ TIME BACK',10:'TIME BACK ID ご利用ガイド ｜ TIME BACK',11:'トップページ ｜ Chronect',12:'企業情報 ｜ Chronect',13:'研究開発 ｜ Chronect',14:'事業・サービス ｜ Chronect',15:'ニュース ｜ Chronect',16:'採用情報 ｜ Chronect',17:'短時間休息と認知回復に関する産学共同研究を開始 ｜ Chronect',18:'TIME BACK先行提供プログラムを開始しました ｜ Chronect',19:'個人向け時間取引サービス「TIME BACK」を正式提供 ｜ Chronect',20:'Chronect本社研究施設の設備拡張について ｜ Chronect',21:'TIME BACK MARKET月次情報の公開を開始しました ｜ Chronect',22:'Chronect Research Day 2025 開催のお知らせ ｜ Chronect',23:'公共交通環境における姿勢安定化支援の実証を開始 ｜ Chronect',24:'年末年始のサポート窓口営業日について ｜ Chronect',25:'北央工科大学との時間知覚共同研究契約を更新 ｜ Chronect',26:'TIME BACKアプリにセッション状況確認機能を追加 ｜ Chronect',27:'2025年度研究開発活動報告を公開しました ｜ Chronect',28:'時間認知研究オープンセミナー2026を開催します ｜ Chronect',29:'TIME BACK for Businessの提供領域を拡大 ｜ Chronect',30:'生活環境における行動支援技術の共同検証を開始 ｜ Chronect',
+  32:'法人向け案内 ｜ TIME BACK for Business',
+  33:'法人向けサービス ｜ TIME BACK for Business',
+  34:'導入事例 ｜ TIME BACK for Business',
+  35:'法人向け安全管理 ｜ TIME BACK for Business',
+  36:'導入の流れ ｜ TIME BACK for Business',
+  37:'Behavior Assistance Platform ｜ TIME BACK for Business',
+  38:'行動支援機器・システム ｜ TIME BACK for Business',
+  39:'利用前オリエンテーション ｜ TIME BACK for Business',
+  40:'提携企業一覧 ｜ TIME BACK for Business',
+  41:'トップページ ｜ 株式会社ノードリンク・ワークス',
+  42:'トップページ ｜ アクシオン・ロジスティクス株式会社'
 };
-const businessPageNumberByHref={'business.html':11,'business-service.html':12,'business-cases.html':13,'business-safety.html':14,'business-flow.html':15,'behavior-assistance-platform.html':16,'behavior-assistance-equipment.html':17,'pre-use-orientation.html':18,'partners.html':19,'nodelink-works.html':20,'axion-logistics.html':21};
+const businessPageNumberByHref={'chronect.html':11,'chronect-company.html':12,'chronect-research.html':13,'chronect-services.html':14,'chronect-news.html':15,'chronect-careers.html':16,'chronect-news-20240305.html':17,'chronect-news-20241021.html':18,'chronect-news-20250401.html':19,'chronect-news-20250526.html':20,'chronect-news-20250701.html':21,'chronect-news-20250808.html':22,'chronect-news-20250924.html':23,'chronect-news-20251216.html':24,'chronect-news-20260109.html':25,'chronect-news-20260312.html':26,'chronect-news-20260418.html':27,'chronect-news-20260520.html':28,'chronect-news-20260603.html':29,'chronect-news-20260714.html':30,'business.html':32,'business-service.html':33,'business-cases.html':34,'business-safety.html':35,'business-flow.html':36,'behavior-assistance-platform.html':37,'behavior-assistance-equipment.html':38,'pre-use-orientation.html':39,'partners.html':40,'nodelink-works.html':41,'axion-logistics.html':42};
 const currentPage=document.body.dataset.pageArchive==='exclude'?null:{
   number:Number(document.body.dataset.pageNumber),
   title:document.body.dataset.pageTitle,

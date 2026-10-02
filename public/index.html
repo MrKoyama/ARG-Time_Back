@@ -725,11 +725,11 @@
       8: 'TIME BACK MARKET ｜ TIME BACK',
       9: 'Behavior Assistance System ｜ TIME BACK',
       10: 'TIME BACK ID ご利用ガイド ｜ TIME BACK',
-      11: '法人向け案内 ｜ TIME BACK for Business',
-      12: '法人向けサービス ｜ TIME BACK for Business',
-      13: '導入事例 ｜ TIME BACK for Business',
-      14: '法人向け安全管理 ｜ TIME BACK for Business',
-      15: '導入の流れ ｜ TIME BACK for Business'
+      16: '法人向け案内 ｜ TIME BACK for Business',
+      17: '法人向けサービス ｜ TIME BACK for Business',
+      18: '導入事例 ｜ TIME BACK for Business',
+      19: '法人向け安全管理 ｜ TIME BACK for Business',
+      20: '導入の流れ ｜ TIME BACK for Business'
     };
     const currentPage = {
       number: 1,
@@ -751,7 +751,7 @@
         const saved = JSON.parse(localStorage.getItem(archiveStorageKey) || '[]');
         if (!Array.isArray(saved)) return [];
         return saved.map((page) => {
-          const movedNumber = {'business.html':11,'business-service.html':12,'business-cases.html':13,'business-safety.html':14,'business-flow.html':15}[page.href];
+          const movedNumber = {'business.html':32,'business-service.html':33,'business-cases.html':34,'business-safety.html':35,'business-flow.html':36,'behavior-assistance-platform.html':37,'behavior-assistance-equipment.html':38,'pre-use-orientation.html':39,'partners.html':40,'nodelink-works.html':41,'axion-logistics.html':42}[page.href];
           const migrated = movedNumber ? { ...page, number: movedNumber } : page;
           return archiveTitleByNumber[migrated.number]
             ? { ...migrated, title: archiveTitleByNumber[migrated.number] }
