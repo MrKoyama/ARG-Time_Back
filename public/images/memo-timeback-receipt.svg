@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="680" viewBox="0 0 440 680">
+  <rect width="440" height="680" rx="22" fill="#f4f8f6"/>
+  <g font-family="'Yu Gothic','Hiragino Kaku Gothic ProN',sans-serif">
+    <rect width="440" height="132" rx="22" fill="#fff"/><rect y="22" width="440" height="110" fill="#fff"/>
+    <text x="26" y="32" font-size="13" font-weight="700" fill="#183d38">17:08</text>
+    <g fill="#183d38"><rect x="365" y="23" width="3" height="5"/><rect x="370" y="20" width="3" height="8"/><rect x="375" y="17" width="3" height="11"/></g><rect x="389" y="17" width="23" height="11" rx="2" fill="none" stroke="#183d38"/><rect x="391" y="19" width="17" height="7" rx="1" fill="#183d38"/>
+    <text x="220" y="76" text-anchor="middle" font-size="17" font-weight="800" fill="#087f72">TIME BACK</text><path d="m30 101-7 7 7 7" fill="none" stroke="#153b38" stroke-width="2"/><text x="220" y="116" text-anchor="middle" font-size="17" font-weight="700" fill="#153b38">利用明細</text>
+    <rect x="22" y="155" width="396" height="383" rx="14" fill="#fff" stroke="#dce8e3"/>
+    <rect x="44" y="176" width="77" height="28" rx="14" fill="#e3f3ed"/><text x="82" y="195" text-anchor="middle" font-size="12" fill="#087f72">時間の売却</text><text x="390" y="195" text-anchor="end" font-size="12" fill="#087f72">完了</text>
+    <text x="44" y="240" font-size="13" fill="#667d75">受取報酬</text><text x="44" y="286" font-size="36" font-weight="700" fill="#153b38">¥2,560</text>
+    <path d="M44 309H396" stroke="#e5ece8"/>
+    <g font-size="13"><text x="44" y="346" fill="#667d75">利用日</text><text x="396" y="346" text-anchor="end" fill="#153b38">2026年9月17日</text><text x="44" y="386" fill="#667d75">開始時刻</text><text x="396" y="386" text-anchor="end" fill="#153b38">13:00</text><text x="44" y="426" fill="#667d75">終了時刻</text><text x="396" y="426" text-anchor="end" fill="#153b38">17:00</text><text x="44" y="466" fill="#667d75">売却時間</text><text x="396" y="466" text-anchor="end" fill="#153b38">4時間00分</text><text x="44" y="506" fill="#667d75">実施結果</text><text x="396" y="506" text-anchor="end" fill="#153b38">正常終了</text></g>
+    <rect x="22" y="554" width="396" height="80" rx="12" fill="#fff" stroke="#dce8e3"/><text x="44" y="580" font-size="11" fill="#667d75">お問い合わせ用管理コード</text><text x="44" y="607" font-family="Consolas,monospace" font-size="17" fill="#405950">TB-260917-4826</text>
+    <rect x="155" y="658" width="130" height="4" rx="2" fill="#183d38"/>
+  </g>
+</svg>

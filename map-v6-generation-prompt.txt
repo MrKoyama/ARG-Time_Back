@@ -1,0 +1,23 @@
+Use case: infographic-diagram.
+Create an ENTIRELY NEW Japanese corporate access map from a blank canvas. Not an edit of any previous image. Landscape 1536x1024, fresh road/block composition, professional restrained flat 2D illustrated raster map. White background, clear Japanese sans-serif labels, gray streets, pale gray footprints, green park, modest blue destinations. No 3D or photorealism.
+
+GEOGRAPHY: North up. Upper-left 「明浜駅」 with 「南口」 and horizontal railway. Below station on left-center 「明浜みどり公園」. East of park a small residential neighborhood with several separated houses and a narrow pedestrian alley. Farther east central 「明浜商店街」 is a north-south shopping lane. Main broad north-south street is to its east, around x70% canvas width. EAST side of main road: 「TIME BACK 本社」 upper-right and 「生活環境実証エリア」 below it, in two independent parcels. Bottom-right an ordinary UNNAMED building partly cropped by bottom edge, same neutral gray treatment as other unnamed office blocks, no suspicious markers or labels. No internal connection to demo parcel.
+
+CRITICAL ROAD AND ROUTE DESIGN:
+Reserve the entire band x67–75% for an unobstructed street/sidewalk corridor. Put HQ and demo WEST entrances DIRECTLY ON THIS STREET, their west parcel edges at x77%. Do NOT put ANY buildings, cafes, shops, shrubs, parking structures or small gray blocks between the main street and either entrance. Two short dedicated clearly visible OPEN WHITE ACCESS WALKS connect street to west entrances across each empty forecourt. Blue line must end at west entrance dot, BEFORE the building footprint. It must NEVER cross a building footprint, roof, rectangle, tree, wall or label.
+From station south exit blue route heads east along broad northern road, south on main street, splits east ONLY through the empty HQ forecourt to HQ entrance, and continues south then east ONLY through empty demo forecourt to demo entrance. Dedicated clear space around arrows. No arrow across cafe or convenience store. This is the highest priority. Draw streets first, place buildings outside roads, then draw route inside the empty streets. No holes in roads or impossible intersections.
+
+SMALL PATH: park north entrance reachable from station; park eastern/southeastern exit continues east BETWEEN residential house footprints to southern half of shopping lane. Shopping street south end connects to back lane eastward toward the west side of the unnamed bottom building. This ordinary small-path connection is visible but NOT colored or labeled as a route. No secret/test/experiment explanation on map.
+
+MORE DIVERSE LANDMARKS: distribute different buildings naturally and spaciously, not all identical rectangles. Southwest neighborhood: 「明浜市立図書館」 with small book symbol and simple public-library footprint. Far western lower edge or south-center block: 「明浜市役所」 modest civic building with plaza. Near station outside blue path: 「明浜駅前交番」 tiny police box icon. Southwest near park: 「明浜郵便局」 with red postal symbol. Cafe 「梢珈琲」 small cup icon in a block WEST of main road near HQ turn. Convenience 「ミナトマート 明浜店」 small store icon WEST of main road near demo turn. Give cafes and public buildings equally simple flat illustrations. Ensure none obstruct routes. No real brand logos. Other homes, apartment blocks and offices UNNAMED subtle gray footprints. Names are selective visitor landmarks, not an exhaustive building list.
+
+TEXT verbatim:
+Title 「アクセス案内図」
+Legend blue walker icon and blue line 「推奨徒歩ルート」
+「明浜駅」「南口」「明浜みどり公園」「明浜商店街」
+「TIME BACK 本社」「生活環境実証エリア」
+「明浜市立図書館」「明浜市役所」「明浜駅前交番」「明浜郵便局」
+「梢珈琲」「ミナトマート 明浜店」
+Small footer 「※周辺の建物・道路は一部省略しています。」
+North arrow N.
+Large destination labels, legible medium landmark labels, no collisions. Avoid overly cluttered map, decorative tree clusters, unnecessary shadows, unexplained route loops, fictional timing/distances, watermark. Do not name the bottom building, or show its special purpose. Make clean readable road topology the priority over decorative details.

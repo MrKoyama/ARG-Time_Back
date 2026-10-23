@@ -1,0 +1,17 @@
+Use case: precise-object-edit / infographic-diagram.
+Asset type: Japanese corporate visitor access map, polished raster illustration, landscape.
+Input image 1 is the EDIT TARGET. Preserve its established geography and neat restrained 2D illustrated-map style. Improve it into a credible public visitor access map with a consistent landmark-selection policy.
+
+Preserve: 明浜駅 northwest with 南口; 明浜みどり公園 southwest of station; narrow residential strip east of park; 明浜商店街 running north-south east of houses; main north-south road east of shopping street; TIME BACK 本社 northeast; 生活環境実証エリア southeast beneath headquarters; ordinary unnamed large building below demonstration area, PARTIALLY CUT OFF BY BOTTOM EDGE. A narrow unhighlighted pedestrian passage must connect park's eastern interior exit THROUGH the gaps BETWEEN houses to shopping street. Street south end connects eastwards by an ordinary back lane to west side of southern unnamed building. Keep this natural path continuous and traversable, with no drawing through house footprints, but do NOT highlight or label the alley. Do not use any orange route or story explanation.
+
+Public map rules: name departure station, destinations, major area landmarks, and a few readily recognizable storefront landmarks near route turns/entrances. Render all other residential/commercial buildings as light-gray unlabeled footprints. They are deliberately neutral context, not named individually. No suspicious emphasis on unnamed building. All businesses including cafe, convenience store, post office have comparable simple flat footprints/icons, park must not be the only illustrated landmark.
+
+Exact text updates:
+- Title 「アクセス案内図」 (instead of previous title)
+- Blue-route legend 「推奨徒歩ルート」 (instead of 正規徒歩ルート)
+- Cafe in same position near headquarters turn: 「梢珈琲」 with smaller 「カフェ」 beneath, simple cup icon. Fictional shop name.
+- Convenience store in same position beside demonstration approach: 「ミナトマート」 with smaller 「明浜店」 beneath. Fictional convenience chain, plain two-color storefront sign without real-world branding.
+- Post office label remains 「明浜郵便局」, park 「明浜みどり公園」, shopping street 「明浜商店街」, station 「明浜駅」/「南口」, destination labels 「TIME BACK 本社」 and 「生活環境実証エリア」.
+Keep all text Japanese clean accurate readable sans-serif, no additional labels. North arrow N upper right.
+Blue visitor route ONLY from station south exit east on north street, south down main road, branching east into headquarters and demonstration west entrances. Route follows sidewalks/roads with sensible crossing positions, never across buildings. No arrows to unnamed building, no highlight on park route.
+Style: clean WHITE background, flat muted gray roads/building blocks, pale green park, pale blue destinations, restrained blue route and precise smooth lines. Consistent road widths and sensible intersections. No 3D perspective, no photographic effects, no excessive decorative trees or texture, no grand sculpture callout, no secret/research labels or annotation. Add discreet bottom margin note 「※周辺の建物・道路は一部省略しています。」 if sufficient clear whitespace, without covering bottom cropped building. Publication-ready access map, not a creator's diagram.

@@ -1,0 +1,23 @@
+Use case: ui-mockup. Generate ONE raster smartphone app screenshot for the fictional TIME BACK service, closely matching the supplied existing TIME BACK app reference: Japanese sans-serif typography, deep navy headings, teal and turquoise accents, subtle pale mint backgrounds, fine separators, softly rounded cards. Reference image is only a visual/style reference.
+Output: a tall portrait app screenshot, approximately 1024 by 1792, flat edge-to-edge WHITE opaque background. NO physical phone, hands, perspective, transparent areas or photography.
+Screen title "利用明細". Small TIME BACK wordmark and teal circular mark at top; iOS status bar clock "17:08". Bottom navigation labels "ホーム", "取引", "アカウント", active transaction tab.
+Make a realistic moderately busy receipt screen: many tightly spaced informational rows, quiet subheadings, a completion status chip, a payment-summary card, session details, transfer information and tiny support footnotes. It should feel like an ordinary real Japanese finance/service app, not a puzzle clue.
+Required exact data, legible and numerically accurate:
+"時間の売却", "完了", "受取報酬", "¥2,560"
+"利用日" "2026年9月17日"
+"開始時刻" "13:00"
+"終了時刻" "17:00"
+"売却時間" "4時間00分"
+"適用単価" "¥640／時間"
+"報酬合計" "¥2,560"
+"手数料" "¥0"
+"実施結果" "正常終了"
+Additional minor rows: "予約区分" "日時指定", "報酬受取" "登録口座", "処理状況" "反映済み", "確認日時" "2026/09/17 17:08".
+Near bottom add a dense ordinary support-details section containing several compact small, medium-gray text rows:
+"お問い合わせ情報"
+"処理番号：P-0917-0318"
+"管理コード：TB-260917-4826"
+"明細発行：2026/09/17 17:08"
+Then two small routine footnote lines.
+CRITICAL: management code TB-260917-4826 must be exact, including hyphens. Set it in the SAME small normal-weight gray typography as adjacent processing details, not bold, not a large separate card, not emphasized, not boxed on its own. It should be findable by inspecting the full-size image, but inconspicuous at ordinary article display size. Do NOT blur or corrupt its characters.
+No GPS, movement history, facility names, experiment details, subject IDs or conspiracy hints. No actual bank account data. No image watermark.

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="680" viewBox="0 0 1000 680" role="img" aria-labelledby="title desc">
+<title id="title">実証エリア周辺案内図</title><desc id="desc">明浜駅北口から公園の外の道路沿いに進み、TIME BACK本社と隣接する生活環境実証エリアへ向かう正規の徒歩案内図。明浜みどり公園と歩行者通路は周辺の目印として掲載。</desc>
+<rect width="1000" height="680" rx="12" fill="#f8fafb"/>
+<g font-family="'Yu Gothic','Hiragino Kaku Gothic ProN',sans-serif" fill="#294450">
+<text x="46" y="49" font-size="23" font-weight="700">実証エリア周辺案内図</text><text x="46" y="78" font-size="14" fill="#6e8088">明浜駅からの徒歩アクセス</text>
+<g stroke="#ccd8de" stroke-width="1.5" fill="#fff"><path d="M186 112H224V553H186Z"/><path d="M106 487H920V523H106Z"/><path d="M632 112H670V523H632Z"/><path d="M224 302H920V333H224Z"/><path d="M224 237H561V270H224Z"/></g>
+<g fill="#ebf0f3" stroke="#d7e0e5"><rect x="46" y="123" width="105" height="108" rx="4"/><rect x="48" y="270" width="102" height="74" rx="4"/><rect x="56" y="370" width="95" height="76" rx="4"/><rect x="247" y="349" width="142" height="73" rx="4"/><rect x="410" y="352" width="95" height="70" rx="4"/><rect x="253" y="442" width="166" height="33" rx="3"/><rect x="443" y="447" width="66" height="27" rx="3"/><rect x="489" y="134" width="50" height="82" rx="3"/><rect x="493" y="280" width="46" height="15" rx="2"/><rect x="247" y="552" width="150" height="49" rx="4"/><rect x="425" y="552" width="147" height="49" rx="4"/><rect x="722" y="551" width="170" height="51" rx="4"/></g>
+<rect x="254" y="123" width="222" height="160" rx="10" fill="#e2efdf" stroke="#91b58e" stroke-width="1.5"/>
+<path d="M262 255H402Q436 255 446 226" fill="none" stroke="#fff" stroke-width="14"/>
+<g fill="#b8d5b4"><circle cx="278" cy="149" r="12"/><circle cx="309" cy="150" r="10"/><circle cx="452" cy="148" r="11"/><circle cx="449" cy="177" r="12"/><circle cx="281" cy="220" r="10"/></g>
+<text x="365" y="190" text-anchor="middle" font-size="20" font-weight="700" fill="#426b42">明浜みどり公園</text>
+<path d="M476 255H560" stroke="#fff" stroke-width="12"/><path d="M476 247H560M476 263H560" stroke="#b5c3c8" stroke-width="1.5"/>
+<text x="506" y="228" font-size="12" text-anchor="middle" fill="#71828a">歩行者通路</text>
+<g fill="#fff2dd" stroke="#d7bc8c"><rect x="557" y="162" width="22" height="33" rx="2"/><rect x="557" y="205" width="22" height="33" rx="2"/><rect x="557" y="280" width="22" height="42" rx="2"/><rect x="557" y="339" width="22" height="40" rx="2"/><rect x="557" y="398" width="22" height="46" rx="2"/><rect x="602" y="162" width="21" height="35" rx="2"/><rect x="602" y="210" width="21" height="33" rx="2"/><rect x="602" y="280" width="21" height="43" rx="2"/><rect x="602" y="339" width="21" height="41" rx="2"/><rect x="602" y="398" width="21" height="46" rx="2"/></g>
+<path d="M591 155V470" stroke="#e9d8b7" stroke-width="20"/>
+<text x="590" y="140" text-anchor="middle" font-size="17" font-weight="700">明浜商店街</text>
+<text x="318" y="388" text-anchor="middle" font-size="15">市民交流館</text><text x="460" y="382" text-anchor="middle" font-size="13">明浜</text><text x="460" y="403" text-anchor="middle" font-size="13">郵便局</text>
+<rect x="702" y="138" width="208" height="121" rx="7" fill="#193c53"/>
+<g fill="#6e91a5"><rect x="718" y="152" width="11" height="9"/><rect x="735" y="152" width="11" height="9"/><rect x="752" y="152" width="11" height="9"/><rect x="769" y="152" width="11" height="9"/></g>
+<text x="806" y="195" text-anchor="middle" font-size="21" font-weight="700" fill="#fff">TIME BACK 本社</text><text x="806" y="225" text-anchor="middle" font-size="13" fill="#d5e5ee">運営会社：Chronect</text>
+<rect x="702" y="368" width="208" height="113" rx="7" fill="#e1f1f2" stroke="#318b96" stroke-width="2"/>
+<text x="806" y="408" text-anchor="middle" font-size="18" font-weight="700" fill="#246772">生活環境</text><text x="806" y="435" text-anchor="middle" font-size="18" font-weight="700" fill="#246772">実証エリア</text><text x="806" y="462" text-anchor="middle" font-size="12" fill="#5d8088">受付・実施区画</text>
+<path d="M806 259V368" fill="none" stroke="#d1e0e7" stroke-width="14"/>
+<rect x="72" y="543" width="151" height="59" rx="6" fill="#d8e3eb" stroke="#94aab9"/>
+<path d="M42 625H256" stroke="#8296a2" stroke-width="7"/><path d="M42 625H256" stroke="#fff" stroke-width="2" stroke-dasharray="5 8"/>
+<text x="147" y="579" text-anchor="middle" font-size="22" font-weight="700">明浜駅</text><text x="183" y="534" font-size="12" fill="#687f8c">北口</text>
+<path d="M208 551V505H651V425H702" fill="none" stroke="#24899b" stroke-width="5" stroke-linecap="round" stroke-dasharray="8 9"/>
+<path d="M651 425V198H702" fill="none" stroke="#24899b" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 9"/>
+<path d="m694 419 8 6-8 6M694 192l8 6-8 6" fill="none" stroke="#24899b" stroke-width="3"/>
+<g transform="translate(920 45)"><text x="0" y="0" text-anchor="middle" font-size="14" font-weight="700">N</text><path d="M0 10-8 33H8Z" fill="#294450"/><path d="M0 16V47" stroke="#294450" stroke-width="2"/></g>
+<g transform="translate(328 636)"><path d="M0 0H50" stroke="#24899b" stroke-width="4" stroke-dasharray="8 7"/><text x="63" y="5" font-size="13">正規徒歩ルート</text><text x="245" y="5" font-size="12" fill="#7b8d96">※位置関係を示す略図です。縮尺は実際と異なります。</text></g>
+</g>
+</svg>

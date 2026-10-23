@@ -1,0 +1,25 @@
+Use case: sketch-to-render / infographic-diagram.
+Create ONE polished RASTER corporate access map in Japanese, landscape 3:2, white background, approximately 1536x1024. Image 1 is the user's POSITIONAL SKETCH: follow its relative layout and official walking route faithfully. Image 2 is the STYLE reference for bold gray connected roads, blue route, black dots and labeled destination boxes. Do not copy Image 2 geography or names. This is not a photograph.
+CRITICAL SPATIAL LAYOUT matching sketch:
+- STATION in upper LEFT.
+- PARK directly BELOW station, occupying left-center.
+- SHOPPING STREET as a long NARROW NORTH-SOUTH strip in the CENTER, immediately EAST of park.
+- Headquarters upper RIGHT, east of shopping strip.
+- Demonstration area lower RIGHT, directly SOUTH of headquarters.
+- Main road runs NORTH-SOUTH BETWEEN central shopping street and the two destinations on right.
+- Official walking route from station's south-facing exit moves EAST along street above park, then turns NORTH at the WEST side of shopping street, passes EAST across the NORTH end of shopping street, then turns SOUTH down its EAST side along the main road between shopping street and headquarters/demonstration area. End with small branches EAST to the headquarters entrance and demonstration area entrance.
+- BLUE ROUTE MUST GO AROUND THE NORTH END OF THE SHOPPING STREET, like a squared upside-down U in the sketch; it MUST NOT go around the SOUTH of the park. NEVER cross through park or cut through shopping blocks. The park is below the first eastbound leg and west of shopping street.
+- A subtle UNHIGHLIGHTED narrow public foot passage can connect eastern park boundary through a small residential gap to the central shopping street. Do not label this as a shortcut or draw attention to it.
+BUILDINGS AND STYLE:
+Use natural plausible surrounding streets with smooth joined intersections, uniform thick light gray roadway bands. Make ALL landmarks have understated simple square/rectangular illustrated building footprints: cafe, convenience store, post office, civic hall, station, headquarters, demo area. Shopping street should have several small shop footprints along a narrow strip. Park is merely one modest pastel green footprint with just a few simple trees; do NOT give park richer illustration or more visual emphasis than other landmarks. Cafe can have a small cup icon inside its building block, convenience store a little storefront icon, post office an ordinary simple postal mark. Other anonymous city buildings in pale neutral gray give context. No photo textures, no 3D, no ornate cartoon landscaping. Restrained teal/blue, light gray, pale green, pale sand; comparable line weight and visual density across landmarks.
+IMPORTANT STORY DETAIL: Directly SOUTH of the demonstration area, place a large ordinary PALE GRAY UNLABELED BUILDING FOOTPRINT extending BELOW the bottom edge of the map, so only its upper portion is visible/cropped. The building should look like normal surrounding property and match other unlabelled buildings. No label of any kind, no research/lab label, no question marks, no conspicuous fence/security/warning symbols, no arrows or blue route leading to it. Do NOT outline or spotlight it. This is ordinary map edge cropping, not an obvious clue. Leave a narrow access gap between demonstration area and this cropped building.
+Exact Japanese labels:
+"実証エリア周辺案内図" as map heading
+"明浜駅" and exit "南口"
+"明浜みどり公園"
+"明浜商店街"
+"TIME BACK 本社"
+"生活環境実証エリア"
+"カフェ", "コンビニ", "明浜郵便局", "市民交流館"
+"正規徒歩ルート" in small key
+No extra proper names, no building label under demonstration area. Use legible accurate Japanese text, no overlapping labels, no clock/silver sculpture on map. Small N arrow if room. Thin blue route clearly follows sidewalks/roads only. Keep corporate factual and friendly, no sinister style.
