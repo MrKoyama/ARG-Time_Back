@@ -1,0 +1,26 @@
+[
+  {
+    "client": 305,
+    "path": "/chronect-news-20260822.html",
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "client": 305,
+    "path": "/chronect-hub.html",
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "client": 305,
+    "path": "/chronect-hub-search.html",
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "client": 305,
+    "path": "/chronect-hub-session.html",
+    "scroll": 305,
+    "width": 320
+  }
+]

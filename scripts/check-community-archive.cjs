@@ -3,7 +3,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const root = path.resolve(__dirname, '../public');
-const expected = {'business-community.html':42,'business-demonstration-area.html':43,'partners.html':47,'nodelink-works.html':48,'axion-logistics.html':49};
+const expected = {'business-community.html':42,'business-demonstration-area.html':43,'partners.html':44,'nodelink-works.html':45,'axion-logistics.html':46};
 let registries = 0, scripts = 0;
 const pageNumbers = new Map();
 for (const name of fs.readdirSync(root)) {
@@ -27,10 +27,12 @@ for (const name of fs.readdirSync(root)) {
   if (source.includes('archiveTitleByNumber')) {
     const titles = JSON.parse(source.match(/\barchiveTitleByNumber\s*=\s*(\{[^{}]*\})/)[1]);
     assert.equal(titles[42],'地域連携の取り組み ｜ TIME BACK for Business');
-    assert.equal(titles[47],'提携企業一覧 ｜ TIME BACK for Business');
+    assert.equal(titles[44],'提携企業一覧 ｜ TIME BACK for Business');
+    assert.equal(titles[45],'トップページ ｜ 株式会社ノードリンク・ワークス');
+    assert.equal(titles[46],'トップページ ｜ アクシオン・ロジスティクス株式会社');
     assert.equal(titles[43],'生活環境実証エリア ｜ TIME BACK for Business');
-    for (const n of [44,45,46]) assert.equal(titles[n],undefined);
-    const mappings = [...source.matchAll(/\{[^{}\r\n]*"partners\.html":47[^{}\r\n]*\}/g)];
+    for (let n=50;n<=60;n++) assert.equal(titles[n],undefined);
+    const mappings = [...source.matchAll(/\{[^{}\r\n]*"partners\.html":44[^{}\r\n]*\}/g)];
     assert(mappings.length,`Missing URL registry: ${name}`);
     for (const match of mappings) {
       const mapping = JSON.parse(match[0]);
@@ -62,5 +64,5 @@ const saved = [{number:42,href:'partners.html'},{number:43,href:'nodelink-works.
 const context = {document:{body:{dataset:{pageArchive:'exclude'}},getElementById(){return node},addEventListener(){}},localStorage:{getItem(){return JSON.stringify(saved)},setItem(){}},window:{}};
 vm.createContext(context);
 vm.runInContext(fs.readFileSync(path.join(root,'business-shared.js'),'utf8'),context);
-assert.equal(JSON.stringify(vm.runInContext('loadArchive().map(p=>p.number)',context)),JSON.stringify([47,48,49]));
+assert.equal(JSON.stringify(vm.runInContext('loadArchive().map(p=>p.number)',context)),JSON.stringify([44,45,46]));
 console.log(`PASS: ${registries} archive registries, ${scripts} script syntax checks, unique page numbers, exact keyword search and saved-record migration.`);

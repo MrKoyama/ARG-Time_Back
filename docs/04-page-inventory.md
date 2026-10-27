@@ -2,13 +2,13 @@
 
 調査日：2026-10-23。公開HTMLの実ファイルとアーカイブ登録・保存データ移行用マップを照合した現況です。古い会話のページ番号ではなく、この表を作業開始時の基準にしてください。追加・番号変更後は必ず再確認します。
 
-番号付き46ページ＋EX検索3ページ＝49ファイル。以下の番号は閲覧の目安で、調査の一本道を意味しません。
+2026-10-28更新：番号付き49ページ＋EX検索4ページ＋旧URL互換転送1ページ＝54ファイル。以下の番号は閲覧の目安で、調査の一本道を意味しません。
 
 | 番号 | 実ファイル（public配下） | 現在のページタイトル | 役割・注意 |
 |---:|---|---|---|
-| 1 | [memo-dream.html](../public/memo-dream.html) | 最近、同じ場所の夢を見る。 ｜ memo | 導入の夢・二重リング像と抜け道。関連記事で2へ。 |
+| 1 | [index.html](../public/index.html) | 最近、同じ場所の夢を見る。 ｜ memo | サイト全体の入口。導入の夢・二重リング像と抜け道。関連記事で2へ。旧memo-dream.htmlから移動。 |
 | 2 | [memo-timeback-review.html](../public/memo-timeback-review.html) | TIME BACKを使ってみた感想 ｜ memo | 購入者が売却もする伏線。明細の管理コード。 |
-| 3 | [index.html](../public/index.html) | トップページ ｜ TIME BACK | 個人向け入口。正常なサービスの顔。 |
+| 3 | [time-back.html](../public/time-back.html) | トップページ ｜ TIME BACK | 個人向け入口。正常なサービスの顔。旧index.htmlから移動。 |
 | 4 | [about.html](../public/about.html) | サービスについて｜TIME BACK | 売却・購入・時間プールとアプリの説明。 |
 | 5 | [pricing.html](../public/pricing.html) | 料金・報酬｜TIME BACK | 価格表。法人案内の旧文言は削除済み。 |
 | 6 | [safety.html](../public/safety.html) | 安全性について｜TIME BACK | 利用前後の安全支援。 |
@@ -18,11 +18,11 @@
 | 10 | [market.html](../public/market.html) | TIME BACK MARKET｜TIME BACK | 市場統計。アプリへの案内でWeb取引は行わない。 |
 | 11 | [behavior-assistance.html](../public/behavior-assistance.html) | Behavior Assistance System｜TIME BACK | 公開の行動支援技術。極めてクリーンに見せる。 |
 | 12 | [time-back-id.html](../public/time-back-id.html) | TIME BACK ID ご利用ガイド｜TIME BACK | 会員ID説明、アプリ3段階の画像。 |
-| 13 | [chronect.html](../public/chronect.html) | トップページ ｜ Chronect | 企業トップ。Hub入口はまだない。 |
+| 13 | [chronect.html](../public/chronect.html) | トップページ ｜ Chronect | 企業トップ。研究ニュース47を経由してHubへ。 |
 | 14 | [chronect-company.html](../public/chronect-company.html) | 企業情報 ｜ Chronect | 代表・会社概要・施設写真・沿革。 |
 | 15 | [chronect-research.html](../public/chronect-research.html) | 研究開発 ｜ Chronect | 4領域18研究プロジェクトの具体説明。 |
 | 16 | [chronect-services.html](../public/chronect-services.html) | 事業・サービス ｜ Chronect | 事業とTIME BACK展開の経緯、法人向けへ。 |
-| 17 | [chronect-news.html](../public/chronect-news.html) | ニュース ｜ Chronect | 18件の一覧。4研究発表記事は未作成。 |
+| 17 | [chronect-news.html](../public/chronect-news.html) | ニュース ｜ Chronect | 18件の一覧。3研究発表記事は未作成。2026-08-22記事47を追加。 |
 | 18 | [chronect-careers.html](../public/chronect-careers.html) | 採用情報 ｜ Chronect | 厳格な採用通達。連絡先は.invalid。 |
 | 19 | [chronect-news-20240305.html](../public/chronect-news-20240305.html) | 短時間休息と認知回復に関する産学共同研究を開始 ｜ Chronect | Chronectの個別ニュース。発表日順で19〜32に配置。 |
 | 20 | [chronect-news-20241021.html](../public/chronect-news-20241021.html) | TIME BACK先行提供プログラムを開始しました ｜ Chronect | Chronectの個別ニュース。発表日順で19〜32に配置。 |
@@ -48,24 +48,29 @@
 | 40 | [pre-use-orientation.html](../public/pre-use-orientation.html) | 利用前オリエンテーション｜TIME BACK FOR BUSINESS | 初回説明・操作確認・本人同意。 |
 | 41 | [business-demonstration.html](../public/business-demonstration.html) | ユーザー参加型実証プログラム｜TIME BACK for Business | 実証プログラム、現行map、地域連携への語句。 |
 | 42 | [business-community.html](../public/business-community.html) | 地域連携の取り組み｜TIME BACK for Business | 振興会との清掃。像が写る写真、駅・商店街・集合写真。 |
-| 43 | [business-demonstration-area.html](../public/business-demonstration-area.html) | 生活環境実証エリア｜TIME BACK for Business | 事業センター内の屋内模擬生活環境・設備。 |
-| 47 | [partners.html](../public/partners.html) | 提携企業一覧｜TIME BACK FOR BUSINESS | 5社列挙。2社だけ企業サイトへのボタンが残る。 |
-| 48 | [nodelink-works.html](../public/nodelink-works.html) | 株式会社ノードリンク・ワークス | 独立した人材会社。新人研修・中途IT職。名簿・隠し検索なし。 |
-| 49 | [axion-logistics.html](../public/axion-logistics.html) | アクシオン・ロジスティクス株式会社 | 独立した物流会社。デスクワークの通常利用例。 |
+| 43 | [business-demonstration-area.html](../public/business-demonstration-area.html) | 生活環境実証エリア｜TIME BACK for Business | 事業センター内の屋内模擬生活環境・設備。2026-10-26、通路・模擬売場の施設写真と原寸拡大リンクを追加。 |
+| 44 | [partners.html](../public/partners.html) | 提携企業一覧｜TIME BACK FOR BUSINESS | 旧47。5社列挙。2社だけ企業サイトへのボタンが残る。 |
+| 45 | [nodelink-works.html](../public/nodelink-works.html) | 株式会社ノードリンク・ワークス | 旧48。独立した人材会社。新人研修・中途IT職。名簿・隠し検索なし。 |
+| 46 | [axion-logistics.html](../public/axion-logistics.html) | アクシオン・ロジスティクス株式会社 | 旧49。独立した物流会社。デスクワークの通常利用例。 |
+| 47 | [chronect-news-20260822.html](../public/chronect-news-20260822.html) | 睡眠中の時間認知に関する研究成果を発表 ｜ Chronect | 2026-08-22研究発表。公開研究要旨を読むHub入口。 |
+| 48 | [chronect-hub.html](../public/chronect-hub.html) | Chronect Hub ｜ Chronect | 正規の公開要旨と独立した資料検索。 |
+| 49 | [chronect-hub-session.html](../public/chronect-hub-session.html) | セッション運用記録（参照用抜粋） ｜ Chronect | 管理コードで到達する限定保存抜粋。売却者本人の3地点通過実績。 |
+| EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 資料検索結果 ｜ Chronect Hub | 管理コード1件・公開要旨題名1件の完全一致。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [chronect-search.html](../public/chronect-search.html) | 検索結果 ｜ Chronect | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [search.html](../public/search.html) | サイト内検索｜TIME BACK | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
+| — | [memo-dream.html](../public/memo-dream.html) | 最近、同じ場所の夢を見る。 ｜ memo | 旧URL互換誘導のみ。クエリ・フラグメントを保持してindex.htmlへ移動。番号なし・アーカイブ対象外。 |
 
 ## 空き番号
 
-44〜46、50〜60は現時点で実ページ・タイトルの割当なし。過去に確保された空きと見られるが、用途は未確定。調査のために詰めたり新規タイトルを割り当てたりしていない。60は現在のアーカイブ容量で、最終制作総数の承認ではない。
+2026-10-28の作者承認によりHub導入編を47〜49に追加。使用番号は1〜49で連続。50〜60は実ページ・タイトルの割当なし。用途は未確定で、新規ページ用の予約ではない。60は現在のアーカイブ容量で、最終制作総数の承認ではない。
 
 ## 実ファイルがないもの
 
-- Chronect研究ニュース4件（2024-07-11、2025-11-05、2026-02-18、2026-08-22）。一覧からリンクはある。
+- Chronect研究ニュース3件（2024-07-11、2025-11-05、2026-02-18）。一覧からリンクはある。
 - chronect-projects.html。企業トップからリンクあり。
-- business-park.html。旧検索登録だけ残っている。現在の公園発見導線と相反するため、作成すべきページと自動判断しない。
-- Hub、内部資料、高瀬メモ、社員番号の隠しページ、告発・エンドは、ページ番号も未確定。
+- business-park.htmlは作成しない。2026-10-26の作者承認により旧検索登録を削除。実ファイルは元から存在せず、ページ削除・改番は発生していない。
+- Hubの深部資料、内部資料、高瀬メモ、社員番号の隠しページ、告発・エンドは、ページ番号も未確定。
 
 リンクの抽出一覧は [検索・リンク](09-search-and-links.md)。公開済みという表現はローカル実装を指し、Cloudflareでの公開状況を保証しません。
 
