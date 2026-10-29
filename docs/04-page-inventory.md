@@ -22,7 +22,7 @@
 | 14 | [chronect-company.html](../public/chronect-company.html) | 企業情報 ｜ Chronect | 代表・会社概要・施設写真・沿革。 |
 | 15 | [chronect-research.html](../public/chronect-research.html) | 研究開発 ｜ Chronect | 4領域18研究プロジェクトの具体説明。 |
 | 16 | [chronect-services.html](../public/chronect-services.html) | 事業・サービス ｜ Chronect | 事業とTIME BACK展開の経緯、法人向けへ。 |
-| 17 | [chronect-news.html](../public/chronect-news.html) | ニュース ｜ Chronect | 18件の一覧。全18件の個別記事が実在。 |
+| 17 | [chronect-news.html](../public/chronect-news.html) | ニュース ｜ Chronect | 一覧は12件。全18件の個別記事は実在し検索・旧保存から再訪可。2026-10-29に事務的・重複する6件を一覧から除外。 |
 | 18 | [chronect-careers.html](../public/chronect-careers.html) | 採用情報 ｜ Chronect | 厳格な採用通達。連絡先は.invalid。 |
 | 19 | [chronect-news-20240305.html](../public/chronect-news-20240305.html) | 短時間休息と認知回復に関する産学共同研究を開始 ｜ Chronect | Chronectの個別ニュース。発表日順で19〜32に配置。 |
 | 20 | [chronect-news-20241021.html](../public/chronect-news-20241021.html) | TIME BACK先行提供プログラムを開始しました ｜ Chronect | Chronectの個別ニュース。発表日順で19〜32に配置。 |

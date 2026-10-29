@@ -1,0 +1,194 @@
+[
+  {
+    "client": 305,
+    "scroll": 320,
+    "url": "/search.html",
+    "width": 320
+  },
+  {
+    "client": 320,
+    "scroll": 320,
+    "url": "/business-search.html",
+    "width": 320
+  },
+  {
+    "client": 305,
+    "scroll": 320,
+    "url": "/chronect-search.html",
+    "width": 320
+  },
+  {
+    "client": 305,
+    "scroll": 305,
+    "url": "/chronect-hub-search.html",
+    "width": 320
+  },
+  {
+    "client": 305,
+    "scroll": 320,
+    "url": "/chronect-company.html",
+    "width": 320
+  },
+  {
+    "client": 305,
+    "scroll": 320,
+    "url": "/chronect-research.html",
+    "width": 320
+  },
+  {
+    "client": 305,
+    "scroll": 320,
+    "url": "/chronect-news.html",
+    "width": 320
+  },
+  {
+    "client": 305,
+    "scroll": 320,
+    "url": "/business-cases.html",
+    "width": 320
+  },
+  {
+    "client": 375,
+    "scroll": 375,
+    "url": "/search.html",
+    "width": 390
+  },
+  {
+    "client": 390,
+    "scroll": 390,
+    "url": "/business-search.html",
+    "width": 390
+  },
+  {
+    "client": 375,
+    "scroll": 375,
+    "url": "/chronect-search.html",
+    "width": 390
+  },
+  {
+    "client": 375,
+    "scroll": 375,
+    "url": "/chronect-hub-search.html",
+    "width": 390
+  },
+  {
+    "client": 375,
+    "scroll": 375,
+    "url": "/chronect-company.html",
+    "width": 390
+  },
+  {
+    "client": 375,
+    "scroll": 375,
+    "url": "/chronect-research.html",
+    "width": 390
+  },
+  {
+    "client": 375,
+    "scroll": 375,
+    "url": "/chronect-news.html",
+    "width": 390
+  },
+  {
+    "client": 375,
+    "scroll": 375,
+    "url": "/business-cases.html",
+    "width": 390
+  },
+  {
+    "client": 753,
+    "scroll": 753,
+    "url": "/search.html",
+    "width": 768
+  },
+  {
+    "client": 768,
+    "scroll": 768,
+    "url": "/business-search.html",
+    "width": 768
+  },
+  {
+    "client": 753,
+    "scroll": 753,
+    "url": "/chronect-search.html",
+    "width": 768
+  },
+  {
+    "client": 753,
+    "scroll": 753,
+    "url": "/chronect-hub-search.html",
+    "width": 768
+  },
+  {
+    "client": 753,
+    "scroll": 753,
+    "url": "/chronect-company.html",
+    "width": 768
+  },
+  {
+    "client": 753,
+    "scroll": 753,
+    "url": "/chronect-research.html",
+    "width": 768
+  },
+  {
+    "client": 753,
+    "scroll": 753,
+    "url": "/chronect-news.html",
+    "width": 768
+  },
+  {
+    "client": 753,
+    "scroll": 753,
+    "url": "/business-cases.html",
+    "width": 768
+  },
+  {
+    "client": 1425,
+    "scroll": 1425,
+    "url": "/search.html",
+    "width": 1440
+  },
+  {
+    "client": 1440,
+    "scroll": 1440,
+    "url": "/business-search.html",
+    "width": 1440
+  },
+  {
+    "client": 1425,
+    "scroll": 1425,
+    "url": "/chronect-search.html",
+    "width": 1440
+  },
+  {
+    "client": 1425,
+    "scroll": 1425,
+    "url": "/chronect-hub-search.html",
+    "width": 1440
+  },
+  {
+    "client": 1425,
+    "scroll": 1425,
+    "url": "/chronect-company.html",
+    "width": 1440
+  },
+  {
+    "client": 1425,
+    "scroll": 1425,
+    "url": "/chronect-research.html",
+    "width": 1440
+  },
+  {
+    "client": 1425,
+    "scroll": 1425,
+    "url": "/chronect-news.html",
+    "width": 1440
+  },
+  {
+    "client": 1425,
+    "scroll": 1425,
+    "url": "/business-cases.html",
+    "width": 1440
+  }
+]

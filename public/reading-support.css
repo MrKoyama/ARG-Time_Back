@@ -1,0 +1,17 @@
+/* Supplemental reading information; loaded only by the eight approved pages. */
+#main .search-context-note{margin:12px 0 18px;font-size:14px;line-height:1.9;color:#49616a;overflow-wrap:anywhere}
+#main .search-meta,#main .no-results,#main .no-results p,#main .no-results p+p,#main .result-snippet,#main .result-item p{font-size:14px;line-height:1.9;color:#49616a}
+#main.search-page .search-context-note,#main.search-page .search-meta,#main.search-page .no-results,#main.search-page .result-item p{color:#b9cbd3}
+.hub-shell #main .search-context-note,.hub-shell #main #hubSearchStatus{font-size:14px;line-height:1.9;color:#D0D0D0}
+#main .profile-table th,#main .profile-table td{font-size:14px;line-height:1.9}
+#main .profile-table th,#main .history-list p{color:#b9cbd3}
+#main .history-list p{font-size:14px;line-height:1.9}
+#main .method-list dt,#main .method-list dd,#main .project-meta b,#main .project-meta span{font-size:14px;line-height:1.9}
+#main .method-list dd,#main .project-meta b,#main .project-meta span{color:#b9cbd3}
+#main .research-summary span,#main .research-summary small{font-size:14px;line-height:1.8;color:#b9cbd3}
+#main .news-index-list time,#main .news-index-category,#main .news-index-heading>p,#main .news-category-filters button,#main .news-year-select,#main .news-empty{font-size:14px;line-height:1.8}
+#main .news-index-list time,#main .news-index-heading>p,#main .news-year-select,#main .news-empty{color:#b9cbd3}
+#main .news-category-filters button{color:#b9cbd3}
+#main .news-category-filters button.is-active,#main .news-category-filters button:hover,#main .news-category-filters button:focus-visible{color:#07131b}
+#main .case-detail{font-size:14px;line-height:1.9;color:#3e5b6d}
+@media(max-width:360px){body{min-width:0}}
