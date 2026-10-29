@@ -1,0 +1,130 @@
+[
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 305,
+    "forms": 1,
+    "path": "/chronect-hub.html",
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 305,
+    "forms": 1,
+    "path": "/chronect-hub-research.html",
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 305,
+    "forms": 1,
+    "path": "/chronect-hub-search.html",
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 305,
+    "forms": 1,
+    "path": "/chronect-hub-session.html",
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 375,
+    "forms": 1,
+    "path": "/chronect-hub.html",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 375,
+    "forms": 1,
+    "path": "/chronect-hub-research.html",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 375,
+    "forms": 1,
+    "path": "/chronect-hub-search.html",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 375,
+    "forms": 1,
+    "path": "/chronect-hub-session.html",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 768,
+    "forms": 1,
+    "path": "/chronect-hub.html",
+    "scroll": 768,
+    "width": 768
+  },
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 753,
+    "forms": 1,
+    "path": "/chronect-hub-research.html",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 768,
+    "forms": 1,
+    "path": "/chronect-hub-search.html",
+    "scroll": 768,
+    "width": 768
+  },
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 753,
+    "forms": 1,
+    "path": "/chronect-hub-session.html",
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 1440,
+    "forms": 1,
+    "path": "/chronect-hub.html",
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 1425,
+    "forms": 1,
+    "path": "/chronect-hub-research.html",
+    "scroll": 1425,
+    "width": 1440
+  },
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 1440,
+    "forms": 1,
+    "path": "/chronect-hub-search.html",
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "background": "rgb(11, 11, 11)",
+    "client": 1425,
+    "forms": 1,
+    "path": "/chronect-hub-session.html",
+    "scroll": 1425,
+    "width": 1440
+  }
+]

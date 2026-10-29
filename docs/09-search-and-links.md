@@ -6,12 +6,17 @@
 
 2026-10-28：既存3検索を維持し、独立したHub資料検索2項目を追加。前後空白除去＋小文字化以外の自動補正はしない。Hubだけの正解を既存3サイトへ混ぜない。
 
+2026-10-29追加制作：Chronect企業検索は3研究ニュースの見出し完全一致を追加して24項目。プロジェクト/共同研究の既存登録は54へ差替え。Hubは既存2資料に新規要旨3資料を追加し計5資料。既存の睡眠/時間認知→50、管理コード→49を維持し、新しい9語は公開要旨だけを返す。
+
 ## chronect-hub-search.html
 
 | 許可される検索語 | 結果名 | 遷移先 | 現況 |
 |---|---|---|---|
-| 睡眠中の時間認知に関する研究要旨 | 睡眠中の時間認知に関する研究要旨 | `chronect-hub.html#research-summary` | 実在・公開要旨 |
+| 睡眠 / 時間認知 / 睡眠中の時間認知 / 睡眠中の時間認知に関する研究 / 睡眠中の時間認知に関する研究要旨 | 睡眠中の時間認知に関する研究要旨 | `chronect-hub-research.html` | 実在・公開要旨50。2026-10-29作者承認で分離・登録語追加 |
 | TB-260917-4826 | セッション運用記録（参照用抜粋） | `chronect-hub-session.html` | 実在・限定保存抜粋 |
+| 日常環境下での時間選択に関する予備研究要旨 / 時間選択 / 日常環境 | 日常環境下での時間選択に関する予備研究要旨 | `chronect-hub-research-20240711.html` | 55。ニュース51の対応資料 |
+| 注意配分と主観時間に関する研究要旨 / 注意配分 / 主観時間 | 注意配分と主観時間に関する研究要旨 | `chronect-hub-research-20251105.html` | 56。ニュース52の対応資料 |
+| 短時間休息後の覚醒移行に関する検証要旨 / 覚醒移行 / 短時間休息 | 短時間休息後の覚醒移行に関する検証要旨 | `chronect-hub-research-20260218.html` | 57。ニュース53の対応資料 |
 
 未入力は入力案内、不一致は「該当する資料はありません。入力内容をご確認ください」。会員ID・P-0917-0318・管理コードの一部・夢・安全記録などは0件。検索結果にHTML名は表示せず、EXはアーカイブへ記録しない。
 
@@ -57,7 +62,7 @@
 | 研究開発 / 神経科学 / 時間認知 / 睡眠研究 | 研究開発 | `chronect-research.html` | 実在 |
 | 事業・サービス / 事業内容 / サービス / TIME BACK | 事業・サービス | `chronect-services.html` | 実在 |
 | TIME BACK for Business / 法人向け / 法人向けサービス | TIME BACK for Business | `business.html` | 実在 |
-| プロジェクト / 共同研究 | プロジェクト | `chronect.html#services` | 実在 |
+| プロジェクト / 共同研究 | プロジェクト | `chronect-projects.html` | 実在・54 |
 | ニュース / お知らせ / プレスリリース | ニュース | `chronect-news.html` | 実在 |
 | 短時間休息と認知回復に関する産学共同研究を開始 / 短時間休息 / 認知回復 | 短時間休息と認知回復に関する産学共同研究を開始 | `chronect-news-20240305.html` | 実在 |
 | TIME BACK先行提供プログラムを開始しました / TIME BACK先行提供プログラム / 先行提供 | TIME BACK先行提供プログラムを開始しました | `chronect-news-20241021.html` | 実在 |
@@ -74,17 +79,15 @@
 | TIME BACK for Businessの提供領域を拡大 / 提供領域を拡大 / 法人向け提供領域 | TIME BACK for Businessの提供領域を拡大 | `chronect-news-20260603.html` | 実在 |
 | 生活環境における行動支援技術の共同検証を開始 / 生活環境 / 行動支援技術の共同検証 | 生活環境における行動支援技術の共同検証を開始 | `chronect-news-20260714.html` | 実在 |
 | 採用情報 / 採用 / 募集職種 / 応募前照会 | 採用情報 | `chronect-careers.html` | 実在 |
+| 日常環境下での時間選択に関する予備研究を発表 | 日常環境下での時間選択に関する予備研究を発表 | `chronect-news-20240711.html` | 51 |
+| 注意配分と主観時間に関する論文が国際誌に掲載 | 注意配分と主観時間に関する論文が国際誌に掲載 | `chronect-news-20251105.html` | 52 |
+| 短時間休息後の覚醒移行に関する検証結果を発表 | 短時間休息後の覚醒移行に関する検証結果を発表 | `chronect-news-20260218.html` | 53 |
 
 ## 未作成先への参照
 
 HTMLのhref/srcと検索DBのurlから検出。外部サイトへの通信確認・全ハッシュアンカー確認は含まない。
 
-| 元ファイル | 対象 | 種類 |
-|---|---|---|
-| chronect-news.html | chronect-news-20260218.html | HTMLリンク |
-| chronect-news.html | chronect-news-20251105.html | HTMLリンク |
-| chronect-news.html | chronect-news-20240711.html | HTMLリンク |
-| chronect.html | chronect-projects.html | HTMLリンク |
+2026-10-29：既知の研究3記事とプロジェクト紹介はすべて実ファイルを作成。各研究から対応する新規Hub要旨へリンクする。静的参照の最終監査結果は今回の補完制作記録に保存する。
 
 ## 通常リンクの一覧
 
@@ -140,10 +143,18 @@ HTMLのhref/srcと検索DBのurlから検出。外部サイトへの通信確認
 | 44・partners.html | `business.html`、`business-service.html`、`business-cases.html`、`business-safety.html`、`business-flow.html`、`nodelink-works.html`、`axion-logistics.html` |
 | 45・nodelink-works.html | `nodelink-works.html` |
 | 46・axion-logistics.html | `axion-logistics.html` |
-| 47・chronect-news-20260822.html | Chronect共通ナビ、`chronect-news.html`、`chronect-research.html`、`chronect-hub.html` |
-| 48・chronect-hub.html | Chronect共通ナビ、`chronect-news-20260822.html`。資料検索フォームは`chronect-hub-search.html` |
-| 49・chronect-hub-session.html | Chronect共通ナビ、`chronect-hub.html`、`business-demonstration.html` |
-| EX・chronect-hub-search.html | Chronect共通ナビ、`chronect-hub.html`。一致時のみ要旨または49番への結果リンク |
+| 47・chronect-news-20260822.html | Chronect共通ナビ、`chronect-news.html`、`chronect-research.html`、研究資料50への直接リンク |
+| 48・chronect-hub.html | Hub専用ヘッダー・検索。企業ナビなし |
+| 49・chronect-hub-session.html | Hub専用ヘッダー・検索、`chronect-hub.html`。2026-10-29作者承認で41への参照リンクを削除し、写真枝と分離 |
+| 50・chronect-hub-research.html | Hub専用ヘッダー・検索、`chronect-hub.html`、`chronect-news-20260822.html` |
+| 51・chronect-news-20240711.html | Chronect共通ナビ、ニュース一覧、研究開発、対応Hub要旨55 |
+| 52・chronect-news-20251105.html | Chronect共通ナビ、ニュース一覧、研究開発、対応Hub要旨56 |
+| 53・chronect-news-20260218.html | Chronect共通ナビ、ニュース一覧、研究開発、対応Hub要旨57 |
+| 54・chronect-projects.html | Chronect共通ナビ、TIME BACK、Business、提携一覧44、研究開発 |
+| 55・chronect-hub-research-20240711.html | Hub専用ヘッダー・検索、Hubトップ48、ニュース51 |
+| 56・chronect-hub-research-20251105.html | Hub専用ヘッダー・検索、Hubトップ48、ニュース52 |
+| 57・chronect-hub-research-20260218.html | Hub専用ヘッダー・検索、Hubトップ48、ニュース53 |
+| EX・chronect-hub-search.html | Hub専用ヘッダー・検索、`chronect-hub.html`。一致時のみ50または49番への結果リンク |
 | EX・business-search.html | `business.html`、`business-service.html`、`business-cases.html`、`business-safety.html`、`business-flow.html` |
 | EX・chronect-search.html | `chronect.html`、`chronect-company.html`、`chronect-research.html`、`chronect-services.html`、`chronect-news.html`、`chronect-careers.html` |
 | EX・search.html | `time-back.html`、`about.html`、`pricing.html`、`safety.html`、`faq.html` |

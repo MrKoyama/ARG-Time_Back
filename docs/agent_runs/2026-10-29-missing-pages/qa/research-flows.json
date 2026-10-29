@@ -1,0 +1,29 @@
+[
+  {
+    "date": "20240711",
+    "keyword": "時間選択",
+    "direct": {
+      "page": "55",
+      "path": "/chronect-hub-research-20240711.html"
+    },
+    "result": "- region \"検索結果\":\n    - heading \"検索結果\" [level=2]\n    - paragraph: 「時間選択」の検索結果\n    - status: 該当する資料が 1 件見つかりました。\n    - article:\n      - heading \"日常環境下での時間選択に関する予備研究要旨\" [level=3]:\n        - link \"日常環境下での時間選択に関する予備研究要旨\":\n          - /url: chronect-hub-research-20240711.html\n      - paragraph: 本予備研究は、日常の予定の合間に生じる時間について、活動や休息を選ぶ際の判断条件を整理するものです。\n  "
+  },
+  {
+    "date": "20251105",
+    "keyword": "注意配分",
+    "direct": {
+      "page": "56",
+      "path": "/chronect-hub-research-20251105.html"
+    },
+    "result": "- region \"検索結果\":\n    - heading \"検索結果\" [level=2]\n    - paragraph: 「注意配分」の検索結果\n    - status: 該当する資料が 1 件見つかりました。\n    - article:\n      - heading \"注意配分と主観時間に関する研究要旨\" [level=3]:\n        - link \"注意配分と主観時間に関する研究要旨\":\n          - /url: chronect-hub-research-20251105.html\n      - paragraph: 本研究は、注意を向ける対象が異なる条件で、経過時間の見積もりを比較したものです。\n  "
+  },
+  {
+    "date": "20260218",
+    "keyword": "覚醒移行",
+    "direct": {
+      "page": "57",
+      "path": "/chronect-hub-research-20260218.html"
+    },
+    "result": "- region \"検索結果\":\n    - heading \"検索結果\" [level=2]\n    - paragraph: 「覚醒移行」の検索結果\n    - status: 該当する資料が 1 件見つかりました。\n    - article:\n      - heading \"短時間休息後の覚醒移行に関する検証要旨\" [level=3]:\n        - link \"短時間休息後の覚醒移行に関する検証要旨\":\n          - /url: chronect-hub-research-20260218.html\n      - paragraph: 本検証は、短時間休息後に活動へ戻る過程を、最初の応答と、その後の操作の安定性に分けて評価するものです。\n  "
+  }
+]

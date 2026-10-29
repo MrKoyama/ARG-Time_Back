@@ -8,8 +8,9 @@ const read = name => fs.readFileSync(path.join(root, name), 'utf8');
 const summaryTitle = '睡眠中の時間認知に関する研究要旨';
 const expected = {
   'chronect-news-20260822.html': [47, '睡眠中の時間認知に関する研究成果を発表 ｜ Chronect'],
-  'chronect-hub.html': [48, 'Chronect Hub ｜ Chronect'],
-  'chronect-hub-session.html': [49, 'セッション運用記録（参照用抜粋） ｜ Chronect']
+  'chronect-hub.html': [48, 'トップページ ｜ Chronect Hub'],
+  'chronect-hub-session.html': [49, 'セッション運用記録（参照用抜粋） ｜ Chronect Hub'],
+  'chronect-hub-research.html': [50, '睡眠中の時間認知に関する研究要旨 ｜ Chronect Hub']
 };
 const files = [...Object.keys(expected), 'chronect-hub-search.html'];
 
@@ -31,11 +32,11 @@ function environment(dataset, search = '', seed = []) {
 const searchCases = [
   ['TB-260917-4826','chronect-hub-session.html'],
   ['  tb-260917-4826  ','chronect-hub-session.html'],
-  [summaryTitle,'chronect-hub.html#research-summary'],
-  [' '+summaryTitle+' ','chronect-hub.html#research-summary'],
+  [summaryTitle,'chronect-hub-research.html'],
+  [' '+summaryTitle+' ','chronect-hub-research.html'],
   ['',null],['   ',null],['TB-260917',null],['TB-260917-4826 extra',null],
   ['TB－260917－4826',null],['TB-260917 -4826',null],['TB-00000000',null],
-  ['P-0917-0318',null],['睡眠中の時間認知',null],['睡眠中の時間認知に関する研究成果を発表',null],
+  ['P-0917-0318',null],['睡眠','chronect-hub-research.html'],['時間認知','chronect-hub-research.html'],['睡眠中の時間認知','chronect-hub-research.html'],['睡眠中の時間認知に関する研究','chronect-hub-research.html'],['睡眠 時間認知',null],['眠',null],['TB-260917-4826 睡眠',null],['睡眠中の時間認知に関する研究成果を発表',null],
   ['<img src=x onerror=alert(1)>',null]
 ];
 for (const [query,href] of searchCases) {
@@ -47,7 +48,7 @@ for (const [query,href] of searchCases) {
     assert.equal(results[0].children[0].children[0].href,href,query);
     assert(!results[0].children[0].children[0].textContent.includes('.html'));
   } else {
-    assert.equal(env.nodes.get('hubSearchStatus').textContent,query.trim()?'該当する資料はありません。入力内容をご確認ください':'資料名または管理コードを入力してください。');
+    assert.equal(env.nodes.get('hubSearchStatus').textContent,query.trim()?'該当する資料はありません。入力内容をご確認ください':'キーワードを入力してください。');
   }
   vm.runInContext(read('chronect-shared.js'),env.context);
   vm.runInContext('renderArchive()',env.context);
@@ -88,7 +89,7 @@ for (const name of fs.readdirSync(root).filter(name=>/\.(html|js)$/.test(name)))
     assert.equal(mapping[href],number,name);
   }
   assert.equal(mapping['chronect-hub-search.html'],undefined);
-  for(let n=50;n<=60;n++) assert.equal(titles[n],undefined);
+  for(let n=58;n<=60;n++) assert.equal(titles[n],undefined);
 }
 assert.equal(registries,13);
 
@@ -96,7 +97,7 @@ for (const name of files) {
   const source = read(name);
   assert(source.includes('G-DG4X4HMEC2'));
   assert(source.includes('このサイトの内容はフィクションです。'));
-  assert(source.includes('<script src="chronect-shared.js"></script>'));
+  assert(/<script src="chronect-shared\.js(?:\?v=20261029(?:-missing)?)?"><\/script>/.test(source));
   assert(source.includes('name="viewport"'));
   if (expected[name]) {
     assert(source.includes('data-page-number="'+expected[name][0]+'"'));
@@ -114,18 +115,58 @@ for (const name of files) {
   for (const match of source.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(match[1],{filename:name});
 }
 const proposal = fs.readFileSync(path.resolve(__dirname,'../docs/agent_runs/2026-10-27-hub-ready/PROPOSAL.md'),'utf8').replace(/\r\n/g,'\n');
-for (const [start,end,name] of [['## 研究本文案','## 公開要旨案','chronect-news-20260822.html'],['## 公開要旨案：'+summaryTitle,'## 制作・検証条件','chronect-hub.html']]) {
+for (const [start,end,name] of [['## 研究本文案','## 公開要旨案','chronect-news-20260822.html'],['## 公開要旨案：'+summaryTitle,'## 制作・検証条件','chronect-hub-research.html']]) {
   const text = proposal.split(start+'\n\n')[1].split('\n\n'+end)[0].trim();
   for (const paragraph of text.split('\n\n')) assert(read(name).includes('<p>'+paragraph+'</p>'),'Approved paragraph differs: '+name);
 }
 const record = read('chronect-hub-session.html');
 for (const value of ['TB-260917-4826','2026-09-17','13:00〜17:00','4時間','BAS運用時の位置確認記録','当該売却セッションの売却者本人','実測・通過実績']) assert(record.includes(value));
-const table = record.match(/<tbody>([\s\S]*?)<\/tbody>/)[1];
-assert(table.indexOf('明浜みどり公園') < table.indexOf('住宅間の細道'));
-assert(table.indexOf('住宅間の細道') < table.indexOf('明浜商店街'));
-assert(record.includes('通過順序の模式図'));
-assert(record.includes('href="business-demonstration.html"'));
+const routeText = '対象セッションに係る位置確認情報より、明浜みどり公園の通過確認に続き、住宅間に位置する細道を経由して明浜商店街へ至る区間を抜粋した。本記録における位置確認の対象は、当該時間帯の売却者本人であり、各地点の記載は経路設定ではなく通過実績に基づく。';
+assert(record.includes('<p>'+routeText+'</p>'));
+assert(!/<table|<figure|hub-route/.test(record));
+assert(!record.includes('参照：事業センターアクセス'));
+assert(!record.includes('href="business-demonstration.html"'));
+assert(record.includes('href="chronect-hub.html"'));
+assert(read('chronect-services.html').includes('href="business.html"'));
+assert(read('business-cases.html').includes('ユーザー参加型実証プログラム'));
+assert(read('business-search.html').includes("url:'business-demonstration.html'"));
 assert(!/memo-|高瀬|無断実験|秘密施設|記憶移転/.test(record));
-assert(read('chronect-news-20260822.html').includes('href="chronect-hub.html"'));
+assert(read('chronect-news-20260822.html').includes('href="chronect-hub-research.html"'));
+assert(read('chronect-news-20260822.html').includes('href="chronect.css"'));
+assert(!read('chronect-hub.html').includes('本研究は、睡眠中の経過時間'));
+assert(read('chronect-hub-research.html').includes('href="chronect-hub.html"'));
+
+const hubPages = ['chronect-hub.html','chronect-hub-search.html','chronect-hub-session.html','chronect-hub-research.html'];
+for(const name of hubPages){
+  const source=read(name);
+  assert.equal((source.match(/<form\b/g)||[]).length,1,name+' exactly one search');
+  assert(source.includes('action="chronect-hub-search.html"'));
+  assert(source.includes('placeholder="キーワードを入力"'));
+  assert(source.includes('>キーワード検索</label>'));
+  assert(source.includes('関連する語句のほか、資料名や管理コードからも検索できます。'));
+  assert(source.includes('Chronect Hubに収録された情報を検索・閲覧できます。'));
+  assert(source.includes('href="images/chronect-hub-favicon.svg"'));
+  for(const resource of ['chronect-hub.css','chronect-hub.js','chronect-shared.js']) assert(source.includes(resource+'?v=20261029'),name+' cache version '+resource);
+  assert(!source.includes('href="chronect.css"'));
+  assert(!source.includes('action="chronect-search.html"'));
+  assert(!/class="site-header"|class="site-footer"|企業情報|採用情報/.test(source));
+  assert(source.includes('>CHRONECT HUB</a>'));
+  assert(source.includes('ページ番号は閲覧の目安です。'));
+}
+const oldHub = environment({pageArchive:'exclude'},'',[
+  {number:48,href:'chronect-hub.html',title:'Chronect Hub ｜ Chronect'},
+  {number:49,href:'chronect-hub-session.html',title:'セッション運用記録（参照用抜粋） ｜ Chronect'}
+]);
+vm.runInContext(read('chronect-shared.js'),oldHub.context);
+const migrated = JSON.parse(JSON.stringify(vm.runInContext('loadArchive()',oldHub.context)));
+assert.deepEqual(migrated.map(p=>[p.number,p.href,p.title]),[
+  [48,'chronect-hub.html','トップページ ｜ Chronect Hub'],
+  [49,'chronect-hub-session.html','セッション運用記録（参照用抜粋） ｜ Chronect Hub']
+]);
+const css=read('chronect-hub.css');
+assert(!/linear-gradient|radial-gradient|box-shadow|var\(/.test(css));
+for(const color of ['#0B0B0B','#121212','#D0D0D0','#F2F2F2','#383838'])assert(css.includes(color));
+assert(fs.existsSync(path.join(root,'images/chronect-hub-favicon.svg')));
+
 new vm.Script(read('chronect-hub.js'));
-console.log(`PASS: ${searchCases.length} rendered whitelist cases, EX no writes, 3 numbered-page legacy/revisit cases, 13 registries, approved prose, visible session fields, route order, GA and local dependencies.`);
+console.log(`PASS: ${searchCases.length} rendered whitelist cases, EX no writes, 4 numbered-page legacy/revisit cases, 13 registries, approved prose, visible session fields, route order, GA and local dependencies.`);

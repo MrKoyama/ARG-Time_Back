@@ -1,0 +1,94 @@
+/* Shared ARG interface. Keep independent of each fictional site's theme. */
+#archiveButton {
+  display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto;
+  min-width:88px; min-height:44px; height:auto; width:auto; margin-left:auto;
+  padding:9px 14px; border:1px solid #b8b8b8; border-radius:4px;
+  background:#fff; color:#333; box-shadow:none; text-decoration:none;
+  font:500 14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Yu Gothic",sans-serif;
+  letter-spacing:normal; white-space:nowrap; cursor:pointer; box-sizing:border-box;
+}
+#archiveButton:hover { background:#f1f1f1; border-color:#888; color:#222; }
+#archiveButton:focus-visible { outline:2px solid #555; outline-offset:3px; }
+#archiveOverlay {
+  position:fixed; inset:0; z-index:10000; display:none; place-items:center;
+  padding:24px; margin:0; background:rgba(0,0,0,.5); opacity:0; visibility:hidden;
+  color:#262626; text-align:left; letter-spacing:normal; transition:none;
+  font:400 16px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Yu Gothic",sans-serif;
+}
+#archiveOverlay.is-open { display:grid; opacity:1; visibility:visible; }
+#archiveOverlay, #archiveOverlay * { box-sizing:border-box; }
+#archiveOverlay .archive-dialog {
+  display:flex; flex-direction:column; width:min(640px,100%); min-width:0;
+  max-width:100%; max-height:calc(100vh - 48px); max-height:calc(100dvh - 48px);
+  margin:0; padding:0; overflow:hidden; border:1px solid #d2d2d2; border-radius:6px;
+  background:#fff; color:#262626; box-shadow:0 16px 48px rgba(0,0,0,.22);
+  transform:none; transition:none; font:inherit; letter-spacing:normal;
+}
+#archiveOverlay .archive-header {
+  display:flex; flex:0 0 auto; align-items:center; justify-content:space-between;
+  gap:16px; margin:0; padding:18px 20px; border:0; border-bottom:1px solid #ddd;
+  background:#fafafa; color:#262626;
+}
+#archiveOverlay .archive-header h2 {
+  margin:0; padding:0; color:#262626;
+  font-family:inherit; font-size:20px; font-weight:600; line-height:1.5; letter-spacing:normal;
+}
+#archiveOverlay .archive-close {
+  display:inline-flex; align-items:center; justify-content:center; flex:0 0 40px;
+  width:40px; height:40px; min-height:40px; margin:0; padding:0;
+  border:1px solid #ccc; border-radius:4px; background:#fff; color:#333;
+  font-family:inherit; font-weight:400; font-size:25px; line-height:1;
+  cursor:pointer; box-shadow:none;
+}
+#archiveOverlay .archive-content {
+  flex:1 1 auto; min-height:0; max-height:none; margin:0; padding:20px;
+  overflow:auto; overscroll-behavior:contain; background:#fff; color:#262626;
+}
+#archiveOverlay .archive-description {
+  margin:0 0 20px; padding:0; color:#505050; font:inherit;
+  font-size:16px; font-weight:400; line-height:1.85; letter-spacing:normal;
+}
+#archiveOverlay .archive-list {
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px;
+  max-height:none; margin:0; padding:0; overflow:visible; list-style:none;
+  border:0; background:transparent; color:#262626;
+}
+#archiveOverlay .archive-list li { min-width:0; margin:0; padding:0; border:0; list-style:none; }
+#archiveOverlay .archive-entry {
+  display:flex; align-items:flex-start; gap:10px; height:100%; min-width:0;
+  margin:0; padding:12px; border:1px solid #ddd; border-radius:4px;
+  background:#fff; color:#262626; text-decoration:none; box-shadow:none;
+  font:inherit; font-size:15px; font-weight:400; line-height:1.7; letter-spacing:normal;
+  transform:none; transition:none;
+}
+#archiveOverlay a.archive-entry:hover { background:#eee; color:#222; border-color:#aaa; }
+#archiveOverlay .archive-entry.is-locked { background:#f5f5f5; color:#858585; cursor:default; user-select:none; }
+#archiveOverlay .archive-number {
+  flex:0 0 25px; margin:0; color:inherit; font:500 15px/1.7 Consolas,monospace;
+  letter-spacing:normal;
+}
+#archiveOverlay .archive-title { min-width:0; color:inherit; font:inherit; letter-spacing:normal; overflow-wrap:anywhere; white-space:normal; }
+#archiveOverlay .archive-entry.is-locked .archive-number,
+#archiveOverlay .archive-entry.is-locked .archive-title { color:#858585; letter-spacing:normal; }
+#archiveOverlay .archive-tools { display:block; margin:20px 0 0; padding:20px 0 0; border:0; border-top:1px solid #ddd; }
+#archiveOverlay .archive-reset-button,
+#archiveOverlay .reset-actions button {
+  min-height:44px; margin:0; padding:9px 14px; border:1px solid #bbb; border-radius:4px;
+  background:#fff; color:#333; box-shadow:none; cursor:pointer;
+  font:inherit; font-size:14px; line-height:1.6; letter-spacing:normal;
+}
+#archiveOverlay button:hover { background:#eee; color:#222; border-color:#888; }
+#archiveOverlay a:focus-visible, #archiveOverlay button:focus-visible { outline:2px solid #555; outline-offset:2px; }
+#archiveOverlay .reset-confirm { margin:16px 0 0; padding:16px; border:1px solid #d0d0d0; border-radius:4px; background:#f6f6f6; color:#333; font:inherit; }
+#archiveOverlay .reset-confirm[hidden] { display:none; }
+#archiveOverlay .reset-confirm p { margin:0 0 14px; color:#333; font:inherit; font-size:16px; }
+#archiveOverlay .reset-actions { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:10px; margin:0; padding:0; }
+#archiveOverlay .reset-actions .danger { background:#444; color:#fff; border-color:#444; }
+#archiveOverlay .reset-actions .danger:hover { background:#222; color:#fff; border-color:#222; }
+@media(max-width:600px) {
+  #archiveOverlay { padding:12px; }
+  #archiveOverlay .archive-dialog { max-height:calc(100vh - 24px); max-height:calc(100dvh - 24px); }
+  #archiveOverlay .archive-header { padding:14px 16px; }
+  #archiveOverlay .archive-content { padding:16px; }
+  #archiveOverlay .archive-list { grid-template-columns:1fr; }
+}

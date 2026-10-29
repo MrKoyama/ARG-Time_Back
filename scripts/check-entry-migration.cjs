@@ -103,8 +103,8 @@ for (const name of fs.readdirSync(root).filter(n=>n.endsWith('.html'))) {
     if (match[1] === 'memo-dream.html') assert.fail(`Stale dream link: ${name}`);
   }
 }
-assert.equal(numbers.size, 49);
-assert.deepEqual([...numbers.keys()].map(Number).sort((a,b)=>a-b),Array.from({length:49},(_,i)=>i+1));
+assert.equal(numbers.size, 57);
+assert.deepEqual([...numbers.keys()].map(Number).sort((a,b)=>a-b),Array.from({length:57},(_,i)=>i+1));
 assert.equal(numbers.get('1'),'index.html');
 const topPageSource = read(numbers.get('3') || 'time-back.html');
 assert(topPageSource.includes("href: 'time-back.html'"));

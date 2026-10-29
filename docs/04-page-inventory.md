@@ -2,7 +2,7 @@
 
 調査日：2026-10-23。公開HTMLの実ファイルとアーカイブ登録・保存データ移行用マップを照合した現況です。古い会話のページ番号ではなく、この表を作業開始時の基準にしてください。追加・番号変更後は必ず再確認します。
 
-2026-10-28更新：番号付き49ページ＋EX検索4ページ＋旧URL互換転送1ページ＝54ファイル。以下の番号は閲覧の目安で、調査の一本道を意味しません。
+2026-10-29更新：番号付き57ページ＋EX検索4ページ＋旧URL互換転送1ページ＝62ファイル。以下の番号は閲覧の目安で、調査の一本道を意味しません。
 
 | 番号 | 実ファイル（public配下） | 現在のページタイトル | 役割・注意 |
 |---:|---|---|---|
@@ -22,7 +22,7 @@
 | 14 | [chronect-company.html](../public/chronect-company.html) | 企業情報 ｜ Chronect | 代表・会社概要・施設写真・沿革。 |
 | 15 | [chronect-research.html](../public/chronect-research.html) | 研究開発 ｜ Chronect | 4領域18研究プロジェクトの具体説明。 |
 | 16 | [chronect-services.html](../public/chronect-services.html) | 事業・サービス ｜ Chronect | 事業とTIME BACK展開の経緯、法人向けへ。 |
-| 17 | [chronect-news.html](../public/chronect-news.html) | ニュース ｜ Chronect | 18件の一覧。3研究発表記事は未作成。2026-08-22記事47を追加。 |
+| 17 | [chronect-news.html](../public/chronect-news.html) | ニュース ｜ Chronect | 18件の一覧。全18件の個別記事が実在。 |
 | 18 | [chronect-careers.html](../public/chronect-careers.html) | 採用情報 ｜ Chronect | 厳格な採用通達。連絡先は.invalid。 |
 | 19 | [chronect-news-20240305.html](../public/chronect-news-20240305.html) | 短時間休息と認知回復に関する産学共同研究を開始 ｜ Chronect | Chronectの個別ニュース。発表日順で19〜32に配置。 |
 | 20 | [chronect-news-20241021.html](../public/chronect-news-20241021.html) | TIME BACK先行提供プログラムを開始しました ｜ Chronect | Chronectの個別ニュース。発表日順で19〜32に配置。 |
@@ -53,9 +53,17 @@
 | 45 | [nodelink-works.html](../public/nodelink-works.html) | 株式会社ノードリンク・ワークス | 旧48。独立した人材会社。新人研修・中途IT職。名簿・隠し検索なし。 |
 | 46 | [axion-logistics.html](../public/axion-logistics.html) | アクシオン・ロジスティクス株式会社 | 旧49。独立した物流会社。デスクワークの通常利用例。 |
 | 47 | [chronect-news-20260822.html](../public/chronect-news-20260822.html) | 睡眠中の時間認知に関する研究成果を発表 ｜ Chronect | 2026-08-22研究発表。公開研究要旨を読むHub入口。 |
-| 48 | [chronect-hub.html](../public/chronect-hub.html) | Chronect Hub ｜ Chronect | 正規の公開要旨と独立した資料検索。 |
-| 49 | [chronect-hub-session.html](../public/chronect-hub-session.html) | セッション運用記録（参照用抜粋） ｜ Chronect | 管理コードで到達する限定保存抜粋。売却者本人の3地点通過実績。 |
-| EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 資料検索結果 ｜ Chronect Hub | 管理コード1件・公開要旨題名1件の完全一致。アーカイブ対象外。 |
+| 48 | [chronect-hub.html](../public/chronect-hub.html) | トップページ ｜ Chronect Hub | 独立した黒白の資料サイト入口。要旨本文は50へ分離。 |
+| 49 | [chronect-hub-session.html](../public/chronect-hub-session.html) | セッション運用記録（参照用抜粋） ｜ Chronect Hub | 管理コードで到達する限定保存抜粋。本文から3地点の通過を読み解く。 |
+| 50 | [chronect-hub-research.html](../public/chronect-hub-research.html) | 睡眠中の時間認知に関する研究要旨 ｜ Chronect Hub | 47から直接到達。Hubで研究名・関連語を検索した場合も同じページ。 |
+| 51 | [chronect-news-20240711.html](../public/chronect-news-20240711.html) | 日常環境下での時間選択に関する予備研究を発表 ｜ Chronect | 活動・休息を選ぶ設問調査。Hub55へ。 |
+| 52 | [chronect-news-20251105.html](../public/chronect-news-20251105.html) | 注意配分と主観時間に関する論文が国際誌に掲載 ｜ Chronect | 単一/二重課題での時間推定。Hub56へ。 |
+| 53 | [chronect-news-20260218.html](../public/chronect-news-20260218.html) | 短時間休息後の覚醒移行に関する検証結果を発表 ｜ Chronect | 最初の応答と継続操作を区別。Hub57へ。 |
+| 54 | [chronect-projects.html](../public/chronect-projects.html) | プロジェクト ｜ Chronect | 個人向け・法人活用・調査検証・協働。提携一覧44へリンク。 |
+| 55 | [chronect-hub-research-20240711.html](../public/chronect-hub-research-20240711.html) | 日常環境下での時間選択に関する予備研究要旨 ｜ Chronect Hub | 51の対応要旨。研究名・時間選択・日常環境で検索。 |
+| 56 | [chronect-hub-research-20251105.html](../public/chronect-hub-research-20251105.html) | 注意配分と主観時間に関する研究要旨 ｜ Chronect Hub | 52の対応要旨。研究名・注意配分・主観時間で検索。 |
+| 57 | [chronect-hub-research-20260218.html](../public/chronect-hub-research-20260218.html) | 短時間休息後の覚醒移行に関する検証要旨 ｜ Chronect Hub | 53の対応要旨。研究名・覚醒移行・短時間休息で検索。 |
+| EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [chronect-search.html](../public/chronect-search.html) | 検索結果 ｜ Chronect | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [search.html](../public/search.html) | サイト内検索｜TIME BACK | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
@@ -63,12 +71,11 @@
 
 ## 空き番号
 
-2026-10-28の作者承認によりHub導入編を47〜49に追加。使用番号は1〜49で連続。50〜60は実ページ・タイトルの割当なし。用途は未確定で、新規ページ用の予約ではない。60は現在のアーカイブ容量で、最終制作総数の承認ではない。
+2026-10-29の追加制作で使用番号は1〜57。58〜60は実ページ・タイトルの割当なし。用途は未確定で、新規ページ用の予約ではない。60は現在のアーカイブ容量で、最終制作総数の承認ではない。
 
 ## 実ファイルがないもの
 
-- Chronect研究ニュース3件（2024-07-11、2025-11-05、2026-02-18）。一覧からリンクはある。
-- chronect-projects.html。企業トップからリンクあり。
+- 既知の研究ニュース3件とchronect-projects.htmlは2026-10-29に補完。既存の一覧・トップから開ける。
 - business-park.htmlは作成しない。2026-10-26の作者承認により旧検索登録を削除。実ファイルは元から存在せず、ページ削除・改番は発生していない。
 - Hubの深部資料、内部資料、高瀬メモ、社員番号の隠しページ、告発・エンドは、ページ番号も未確定。
 

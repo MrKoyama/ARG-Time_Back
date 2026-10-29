@@ -31,7 +31,7 @@ for (const name of fs.readdirSync(root)) {
     assert.equal(titles[45],'トップページ ｜ 株式会社ノードリンク・ワークス');
     assert.equal(titles[46],'トップページ ｜ アクシオン・ロジスティクス株式会社');
     assert.equal(titles[43],'生活環境実証エリア ｜ TIME BACK for Business');
-    for (let n=50;n<=60;n++) assert.equal(titles[n],undefined);
+    for (let n=58;n<=60;n++) assert.equal(titles[n],undefined);
     const mappings = [...source.matchAll(/\{[^{}\r\n]*"partners\.html":44[^{}\r\n]*\}/g)];
     assert(mappings.length,`Missing URL registry: ${name}`);
     for (const match of mappings) {
