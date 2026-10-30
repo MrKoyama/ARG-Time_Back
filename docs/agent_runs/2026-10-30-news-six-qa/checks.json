@@ -1,0 +1,39 @@
+{
+  "widths": [
+    {
+      "client": 305,
+      "scroll": 305,
+      "width": 320
+    },
+    {
+      "client": 375,
+      "scroll": 375,
+      "width": 390
+    },
+    {
+      "client": 753,
+      "scroll": 753,
+      "width": 768
+    },
+    {
+      "client": 1425,
+      "scroll": 1425,
+      "width": 1440
+    }
+  ],
+  "filters": [
+    {
+      "count": "2"
+    },
+    {
+      "count": "0",
+      "empty": true
+    },
+    {
+      "count": "1"
+    },
+    {
+      "count": "6"
+    }
+  ]
+}

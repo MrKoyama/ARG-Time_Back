@@ -1,0 +1,86 @@
+{
+  "visits": [
+    {
+      "number": "03 / 60",
+      "url": "/time-back.html"
+    },
+    {
+      "number": "17 / 60",
+      "url": "/chronect-projects.html"
+    },
+    {
+      "number": "20 / 60",
+      "url": "/chronect-news-20260822.html"
+    },
+    {
+      "number": "26 / 60",
+      "url": "/business.html"
+    },
+    {
+      "number": "34 / 60",
+      "url": "/business-demonstration.html"
+    },
+    {
+      "number": "36 / 60",
+      "url": "/business-community.html"
+    },
+    {
+      "number": "37 / 60",
+      "url": "/partners.html"
+    },
+    {
+      "number": "38 / 60",
+      "url": "/nodelink-works.html"
+    },
+    {
+      "number": "41 / 60",
+      "url": "/chronect-hub-research.html"
+    }
+  ],
+  "widths": [
+    {
+      "client": 320,
+      "dialog": {
+        "left": 12,
+        "right": 308,
+        "width": 296
+      },
+      "scroll": 320,
+      "width": 320
+    },
+    {
+      "client": 390,
+      "dialog": {
+        "left": 12,
+        "right": 378,
+        "width": 366
+      },
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "client": 768,
+      "dialog": {
+        "left": 64,
+        "right": 704,
+        "width": 640
+      },
+      "scroll": 768,
+      "width": 768
+    },
+    {
+      "client": 1440,
+      "dialog": {
+        "left": 400,
+        "right": 1040,
+        "width": 640
+      },
+      "scroll": 1440,
+      "width": 1440
+    }
+  ],
+  "revisit": {
+    "number": "37 / 60",
+    "url": "/partners.html"
+  }
+}

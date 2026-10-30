@@ -1,5 +1,5 @@
 // Read-only regression checks for the seven approved missing-page additions.
-const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const fs=require('./archive-order-test-helper.cjs').legacyFs,path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'../public'),read=n=>fs.readFileSync(path.join(root,n),'utf8');
 const raw=fs.readFileSync(path.resolve(__dirname,'../docs/agent_runs/2026-10-29-missing-pages/PLAN-v1.md'));
 assert.equal(crypto.createHash('sha256').update(raw).digest('hex').toUpperCase(),'6E9829C52B3A556DBB732FBEC5D28115E8DACB38243261A322E5772416B05E84');

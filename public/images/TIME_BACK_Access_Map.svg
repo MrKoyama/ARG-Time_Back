@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1800"
+   height="1200"
+   viewBox="0 0 476.24999 317.5"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   sodipodi:docname="TIME_BACK_Access_Map.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.72666667"
+     inkscape:cx="916.51376"
+     inkscape:cy="599.31193"
+     inkscape:window-width="1920"
+     inkscape:window-height="1166"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer4"
+     showgrid="false" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="marker25"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="0.5"
+       markerHeight="0.5"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path25" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ConcaveTriangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="0.5"
+       markerHeight="0.5"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path7" />
+    </marker>
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="04_推奨ルート">
+    <rect
+       style="fill:#afafe9;stroke-width:0.265688"
+       id="rect5"
+       width="155.10895"
+       height="175.49884"
+       x="15.292427"
+       y="116.51375" />
+    <rect
+       style="fill:#afafe9;stroke-width:0.344555"
+       id="rect6"
+       width="49.882454"
+       height="239.58142"
+       x="186.42201"
+       y="38.959286" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="03_通路ラフ">
+    <path
+       style="fill:#dbdbe3;stroke:#dbdbe3;stroke-width:7.98596;stroke-dasharray:none;stroke-opacity:1"
+       d="M 147.07388,193.65644 84.497221,167.53622"
+       id="path15" />
+    <rect
+       style="fill:#dbdbe3;stroke-width:0.472551"
+       id="rect12"
+       width="91.754585"
+       height="6.1897936"
+       x="145.27809"
+       y="190.42719" />
+    <rect
+       style="fill:#dbdbe3;stroke-width:1.36088"
+       id="rect12-8"
+       width="235.21216"
+       height="20.025803"
+       x="241.45778"
+       y="229.32576" />
+    <rect
+       style="fill:#dbdbe3;stroke-width:0.247521"
+       id="rect13"
+       width="13.836009"
+       height="217.00687"
+       x="236.66858"
+       y="33.133598" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:6.056;stroke-dasharray:none;stroke-opacity:1"
+       id="rect15"
+       width="1.5173898"
+       height="17.902136"
+       x="362.80066"
+       y="16.900423" />
+    <rect
+       style="fill:#b7bec8;stroke-width:0.167783"
+       id="rect7"
+       width="27.672018"
+       height="123.43177"
+       x="323.32568"
+       y="0.36410537" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="02_道路">
+    <rect
+       style="fill:#b7bec8;stroke-width:0.263003"
+       id="rect8"
+       width="181.32454"
+       height="15.656537"
+       x="-0.72821158"
+       y="93.211006" />
+    <rect
+       style="fill:#b7bec8;stroke-width:0.273582"
+       id="rect9"
+       width="17.477064"
+       height="75.73394"
+       x="163.48337"
+       y="22.938646" />
+    <rect
+       style="fill:#b7bec8;stroke-width:0.277684"
+       id="rect10"
+       width="162.02696"
+       height="17.112959"
+       x="163.11926"
+       y="16.384747" />
+    <rect
+       style="fill:#afafe9;stroke-width:0.334611"
+       id="rect3-8"
+       width="149.28325"
+       height="87.021217"
+       x="320.28659"
+       y="128.01221" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:6.30328;stroke-dasharray:none;stroke-opacity:1"
+       id="rect16"
+       width="20.931807"
+       height="1.2701098"
+       x="326.87784"
+       y="128.07623" />
+  </g>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#afafe9;stroke-width:0.33098"
+       id="rect3"
+       width="107.41112"
+       height="118.33428"
+       x="361.92087"
+       y="5.825685" />
+    <rect
+       style="fill:#afafe9;stroke-width:0.255829"
+       id="rect3-1"
+       width="116.51376"
+       height="65.174881"
+       x="359.87457"
+       y="252.50232" />
+    <rect
+       style="fill:#afafe9;stroke-width:0.287134"
+       id="rect4"
+       width="67.35952"
+       height="187.87845"
+       x="249.04817"
+       y="38.95929" />
+    <rect
+       style="fill:#afafe9;stroke-width:0.264583"
+       id="rect1"
+       width="129.62157"
+       height="69.908257"
+       x="17.841171"
+       y="5.0974779" />
+    <rect
+       style="fill:#b7bec8;stroke-width:0.661815"
+       id="rect11"
+       width="18.56938"
+       height="168.58084"
+       x="71.728783"
+       y="72.092888" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:6.056;stroke-dasharray:none;stroke-opacity:1"
+       id="rect15-23"
+       width="1.5173898"
+       height="17.902136"
+       x="357.4653"
+       y="291.55008" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#341dff;stroke-width:3.15927;stroke-linecap:butt;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#ConcaveTriangle)"
+       d="m 80.102512,76.835565 -0.3603,22.223082 92.237118,0.728624 0.7206,-75.412747 h 176.18731"
+       id="path23" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#341dff;stroke-width:3.175;stroke-linecap:butt;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker25)"
+       d="m 337.52581,24.030963 -0.72822,96.852057"
+       id="path24" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.175;stroke-linecap:butt;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
+       id="rect25"
+       width="5.4615827"
+       height="18.933485"
+       x="360.46445"
+       y="16.020641" />
+  </g>
+</svg>

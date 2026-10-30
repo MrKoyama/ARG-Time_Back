@@ -1,5 +1,5 @@
 // Read-only regression checks for the index/memo entry-point move.
-const fs = require('node:fs');
+const fs = require('./archive-order-test-helper.cjs').legacyFs;
 const path = require('node:path');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
