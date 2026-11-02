@@ -2,7 +2,7 @@
 
 調査日：2026-10-23。公開HTMLの実ファイルとアーカイブ登録・保存データ移行用マップを照合した現況です。古い会話のページ番号ではなく、この表を作業開始時の基準にしてください。追加・番号変更後は必ず再確認します。
 
-2026-10-30更新：番号付き57ページ＋EX検索4ページ＋旧URL互換転送1ページ＝62ファイル。以下の番号は閲覧の目安で、調査の一本道を意味しません。
+2026-11-02更新：番号付き58ページ＋EX検索4ページ＋旧URL互換転送1ページ＝63ファイル。今回58だけ追加し、既存1〜57・容量60は維持。番号は閲覧の目安で、一本道ではありません。
 
 | 番号 | 実ファイル（public配下） | 現在のページタイトル | 役割・注意 |
 |---:|---|---|---|
@@ -63,6 +63,7 @@
 | 55 | [chronect-news-20241021.html](../public/chronect-news-20241021.html) | TIME BACK先行提供プログラムを開始しました ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
 | 56 | [chronect-news-20240711.html](../public/chronect-news-20240711.html) | 日常環境下での時間選択に関する予備研究を発表 ｜ Chronect | 活動・休息を選ぶ設問調査。Hub43へ。 |
 | 57 | [chronect-news-20240305.html](../public/chronect-news-20240305.html) | 短時間休息と認知回復に関する産学共同研究を開始 ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
+| 58 | [chronect-hub-research-continuous-action.html](../public/chronect-hub-research-continuous-action.html) | 環境変化下における連続行動支援の評価 ｜ Chronect Hub | 「生活動線」のHub完全一致検索。指定3段落、研究日・著者等なし。既存Hub44への共通語追記は保留。 |
 | EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [chronect-search.html](../public/chronect-search.html) | 検索結果 ｜ Chronect | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
@@ -74,7 +75,7 @@
 
 ## 空き番号
 
-2026-10-29の追加制作で使用番号は1〜57。58〜60は実ページ・タイトルの割当なし。用途は未確定で、新規ページ用の予約ではない。60は現在のアーカイブ容量で、最終制作総数の承認ではない。
+2026-11-02に新規1ページへ58を使用。59〜60は未割当で予約しない。60は制作量を抑える現在の容量。作者の作品全体の想定上限120は、最終制作数の確定・容量120化・追加ページ制作の承認ではない。
 
 ## 実ファイルがないもの
 

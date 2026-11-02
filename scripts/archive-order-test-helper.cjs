@@ -40,8 +40,36 @@ function canonicalPublic(name,current){
   if(typeof file.text!=='string'){assert.equal(sha(current),file.sha256,name+' immutable binary');return current;}
   assert.equal(sha(Buffer.from(file.text)),file.sha256,name+' frozen text hash');
   const expected=forwardPublic(name,file.text);
-  assert.equal(Buffer.isBuffer(current)?current.toString('utf8'):current,expected,name+' exceeds fixed number/map/src transform');
+  assert.equal(withoutLivingAddition(name,Buffer.isBuffer(current)?current.toString('utf8'):current),expected,name+' exceeds fixed archive transform plus approved living-route addition');
   return Buffer.from(file.text);
+}
+// Preserve the immutable 2026-10-30 fixtures. Validate and remove only the later
+// approved additive changes before running the original regression meanings.
+const livingEntry={number:58,old:58,href:'chronect-hub-research-continuous-action.html',title:'環境変化下における連続行動支援の評価 ｜ Chronect Hub'};
+const livingSearchEntry={keywords:['生活動線'],title:'環境変化下における連続行動支援の評価',href:livingEntry.href,description:'本研究では、生活動線や設備配置の変化が、連続した身体動作の安定性に与える影響を評価した。'};
+const livingParagraph='本プログラムでは、周辺の公共施設や生活動線にも配慮し、地域の利用状況を踏まえた実証環境の整備を進めています。近隣を通行される方への影響を抑えながら、生活環境との調和に取り組んでいます。';
+function withoutLivingAddition(name,source){
+  let result=source;
+  if(name==='public/chronect-hub-research-20240711.html'){
+    const approved='準備や移動を伴う活動を区別し、生活動線や本人が優先した条件を記述することを重視しました。';
+    assert.equal(result.split(approved).length,2,name+' exact approved five-character insertion');
+    result=result.replace(approved,approved.replace('生活動線や',''));
+  }
+  if(source.includes('archiveTitleByNumber')){
+    result=result.replace(/(\barchiveTitleByNumber\s*=\s*)(\{[^{}]*\})/,(_,prefix,json)=>{const map=JSON.parse(json);assert.equal(map[58],livingEntry.title,name);delete map[58];return prefix+JSON.stringify(map);});
+    result=result.replace(/\{[^{}\r\n]*"partners\.html":37[^{}\r\n]*\}/g,json=>{const map=JSON.parse(json);assert.equal(map[livingEntry.href],58,name);delete map[livingEntry.href];return JSON.stringify(map);});
+  }
+  if(name==='public/business-demonstration.html'){
+    const addition='    <div class="demo-notice"><h3>周辺環境について</h3><p>'+livingParagraph+'</p></div>\n';
+    assert.equal(result.split(addition).length,2,name+' exact approved paragraph');result=result.replace(addition,'');
+  }
+  if(name==='public/chronect-hub.js'){
+    const addition=',\n  '+JSON.stringify(livingSearchEntry);assert.equal(result.split(addition).length,2,name+' exact additive search record');result=result.replace(addition,'');
+  }
+  if(name==='public/chronect-hub-search.html'){
+    assert(result.includes('chronect-hub.js?v=20261102-living-v1'));result=result.replace('chronect-hub.js?v=20261102-living-v1','chronect-hub.js?v=20261029-missing');
+  }
+  return result;
 }
 function legacyTestSource(name){
   const file=baseline.files[name];assert(file&&typeof file.text==='string',name);
@@ -50,6 +78,7 @@ function legacyTestSource(name){
 }
 function assertLegacyTestCode(name){assert.equal(fs.readFileSync(path.join(root,name),'utf8'),legacyTestSource(name),name+' exceeds legacy bridge insertion');}
 const legacyFs=Object.create(fs);
+legacyFs.readdirSync=function(dir,options){const rows=fs.readdirSync(dir,options);return path.resolve(String(dir))===path.join(root,'public')?rows.filter(row=>(typeof row==='string'?row:row.name)!==livingEntry.href):rows;};
 legacyFs.readFileSync=function(file,options){
   const resolved=path.resolve(String(file)),relative=path.relative(root,resolved).split(path.sep).join('/');
   const value=fs.readFileSync(file,options);
@@ -57,4 +86,4 @@ legacyFs.readFileSync=function(file,options){
   const canonical=canonicalPublic(relative,value);
   return typeof value==='string'?canonical.toString(typeof options==='string'?options:options?.encoding||'utf8'):canonical;
 };
-module.exports={root,baseline,order,entries,byHref,owned,cacheVersion,forwardPublic,canonicalPublic,legacyFs,legacyTestSource,assertLegacyTestCode,sha};
+module.exports={root,baseline,order,entries,byHref,owned,cacheVersion,forwardPublic,canonicalPublic,legacyFs,legacyTestSource,assertLegacyTestCode,sha,livingEntry,livingSearchEntry,livingParagraph};
