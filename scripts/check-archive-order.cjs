@@ -1,8 +1,9 @@
 // Current-code checks, separate from the five strictly restored legacy-meaning tests.
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
 const bridge=require('./archive-order-test-helper.cjs');
-const {root,baseline,canonicalPublic,cacheVersion}=bridge;
-const entries=[...bridge.entries,bridge.livingEntry],byHref=new Map(entries.map(e=>[e.href,e]));
+const {root,baseline,canonicalPublic}=bridge;
+const mid=require('./midroute-test-helper.cjs'),cacheVersion=mid.cacheVersion;
+const entries=[...bridge.entries,bridge.livingEntry,...mid.entries],byHref=new Map(entries.map(e=>[e.href,e]));
 const read=name=>fs.readFileSync(path.join(root,'public',name),'utf8');
 function functionSource(source,name){
   const start=source.indexOf('function '+name+'(');if(start<0)return '';
@@ -37,7 +38,7 @@ for(const name of fs.readdirSync(path.join(root,'public')).filter(n=>/\.(html|js
   if(body||inline){
     const number=Number((body||inline)[1]);assert(!numbered.has(number),'Duplicate number '+number);numbered.set(number,name);
     const e=byHref.get(name);assert(e,name);assert.equal(number,e.number,name);
-    const footer=source.match(/id="archiveButton"[^>]*>(\d+) \/ 60<\/button>/);assert(footer,name);assert.equal(Number(footer[1]),number);
+    const footer=source.match(/id="archiveButton"[^>]*>(\d+) \/ 120<\/button>/);assert(footer,name);assert.equal(Number(footer[1]),number);
     if(body){assert(source.includes('data-page-title="'+e.title+'"'));assert(source.includes('data-page-href="'+name+'"'));}
     else {const decl=source.match(/\bcurrentPage\s*=\s*(\{[^{}]*\})/)[1];const current=vm.runInNewContext('('+decl+')');assert.equal(current.href,name);assert.equal(current.title,e.title);}
   }
@@ -46,8 +47,8 @@ for(const name of fs.readdirSync(path.join(root,'public')).filter(n=>/\.(html|js
     assert(fs.existsSync(path.join(root,'public',m[1].split(/[?#]/)[0])),name+' missing '+m[1]);
   }
 }
-assert.equal(srcConsumers,51);assert.equal(numbered.size,58);
-assert.deepEqual([...numbered.keys()].sort((a,b)=>a-b),Array.from({length:58},(_,i)=>i+1));
+assert.equal(srcConsumers,54);assert.equal(numbered.size,61);
+assert.deepEqual([...numbered.keys()].sort((a,b)=>a-b),Array.from({length:61},(_,i)=>i+1));
 assert(!/data-page-number|archiveButton/.test(read('memo-dream.html')));
 const registries=fs.readdirSync(path.join(root,'public')).filter(n=>/\.(html|js)$/.test(n)&&read(n).includes('archiveTitleByNumber'));
 assert.equal(registries.length,13);
@@ -72,9 +73,9 @@ const definitions=new Map();
 for(const name of registries){
   const source=read(name),titles=JSON.parse(source.match(/\barchiveTitleByNumber\s*=\s*(\{[^{}]*\})/)[1]);
   const mappingMatch=source.match(/\{[^{}\r\n]*"partners\.html":37[^{}\r\n]*\}/);assert(mappingMatch,name);
-  const mapping=JSON.parse(mappingMatch[0]);assert.equal(Object.keys(mapping).length,58);
+  const mapping=JSON.parse(mappingMatch[0]);assert.equal(Object.keys(mapping).length,61);
   for(const e of entries){assert.equal(mapping[e.href],e.number,name);assert.equal(titles[e.number],e.title,name);}
-  for(let n=59;n<=60;n++)assert.equal(titles[n],undefined,name);
+  for(let n=62;n<=120;n++)assert.equal(titles[n],undefined,name);
   for(const ex of ['search.html','business-search.html','chronect-search.html','chronect-hub-search.html'])assert.equal(mapping[ex],undefined);
   const globalMaps=[...source.matchAll(/(?:const|let)\s+(businessPageNumberByHref|pageNumberByHref)\s*=\s*(\{[^{}]*\})/g)].map(m=>'const '+m[1]+'='+m[2]+';').join('\n');
   const load=functionSource(source,'loadArchive'),save=functionSource(source,'saveArchive'),register=functionSource(source,'registerCurrentPage');
@@ -104,6 +105,6 @@ for(const name of ['search.html','business-search.html','chronect-search.html','
   const html=read(name),external=html.match(/src="((?:business|chronect)-shared\.js)/),script=external?read(external[1]):[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].find(m=>m[1].includes('const archiveStorageKey'))[1];
   const nodes=new Map();let saved='[]',writes=0;
   const context=vm.createContext({URLSearchParams,document:{body:{dataset:{pageArchive:'exclude'},classList:{add(){},remove(){}}},getElementById(id){if(!nodes.has(id))nodes.set(id,node());return nodes.get(id)},createElement:node,addEventListener(){}},localStorage:{getItem(){return saved},setItem(k,v){saved=v;writes++}},window:{location:{search:''}}});
-  vm.runInContext(script,context);vm.runInContext('renderArchive()',context);assert.equal(saved,'[]',name+' EX visited set');assert.equal(writes,0,name+' EX writes');assert.equal(nodes.get('archiveList').children.length,60,name+' archive slots');
+  vm.runInContext(script,context);vm.runInContext('renderArchive()',context);assert.equal(saved,'[]',name+' EX visited set');assert.equal(writes,0,name+' EX writes');assert.equal(nodes.get('archiveList').children.length,120,name+' archive slots');
 }
-console.log('PASS CURRENT CODE: '+checkedFiles+' prior public files preserve the approved archive and living-route additions; '+syntax+' syntax checks; 58 unique pages / 13 registries; '+singletonLoads+' singleton reloads, '+registrations+' registrations/reloads, '+mixedLoads+' full/partial/legacy cases; brand round trips, 4 EX exclusions and 51 versioned consumers. New manuscript/search checks run separately.');
+console.log('PASS CURRENT CODE: '+checkedFiles+' prior public files preserve the approved archive and living-route additions; '+syntax+' syntax checks; 61 unique pages / 13 registries; '+singletonLoads+' singleton reloads, '+registrations+' registrations/reloads, '+mixedLoads+' full/partial/legacy cases; brand round trips, 4 EX exclusions and 54 versioned consumers. New manuscript/search checks run separately.');

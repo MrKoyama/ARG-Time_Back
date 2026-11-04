@@ -6,7 +6,10 @@ const chronectHubDatabase = [
   {"keywords":["短時間休息後の覚醒移行に関する検証要旨","覚醒移行","短時間休息"],"title":"短時間休息後の覚醒移行に関する検証要旨","href":"chronect-hub-research-20260218.html","description":"本検証は、短時間休息後に活動へ戻る過程を、最初の応答と、その後の操作の安定性に分けて評価するものです。"},
   {keywords:['睡眠','時間認知','睡眠中の時間認知','睡眠中の時間認知に関する研究','睡眠中の時間認知に関する研究要旨'],title:'睡眠中の時間認知に関する研究要旨',href:'chronect-hub-research.html',description:'睡眠中の経過時間に関する評価方法と、解釈上の留意点をまとめた公開研究要旨です。'},
   {keywords:['TB-260917-4826'],title:'セッション運用記録（参照用抜粋）',href:'chronect-hub-session.html',description:'BAS運用時の位置確認記録から、当該売却セッションの通過実績を抜粋した資料です。'},
-  {"keywords":["生活動線"],"title":"環境変化下における連続行動支援の評価","href":"chronect-hub-research-continuous-action.html","description":"本研究では、生活動線や設備配置の変化が、連続した身体動作の安定性に与える影響を評価した。"}
+  {"keywords":["生活動線"],"title":"環境変化下における連続行動支援の評価","href":"chronect-hub-research-continuous-action.html","description":"本研究では、生活動線や設備配置の変化が、連続した身体動作の安定性に与える影響を評価した。"},
+  {"keywords":["資料識別番号"],"title":"資料識別番号・分類コード一覧","href":"chronect-hub-document-codes.html","description":"資料管理単位番号と資料分類コードの構成、およびR01〜R04の分類を示します。"},
+  {"keywords":["80574305-R04"],"title":"地域移動支援プログラム 評価資料","href":"chronect-hub-mobility-evaluation.html","description":"BASを用いた地域移動支援の認識・判断・身体動作・継続性に関する評価資料です。"},
+  {"keywords":["東央モビリティサービス株式会社"],"title":"東央モビリティサービスの検証記録","href":"chronect-hub-mobility-partner-verification.html","description":"BASの安全基準・案内精度と、複数の動作や手順を伴う業務補助への応用を扱います。"}
 ];
 
 function findChronectHubMaterials(query) {

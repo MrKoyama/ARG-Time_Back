@@ -1,5 +1,11 @@
 # 実装済みページ一覧
 
+## 2026-11-04：中盤探索導線を実装（MIDROUTE-20261104-v1）
+
+現行は番号付き61ページ＋EX4＋旧URL互換転送1＝66HTML。アーカイブ管理上限120、使用1〜61、未割当62〜120。既存1〜58の正式番号・保存キーtimeback-page-archive-v1・URL基準の旧保存移行は維持。120件の制作や未割当番号の用途予約は意味しない。
+
+新規は59分類一覧・60地域移動支援評価・61東央検証の3件だけ。10月30日の固定order.jsonは57件の履歴として不変、現在の対応は本一覧と現行13辞書を基準にする。
+
 調査日：2026-10-23。公開HTMLの実ファイルとアーカイブ登録・保存データ移行用マップを照合した現況です。古い会話のページ番号ではなく、この表を作業開始時の基準にしてください。追加・番号変更後は必ず再確認します。
 
 2026-11-02更新：番号付き58ページ＋EX検索4ページ＋旧URL互換転送1ページ＝63ファイル。今回58だけ追加し、既存1〜57・容量60は維持。番号は閲覧の目安で、一本道ではありません。
@@ -64,6 +70,9 @@
 | 56 | [chronect-news-20240711.html](../public/chronect-news-20240711.html) | 日常環境下での時間選択に関する予備研究を発表 ｜ Chronect | 活動・休息を選ぶ設問調査。Hub43へ。 |
 | 57 | [chronect-news-20240305.html](../public/chronect-news-20240305.html) | 短時間休息と認知回復に関する産学共同研究を開始 ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
 | 58 | [chronect-hub-research-continuous-action.html](../public/chronect-hub-research-continuous-action.html) | 環境変化下における連続行動支援の評価 ｜ Chronect Hub | 「生活動線」のHub完全一致検索。指定3段落、研究日・著者等なし。既存Hub44への共通語追記は保留。 |
+| 59 | [chronect-hub-document-codes.html](../public/chronect-hub-document-codes.html) | 資料識別番号・分類コード一覧 ｜ Chronect Hub | 8桁管理単位＋R01〜R04。検索語「資料識別番号」。正解例は載せない。 |
+| 60 | [chronect-hub-mobility-evaluation.html](../public/chronect-hub-mobility-evaluation.html) | 地域移動支援プログラム 評価資料 ｜ Chronect Hub | 80574305-R04。BAS認識・判断・安定性・継続性と提携検証への関心。 |
+| 61 | [chronect-hub-mobility-partner-verification.html](../public/chronect-hub-mobility-partner-verification.html) | 東央モビリティサービスの検証記録 ｜ Chronect Hub | 正式社名検索。公開業務補助と継続率・完了率・再現性。秘密関与は示さない。 |
 | EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [chronect-search.html](../public/chronect-search.html) | 検索結果 ｜ Chronect | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
