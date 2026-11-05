@@ -71,7 +71,7 @@
 | 57 | [chronect-news-20240305.html](../public/chronect-news-20240305.html) | 短時間休息と認知回復に関する産学共同研究を開始 ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
 | 58 | [chronect-hub-research-continuous-action.html](../public/chronect-hub-research-continuous-action.html) | 環境変化下における連続行動支援の評価 ｜ Chronect Hub | 「生活動線」のHub完全一致検索。指定3段落、研究日・著者等なし。既存Hub44への共通語追記は保留。 |
 | 59 | [chronect-hub-document-codes.html](../public/chronect-hub-document-codes.html) | 資料識別番号・分類コード一覧 ｜ Chronect Hub | 8桁管理単位＋R01〜R04。検索語「資料識別番号」。正解例は載せない。 |
-| 60 | [chronect-hub-mobility-evaluation.html](../public/chronect-hub-mobility-evaluation.html) | 地域移動支援プログラム 評価資料 ｜ Chronect Hub | 80574305-R04。BAS認識・判断・安定性・継続性と提携検証への関心。 |
+| 60 | [chronect-hub-mobility-evaluation.html](../public/chronect-hub-mobility-evaluation.html) | 地域移動支援プログラム 評価基準資料 ｜ Chronect Hub | 80574305-R04。BAS認識・判断・安定性・継続性と提携検証への関心。 |
 | 61 | [chronect-hub-mobility-partner-verification.html](../public/chronect-hub-mobility-partner-verification.html) | 東央モビリティサービスの検証記録 ｜ Chronect Hub | 正式社名検索。公開業務補助と継続率・完了率・再現性。秘密関与は示さない。 |
 | EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |

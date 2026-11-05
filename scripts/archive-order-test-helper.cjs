@@ -50,6 +50,16 @@ const livingSearchEntry={keywords:['生活動線'],title:'環境変化下にお�
 const livingParagraph='本プログラムでは、周辺の公共施設や生活動線にも配慮し、地域の利用状況を踏まえた実証環境の整備を進めています。近隣を通行される方への影響を抑えながら、生活環境との調和に取り組んでいます。';
 function withoutLivingAddition(name,source){
   let result=require('./midroute-test-helper.cjs').withoutMidrouteAddition(name,source,baseline);
+  // The separately approved 2026-11-05 mobile-only CSS predates this task.
+  // Validate its exact changes; do not modify the immutable historical fixtures.
+  if(name==='public/chronect.css'){
+    const changes=[
+      ['  html,body{max-width:100%;overflow-x:clip}\n  html{scroll-padding-top:14rem}\n','  html,body{max-width:100%;overflow-x:hidden}\n'],
+      ['  .header-search{order:2;flex:1 0 100%;width:100%;margin-left:0}\n  .search-input{flex:1;min-width:0;width:100%;height:42px;padding:0 12px;font-size:.84rem}\n  .search-submit{flex:0 0 42px;width:42px;height:42px}\n',''],
+      ['  .brand-name{font-size:1.1rem}\n','  .brand-name{font-size:1.1rem}\n  .search-input{width:104px}\n  .search-submit{width:36px}\n']
+    ];
+    for(const [current,previous]of changes){assert.equal(result.split(current).length,2,name+' exact approved mobile CSS');result=result.replace(current,previous);}
+  }
   if(name==='public/chronect-hub-research-20240711.html'){
     const approved='準備や移動を伴う活動を区別し、生活動線や本人が優先した条件を記述することを重視しました。';
     assert.equal(result.split(approved).length,2,name+' exact approved five-character insertion');

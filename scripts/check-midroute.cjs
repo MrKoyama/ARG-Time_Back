@@ -26,6 +26,7 @@ for(const t of ['80574305-R04','BAS','周辺環境','行動判断','身体動作
 assert(!evaluation.includes('東央'));assert(!evaluation.includes('58241309'));
 const partner=read(mid.entries[2].href).match(/<article[\s\S]*?<\/article>/)[0];
 for(const t of ['東央モビリティサービス株式会社','Chronect','BAS','業務補助','行動継続率','手順完了率','再現性'])assert(partner.includes(t));
+for(const t of ['安全な移動を支援するための検証とは別に','指定された行動や作業手順の遂行','具体的な検証条件と実施内容は、関連資料に分けて記録'])assert(partner.includes(t));
 assert(read('partners.html').includes('東央モビリティサービス株式会社'));
 for(const n of ['search.html','business-shared.js','chronect-shared.js'])assert(!read(n).includes('80574305-R04'),n+' search domains remain independent');
 console.log('PASS MIDROUTE: '+queries+' positive/negative exact-search cases; approved code definitions and disclosure boundaries; 34/45 additive metadata; 59–61 identities; separate search domains and No.45→34 exclusion.');

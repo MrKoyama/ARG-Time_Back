@@ -52,7 +52,7 @@ assert.deepEqual([...numbered.keys()].sort((a,b)=>a-b),Array.from({length:61},(_
 assert(!/data-page-number|archiveButton/.test(read('memo-dream.html')));
 const registries=fs.readdirSync(path.join(root,'public')).filter(n=>/\.(html|js)$/.test(n)&&read(n).includes('archiveTitleByNumber'));
 assert.equal(registries.length,13);
-const oldAll=entries.slice().sort((a,b)=>a.old-b.old).map(e=>({href:e.href,number:e.old,title:e.title}));
+const oldAll=entries.slice().sort((a,b)=>a.old-b.old).map(e=>({href:e.href,number:e.old,title:e.number===60?'地域移動支援プログラム 評価資料 ｜ Chronect Hub':e.title}));
 const newAll=entries.map(e=>({href:e.href,number:e.number,title:e.title}));
 const legacyMixed=oldAll.map(p=>{
   if(p.href==='index.html')return {...p,href:'memo-dream.html',number:1};
