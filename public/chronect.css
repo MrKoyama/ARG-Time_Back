@@ -11,8 +11,12 @@
 @media(max-width:1100px){.header-inner{width:min(100% - 36px,1400px);flex-wrap:wrap;padding:13px 0}.global-nav{order:3;width:100%;overflow-x:auto}.global-nav ul{justify-content:center}.hero-inner,.lower-inner,.footer-main{width:min(100% - 36px,1400px)}.feature-grid{grid-template-columns:1fr 1fr}.feature-card:first-child{grid-column:1/-1}.stats-inner{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}}
 @media(max-width:700px){.header-inner{gap:12px}.brand-tagline{display:none}.brand-name{font-size:1.25rem}.header-search{margin-left:auto}.search-input{width:120px}.global-nav ul{justify-content:flex-start;min-width:560px}.hero{min-height:500px}.hero::before{background:linear-gradient(90deg,rgba(2,9,13,.97),rgba(2,9,13,.67)),url("images/chronect-hero.png") 62% center/cover no-repeat}.hero-inner{min-height:500px}.hero h1{font-size:3.15rem}.hero-lead{font-size:.88rem}.feature-grid{grid-template-columns:1fr}.feature-card:first-child{grid-column:auto}.feature-card{min-height:275px;border-right:0;border-bottom:1px solid var(--line)}.stats-inner{grid-template-columns:1fr 1fr}.stat{padding:23px 18px;gap:12px}.stat strong{font-size:1.85rem}.lower-inner{grid-template-columns:1fr;gap:35px}.news-list li{grid-template-columns:83px 1fr}.news-category{display:none}.footer-main{padding:20px 0;align-items:flex-end}.footer-brand{display:none}.fiction-notice{font-size:.58rem}.archive-button{min-width:94px;padding-inline:8px}}
 @media(max-width:700px){
-  html,body{max-width:100%;overflow-x:hidden}
+  html,body{max-width:100%;overflow-x:clip}
+  html{scroll-padding-top:14rem}
   .header-inner{align-items:center}
+  .header-search{order:2;flex:1 0 100%;width:100%;margin-left:0}
+  .search-input{flex:1;min-width:0;width:100%;height:42px;padding:0 12px;font-size:.84rem}
+  .search-submit{flex:0 0 42px;width:42px;height:42px}
   .global-nav{overflow:visible}
   .global-nav ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;min-width:0;gap:1px}
   .global-nav a{padding:8px 3px;border-top:1px solid rgba(105,216,238,.12);font-size:.65rem;text-align:center;white-space:normal}
@@ -27,8 +31,6 @@
 @media(max-width:380px){
   .header-inner{width:calc(100% - 24px)}
   .brand-name{font-size:1.1rem}
-  .search-input{width:104px}
-  .search-submit{width:36px}
   .hero-inner,.lower-inner,.footer-main{width:calc(100% - 32px)}
   .hero h1{font-size:2.45rem}
   .stats-inner{grid-template-columns:1fr 1fr}
