@@ -47,17 +47,17 @@ function canonicalPublic(name,current){
 // Preserve the immutable 2026-10-30 fixtures. Validate and remove only the later
 // approved additive changes before running the original regression meanings.
 const livingEntry={number:58,old:58,href:'chronect-hub-research-continuous-action.html',title:'環境変化下における連続行動支援の評価 ｜ Chronect Hub'};
-const archiveVersion='20261106-archive-v2';
-const excludedNumbers=new Set([46,47,50,53]);
+const archiveVersion='20261106-archive-v3';
+const excludedNumbers=new Set([43,44,46,47,48,49,50,51,52,53,54,55,56,57]);
 const compactNumber=number=>number-[...excludedNumbers].filter(excluded=>excluded<number).length;
 
 function withoutArchivePruning(name,source,frozenSource){
   const mid=require('./midroute-test-helper.cjs');
   const priorEntries=[...entries,livingEntry,...mid.entries];
   const byPriorHref=new Map(priorEntries.map(entry=>[entry.href,entry]));
-  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261106-archive-v2/g,'$1'+mid.cacheVersion);
+  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261106-archive-v3/g,'$1'+mid.cacheVersion);
   const entry=byPriorHref.get(name.replace(/^public\//,''));
-  if(entry&&entry.number>=46){
+  if(entry&&entry.number>=43){
     const excluded=excludedNumbers.has(entry.number);
     const attrs=excluded?'data-page-archive="exclude"':'data-page-number="'+compactNumber(entry.number)+'"';
     assert(result.includes(attrs),name);

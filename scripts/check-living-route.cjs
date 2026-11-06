@@ -10,7 +10,7 @@ const paragraphs=[
 ];
 const html=read(href),article=html.match(/<article class="hub-document"[\s\S]*?<\/article>/)[0];
 assert.deepEqual([...article.matchAll(/<p>([^<]*)<\/p>/g)].map(m=>m[1]),paragraphs);
-assert(html.includes('<h1>'+title+'</h1>'));assert(html.includes('data-page-number="54"'));assert(html.includes('>54 / 120</button>'));
+assert(html.includes('<h1>'+title+'</h1>'));assert(html.includes('data-page-number="44"'));assert(html.includes('>44 / 120</button>'));
 for(const value of ['G-DG4X4HMEC2','このサイトの内容はフィクションです。','archive.css?v=20261029','chronect-hub.js?v=20261106-matsuda-v1'])assert(html.includes(value));
 assert(!/SECOND SHIFT|外部指示|秘密実験|まつだ|高瀬|TB-|著者|所属|発表日|研究日|管理番号|<time|<table|<canvas/.test(article));
 assert.deepEqual([...article.matchAll(/href="([^"]+)"/g)].map(m=>m[1]),['chronect-hub.html']);
