@@ -40,12 +40,55 @@ function canonicalPublic(name,current){
   if(typeof file.text!=='string'){assert.equal(sha(current),file.sha256,name+' immutable binary');return current;}
   assert.equal(sha(Buffer.from(file.text)),file.sha256,name+' frozen text hash');
   const expected=forwardPublic(name,file.text);
-  assert.equal(withoutLivingAddition(name,Buffer.isBuffer(current)?current.toString('utf8'):current),expected,name+' exceeds fixed archive transform plus approved living-route addition');
+  const previous=withoutArchivePruning(name,Buffer.isBuffer(current)?current.toString('utf8'):current,file.text);
+  assert.equal(withoutLivingAddition(name,previous),expected,name+' exceeds the approved archive and route changes');
   return Buffer.from(file.text);
 }
 // Preserve the immutable 2026-10-30 fixtures. Validate and remove only the later
 // approved additive changes before running the original regression meanings.
 const livingEntry={number:58,old:58,href:'chronect-hub-research-continuous-action.html',title:'環境変化下における連続行動支援の評価 ｜ Chronect Hub'};
+const archiveVersion='20261106-archive-v2';
+const excludedNumbers=new Set([46,47,50,53]);
+const compactNumber=number=>number-[...excludedNumbers].filter(excluded=>excluded<number).length;
+
+function withoutArchivePruning(name,source,frozenSource){
+  const mid=require('./midroute-test-helper.cjs');
+  const priorEntries=[...entries,livingEntry,...mid.entries];
+  const byPriorHref=new Map(priorEntries.map(entry=>[entry.href,entry]));
+  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261106-archive-v2/g,'$1'+mid.cacheVersion);
+  const entry=byPriorHref.get(name.replace(/^public\//,''));
+  if(entry&&entry.number>=46){
+    const excluded=excludedNumbers.has(entry.number);
+    const attrs=excluded?'data-page-archive="exclude"':'data-page-number="'+compactNumber(entry.number)+'"';
+    assert(result.includes(attrs),name);
+    result=result.replace(attrs,'data-page-number="'+entry.number+'"'+(excluded?' data-page-title="'+entry.title+'" data-page-href="'+entry.href+'"':''));
+    const button=excluded?'ページアーカイブ':compactNumber(entry.number)+' / 120';
+    result=result.replace(/(id="archiveButton"[^>]*>)([^<]+)(<\/button>)/,(_,start,label,end)=>{
+      assert.equal(label,button,name);
+      return start+entry.number+' / 120'+end;
+    });
+  }
+  if(!result.includes('archiveTitleByNumber'))return result;
+  const active=priorEntries.filter(e=>!excludedNumbers.has(e.number));
+  result=result.replace(/(\barchiveTitleByNumber\s*=\s*)(\{[^{}]*\})/,(_,prefix,json)=>{
+    assert.deepEqual(JSON.parse(json),Object.fromEntries(active.map(e=>[compactNumber(e.number),e.title])),name+' compact titles');
+    return prefix+JSON.stringify(Object.fromEntries(priorEntries.map(e=>[e.number,e.title])));
+  });
+  const frozenMaps=[...frozenSource.matchAll(/\{[^{}\r\n]*"partners\.html":44[^{}\r\n]*\}/g)];
+  let mapIndex=0;
+  result=result.replace(/\{[^{}\r\n]*"partners\.html":37[^{}\r\n]*\}/g,json=>{
+    assert.deepEqual(JSON.parse(json),Object.fromEntries(active.map(e=>[e.href,compactNumber(e.number)])),name+' compact URLs');
+    const originalOrder=Object.keys(JSON.parse(frozenMaps[mapIndex++][0]));
+    return JSON.stringify(Object.fromEntries([...originalOrder,livingEntry.href,...mid.entries.map(e=>e.href)].map(href=>[href,byPriorHref.get(href).number])));
+  });
+  assert.equal(mapIndex,frozenMaps.length,name+' map count');
+  return result
+    .replace(/\.filter\(page=>page&&typeof page\.href==='string'\)(?=\.map)/,'')
+    .replace(/\.filter\(page=>Object\.hasOwn\((?:businessPageNumberByHref|pageNumberByHref),page\.href\)\)/,'')
+    .replace(/if\(!Number\.isInteger\(movedNumber\)\)return null;/,'')
+    .replace(/^ +if \(!Number\.isInteger\(movedNumber\)\) return null;\n/m,'')
+    .replace('}).filter(Boolean)','})');
+}
 const livingSearchEntry={keywords:['生活動線'],title:'環境変化下における連続行動支援の評価',href:livingEntry.href,description:'本研究では、生活動線や設備配置の変化が、連続した身体動作の安定性に与える影響を評価した。'};
 const livingParagraph='本プログラムでは、周辺の公共施設や生活動線にも配慮し、地域の利用状況を踏まえた実証環境の整備を進めています。近隣を通行される方への影響を抑えながら、生活環境との調和に取り組んでいます。';
 function withoutLivingAddition(name,source){
@@ -96,4 +139,4 @@ legacyFs.readFileSync=function(file,options){
   const canonical=canonicalPublic(relative,value);
   return typeof value==='string'?canonical.toString(typeof options==='string'?options:options?.encoding||'utf8'):canonical;
 };
-module.exports={root,baseline,order,entries,byHref,owned,cacheVersion,forwardPublic,canonicalPublic,legacyFs,legacyTestSource,assertLegacyTestCode,sha,livingEntry,livingSearchEntry,livingParagraph};
+module.exports={root,baseline,order,entries,byHref,owned,cacheVersion,forwardPublic,canonicalPublic,legacyFs,legacyTestSource,assertLegacyTestCode,sha,livingEntry,livingSearchEntry,livingParagraph,archiveVersion,excludedNumbers,compactNumber};

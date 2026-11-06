@@ -1,0 +1,75 @@
+.hub-evidence-steps {
+  margin: 0 0 24px;
+  padding-inline-start: 2.25rem;
+}
+
+.hub-evidence-steps li {
+  padding: 8px 12px;
+  border-bottom: 1px solid #383838;
+}
+
+.hub-visit-group {
+  padding-block: 16px;
+  border-top: 1px solid #383838;
+}
+
+.hub-visit-group h3 {
+  margin: 0 0 4px;
+  color: #f2f2f2;
+  font-size: 1.05rem;
+}
+
+.hub-document .hub-visit-label {
+  margin-bottom: 4px;
+}
+
+.hub-visit-list {
+  margin: 0;
+  padding-inline-start: 1.5rem;
+}
+
+.hub-visit-list time {
+  font-family: Consolas, monospace;
+  margin-inline-end: 1rem;
+}
+
+.hub-evidence-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.hub-evidence-table caption {
+  margin-bottom: 8px;
+  text-align: start;
+}
+
+.hub-evidence-table th,
+.hub-evidence-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #383838;
+  text-align: start;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.hub-evidence-table thead th {
+  background: #121212;
+  color: #f2f2f2;
+}
+
+.hub-evidence-id,
+.hub-evidence-date {
+  width: 25%;
+}
+
+@media (max-width: 480px) {
+  .hub-evidence-table th,
+  .hub-evidence-table td {
+    padding-inline: 4px;
+  }
+
+  .hub-evidence-date {
+    width: 20%;
+  }
+}

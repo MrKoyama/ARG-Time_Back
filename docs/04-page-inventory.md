@@ -1,5 +1,24 @@
 # 実装済みページ一覧
 
+## 2026-11-06 Chronectニュース整理後のアーカイブ
+
+アーカイブは59件（1〜59）、上限120、未割当60〜120。公開HTMLは68件（番号付き59、番号なしの旧ニュース4、検索結果4、旧URL転送1）。 到達可能58件、到達不能4件、判断保留1件。旧46・47・50・53をアーカイブから除外。旧54の月次情報記事は判断保留で新50として登録を維持。 全ページの根拠は[到達性調査](10-audit-and-sources.md)を参照。以下の過去節の件数・番号は当時の記録。
+
+旧1〜45は同番号。変更の対応は以下のとおり。
+
+46→除外、47→除外、48→46、49→47、50→除外、51→48、52→49、53→除外、54→50、55→51、56→52、57→53、58→54、59→55、60→56、61→57、62→58、63→59。
+
+アーカイブ対象外となった公開記事
+
+- 旧46 時間認知研究オープンセミナー2026を開催します ｜ Chronect — [記事](../public/chronect-news-20260520.html)
+- 旧47 2025年度研究開発活動報告を公開しました ｜ Chronect — [記事](../public/chronect-news-20260418.html)
+- 旧50 年末年始のサポート窓口営業日について ｜ Chronect — [記事](../public/chronect-news-20251216.html)
+- 旧53 Chronect Research Day 2025 開催のお知らせ ｜ Chronect — [記事](../public/chronect-news-20250808.html)
+
+## 2026-11-06 まつだ編の照合資料（MATSUDA-20261106-v1）
+
+現行は番号付き63ページ＋検索EX4＋旧URL互換転送1の68 HTML。管理上限120、使用1〜63、未割当64〜120。 No.62・63を追加。以下の表を現行の番号・URLの参照元とする。日付付きの旧件数は履歴。
+
 ## 2026-11-04：中盤探索導線を実装（MIDROUTE-20261104-v1）
 
 現行は番号付き61ページ＋EX4＋旧URL互換転送1＝66HTML。アーカイブ管理上限120、使用1〜61、未割当62〜120。既存1〜58の正式番号・保存キーtimeback-page-archive-v1・URL基準の旧保存移行は維持。120件の制作や未割当番号の用途予約は意味しない。
@@ -29,7 +48,7 @@
 | 15 | [chronect-research.html](../public/chronect-research.html) | 研究開発 ｜ Chronect | 4領域18研究プロジェクトの具体説明。 |
 | 16 | [chronect-services.html](../public/chronect-services.html) | 事業・サービス ｜ Chronect | 事業とTIME BACK展開の経緯、法人向けへ。 |
 | 17 | [chronect-projects.html](../public/chronect-projects.html) | プロジェクト ｜ Chronect | 個人向け・法人活用・調査検証・協働。提携一覧37へリンク。 |
-| 18 | [chronect-news.html](../public/chronect-news.html) | ニュース ｜ Chronect | 一覧は6件。全18件の個別記事は実在し検索・旧保存から再訪可。2026-10-29に18→12、10-30に12→6へ一覧を整理。 |
+| 18 | [chronect-news.html](../public/chronect-news.html) | ニュース ｜ Chronect | 一覧は6件。全18件の個別記事は実在。アーカイブ対象外の4記事は末尾の整理記録を参照。2026-10-29に18→12、10-30に12→6へ一覧を整理。 |
 | 19 | [chronect-careers.html](../public/chronect-careers.html) | 採用情報 ｜ Chronect | 厳格な採用通達。連絡先は.invalid。 |
 | 20 | [chronect-news-20260822.html](../public/chronect-news-20260822.html) | 睡眠中の時間認知に関する研究成果を発表 ｜ Chronect | 2026-08-22研究発表。公開研究要旨を読むHub入口。 |
 | 21 | [chronect-news-20260714.html](../public/chronect-news-20260714.html) | 生活環境における行動支援技術の共同検証を開始 ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
@@ -54,25 +73,27 @@
 | 40 | [chronect-hub.html](../public/chronect-hub.html) | トップページ ｜ Chronect Hub | 独立した黒白の資料サイト入口。要旨本文は41へ分離。 |
 | 41 | [chronect-hub-research.html](../public/chronect-hub-research.html) | 睡眠中の時間認知に関する研究要旨 ｜ Chronect Hub | 20から直接到達。Hubで研究名・関連語を検索した場合も同じページ。 |
 | 42 | [chronect-hub-research-20260218.html](../public/chronect-hub-research-20260218.html) | 短時間休息後の覚醒移行に関する検証要旨 ｜ Chronect Hub | 23の対応要旨。研究名・覚醒移行・短時間休息で検索。 |
-| 43 | [chronect-hub-research-20240711.html](../public/chronect-hub-research-20240711.html) | 日常環境下での時間選択に関する予備研究要旨 ｜ Chronect Hub | 56の対応要旨。研究名・時間選択・日常環境で検索。 |
-| 44 | [chronect-hub-research-20251105.html](../public/chronect-hub-research-20251105.html) | 注意配分と主観時間に関する研究要旨 ｜ Chronect Hub | 51の対応要旨。研究名・注意配分・主観時間で検索。 |
+| 43 | [chronect-hub-research-20240711.html](../public/chronect-hub-research-20240711.html) | 日常環境下での時間選択に関する予備研究要旨 ｜ Chronect Hub | 52の対応要旨。研究名・時間選択・日常環境で検索。 |
+| 44 | [chronect-hub-research-20251105.html](../public/chronect-hub-research-20251105.html) | 注意配分と主観時間に関する研究要旨 ｜ Chronect Hub | 48の対応要旨。研究名・注意配分・主観時間で検索。 |
 | 45 | [chronect-hub-session.html](../public/chronect-hub-session.html) | セッション運用記録（参照用抜粋） ｜ Chronect Hub | 管理コードで到達する限定保存抜粋。本文から3地点の通過を読み解く。 |
-| 46 | [chronect-news-20260520.html](../public/chronect-news-20260520.html) | 時間認知研究オープンセミナー2026を開催します ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
-| 47 | [chronect-news-20260418.html](../public/chronect-news-20260418.html) | 2025年度研究開発活動報告を公開しました ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
-| 48 | [chronect-news-20260312.html](../public/chronect-news-20260312.html) | TIME BACKアプリにセッション状況確認機能を追加 ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
-| 49 | [chronect-news-20260109.html](../public/chronect-news-20260109.html) | 北央工科大学との時間知覚共同研究契約を更新 ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
-| 50 | [chronect-news-20251216.html](../public/chronect-news-20251216.html) | 年末年始のサポート窓口営業日について ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
-| 51 | [chronect-news-20251105.html](../public/chronect-news-20251105.html) | 注意配分と主観時間に関する論文が国際誌に掲載 ｜ Chronect | 単一/二重課題での時間推定。Hub44へ。 |
-| 52 | [chronect-news-20250924.html](../public/chronect-news-20250924.html) | 公共交通環境における姿勢安定化支援の実証を開始 ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
-| 53 | [chronect-news-20250808.html](../public/chronect-news-20250808.html) | Chronect Research Day 2025 開催のお知らせ ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
-| 54 | [chronect-news-20250701.html](../public/chronect-news-20250701.html) | TIME BACK MARKET月次情報の公開を開始しました ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
-| 55 | [chronect-news-20241021.html](../public/chronect-news-20241021.html) | TIME BACK先行提供プログラムを開始しました ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
-| 56 | [chronect-news-20240711.html](../public/chronect-news-20240711.html) | 日常環境下での時間選択に関する予備研究を発表 ｜ Chronect | 活動・休息を選ぶ設問調査。Hub43へ。 |
-| 57 | [chronect-news-20240305.html](../public/chronect-news-20240305.html) | 短時間休息と認知回復に関する産学共同研究を開始 ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
-| 58 | [chronect-hub-research-continuous-action.html](../public/chronect-hub-research-continuous-action.html) | 環境変化下における連続行動支援の評価 ｜ Chronect Hub | 「生活動線」のHub完全一致検索。指定3段落、研究日・著者等なし。既存Hub44への共通語追記は保留。 |
-| 59 | [chronect-hub-document-codes.html](../public/chronect-hub-document-codes.html) | 資料識別番号・分類コード一覧 ｜ Chronect Hub | 8桁管理単位＋R01〜R04。検索語「資料識別番号」。正解例は載せない。 |
-| 60 | [chronect-hub-mobility-evaluation.html](../public/chronect-hub-mobility-evaluation.html) | 地域移動支援プログラム 評価基準資料 ｜ Chronect Hub | 80574305-R04。BAS認識・判断・安定性・継続性と提携検証への関心。 |
-| 61 | [chronect-hub-mobility-partner-verification.html](../public/chronect-hub-mobility-partner-verification.html) | 東央モビリティサービスの検証記録 ｜ Chronect Hub | 正式社名検索。公開業務補助と継続率・完了率・再現性。秘密関与は示さない。 |
+
+
+| 46 | [chronect-news-20260312.html](../public/chronect-news-20260312.html) | TIME BACKアプリにセッション状況確認機能を追加 ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
+| 47 | [chronect-news-20260109.html](../public/chronect-news-20260109.html) | 北央工科大学との時間知覚共同研究契約を更新 ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
+
+| 48 | [chronect-news-20251105.html](../public/chronect-news-20251105.html) | 注意配分と主観時間に関する論文が国際誌に掲載 ｜ Chronect | 単一/二重課題での時間推定。Hub44へ。 |
+| 49 | [chronect-news-20250924.html](../public/chronect-news-20250924.html) | 公共交通環境における姿勢安定化支援の実証を開始 ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
+
+| 50 | [chronect-news-20250701.html](../public/chronect-news-20250701.html) | TIME BACK MARKET月次情報の公開を開始しました ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
+| 51 | [chronect-news-20241021.html](../public/chronect-news-20241021.html) | TIME BACK先行提供プログラムを開始しました ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
+| 52 | [chronect-news-20240711.html](../public/chronect-news-20240711.html) | 日常環境下での時間選択に関する予備研究を発表 ｜ Chronect | 活動・休息を選ぶ設問調査。Hub43へ。 |
+| 53 | [chronect-news-20240305.html](../public/chronect-news-20240305.html) | 短時間休息と認知回復に関する産学共同研究を開始 ｜ Chronect | Chronectの個別ニュース。2026-10-30にアーカイブ順を再整理。 |
+| 54 | [chronect-hub-research-continuous-action.html](../public/chronect-hub-research-continuous-action.html) | 環境変化下における連続行動支援の評価 ｜ Chronect Hub | 「生活動線」のHub完全一致検索。指定3段落、研究日・著者等なし。既存Hub44への共通語追記は保留。 |
+| 55 | [chronect-hub-document-codes.html](../public/chronect-hub-document-codes.html) | 資料識別番号・分類コード一覧 ｜ Chronect Hub | 8桁管理単位＋R01〜R04。検索語「資料識別番号」。正解例は載せない。 |
+| 56 | [chronect-hub-mobility-evaluation.html](../public/chronect-hub-mobility-evaluation.html) | 地域移動支援プログラム 評価基準資料 ｜ Chronect Hub | 80574305-R04。BAS認識・判断・安定性・継続性と提携検証への関心。 |
+| 57 | [chronect-hub-mobility-partner-verification.html](../public/chronect-hub-mobility-partner-verification.html) | 東央モビリティサービスの検証記録 ｜ Chronect Hub | 正式社名検索。Chronect受領の東央検証結果と物品取扱い4工程。58の資料名を掲載。 |
+| 58 | [chronect-hub-subject-visits.html](../public/chronect-hub-subject-visits.html) | 試験対象者 訪問履歴一覧 ｜ Chronect Hub | 売却中の施設訪問をID別に表示。59の資料名を掲載。 |
+| 59 | [chronect-hub-subject-sessions.html](../public/chronect-hub-subject-sessions.html) | 試験対象・セッション対応表 ｜ Chronect Hub | IDと売却セッションの対応。45と照合し58へ戻る。 |
 | EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [chronect-search.html](../public/chronect-search.html) | 検索結果 ｜ Chronect | 独立ホワイトリスト検索。アーカイブ登録対象外。 |

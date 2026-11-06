@@ -9,7 +9,9 @@ const chronectHubDatabase = [
   {"keywords":["生活動線"],"title":"環境変化下における連続行動支援の評価","href":"chronect-hub-research-continuous-action.html","description":"本研究では、生活動線や設備配置の変化が、連続した身体動作の安定性に与える影響を評価した。"},
   {"keywords":["資料識別番号"],"title":"資料識別番号・分類コード一覧","href":"chronect-hub-document-codes.html","description":"資料管理単位番号と資料分類コードの構成、およびR01〜R04の分類を示します。"},
   {"keywords":["80574305-R04"],"title":"地域移動支援プログラム 評価基準資料","href":"chronect-hub-mobility-evaluation.html","description":"BASを用いた地域移動支援の認識・判断・身体動作・継続性に関する評価資料です。"},
-  {"keywords":["東央モビリティサービス株式会社"],"title":"東央モビリティサービスの検証記録","href":"chronect-hub-mobility-partner-verification.html","description":"BASの安全基準・案内精度と、複数の動作や手順を伴う業務補助への応用を扱います。"}
+  {"keywords":["東央モビリティサービス株式会社"],"title":"東央モビリティサービスの検証記録","href":"chronect-hub-mobility-partner-verification.html","description":"BASの安全基準・案内精度と、複数の動作や手順を伴う業務補助への応用を扱います。"},
+  {"keywords":["試験対象者 訪問履歴一覧"],"title":"試験対象者 訪問履歴一覧","href":"chronect-hub-subject-visits.html","description":"BAS試験運用における施設訪問を、試験対象IDごとに整理した記録です。"},
+  {"keywords":["試験対象・セッション対応表"],"title":"試験対象・セッション対応表","href":"chronect-hub-subject-sessions.html","description":"試験対象IDとTIME BACKの売却セッション管理コードの対応を示します。"}
 ];
 
 function findChronectHubMaterials(query) {
