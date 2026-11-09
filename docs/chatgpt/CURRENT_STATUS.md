@@ -105,7 +105,7 @@ Hubは既存6資料＋今回3資料＝9資料。新59分類一覧、新60地域�
 | 47 | 東央モビリティサービスの検証記録 ｜ Chronect Hub | [`chronect-hub-mobility-partner-verification.html`](../../public/chronect-hub-mobility-partner-verification.html) | 東央が実施し、Chronectが整理したBAS検証記録。移動、物品の受け取り、確認、運搬の4工程を掲載。 |
 | 48 | 試験対象者 訪問履歴一覧 ｜ Chronect Hub | [`chronect-hub-subject-visits.html`](../../public/chronect-hub-subject-visits.html) | 4人の試験対象IDについて、売却セッション中の施設訪問を各2件掲載。 |
 | 49 | 試験対象・セッション対応表 ｜ Chronect Hub | [`chronect-hub-subject-sessions.html`](../../public/chronect-hub-subject-sessions.html) | 試験対象ID、実施日、売却セッション管理コードの対応表。No.43のコードと照合し、No.48で反復訪問を確認する。 |
-| 50 | 試験施設管理情報 ｜ Chronect Hub | [chronect-hub-facility-management.html](../../public/chronect-hub-facility-management.html) | 施設ID・運用区分の管理表。施設Cの大まかな配置と連続業務遂行評価。 |
+| 50 | 試験施設管理情報 ｜ Chronect Hub | [chronect-hub-facility-management.html](../../public/chronect-hub-facility-management.html) | 施設A〜Dの運用区分と概略配置を掲載。施設Cの連続業務遂行評価と地図照合を維持。 |
 | 51 | 連続業務遂行試験 実施記録 ｜ Chronect Hub | [chronect-hub-continuous-work-record.html](../../public/chronect-hub-continuous-work-record.html) | 9月17日のSUB-117が売却中に行った物品の照合・分類・運搬と次の指示への移行。 |
 
 直前のNo.1〜42は同番号。セッション運用記録は旧45→現43、旧54〜59は現44〜49。旧43・44はHub要旨、旧46〜53は一覧外ニュースとして登録解除済み。現在も公開ファイルと既存の検索・リンクから閲覧できる。ニュース一覧外12件と対応Hub要旨2件、検索結果4件、旧夢記事URL転送1件はアーカイブ非登録。

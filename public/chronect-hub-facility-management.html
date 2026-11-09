@@ -12,6 +12,12 @@
   <link rel="stylesheet" href="chronect-hub.css?v=20261029">
   <title>試験施設管理情報 ｜ Chronect Hub</title>
   <link rel="stylesheet" href="chronect-hub-evidence.css">
+  <style>
+    @media (max-width: 480px) {
+      .hub-facility-table .hub-evidence-id { width: 18%; }
+      .hub-facility-table .hub-evidence-date { width: 37%; }
+    }
+  </style>
   <link rel="stylesheet" href="archive.css?v=20261029">
 </head>
 <body class="hub-shell" data-page-number="50" data-page-title="試験施設管理情報 ｜ Chronect Hub" data-page-href="chronect-hub-facility-management.html">
@@ -22,20 +28,32 @@
     <article class="hub-document" aria-labelledby="document-heading">
       <h2 id="document-heading">施設一覧</h2>
       <p>試験施設の識別子と運用区分を整理した管理資料です。</p>
-      <table class="hub-evidence-table">
+      <table class="hub-evidence-table hub-facility-table">
         <colgroup><col class="hub-evidence-id"><col class="hub-evidence-date"><col></colgroup>
         <thead>
           <tr><th scope="col">識別子</th><th scope="col">運用区分</th><th scope="col">配置</th></tr>
         </thead>
         <tbody>
-          <tr><th scope="row">施設A</th><td>—</td><td>—</td></tr>
-          <tr><th scope="row">施設B</th><td>—</td><td>—</td></tr>
+          <tr>
+            <th scope="row">施設A</th>
+            <td>環境認識評価</td>
+            <td>明浜駅南口周辺。駅前の通りに面する街区内。</td>
+          </tr>
+          <tr>
+            <th scope="row">施設B</th>
+            <td>移動支援評価</td>
+            <td>明浜商店街周辺。商店街に通じる道路沿いの街区内。</td>
+          </tr>
           <tr>
             <th scope="row">施設C</th>
             <td>連続業務遂行評価</td>
-            <td>TIME BACK事業センター南側。小規模な建物が並ぶ区画の先で、おおむね東西に延びる道路を渡った側の大型建物。</td>
+            <td>TIME BACK事業センター南側。小規模な建物が並ぶ区画と東西道路を越えた先の大型棟。</td>
           </tr>
-          <tr><th scope="row">施設D</th><td>—</td><td>—</td></tr>
+          <tr>
+            <th scope="row">施設D</th>
+            <td>状況判断評価</td>
+            <td>明浜みどり公園周辺。公園外周に沿う道路に面した街区内。</td>
+          </tr>
         </tbody>
       </table>
       <nav class="hub-document-links" aria-label="関連資料"><a href="chronect-hub.html">Chronect Hubへ戻る</a></nav>
