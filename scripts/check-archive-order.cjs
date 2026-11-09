@@ -4,7 +4,7 @@ const bridge=require('./archive-order-test-helper.cjs');
 const {root,baseline,canonicalPublic}=bridge;
 const mid=require('./midroute-test-helper.cjs'),cacheVersion=bridge.archiveVersion;
 const priorEntries=[...bridge.entries,bridge.livingEntry,...mid.entries];
-const entries=priorEntries.filter(e=>!bridge.excludedNumbers.has(e.number)).map(e=>({...e,previousNumber:e.number,number:bridge.compactNumber(e.number)}));
+const entries=[...priorEntries.filter(e=>!bridge.excludedNumbers.has(e.number)).map(e=>({...e,previousNumber:e.number,number:bridge.compactNumber(e.number)})),...bridge.facilityEntries];
 const byHref=new Map(entries.map(e=>[e.href,e]));
 const read=name=>fs.readFileSync(path.join(root,'public',name),'utf8');
 function functionSource(source,name){
@@ -49,14 +49,15 @@ for(const name of fs.readdirSync(path.join(root,'public')).filter(n=>/\.(html|js
     assert(fs.existsSync(path.join(root,'public',m[1].split(/[?#]/)[0])),name+' missing '+m[1]);
   }
 }
-assert.equal(srcConsumers,56);assert.equal(numbered.size,49);
-assert.deepEqual([...numbered.keys()].sort((a,b)=>a-b),Array.from({length:49},(_,i)=>i+1));
+assert.equal(srcConsumers,58);assert.equal(numbered.size,51);
+assert.deepEqual([...numbered.keys()].sort((a,b)=>a-b),Array.from({length:51},(_,i)=>i+1));
 assert(!/data-page-number|archiveButton/.test(read('memo-dream.html')));
 const registries=fs.readdirSync(path.join(root,'public')).filter(n=>/\.(html|js)$/.test(n)&&read(n).includes('archiveTitleByNumber'));
 assert.equal(registries.length,13);
 const oldAll=priorEntries.slice().sort((a,b)=>a.old-b.old).map(e=>({href:e.href,number:e.old,title:e.number===60?'地域移動支援プログラム 評価資料 ｜ Chronect Hub':e.title}));
 const previousAll=priorEntries.map(e=>({href:e.href,number:e.number,title:e.title}));
 const previouslyExcluded=[46,47,50,53];
+const previous49=priorEntries.filter(e=>!bridge.excludedNumbers.has(e.number)).map(e=>({href:e.href,number:bridge.compactNumber(e.number),title:e.title}));
 const previous59=previousAll.filter(e=>!previouslyExcluded.includes(e.number)).map(e=>({...e,number:e.number-previouslyExcluded.filter(n=>n<e.number).length}));
 const newAll=entries.map(e=>({href:e.href,number:e.number,title:e.title}));
 const legacyMixed=oldAll.map(p=>{
@@ -78,9 +79,9 @@ const definitions=new Map();
 for(const name of registries){
   const source=read(name),titles=JSON.parse(source.match(/\barchiveTitleByNumber\s*=\s*(\{[^{}]*\})/)[1]);
   const mappingMatch=source.match(/\{[^{}\r\n]*"partners\.html":37[^{}\r\n]*\}/);assert(mappingMatch,name);
-  const mapping=JSON.parse(mappingMatch[0]);assert.equal(Object.keys(mapping).length,49);
+  const mapping=JSON.parse(mappingMatch[0]);assert.equal(Object.keys(mapping).length,51);
   for(const e of entries){assert.equal(mapping[e.href],e.number,name);assert.equal(titles[e.number],e.title,name);}
-  for(let n=50;n<=120;n++)assert.equal(titles[n],undefined,name);
+  for(let n=52;n<=120;n++)assert.equal(titles[n],undefined,name);
   for(const ex of ['search.html','business-search.html','chronect-search.html','chronect-hub-search.html'])assert.equal(mapping[ex],undefined);
   const globalMaps=[...source.matchAll(/(?:const|let)\s+(businessPageNumberByHref|pageNumberByHref)\s*=\s*(\{[^{}]*\})/g)].map(m=>'const '+m[1]+'='+m[2]+';').join('\n');
   const load=functionSource(source,'loadArchive'),save=functionSource(source,'saveArchive'),register=functionSource(source,'registerCurrentPage');
@@ -96,17 +97,17 @@ for(const name of registries){
     const x=env([{href:e.href,number:e.previousNumber,title:e.title}]);
     for(let i=0;i<3;i++){const records=JSON.parse(JSON.stringify(vm.runInContext('loadArchive()',x.context)));checkRecords(records,[e.href],name+' singleton');x.set(records);singletonLoads++;}
     if(register){
-      const r=env(legacyMixed);r.context.page={href:e.href,number:e.number,title:e.title};vm.runInContext('currentPage=page',r.context);
+      const r=env([...legacyMixed,...newAll.filter(p=>p.number>=50)]);r.context.page={href:e.href,number:e.number,title:e.title};vm.runInContext('currentPage=page',r.context);
       for(let i=0;i<3;i++){const records=JSON.parse(JSON.stringify(vm.runInContext('registerCurrentPage()',r.context)));checkRecords(records,entries.map(p=>p.href),name+' registration '+e.href);r.set(records);registrations++;}
     }
   }
-  for(const seed of [oldAll,previousAll,previous59,newAll,legacyMixed,oldestIndex,legacyMixed.filter((p,i)=>i%4===0),[],'invalid JSON','{}']){
+  for(const seed of [oldAll,previousAll,previous59,previous49,newAll,legacyMixed,oldestIndex,legacyMixed.filter((p,i)=>i%4===0),[],'invalid JSON','{}']){
     const x=env(seed),hrefs=Array.isArray(seed)?seed.map(p=>p.href==='memo-dream.html'?'index.html':p.href==='index.html'&&/TIME BACK/.test(p.title)?'time-back.html':p.href).filter(href=>byHref.has(href)):[];
     for(let i=0;i<3;i++){const records=JSON.parse(JSON.stringify(vm.runInContext('loadArchive()',x.context)));checkRecords(records,hrefs,name+' mixed');x.set(records);mixedLoads++;}
   }
 }
 // Save through alternating real brand implementations, not through a simulated mapping.
-let stored=JSON.stringify(legacyMixed);
+let stored=JSON.stringify([...legacyMixed,...newAll.filter(p=>p.number>=50)]);
 for(const name of ['business-shared.js','chronect-shared.js','about.html','business-shared.js','chronect-shared.js','about.html']){
   const context=vm.createContext({page:newAll[30],localStorage:{getItem(){return stored},setItem(k,v){stored=v}}});vm.runInContext(definitions.get(name),context);vm.runInContext('currentPage=page;registerCurrentPage()',context);checkRecords(JSON.parse(stored),entries.map(e=>e.href),'brand round trip');
 }
@@ -119,4 +120,4 @@ for(const name of ['search.html','business-search.html','chronect-search.html','
   const context=vm.createContext({URLSearchParams,document:{body:{dataset:{pageArchive:'exclude'},classList:{add(){},remove(){}}},getElementById(id){if(!nodes.has(id))nodes.set(id,node());return nodes.get(id)},createElement:node,addEventListener(){}},localStorage:{getItem(){return saved},setItem(k,v){saved=v;writes++}},window:{location:{search:''}}});
   vm.runInContext(script,context);vm.runInContext('renderArchive()',context);assert.equal(saved,'[]',name+' EX visited set');assert.equal(writes,0,name+' EX writes');assert.equal(nodes.get('archiveList').children.length,120,name+' archive slots');
 }
-console.log('PASS CURRENT CODE: '+checkedFiles+' prior public files preserve the approved archive and living-route additions; '+syntax+' syntax checks; 49 unique pages / 13 registries; '+singletonLoads+' singleton reloads, '+registrations+' registrations/reloads, '+mixedLoads+' full/partial/legacy cases; brand round trips, 4 EX exclusions and 56 versioned consumers. New manuscript/search checks run separately.');
+console.log('PASS CURRENT CODE: '+checkedFiles+' prior public files preserve the approved archive and living-route additions; '+syntax+' syntax checks; 51 unique pages / 13 registries; '+singletonLoads+' singleton reloads, '+registrations+' registrations/reloads, '+mixedLoads+' full/partial/legacy cases; brand round trips, 4 EX exclusions and 58 versioned consumers. New manuscript/search checks run separately.');

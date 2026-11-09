@@ -1,21 +1,26 @@
 // Current-code checks for the approved management-code route; no file writes.
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
 const mid=require('./midroute-test-helper.cjs');
-const {archiveVersion,compactNumber}=require('./archive-order-test-helper.cjs');
+const {archiveVersion,compactNumber,facilitySearchEntries}=require('./archive-order-test-helper.cjs');
 const root=path.resolve(__dirname,'..'),read=n=>fs.readFileSync(path.join(root,'public',n),'utf8');
 const src=read('chronect-hub.js'),context=vm.createContext({});
 vm.runInContext(src.slice(0,src.indexOf('const hubResultsContainer'))+';globalThis.db=chronectHubDatabase;globalThis.find=findChronectHubMaterials;',context);
-assert.equal(context.db.length,11);
+assert.equal(context.db.length,13);
 let queries=0;
 for(const e of context.db)for(const q of e.keywords){for(const text of [q,' '+q+' ',q.toLowerCase()]){assert.equal(context.find(text).length,1);assert.equal(context.find(text)[0].href,e.href);queries++;}}
 for(const q of ['58241309-R03','58241309-R04','80574305','80574305-R01','80574305-R02','80574305-R03','80574305-R04 extra','80574305－R04','80574305-R04。','資料分類コード','東央モビリティサービス','R04','生活','TB-260917','']){assert.equal(context.find(q).length,0,q);queries++;}
 for(let i=0;i<mid.searchEntries.length;i++)assert.deepEqual(JSON.parse(JSON.stringify(context.db[6+i])),mid.searchEntries[i]);
+assert.deepEqual(JSON.parse(JSON.stringify(context.db.slice(11))),facilitySearchEntries);
+for(const query of ['施設','施設A','施設B','施設D','施設Ｃ','連続','連続業務遂行評価','試験施設管理情報','連続業務遂行試験 実施記録']){
+  assert.equal(context.find(query).length,0,query);
+  queries++;
+}
 const no34=read('business-demonstration.html'),no45=read('chronect-hub-session.html');
 assert.equal(no34.split(mid.unitAddition).length,2);assert.equal(no45.split(mid.documentAddition).length,2);
 assert(!no45.includes('80574305'));assert(!no45.includes('href="business-demonstration.html"'));
 for(const e of mid.entries.slice(0,3)){const html=read(e.href),article=html.match(/<article class="hub-document"[\s\S]*?<\/article>/)[0];
   assert(html.includes('data-page-number="'+compactNumber(e.number)+'"'));assert(html.includes('data-page-title="'+e.title+'"'));assert(html.includes('>'+compactNumber(e.number)+' / 120</button>'));
-  for(const x of ['G-DG4X4HMEC2','このサイトの内容はフィクションです。','archive.css?v=20261029','chronect-hub.js?v='+mid.cacheVersion,'chronect-shared.js?v='+archiveVersion])assert(html.includes(x),e.href+' '+x);
+  for(const x of ['G-DG4X4HMEC2','このサイトの内容はフィクションです。','archive.css?v=20261029','chronect-hub.js?v='+archiveVersion,'chronect-shared.js?v='+archiveVersion])assert(html.includes(x),e.href+' '+x);
   assert(!/SECOND SHIFT|秘密|外部指示|無断|まつだ|高瀬|TB-260917|\d{4}-\d{2}-\d{2}|\d+%/.test(article));
   assert.deepEqual([...article.matchAll(/href="([^"]+)"/g)].map(m=>m[1]),['chronect-hub.html']);
 }

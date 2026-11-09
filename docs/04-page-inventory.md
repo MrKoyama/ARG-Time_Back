@@ -1,5 +1,9 @@
 # 実装済みページ一覧
 
+## 2026-11-09 施設C調査編（FACILITY-C-v1）
+
+現行アーカイブは1〜51の51件、上限120、未割当52〜120。公開HTML70件（登録51、対象外ニュース12、対象外Hub要旨2、検索EX4、旧URL転送1）。 No.50・51を追加。既存1〜49を改番していない。下表の現行ページ一覧と日付付きの旧登録解除表を区別する。
+
 ## 2026-11-06 一覧外ニュースと対応要旨の登録解除
 
 現行アーカイブは49件（1〜49）、上限120、未割当50〜120。公開HTMLは68件（登録49、対象外ニュース12、対象外Hub要旨2、検索EX4、旧URL転送1）。 直前の1〜42は同番号。43・44・46〜53は登録解除。45→43、54→44、55→45、56→46、57→47、58→48、59→49。 以下の日付付きの旧番号は当時の記録。
@@ -101,6 +105,8 @@
 | 47 | [chronect-hub-mobility-partner-verification.html](../public/chronect-hub-mobility-partner-verification.html) | 東央モビリティサービスの検証記録 ｜ Chronect Hub | 正式社名検索。Chronect受領の東央検証結果と物品取扱い4工程。48の資料名を掲載。 |
 | 48 | [chronect-hub-subject-visits.html](../public/chronect-hub-subject-visits.html) | 試験対象者 訪問履歴一覧 ｜ Chronect Hub | 売却中の施設訪問をID別に表示。49の資料名を掲載。 |
 | 49 | [chronect-hub-subject-sessions.html](../public/chronect-hub-subject-sessions.html) | 試験対象・セッション対応表 ｜ Chronect Hub | IDと売却セッションの対応。43と照合し48へ戻る。 |
+| 50 | [chronect-hub-facility-management.html](../public/chronect-hub-facility-management.html) | 試験施設管理情報 ｜ Chronect Hub | 施設ID・運用区分の管理表。施設Cの大まかな配置と連続業務遂行評価。 |
+| 51 | [chronect-hub-continuous-work-record.html](../public/chronect-hub-continuous-work-record.html) | 連続業務遂行試験 実施記録 ｜ Chronect Hub | 9月17日のSUB-117が売却中に行った物品の照合・分類・運搬と次の指示への移行。 |
 | EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [chronect-search.html](../public/chronect-search.html) | 検索結果 ｜ Chronect | 独立ホワイトリスト検索。アーカイブ登録対象外。 |

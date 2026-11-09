@@ -11,7 +11,9 @@ const chronectHubDatabase = [
   {"keywords":["80574305-R04"],"title":"地域移動支援プログラム 評価基準資料","href":"chronect-hub-mobility-evaluation.html","description":"BASを用いた地域移動支援の認識・判断・身体動作・継続性に関する評価資料です。"},
   {"keywords":["東央モビリティサービス株式会社"],"title":"東央モビリティサービスの検証記録","href":"chronect-hub-mobility-partner-verification.html","description":"BASの安全基準・案内精度と、複数の動作や手順を伴う業務補助への応用を扱います。"},
   {"keywords":["試験対象者 訪問履歴一覧"],"title":"試験対象者 訪問履歴一覧","href":"chronect-hub-subject-visits.html","description":"BAS試験運用における施設訪問を、試験対象IDごとに整理した記録です。"},
-  {"keywords":["試験対象・セッション対応表"],"title":"試験対象・セッション対応表","href":"chronect-hub-subject-sessions.html","description":"試験対象IDとTIME BACKの売却セッション管理コードの対応を示します。"}
+  {"keywords":["試験対象・セッション対応表"],"title":"試験対象・セッション対応表","href":"chronect-hub-subject-sessions.html","description":"試験対象IDとTIME BACKの売却セッション管理コードの対応を示します。"},
+  {"keywords":["施設C"],"title":"試験施設管理情報","href":"chronect-hub-facility-management.html","description":"試験施設の識別子と運用区分を整理した管理資料です。"},
+  {"keywords":["連続業務"],"title":"連続業務遂行試験 実施記録","href":"chronect-hub-continuous-work-record.html","description":"試験対象者が実施した作業工程と評価項目の記録です。"}
 ];
 
 function findChronectHubMaterials(query) {
