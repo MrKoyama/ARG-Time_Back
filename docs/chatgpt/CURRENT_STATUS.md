@@ -1,5 +1,9 @@
 # TIME BACK：制作進捗・検証状況
 
+## 2026-11-09 試験施設の全国分散（FACILITY-REGIONAL-v1）
+
+No.48とNo.50を更新。施設Aは東北地方、施設Bは中部地方、施設Dは九州地方。施設Cのみ明浜地区の既存位置。 SUB-126の2026年9月18日14:42の訪問先を施設Cから施設Dへ変更。対応する管理コードTB-260918-3906、訪問日時、IDは従来どおり。 No.1〜51・上限120。No.49・51の対応表・個別試験記録は維持。
+
 ## 2026-11-09 施設C調査編（FACILITY-C-v1）
 
 現行アーカイブは1〜51の51件、上限120、未割当52〜120。公開HTML70件（登録51、対象外ニュース12、対象外Hub要旨2、検索EX4、旧URL転送1）。 まつだ編は作者判断で一区切り。作者報告によれば友人のプレイでNo.49到達を確認した。理解度と全経路の再現性は未確認。施設C調査編の次はChronectの事業構造を調べる方針で、具体的なページ・解法は未確定。 Hub検索は13資料。No.48の識別子「施設C」をHubで完全一致検索するとNo.50へ。No.50の運用区分「連続業務遂行評価」から「連続業務」を入力するとNo.51へ。No.34の照合を必要とするロックや、資料名の案内・強調を追加しない。 [正本04](../04-page-inventory.md)・[正本09](../09-search-and-links.md) 以下の日付付き節は制作履歴。
@@ -103,9 +107,9 @@ Hubは既存6資料＋今回3資料＝9資料。新59分類一覧、新60地域�
 | 45 | 資料識別番号・分類コード一覧 ｜ Chronect Hub | [`chronect-hub-document-codes.html`](../../public/chronect-hub-document-codes.html) | 8桁の資料管理単位番号と、実施概要・安全管理・行動記録・評価資料を表すR01〜R04の分類表。 |
 | 46 | 地域移動支援プログラム 評価基準資料 ｜ Chronect Hub | [`chronect-hub-mobility-evaluation.html`](../../public/chronect-hub-mobility-evaluation.html) | 資料識別番号80574305-R04。BASによる地域移動支援を環境認識、行動判断、身体動作、継続性で評価する基準。 |
 | 47 | 東央モビリティサービスの検証記録 ｜ Chronect Hub | [`chronect-hub-mobility-partner-verification.html`](../../public/chronect-hub-mobility-partner-verification.html) | 東央が実施し、Chronectが整理したBAS検証記録。移動、物品の受け取り、確認、運搬の4工程を掲載。 |
-| 48 | 試験対象者 訪問履歴一覧 ｜ Chronect Hub | [`chronect-hub-subject-visits.html`](../../public/chronect-hub-subject-visits.html) | 4人の試験対象IDについて、売却セッション中の施設訪問を各2件掲載。 |
+| 48 | 試験対象者 訪問履歴一覧 ｜ Chronect Hub | [`chronect-hub-subject-visits.html`](../../public/chronect-hub-subject-visits.html) | 4人の試験対象IDについて、売却セッション中に各自同じ施設を訪れた記録を各2件掲載。 |
 | 49 | 試験対象・セッション対応表 ｜ Chronect Hub | [`chronect-hub-subject-sessions.html`](../../public/chronect-hub-subject-sessions.html) | 試験対象ID、実施日、売却セッション管理コードの対応表。No.43のコードと照合し、No.48で反復訪問を確認する。 |
-| 50 | 試験施設管理情報 ｜ Chronect Hub | [chronect-hub-facility-management.html](../../public/chronect-hub-facility-management.html) | 施設A〜Dの運用区分と概略配置を掲載。施設Cの連続業務遂行評価と地図照合を維持。 |
+| 50 | 試験施設管理情報 ｜ Chronect Hub | [chronect-hub-facility-management.html](../../public/chronect-hub-facility-management.html) | 施設A〜Dの運用区分と概略配置。Aは東北、Bは中部、Dは九州。Cは明浜の連続業務遂行評価。 |
 | 51 | 連続業務遂行試験 実施記録 ｜ Chronect Hub | [chronect-hub-continuous-work-record.html](../../public/chronect-hub-continuous-work-record.html) | 9月17日のSUB-117が売却中に行った物品の照合・分類・運搬と次の指示への移行。 |
 
 直前のNo.1〜42は同番号。セッション運用記録は旧45→現43、旧54〜59は現44〜49。旧43・44はHub要旨、旧46〜53は一覧外ニュースとして登録解除済み。現在も公開ファイルと既存の検索・リンクから閲覧できる。ニュース一覧外12件と対応Hub要旨2件、検索結果4件、旧夢記事URL転送1件はアーカイブ非登録。
