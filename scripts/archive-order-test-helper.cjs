@@ -47,7 +47,7 @@ function canonicalPublic(name,current){
 // Preserve the immutable 2026-10-30 fixtures. Validate and remove only the later
 // approved additive changes before running the original regression meanings.
 const livingEntry={number:58,old:58,href:'chronect-hub-research-continuous-action.html',title:'環境変化下における連続行動支援の評価 ｜ Chronect Hub'};
-const archiveVersion='20261109-facility-c-v1';
+const archiveVersion='20261111-bas-chapter3-v1';
 const facilitySearchEntries=[
   {
     "keywords": [
@@ -67,6 +67,49 @@ const facilitySearchEntries=[
   }
 ];
 const facilityEntries=facilitySearchEntries.map((entry,index)=>({number:50+index,previousNumber:50+index,href:entry.href,title:entry.title+' ｜ Chronect Hub'}));
+const chapterSearchEntries=[
+  {
+    "keywords": [
+      "通常運用"
+    ],
+    "title": "BAS通常運用条件一覧",
+    "href": "chronect-hub-bas-operation-conditions.html",
+    "description": "休息時・危険時・習慣動作・緊急停止時の支援条件を整理した資料です。"
+  },
+  {
+    "keywords": [
+      "複合動作"
+    ],
+    "title": "BAS複合動作評価記録",
+    "href": "chronect-hub-bas-composite-evaluation.html",
+    "description": "複数の支援機能を組み合わせた場合の評価条件と観測項目を示します。"
+  },
+  {
+    "keywords": [
+      "タスク切替"
+    ],
+    "title": "行動支援タスクの切替条件",
+    "href": "chronect-hub-bas-task-switching.html",
+    "description": "状況に応じた動作調整と作業工程の切替条件を整理した資料です。"
+  },
+  {
+    "keywords": [
+      "58241309-R04"
+    ],
+    "title": "売却セッション動作区分 照合記録",
+    "href": "chronect-hub-session-action-comparison.html",
+    "description": "売却セッション中の動作と通常運用条件の照合結果です。"
+  },
+  {
+    "keywords": [
+      "58241310-R03"
+    ],
+    "title": "BASタスク起点 照合記録",
+    "href": "chronect-hub-task-origin-record.html",
+    "description": "タスク実行時の記録から、動作の起点と受理の区分を抜粋しています。"
+  }
+];
+const chapterEntries=chapterSearchEntries.map((entry,index)=>({number:52+index,previousNumber:52+index,href:entry.href,title:entry.title+' ｜ Chronect Hub'}));
 const excludedNumbers=new Set([43,44,46,47,48,49,50,51,52,53,54,55,56,57]);
 const compactNumber=number=>number-[...excludedNumbers].filter(excluded=>excluded<number).length;
 
@@ -74,8 +117,8 @@ function withoutArchivePruning(name,source,frozenSource){
   const mid=require('./midroute-test-helper.cjs');
   const priorEntries=[...entries,livingEntry,...mid.entries];
   const byPriorHref=new Map(priorEntries.map(entry=>[entry.href,entry]));
-  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261109-facility-c-v1/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261109-facility-c-v1/g,'chronect-hub.js?v='+mid.cacheVersion);
-  if(name==='public/chronect-hub.js')for(const entry of facilitySearchEntries){
+  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261111-bas-chapter3-v1/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261111-bas-chapter3-v1/g,'chronect-hub.js?v='+mid.cacheVersion);
+  if(name==='public/chronect-hub.js')for(const entry of [...facilitySearchEntries,...chapterSearchEntries]){
     const addition=',\n  '+JSON.stringify(entry);
     assert.equal(result.split(addition).length,2,name+' facility search record');
     result=result.replace(addition,'');
@@ -92,8 +135,13 @@ function withoutArchivePruning(name,source,frozenSource){
       return start+entry.number+' / 120'+end;
     });
   }
+  if(name==='public/behavior-assistance.html'){
+    const clue='通常運用での支援内容や利用可能時間は';
+    assert.equal(result.split(clue).length,2,name+' chapter clue');
+    result=result.replace(clue,'支援内容や利用可能時間は');
+  }
   if(!result.includes('archiveTitleByNumber'))return result;
-  const active=[...priorEntries.filter(e=>!excludedNumbers.has(e.number)).map(e=>({...e,number:compactNumber(e.number)})),...facilityEntries];
+  const active=[...priorEntries.filter(e=>!excludedNumbers.has(e.number)).map(e=>({...e,number:compactNumber(e.number)})),...facilityEntries,...chapterEntries];
   result=result.replace(/(\barchiveTitleByNumber\s*=\s*)(\{[^{}]*\})/,(_,prefix,json)=>{
     assert.deepEqual(JSON.parse(json),Object.fromEntries(active.map(e=>[e.number,e.title])),name+' compact titles');
     return prefix+JSON.stringify(Object.fromEntries(priorEntries.map(e=>[e.number,e.title])));
@@ -155,7 +203,7 @@ function legacyTestSource(name){
 }
 function assertLegacyTestCode(name){assert.equal(fs.readFileSync(path.join(root,name),'utf8'),legacyTestSource(name),name+' exceeds legacy bridge insertion');}
 const legacyFs=Object.create(fs);
-legacyFs.readdirSync=function(dir,options){const rows=fs.readdirSync(dir,options);const added=new Set([livingEntry.href,...require('./midroute-test-helper.cjs').entries.map(e=>e.href),...facilityEntries.map(e=>e.href)]);return path.resolve(String(dir))===path.join(root,'public')?rows.filter(row=>!added.has(typeof row==='string'?row:row.name)):rows;};
+legacyFs.readdirSync=function(dir,options){const rows=fs.readdirSync(dir,options);const added=new Set([livingEntry.href,...require('./midroute-test-helper.cjs').entries.map(e=>e.href),...facilityEntries.map(e=>e.href),...chapterEntries.map(e=>e.href)]);return path.resolve(String(dir))===path.join(root,'public')?rows.filter(row=>!added.has(typeof row==='string'?row:row.name)):rows;};
 legacyFs.readFileSync=function(file,options){
   const resolved=path.resolve(String(file)),relative=path.relative(root,resolved).split(path.sep).join('/');
   const value=fs.readFileSync(file,options);
@@ -163,4 +211,4 @@ legacyFs.readFileSync=function(file,options){
   const canonical=canonicalPublic(relative,value);
   return typeof value==='string'?canonical.toString(typeof options==='string'?options:options?.encoding||'utf8'):canonical;
 };
-module.exports={root,baseline,order,entries,byHref,owned,cacheVersion,forwardPublic,canonicalPublic,legacyFs,legacyTestSource,assertLegacyTestCode,sha,livingEntry,livingSearchEntry,livingParagraph,archiveVersion,excludedNumbers,compactNumber,facilityEntries,facilitySearchEntries};
+module.exports={root,baseline,order,entries,byHref,owned,cacheVersion,forwardPublic,canonicalPublic,legacyFs,legacyTestSource,assertLegacyTestCode,sha,livingEntry,livingSearchEntry,livingParagraph,archiveVersion,excludedNumbers,compactNumber,facilityEntries,facilitySearchEntries,chapterEntries,chapterSearchEntries};
