@@ -28,5 +28,5 @@ assert.equal(context.find(' tb-260917-4826 ')[0].href,'chronect-hub-session.html
 for(const name of ['chronect-hub-research-20251105.html','chronect-hub-session.html','index.html','memo-timeback-review.html','chronect-research.html','chronect-news-20250924.html','chronect-news-20260418.html','chronect-news-20260714.html'])bridge.canonicalPublic('public/'+name,fs.readFileSync(path.join(bridge.root,'public',name)));
 assert(!read('chronect-hub-session.html').includes('href="business-demonstration.html"'));
 assert(read('chronect-hub-search.html').includes('data-page-archive="exclude"'));
-assert(read('chronect-hub-search.html').includes('chronect-hub.js?v=20261111-bas-chapter3-v1'));
+assert(read('chronect-hub-search.html').includes('chronect-hub.js?v=20261111-no56-rule-v1'));
 console.log('PASS LIVING ROUTE: exact approved manuscript/No.58, public disclosure limits, No.34 paragraph, '+queries+' search fixtures, original five records unchanged, No.44 held and protected story pages unchanged.');

@@ -17,8 +17,8 @@ const chronectHubDatabase = [
   {"keywords":["通常運用"],"title":"BAS通常運用条件一覧","href":"chronect-hub-bas-operation-conditions.html","description":"休息時・危険時・習慣動作・緊急停止時の支援条件を整理した資料です。"},
   {"keywords":["複合動作"],"title":"BAS複合動作評価記録","href":"chronect-hub-bas-composite-evaluation.html","description":"複数の支援機能を組み合わせた場合の評価条件と観測項目を示します。"},
   {"keywords":["タスク切替"],"title":"行動支援タスクの切替条件","href":"chronect-hub-bas-task-switching.html","description":"状況に応じた動作調整と作業工程の切替条件を整理した資料です。"},
-  {"keywords":["58241309-R04"],"title":"売却セッション動作区分 照合記録","href":"chronect-hub-session-action-comparison.html","description":"売却セッション中の動作と通常運用条件の照合結果です。"},
-  {"keywords":["58241310-R03"],"title":"BASタスク起点 照合記録","href":"chronect-hub-task-origin-record.html","description":"タスク実行時の記録から、動作の起点と受理の区分を抜粋しています。"}
+  {"keywords":["58251309-R04"],"title":"売却セッション動作区分 照合記録","href":"chronect-hub-session-action-comparison.html","description":"売却セッション中の動作と通常運用条件の照合結果です。"},
+  {"keywords":["58251310-R03"],"title":"BASタスク起点 照合記録","href":"chronect-hub-task-origin-record.html","description":"タスク実行時の記録から、動作の起点と受理の区分を抜粋しています。"}
 ];
 
 function findChronectHubMaterials(query) {

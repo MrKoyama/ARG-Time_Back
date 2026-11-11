@@ -117,8 +117,8 @@ Hubは既存6資料＋今回3資料＝9資料。新59分類一覧、新60地域�
 | 51 | 連続業務遂行試験 実施記録 ｜ Chronect Hub | [chronect-hub-continuous-work-record.html](../../public/chronect-hub-continuous-work-record.html) | 9月17日のSUB-117が売却中に行った物品の照合・分類・運搬と次の指示への移行。 |
 | 52 | BAS通常運用条件一覧 ｜ Chronect Hub | [chronect-hub-bas-operation-conditions.html](../../public/chronect-hub-bas-operation-conditions.html) | 安全な休息中の非開始、危険時・習慣動作の補助、緊急停止の通常条件。 |
 | 53 | BAS複合動作評価記録 ｜ Chronect Hub | [chronect-hub-bas-composite-evaluation.html](../../public/chronect-hub-bas-composite-evaluation.html) | 物品識別、経路調整、途中の条件変更、次工程移行を連携させる評価条件と観測項目。 |
-| 54 | 行動支援タスクの切替条件 ｜ Chronect Hub | [chronect-hub-bas-task-switching.html](../../public/chronect-hub-bas-task-switching.html) | 障害物や識別失敗への対応と工程切替。作業方法の判断とタスク目的の指定を区別する。 |
-| 55 | 売却セッション動作区分 照合記録 ｜ Chronect Hub | [chronect-hub-session-action-comparison.html](../../public/chronect-hub-session-action-comparison.html) | SUB-117の2026年9月17日の記録を通常運用と照合。安全確保・習慣動作だけでは開始を説明しにくいことを示す。 |
+| 54 | 行動支援タスクの切替条件 ｜ Chronect Hub | [chronect-hub-bas-task-switching.html](../../public/chronect-hub-bas-task-switching.html) | 障害物や識別失敗への対応と工程切替。作業方法の判断とタスク目的の指定を区別し、動作区分評価資料に限る管理単位の変換規則を示す。 |
+| 55 | 売却セッション動作区分 照合記録 ｜ Chronect Hub | [chronect-hub-session-action-comparison.html](../../public/chronect-hub-session-action-comparison.html) | 資料識別番号 `58251309-R04`。SUB-117の2026年9月17日の記録を通常運用と照合。安全確保・習慣動作だけでは開始を説明しにくいことを示す。 |
 | 56 | BASタスク起点 照合記録 ｜ Chronect Hub | [chronect-hub-task-origin-record.html](../../public/chronect-hub-task-origin-record.html) | 同一セッションの移動・作業の起点が、認証済みとして処理された外部指示だったことを示す。 |
 
 直前のNo.1〜42は同番号。セッション運用記録は旧45→現43、旧54〜59は現44〜49。旧43・44はHub要旨、旧46〜53は一覧外ニュースとして登録解除済み。現在も公開ファイルと既存の検索・リンクから閲覧できる。ニュース一覧外12件と対応Hub要旨2件、検索結果4件、旧夢記事URL転送1件はアーカイブ非登録。

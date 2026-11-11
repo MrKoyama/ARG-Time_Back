@@ -94,7 +94,7 @@ const chapterSearchEntries=[
   },
   {
     "keywords": [
-      "58241309-R04"
+      "58251309-R04"
     ],
     "title": "売却セッション動作区分 照合記録",
     "href": "chronect-hub-session-action-comparison.html",
@@ -102,7 +102,7 @@ const chapterSearchEntries=[
   },
   {
     "keywords": [
-      "58241310-R03"
+      "58251310-R03"
     ],
     "title": "BASタスク起点 照合記録",
     "href": "chronect-hub-task-origin-record.html",
@@ -117,7 +117,7 @@ function withoutArchivePruning(name,source,frozenSource){
   const mid=require('./midroute-test-helper.cjs');
   const priorEntries=[...entries,livingEntry,...mid.entries];
   const byPriorHref=new Map(priorEntries.map(entry=>[entry.href,entry]));
-  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261111-bas-chapter3-v1/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261111-bas-chapter3-v1/g,'chronect-hub.js?v='+mid.cacheVersion);
+  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261111-bas-chapter3-v1/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261111-(?:bas-chapter3-v1|no56-rule-v1)/g,'chronect-hub.js?v='+mid.cacheVersion);
   if(name==='public/chronect-hub.js')for(const entry of [...facilitySearchEntries,...chapterSearchEntries]){
     const addition=',\n  '+JSON.stringify(entry);
     assert.equal(result.split(addition).length,2,name+' facility search record');

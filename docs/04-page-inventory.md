@@ -113,8 +113,8 @@
 | 51 | [chronect-hub-continuous-work-record.html](../public/chronect-hub-continuous-work-record.html) | 連続業務遂行試験 実施記録 ｜ Chronect Hub | 9月17日のSUB-117が売却中に行った物品の照合・分類・運搬と次の指示への移行。 |
 | 52 | [chronect-hub-bas-operation-conditions.html](../public/chronect-hub-bas-operation-conditions.html) | BAS通常運用条件一覧 ｜ Chronect Hub | 安全な休息中の非開始、危険時・習慣動作の補助、緊急停止の通常条件。 |
 | 53 | [chronect-hub-bas-composite-evaluation.html](../public/chronect-hub-bas-composite-evaluation.html) | BAS複合動作評価記録 ｜ Chronect Hub | 物品識別、経路調整、途中の条件変更、次工程移行を連携させる評価条件と観測項目。 |
-| 54 | [chronect-hub-bas-task-switching.html](../public/chronect-hub-bas-task-switching.html) | 行動支援タスクの切替条件 ｜ Chronect Hub | 障害物や識別失敗への対応と工程切替。作業方法の判断とタスク目的の指定を区別する。 |
-| 55 | [chronect-hub-session-action-comparison.html](../public/chronect-hub-session-action-comparison.html) | 売却セッション動作区分 照合記録 ｜ Chronect Hub | SUB-117の2026年9月17日の記録を通常運用と照合。安全確保・習慣動作だけでは開始を説明しにくいことを示す。 |
+| 54 | [chronect-hub-bas-task-switching.html](../public/chronect-hub-bas-task-switching.html) | 行動支援タスクの切替条件 ｜ Chronect Hub | 障害物や識別失敗への対応と工程切替。作業方法の判断とタスク目的の指定を区別し、動作区分評価資料に限る管理単位の変換規則を示す。 |
+| 55 | [chronect-hub-session-action-comparison.html](../public/chronect-hub-session-action-comparison.html) | 売却セッション動作区分 照合記録 ｜ Chronect Hub | 資料識別番号 `58251309-R04`。SUB-117の2026年9月17日の記録を通常運用と照合。安全確保・習慣動作だけでは開始を説明しにくいことを示す。 |
 | 56 | [chronect-hub-task-origin-record.html](../public/chronect-hub-task-origin-record.html) | BASタスク起点 照合記録 ｜ Chronect Hub | 同一セッションの移動・作業の起点が、認証済みとして処理された外部指示だったことを示す。 |
 | EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
