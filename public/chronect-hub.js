@@ -23,7 +23,11 @@ const chronectHubDatabase = [
   {"keywords":["売却処理"],"title":"売却セッション処理記録","href":"chronect-hub-sale-processing.html","description":"売却セッションの開始から実績確定までの処理を整理した資料です。"},
   {"keywords":["購入セッション"],"title":"購入セッション動作評価","href":"chronect-hub-purchase-evaluation.html","description":"購入セッション中の活動量と利用倍率を扱う評価資料です。"},
   {"keywords":["清算対応"],"title":"売買セッション清算対応表","href":"chronect-hub-settlement-mapping.html","description":"売却実績・購入予約・購入実績と清算記録の対応を整理した資料です。"},
-  {"keywords":["系統間照合"],"title":"売買処理系統 接続検証記録","href":"chronect-hub-processing-connections.html","description":"売却・購入・プール管理の処理系統間の接続を検証した記録です。"}
+  {"keywords":["系統間照合"],"title":"売買処理系統 接続検証記録","href":"chronect-hub-processing-connections.html","description":"売却・購入・プール管理の処理系統間の接続を検証した記録です。"},
+  {"keywords":["資料参照区分"],"title":"Chronect Hub 資料参照区分","href":"chronect-hub-reference-class.html","description":"公開研究要旨と限定保存資料の参照区分を示します。"},
+  {"keywords":["参照対応"],"title":"限定資料 参照対応記録","href":"chronect-hub-reference-mapping.html","description":"保存済みの限定資料と参照語の対応を記録しています。"},
+  {"keywords":["保守経路"],"title":"検索基盤 保守経路記録","href":"chronect-hub-maintenance-route.html","description":"資料の参照状態を確認するための保守記録です。"},
+  {"keywords":["検索基盤担当"],"title":"検索基盤 担当者履歴","href":"chronect-hub-search-staff.html","description":"Web・検索基盤の担当領域と業務の履歴です。"}
 ];
 
 function findChronectHubMaterials(query) {

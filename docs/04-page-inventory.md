@@ -1,5 +1,10 @@
 # 実装済みページ一覧
 
+## 2026-11-13 第5章「高瀬悠真の調査」
+
+現行はアーカイブNo.1〜68、上限120、未割当69〜120。公開HTML87件（登録68、対象外ニュース12、対象外Hub要旨2、検索EX4、旧URL転送1）。Hub検索は27資料。 以下の過去節は制作当時の件数と番号。
+
+
 ## 2026-11-12 第4章「時間売買の真相」
 
 現行はアーカイブNo.1〜61、上限120、未割当62〜120。公開HTML80件（登録61、対象外ニュース12、対象外Hub要旨2、検索EX4、旧URL転送1）。Hub検索は23資料。 No.57〜61を追加。以下の過去節は制作当時の件数と番号。
@@ -125,6 +130,13 @@
 | 59 | [chronect-hub-purchase-evaluation.html](../public/chronect-hub-purchase-evaluation.html) | 購入セッション動作評価 ｜ Chronect Hub | 購入者自身の脳の活性化による活動量拡張と、倍率・消費・購入枠の扱い。 |
 | 60 | [chronect-hub-settlement-mapping.html](../public/chronect-hub-settlement-mapping.html) | 売買セッション清算対応表 ｜ Chronect Hub | 売却・購入の実績や予約と清算数量の対応、技術処理系の区分。 |
 | 61 | [chronect-hub-processing-connections.html](../public/chronect-hub-processing-connections.html) | 売買処理系統 接続検証記録 ｜ Chronect Hub | 全処理系の入出力と接続を検証し、売却系から購入側への時間移転経路が存在しないことを記録。 |
+| 62 | [chronect-hub-reference-class.html](../public/chronect-hub-reference-class.html) | Chronect Hub 資料参照区分 ｜ Chronect Hub | 公開研究要旨と限定保存資料の管理区分。参照対応と保守経路を示す。 |
+| 63 | [chronect-hub-reference-mapping.html](../public/chronect-hub-reference-mapping.html) | 限定資料 参照対応記録 ｜ Chronect Hub | 限定資料と参照語の対応。保守記録と外部の調査ノートへの接点。 |
+| 64 | [chronect-hub-maintenance-route.html](../public/chronect-hub-maintenance-route.html) | 検索基盤 保守経路記録 ｜ Chronect Hub | 限定資料の参照確認に使われた保守経路。担当履歴への手掛かり。 |
+| 65 | [chronect-hub-search-staff.html](../public/chronect-hub-search-staff.html) | 検索基盤 担当者履歴 ｜ Chronect Hub | 高瀬悠真の担当領域と外部参照記録との接点。 |
+| 66 | [takase-notes.html](../public/takase-notes.html) | 調査ノート ｜ 調査ノート | 高瀬の個人メモ。時間プールや売却中の身体行動への疑問。 |
+| 67 | [takase-records.html](../public/takase-records.html) | 資料照合記録 ｜ 調査ノート | 保存済み資料の参照対応を意図的に追加した本人記録。 |
+| 68 | [takase-handover.html](../public/takase-handover.html) | 調査を引き継ぐ人へ ｜ 調査ノート | 証拠の保存と独立した照合を将来の調査者に託す文章。 |
 | EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [chronect-search.html](../public/chronect-search.html) | 検索結果 ｜ Chronect | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
