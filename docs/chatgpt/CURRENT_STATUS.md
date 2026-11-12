@@ -124,7 +124,7 @@ Hubは既存6資料＋今回3資料＝9資料。新59分類一覧、新60地域�
 | 54 | 行動支援タスクの切替条件 ｜ Chronect Hub | [chronect-hub-bas-task-switching.html](../../public/chronect-hub-bas-task-switching.html) | 障害物や識別失敗への対応と工程切替。作業方法の判断とタスク目的の指定を区別し、動作区分評価資料に限る管理単位の変換規則を示す。 |
 | 55 | 売却セッション動作区分 照合記録 ｜ Chronect Hub | [chronect-hub-session-action-comparison.html](../../public/chronect-hub-session-action-comparison.html) | 資料識別番号 `58251309-R04`。SUB-117の2026年9月17日の記録を通常運用と照合。安全確保・習慣動作だけでは開始を説明しにくいことを示す。 |
 | 56 | BASタスク起点 照合記録 ｜ Chronect Hub | [chronect-hub-task-origin-record.html](../../public/chronect-hub-task-origin-record.html) | 同一セッションの移動・作業の起点が、認証済みとして処理された外部指示だったことを示す。 |
-| 57 | 時間プール計上基準 ｜ Chronect Hub | [chronect-hub-pool-accounting.html](../../public/chronect-hub-pool-accounting.html) | 売却計上、購入引当・消費、調整、残量の定義。予約・利用中・確定を区別。 |
+| 57 | 時間プール計上基準 ｜ Chronect Hub | [chronect-hub-pool-accounting.html](../../public/chronect-hub-pool-accounting.html) | 売却計上、購入引当・消費、調整、残量の定義。予約・利用中・確定を区別。検索語「プール計上」の主な手掛かりはNo.56、補助はNo.10。 |
 | 58 | 売却セッション処理記録 ｜ Chronect Hub | [chronect-hub-sale-processing.html](../../public/chronect-hub-sale-processing.html) | 売却者の状態・安全・BAS支援、覚醒、実績と報酬の確定を段階別に整理。 |
 | 59 | 購入セッション動作評価 ｜ Chronect Hub | [chronect-hub-purchase-evaluation.html](../../public/chronect-hub-purchase-evaluation.html) | 購入者自身の脳の活性化による活動量拡張と、倍率・消費・購入枠の扱い。 |
 | 60 | 売買セッション清算対応表 ｜ Chronect Hub | [chronect-hub-settlement-mapping.html](../../public/chronect-hub-settlement-mapping.html) | 売却・購入の実績や予約と清算数量の対応、技術処理系の区分。 |
