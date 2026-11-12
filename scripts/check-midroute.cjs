@@ -1,16 +1,16 @@
 // Current-code checks for the approved management-code route; no file writes.
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
 const mid=require('./midroute-test-helper.cjs');
-const {archiveVersion,compactNumber,facilitySearchEntries,chapterSearchEntries}=require('./archive-order-test-helper.cjs');
+const {archiveVersion,compactNumber,facilitySearchEntries,chapterSearchEntries,chapterFourSearchEntries}=require('./archive-order-test-helper.cjs');
 const root=path.resolve(__dirname,'..'),read=n=>fs.readFileSync(path.join(root,'public',n),'utf8');
 const src=read('chronect-hub.js'),context=vm.createContext({});
 vm.runInContext(src.slice(0,src.indexOf('const hubResultsContainer'))+';globalThis.db=chronectHubDatabase;globalThis.find=findChronectHubMaterials;',context);
-assert.equal(context.db.length,18);
+assert.equal(context.db.length,23);
 let queries=0;
 for(const e of context.db)for(const q of e.keywords){for(const text of [q,' '+q+' ',q.toLowerCase()]){assert.equal(context.find(text).length,1);assert.equal(context.find(text)[0].href,e.href);queries++;}}
 for(const q of ['58241309-R03','58241309-R04','58251309','58241310-R03','58251310-R04','58251310','80574305','80574305-R01','80574305-R02','80574305-R03','80574305-R04 extra','80574305－R04','80574305-R04。','資料分類コード','東央モビリティサービス','R04','生活','TB-260917','']){assert.equal(context.find(q).length,0,q);queries++;}
 for(let i=0;i<mid.searchEntries.length;i++)assert.deepEqual(JSON.parse(JSON.stringify(context.db[6+i])),mid.searchEntries[i]);
-assert.deepEqual(JSON.parse(JSON.stringify(context.db.slice(11))),[...facilitySearchEntries,...chapterSearchEntries]);
+assert.deepEqual(JSON.parse(JSON.stringify(context.db.slice(11))),[...facilitySearchEntries,...chapterSearchEntries,...chapterFourSearchEntries]);
 for(const query of ['施設','施設A','施設B','施設D','施設Ｃ','連続','連続業務遂行評価','試験施設管理情報','連続業務遂行試験 実施記録']){
   assert.equal(context.find(query).length,0,query);
   queries++;

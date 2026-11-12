@@ -1,5 +1,9 @@
 # 実装済みページ一覧
 
+## 2026-11-12 第4章「時間売買の真相」
+
+現行はアーカイブNo.1〜61、上限120、未割当62〜120。公開HTML80件（登録61、対象外ニュース12、対象外Hub要旨2、検索EX4、旧URL転送1）。Hub検索は23資料。 No.57〜61を追加。以下の過去節は制作当時の件数と番号。
+
 ## 2026-11-11 第3章「BASの能力と運用の異常」
 
 現行はアーカイブNo.1〜56、上限120、未割当57〜120。公開HTML75件（登録56、対象外ニュース12、対象外Hub要旨2、検索EX4、旧URL転送1）。Hub検索は18資料。 No.52〜56を追加。既存番号1〜51を維持。以下の過去節の件数・番号は当時の記録。
@@ -116,6 +120,11 @@
 | 54 | [chronect-hub-bas-task-switching.html](../public/chronect-hub-bas-task-switching.html) | 行動支援タスクの切替条件 ｜ Chronect Hub | 障害物や識別失敗への対応と工程切替。作業方法の判断とタスク目的の指定を区別し、動作区分評価資料に限る管理単位の変換規則を示す。 |
 | 55 | [chronect-hub-session-action-comparison.html](../public/chronect-hub-session-action-comparison.html) | 売却セッション動作区分 照合記録 ｜ Chronect Hub | 資料識別番号 `58251309-R04`。SUB-117の2026年9月17日の記録を通常運用と照合。安全確保・習慣動作だけでは開始を説明しにくいことを示す。 |
 | 56 | [chronect-hub-task-origin-record.html](../public/chronect-hub-task-origin-record.html) | BASタスク起点 照合記録 ｜ Chronect Hub | 同一セッションの移動・作業の起点が、認証済みとして処理された外部指示だったことを示す。 |
+| 57 | [chronect-hub-pool-accounting.html](../public/chronect-hub-pool-accounting.html) | 時間プール計上基準 ｜ Chronect Hub | 売却計上、購入引当・消費、調整、残量の定義。予約・利用中・確定を区別。 |
+| 58 | [chronect-hub-sale-processing.html](../public/chronect-hub-sale-processing.html) | 売却セッション処理記録 ｜ Chronect Hub | 売却者の状態・安全・BAS支援、覚醒、実績と報酬の確定を段階別に整理。 |
+| 59 | [chronect-hub-purchase-evaluation.html](../public/chronect-hub-purchase-evaluation.html) | 購入セッション動作評価 ｜ Chronect Hub | 購入者自身の脳の活性化による活動量拡張と、倍率・消費・購入枠の扱い。 |
+| 60 | [chronect-hub-settlement-mapping.html](../public/chronect-hub-settlement-mapping.html) | 売買セッション清算対応表 ｜ Chronect Hub | 売却・購入の実績や予約と清算数量の対応、技術処理系の区分。 |
+| 61 | [chronect-hub-processing-connections.html](../public/chronect-hub-processing-connections.html) | 売買処理系統 接続検証記録 ｜ Chronect Hub | 全処理系の入出力と接続を検証し、売却系から購入側への時間移転経路が存在しないことを記録。 |
 | EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [chronect-search.html](../public/chronect-search.html) | 検索結果 ｜ Chronect | 独立ホワイトリスト検索。アーカイブ登録対象外。 |

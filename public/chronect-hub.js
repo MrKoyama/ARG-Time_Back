@@ -18,7 +18,12 @@ const chronectHubDatabase = [
   {"keywords":["複合動作"],"title":"BAS複合動作評価記録","href":"chronect-hub-bas-composite-evaluation.html","description":"複数の支援機能を組み合わせた場合の評価条件と観測項目を示します。"},
   {"keywords":["タスク切替"],"title":"行動支援タスクの切替条件","href":"chronect-hub-bas-task-switching.html","description":"状況に応じた動作調整と作業工程の切替条件を整理した資料です。"},
   {"keywords":["58251309-R04"],"title":"売却セッション動作区分 照合記録","href":"chronect-hub-session-action-comparison.html","description":"売却セッション中の動作と通常運用条件の照合結果です。"},
-  {"keywords":["58251310-R03"],"title":"BASタスク起点 照合記録","href":"chronect-hub-task-origin-record.html","description":"タスク実行時の記録から、動作の起点と受理の区分を抜粋しています。"}
+  {"keywords":["58251310-R03"],"title":"BASタスク起点 照合記録","href":"chronect-hub-task-origin-record.html","description":"タスク実行時の記録から、動作の起点と受理の区分を抜粋しています。"},
+  {"keywords":["プール計上"],"title":"時間プール計上基準","href":"chronect-hub-pool-accounting.html","description":"売却・購入に関する数量の計上項目と管理状態を整理した資料です。"},
+  {"keywords":["売却処理"],"title":"売却セッション処理記録","href":"chronect-hub-sale-processing.html","description":"売却セッションの開始から実績確定までの処理を整理した資料です。"},
+  {"keywords":["購入セッション"],"title":"購入セッション動作評価","href":"chronect-hub-purchase-evaluation.html","description":"購入セッション中の活動量と利用倍率を扱う評価資料です。"},
+  {"keywords":["清算対応"],"title":"売買セッション清算対応表","href":"chronect-hub-settlement-mapping.html","description":"売却実績・購入予約・購入実績と清算記録の対応を整理した資料です。"},
+  {"keywords":["系統間照合"],"title":"売買処理系統 接続検証記録","href":"chronect-hub-processing-connections.html","description":"売却・購入・プール管理の処理系統間の接続を検証した記録です。"}
 ];
 
 function findChronectHubMaterials(query) {

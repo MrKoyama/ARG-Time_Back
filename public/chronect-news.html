@@ -62,6 +62,6 @@
     function filterNews(){let count=0;newsItems.forEach(item=>{const visible=(activeCategory==='all'||item.dataset.category===activeCategory)&&(yearSelect.value==='all'||item.dataset.year===yearSelect.value);item.hidden=!visible;if(visible)count+=1});visibleCount.textContent=String(count);emptyMessage.hidden=count!==0}
     filterButtons.forEach(button=>button.addEventListener('click',()=>{activeCategory=button.dataset.filter;filterButtons.forEach(item=>{const active=item===button;item.classList.toggle('is-active',active);item.setAttribute('aria-pressed',String(active))});filterNews()}));yearSelect.addEventListener('change',filterNews);
   </script>
-  <script src="chronect-shared.js?v=20261111-bas-chapter3-v1"></script>
+  <script src="chronect-shared.js?v=20261112-chapter4-v1"></script>
 </body>
 </html>

@@ -47,7 +47,7 @@ function canonicalPublic(name,current){
 // Preserve the immutable 2026-10-30 fixtures. Validate and remove only the later
 // approved additive changes before running the original regression meanings.
 const livingEntry={number:58,old:58,href:'chronect-hub-research-continuous-action.html',title:'環境変化下における連続行動支援の評価 ｜ Chronect Hub'};
-const archiveVersion='20261111-bas-chapter3-v1';
+const archiveVersion='20261112-chapter4-v1';
 const facilitySearchEntries=[
   {
     "keywords": [
@@ -110,6 +110,49 @@ const chapterSearchEntries=[
   }
 ];
 const chapterEntries=chapterSearchEntries.map((entry,index)=>({number:52+index,previousNumber:52+index,href:entry.href,title:entry.title+' ｜ Chronect Hub'}));
+const chapterFourSearchEntries=[
+  {
+    "keywords": [
+      "プール計上"
+    ],
+    "title": "時間プール計上基準",
+    "href": "chronect-hub-pool-accounting.html",
+    "description": "売却・購入に関する数量の計上項目と管理状態を整理した資料です。"
+  },
+  {
+    "keywords": [
+      "売却処理"
+    ],
+    "title": "売却セッション処理記録",
+    "href": "chronect-hub-sale-processing.html",
+    "description": "売却セッションの開始から実績確定までの処理を整理した資料です。"
+  },
+  {
+    "keywords": [
+      "購入セッション"
+    ],
+    "title": "購入セッション動作評価",
+    "href": "chronect-hub-purchase-evaluation.html",
+    "description": "購入セッション中の活動量と利用倍率を扱う評価資料です。"
+  },
+  {
+    "keywords": [
+      "清算対応"
+    ],
+    "title": "売買セッション清算対応表",
+    "href": "chronect-hub-settlement-mapping.html",
+    "description": "売却実績・購入予約・購入実績と清算記録の対応を整理した資料です。"
+  },
+  {
+    "keywords": [
+      "系統間照合"
+    ],
+    "title": "売買処理系統 接続検証記録",
+    "href": "chronect-hub-processing-connections.html",
+    "description": "売却・購入・プール管理の処理系統間の接続を検証した記録です。"
+  }
+];
+const chapterFourEntries=chapterFourSearchEntries.map((entry,index)=>({number:57+index,previousNumber:57+index,href:entry.href,title:entry.title+' ｜ Chronect Hub'}));
 const excludedNumbers=new Set([43,44,46,47,48,49,50,51,52,53,54,55,56,57]);
 const compactNumber=number=>number-[...excludedNumbers].filter(excluded=>excluded<number).length;
 
@@ -117,8 +160,8 @@ function withoutArchivePruning(name,source,frozenSource){
   const mid=require('./midroute-test-helper.cjs');
   const priorEntries=[...entries,livingEntry,...mid.entries];
   const byPriorHref=new Map(priorEntries.map(entry=>[entry.href,entry]));
-  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261111-bas-chapter3-v1/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261111-(?:bas-chapter3-v1|no56-rule-v1)/g,'chronect-hub.js?v='+mid.cacheVersion);
-  if(name==='public/chronect-hub.js')for(const entry of [...facilitySearchEntries,...chapterSearchEntries]){
+  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261112-chapter4-v1/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261112-chapter4-v1/g,'chronect-hub.js?v='+mid.cacheVersion);
+  if(name==='public/chronect-hub.js')for(const entry of [...facilitySearchEntries,...chapterSearchEntries,...chapterFourSearchEntries]){
     const addition=',\n  '+JSON.stringify(entry);
     assert.equal(result.split(addition).length,2,name+' facility search record');
     result=result.replace(addition,'');
@@ -140,8 +183,17 @@ function withoutArchivePruning(name,source,frozenSource){
     assert.equal(result.split(clue).length,2,name+' chapter clue');
     result=result.replace(clue,'支援内容や利用可能時間は');
   }
+  const chapterFourClues={
+    'public/about.html':['購入セッションでは、TIME BACK MARKETの時間プールから購入時間を受け取り、設定した時間反映倍率で日常へ重ねて利用できます。','TIME BACK MARKETの時間プールから購入時間を受け取り、設定した時間反映倍率で日常へ重ねて利用。'],
+    'public/market.html':['<span>プール計上の区分に基づく集計</span>','']
+  };
+  const clue=chapterFourClues[name];
+  if(clue){
+    assert.equal(result.split(clue[0]).length,2,name+' chapter four clue');
+    result=result.replace(clue[0],clue[1]);
+  }
   if(!result.includes('archiveTitleByNumber'))return result;
-  const active=[...priorEntries.filter(e=>!excludedNumbers.has(e.number)).map(e=>({...e,number:compactNumber(e.number)})),...facilityEntries,...chapterEntries];
+  const active=[...priorEntries.filter(e=>!excludedNumbers.has(e.number)).map(e=>({...e,number:compactNumber(e.number)})),...facilityEntries,...chapterEntries,...chapterFourEntries];
   result=result.replace(/(\barchiveTitleByNumber\s*=\s*)(\{[^{}]*\})/,(_,prefix,json)=>{
     assert.deepEqual(JSON.parse(json),Object.fromEntries(active.map(e=>[e.number,e.title])),name+' compact titles');
     return prefix+JSON.stringify(Object.fromEntries(priorEntries.map(e=>[e.number,e.title])));
@@ -203,7 +255,7 @@ function legacyTestSource(name){
 }
 function assertLegacyTestCode(name){assert.equal(fs.readFileSync(path.join(root,name),'utf8'),legacyTestSource(name),name+' exceeds legacy bridge insertion');}
 const legacyFs=Object.create(fs);
-legacyFs.readdirSync=function(dir,options){const rows=fs.readdirSync(dir,options);const added=new Set([livingEntry.href,...require('./midroute-test-helper.cjs').entries.map(e=>e.href),...facilityEntries.map(e=>e.href),...chapterEntries.map(e=>e.href)]);return path.resolve(String(dir))===path.join(root,'public')?rows.filter(row=>!added.has(typeof row==='string'?row:row.name)):rows;};
+legacyFs.readdirSync=function(dir,options){const rows=fs.readdirSync(dir,options);const added=new Set([livingEntry.href,...require('./midroute-test-helper.cjs').entries.map(e=>e.href),...facilityEntries.map(e=>e.href),...chapterEntries.map(e=>e.href),...chapterFourEntries.map(e=>e.href)]);return path.resolve(String(dir))===path.join(root,'public')?rows.filter(row=>!added.has(typeof row==='string'?row:row.name)):rows;};
 legacyFs.readFileSync=function(file,options){
   const resolved=path.resolve(String(file)),relative=path.relative(root,resolved).split(path.sep).join('/');
   const value=fs.readFileSync(file,options);
@@ -211,4 +263,4 @@ legacyFs.readFileSync=function(file,options){
   const canonical=canonicalPublic(relative,value);
   return typeof value==='string'?canonical.toString(typeof options==='string'?options:options?.encoding||'utf8'):canonical;
 };
-module.exports={root,baseline,order,entries,byHref,owned,cacheVersion,forwardPublic,canonicalPublic,legacyFs,legacyTestSource,assertLegacyTestCode,sha,livingEntry,livingSearchEntry,livingParagraph,archiveVersion,excludedNumbers,compactNumber,facilityEntries,facilitySearchEntries,chapterEntries,chapterSearchEntries};
+module.exports={root,baseline,order,entries,byHref,owned,cacheVersion,forwardPublic,canonicalPublic,legacyFs,legacyTestSource,assertLegacyTestCode,sha,livingEntry,livingSearchEntry,livingParagraph,archiveVersion,excludedNumbers,compactNumber,facilityEntries,facilitySearchEntries,chapterEntries,chapterSearchEntries,chapterFourEntries,chapterFourSearchEntries};
