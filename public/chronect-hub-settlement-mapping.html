@@ -21,7 +21,7 @@
     <header class="hub-page-heading"><h1>売買セッション清算対応表</h1><p>Chronect Hubに収録された情報を検索・閲覧できます。</p></header>
     <article class="hub-document" aria-labelledby="document-heading">
       <h2 id="document-heading">清算に用いる記録の対応</h2>
-      <p>売却実績、購入予約、購入実績を、それぞれ清算時に参照する管理情報に対応付けます。売却者と購入者を個別に対応付ける方式は採っていません。</p>
+      <p>清算では、売却実績、購入予約、購入実績を参照します。売却と購入の記録は、計上数量と調整量を通じて清算上対応します。売却者と購入者を個人単位で組み合わせる方式は採っていません。</p>
       <table class="hub-evidence-table">
         <thead>
           <tr><th scope="col">記録区分</th><th scope="col">主な管理情報</th></tr>
@@ -31,11 +31,11 @@
           <tr><th scope="row">購入予約</th><td>購入枠・利用条件</td></tr>
           <tr><th scope="row">購入実績</th><td>消費時間・失効量</td></tr>
           <tr><th scope="row">清算記録</th><td>計上数量・調整量</td></tr>
-          <tr><th scope="row">セッション実行状態</th><td>各技術処理系で管理</td></tr>
-          <tr><th scope="row">系統間照合</th><td>売却系・購入系・清算系の処理関係を確認する検証区分</td></tr>
+          <tr><th scope="row">セッション実行状態</th><td>売却処理系と購入処理系でそれぞれ管理</td></tr>
+          <tr><th scope="row">系統間照合</th><td>売却処理系・購入処理系・清算系の処理の関係を確認する検証区分</td></tr>
         </tbody>
       </table>
-      <p>売却と購入は計上数量と調整量を通じて清算上対応します。セッションを実行する技術処理は、売却側と購入側で別系統として管理します。</p>
+      <p>セッションを実行する処理は、売却側と購入側で別系統として管理します。</p>
       <nav class="hub-document-links" aria-label="関連資料"><a href="chronect-hub.html">Chronect Hubへ戻る</a></nav>
     </article>
   </div></main>

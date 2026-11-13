@@ -21,20 +21,21 @@
     <header class="hub-page-heading"><h1>時間プール計上基準</h1><p>Chronect Hubに収録された情報を検索・閲覧できます。</p></header>
     <article class="hub-document" aria-labelledby="document-heading">
       <h2 id="document-heading">取引数量の管理</h2>
-      <p>時間プールでは、売却と購入の取引数量を状態別に管理します。TIME BACK MARKETの入庫は確定した売却実績、提供は購入側の確定実績を集計したものです。</p>
+      <p>時間プールでは、売却と購入の取引数量を、予約・利用中・確定などの状態に分けて管理します。TIME BACK MARKETの「入庫」は確定した売却実績の集計です。「提供」は購入側の確定実績の集計です。</p>
       <table class="hub-evidence-table">
         <thead>
           <tr><th scope="col">管理項目</th><th scope="col">内容</th></tr>
         </thead>
         <tbody>
-          <tr><th scope="row">売却計上量</th><td>確定した売却セッションの実績</td></tr>
-          <tr><th scope="row">購入引当量</th><td>購入予約によって確保された数量</td></tr>
-          <tr><th scope="row">購入消費量</th><td>実際に消費された購入時間</td></tr>
-          <tr><th scope="row">調整量</th><td>中断・失効等による数量調整</td></tr>
-          <tr><th scope="row">プール残量</th><td>管理上の残量</td></tr>
+          <tr><th scope="row">売却計上量</th><td>売却セッションの実績として確定した数量</td></tr>
+          <tr><th scope="row">購入引当量</th><td>購入予約に対して確保した枠の数量。この確保を「引当」と呼びます</td></tr>
+          <tr><th scope="row">購入消費量</th><td>利用中に実際に消費した購入時間</td></tr>
+          <tr><th scope="row">調整量</th><td>中断や失効などに伴って調整する数量</td></tr>
+          <tr><th scope="row">プール残量</th><td>取引数量の管理上の残り</td></tr>
         </tbody>
       </table>
-      <p>予約時は購入枠を引き当て、利用中は消費量を記録します。利用終了後に実績を確定し、必要な数量調整とあわせて清算対応に反映します。</p>
+      <p>購入の予約時には、利用する枠を引き当てます。利用中は、その枠で消費した購入時間を記録します。</p>
+      <p>利用終了後は、消費量などの記録をもとに実績を確定します。確定した実績と必要な調整量は、清算対応に反映します。</p>
       <nav class="hub-document-links" aria-label="関連資料"><a href="chronect-hub.html">Chronect Hubへ戻る</a></nav>
     </article>
   </div></main>

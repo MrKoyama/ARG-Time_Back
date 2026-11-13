@@ -21,20 +21,22 @@
     <header class="hub-page-heading"><h1>売買処理系統 接続検証記録</h1><p>Chronect Hubに収録された情報を検索・閲覧できます。</p></header>
     <article class="hub-document" aria-labelledby="document-heading">
       <h2 id="document-heading">処理系統の接続確認</h2>
-      <p>売却・購入セッションの開始から実績確定までを対象に、時間プールの引当・調整と清算を含む処理系統の全接続を検証しました。</p>
+      <p>売却・購入セッションの開始から実績確定までを対象に、各処理系統の接続をすべて検証しました。検証の範囲には、時間プールの引当・調整と清算も含みます。</p>
       <table class="hub-evidence-table">
         <thead>
           <tr><th scope="col">検証対象</th><th scope="col">確認結果</th></tr>
         </thead>
         <tbody>
-          <tr><th scope="row">売却処理系</th><td>利用者状態管理・BAS支援・売却実績計上</td></tr>
-          <tr><th scope="row">購入処理系</th><td>購入者側の神経制御と利用倍率管理</td></tr>
-          <tr><th scope="row">プール管理系</th><td>売却量・購入量の引当・確定・調整</td></tr>
-          <tr><th scope="row">系統間の情報連携</th><td>売却処理系からプール管理系へ確定実績を送ります。プール管理系と購入処理系の間では引当・消費・調整の情報を連携し、プール管理系から清算系へ計上数量と調整量を送ります。</td></tr>
+          <tr><th scope="row">売却処理系</th><td>利用者の状態とBASによる支援を管理し、売却実績を計上します</td></tr>
+          <tr><th scope="row">購入処理系</th><td>購入者側の神経制御を行い、利用倍率を管理します</td></tr>
+          <tr><th scope="row">プール管理系</th><td>売却量と購入量を管理します。管理項目には引当・確定・調整が含まれます</td></tr>
+          <tr><th scope="row">売却処理系からプール管理系へ</th><td>売却処理系が、確定した売却実績を送ります</td></tr>
+          <tr><th scope="row">プール管理系と購入処理系の間</th><td>引当・消費・調整の情報を連携します</td></tr>
+          <tr><th scope="row">プール管理系から清算系へ</th><td>プール管理系が、計上数量と調整量を送ります</td></tr>
           <tr><th scope="row">売却系から購入系への時間移転処理</th><td>該当する処理経路なし</td></tr>
         </tbody>
       </table>
-      <p>購入セッションの活動量拡張は、購入者側の制御処理によって成立します。売却セッションの実行結果は計上・清算に反映されますが、購入者側の活動量拡張処理へ時間を引き渡す工程は設けられていません。</p>
+      <p>購入セッションの活動量拡張は、購入者側の制御処理によって成立します。売却セッションの実行結果は、計上と清算に反映します。検証の結果、売却者から購入者へ時間を引き渡す技術的な経路は確認されませんでした。</p>
       <p>本記録の参照上の扱いは、資料参照区分に従います。</p>
       <nav class="hub-document-links" aria-label="関連資料"><a href="chronect-hub.html">Chronect Hubへ戻る</a></nav>
     </article>
