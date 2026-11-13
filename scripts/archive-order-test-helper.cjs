@@ -268,6 +268,12 @@ function withoutArchivePruning(name,source,frozenSource){
     result=result.replace(clue,'支援内容や利用可能時間は');
   }
   if(name==='public/chronect-hub.html')result=result.replace("\n      <p>公開研究要旨と限定保存資料は、資料参照区分に基づいて管理しています。</p>\n    ", '');
+  // Restore only the approved copy edits for the frozen baseline checks.
+  if(name==='public/chronect-hub-session.html'){
+    const approved="<p>対象セッションの位置確認記録から、明浜みどり公園を通過し、住宅間の細道を経由して明浜商店街に至る区間を抜粋した。</p>\n      <p>これらは予定された経路ではなく、売却者本人が実際に通過した記録に基づく。</p>";
+    assert.equal(result.split(approved).length,2,name+' approved location wording');
+    result=result.replace(approved,"<p>対象セッションに係る位置確認情報より、明浜みどり公園の通過確認に続き、住宅間に位置する細道を経由して明浜商店街へ至る区間を抜粋した。本記録における位置確認の対象は、当該時間帯の売却者本人であり、各地点の記載は経路設定ではなく通過実績に基づく。</p>");
+  }
   const chapterFourClues={
     'public/about.html':['購入セッションでは、TIME BACK MARKETの時間プールから購入時間を受け取り、設定した時間反映倍率で日常へ重ねて利用できます。','TIME BACK MARKETの時間プールから購入時間を受け取り、設定した時間反映倍率で日常へ重ねて利用。'],
     'public/market.html':['<span>プール計上の区分に基づく集計</span>','']
