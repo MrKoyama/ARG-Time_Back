@@ -1,6 +1,7 @@
 #hubSearchStatus .hub-unlisted-reference {
   color: inherit;
   font-weight: 700;
+  -webkit-text-stroke: 0.25px currentColor;
   text-decoration: none;
   cursor: pointer;
 }
