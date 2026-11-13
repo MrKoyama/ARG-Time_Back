@@ -1,0 +1,11 @@
+#hubSearchStatus .hub-unlisted-reference {
+  color: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#hubSearchStatus .hub-unlisted-reference:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}

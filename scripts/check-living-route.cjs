@@ -11,7 +11,7 @@ const paragraphs=[
 const html=read(href),article=html.match(/<article class="hub-document"[\s\S]*?<\/article>/)[0];
 assert.deepEqual([...article.matchAll(/<p>([^<]*)<\/p>/g)].map(m=>m[1]),paragraphs);
 assert(html.includes('<h1>'+title+'</h1>'));assert(html.includes('data-page-number="44"'));assert(html.includes('>44 / 120</button>'));
-for(const value of ['G-DG4X4HMEC2','このサイトの内容はフィクションです。','archive.css?v=20261029','chronect-hub.js?v=20261112-chapter5-v1'])assert(html.includes(value));
+for(const value of ['G-DG4X4HMEC2','このサイトの内容はフィクションです。','archive.css?v=20261029','chronect-hub.js?v=20261113-chapter5-revision-v1'])assert(html.includes(value));
 assert(!/SECOND SHIFT|外部指示|秘密実験|まつだ|高瀬|TB-|著者|所属|発表日|研究日|管理番号|<time|<table|<canvas/.test(article));
 assert.deepEqual([...article.matchAll(/href="([^"]+)"/g)].map(m=>m[1]),['chronect-hub.html']);
 const map=read('business-demonstration.html');assert(map.includes('<h3>周辺環境について</h3><p>'+bridge.livingParagraph+'</p>'));
@@ -28,5 +28,5 @@ assert.equal(context.find(' tb-260917-4826 ')[0].href,'chronect-hub-session.html
 for(const name of ['chronect-hub-research-20251105.html','chronect-hub-session.html','index.html','memo-timeback-review.html','chronect-research.html','chronect-news-20250924.html','chronect-news-20260418.html','chronect-news-20260714.html'])bridge.canonicalPublic('public/'+name,fs.readFileSync(path.join(bridge.root,'public',name)));
 assert(!read('chronect-hub-session.html').includes('href="business-demonstration.html"'));
 assert(read('chronect-hub-search.html').includes('data-page-archive="exclude"'));
-assert(read('chronect-hub-search.html').includes('chronect-hub.js?v=20261112-chapter5-v1'));
+assert(read('chronect-hub-search.html').includes('chronect-hub.js?v=20261113-chapter5-revision-v1'));
 console.log('PASS LIVING ROUTE: exact approved manuscript/No.58, public disclosure limits, No.34 paragraph, '+queries+' search fixtures, original five records unchanged, No.44 held and protected story pages unchanged.');

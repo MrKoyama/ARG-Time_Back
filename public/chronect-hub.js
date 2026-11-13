@@ -27,12 +27,18 @@ const chronectHubDatabase = [
   {"keywords":["資料参照区分"],"title":"Chronect Hub 資料参照区分","href":"chronect-hub-reference-class.html","description":"公開研究要旨と限定保存資料の参照区分を示します。"},
   {"keywords":["参照対応"],"title":"限定資料 参照対応記録","href":"chronect-hub-reference-mapping.html","description":"保存済みの限定資料と参照語の対応を記録しています。"},
   {"keywords":["保守経路"],"title":"検索基盤 保守経路記録","href":"chronect-hub-maintenance-route.html","description":"資料の参照状態を確認するための保守記録です。"},
-  {"keywords":["検索基盤担当"],"title":"検索基盤 担当者履歴","href":"chronect-hub-search-staff.html","description":"Web・検索基盤の担当領域と業務の履歴です。"}
+  {"keywords":["Webシステム保守","検索基盤担当"],"title":"Webシステム 保守担当記録","href":"chronect-hub-search-staff.html","description":"Web・検索基盤の担当領域と業務の履歴です。"}
 ];
+
+// ARG内の内部照会用。公開する架空資料のみを登録する。
+const chronectHubInternalDatabase = [];
 
 function findChronectHubMaterials(query) {
   const normalized = String(query || '').trim().toLocaleLowerCase('ja');
-  return normalized ? chronectHubDatabase.filter(item => item.keywords.some(keyword => keyword.toLocaleLowerCase('ja') === normalized)) : [];
+  const special = normalized.match(/^##([^#]+)##$/);
+  const database = special ? chronectHubInternalDatabase : chronectHubDatabase;
+  const keyword = special ? special[1].trim() : normalized;
+  return keyword ? database.filter(item => item.keywords.some(term => term.toLocaleLowerCase('ja') === keyword)) : [];
 }
 
 const hubResultsContainer = document.getElementById('hubResultsContainer');
@@ -49,6 +55,13 @@ if (hubResultsContainer) {
     display.textContent = '「' + cleaned + '」の検索結果';
     const results = findChronectHubMaterials(cleaned);
     status.textContent = results.length ? '該当する資料が ' + results.length + ' 件見つかりました。' : '該当する資料はありません。入力内容をご確認ください';
+    if (!results.length && cleaned === '高瀬悠真') {
+      const link = document.createElement('a');
+      link.className = 'hub-unlisted-reference';
+      link.href = 'takase-notes.html';
+      link.textContent = '資料';
+      status.replaceChildren('該当する', link, 'はありません。入力内容をご確認ください。');
+    }
     results.forEach(result => {
       const article = document.createElement('article');
       article.className = 'hub-result';

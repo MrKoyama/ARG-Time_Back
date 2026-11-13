@@ -47,7 +47,7 @@ function canonicalPublic(name,current){
 // Preserve the immutable 2026-10-30 fixtures. Validate and remove only the later
 // approved additive changes before running the original regression meanings.
 const livingEntry={number:58,old:58,href:'chronect-hub-research-continuous-action.html',title:'環境変化下における連続行動支援の評価 ｜ Chronect Hub'};
-const archiveVersion='20261112-chapter5-v1';
+const archiveVersion='20261113-chapter5-revision-v1';
 const facilitySearchEntries=[
   {
     "keywords": [
@@ -180,9 +180,10 @@ const chapterFiveSearchEntries=[
   },
   {
     "keywords": [
+      "Webシステム保守",
       "検索基盤担当"
     ],
-    "title": "検索基盤 担当者履歴",
+    "title": "Webシステム 保守担当記録",
     "href": "chronect-hub-search-staff.html",
     "description": "Web・検索基盤の担当領域と業務の履歴です。"
   }
@@ -210,7 +211,7 @@ const chapterFiveEntries=[
     "number": 65,
     "previousNumber": 65,
     "href": "chronect-hub-search-staff.html",
-    "title": "検索基盤 担当者履歴 ｜ Chronect Hub"
+    "title": "Webシステム 保守担当記録 ｜ Chronect Hub"
   },
   {
     "number": 66,
@@ -222,13 +223,13 @@ const chapterFiveEntries=[
     "number": 67,
     "previousNumber": 67,
     "href": "takase-records.html",
-    "title": "資料照合記録 ｜ 調査ノート"
+    "title": "証拠整理メモ ｜ 調査ノート"
   },
   {
     "number": 68,
     "previousNumber": 68,
     "href": "takase-handover.html",
-    "title": "調査を引き継ぐ人へ ｜ 調査ノート"
+    "title": "検索機能の技術メモ ｜ 調査ノート"
   }
 ];
 const excludedNumbers=new Set([43,44,46,47,48,49,50,51,52,53,54,55,56,57]);
@@ -238,7 +239,12 @@ function withoutArchivePruning(name,source,frozenSource){
   const mid=require('./midroute-test-helper.cjs');
   const priorEntries=[...entries,livingEntry,...mid.entries];
   const byPriorHref=new Map(priorEntries.map(entry=>[entry.href,entry]));
-  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261112-chapter5-v1/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261112-chapter5-v1/g,'chronect-hub.js?v='+mid.cacheVersion);
+  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261113-chapter5-revision-v1/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261113-chapter5-revision-v1/g,'chronect-hub.js?v='+mid.cacheVersion);
+  if(name==='public/chronect-hub-search.html')result=result.replace('  <link rel="stylesheet" href="chronect-hub-result.css?v=20261113">\n','');
+  if(name==='public/chronect-hub.js')result=result
+    .replace("// ARG内の内部照会用。公開する架空資料のみを登録する。\nconst chronectHubInternalDatabase = [];\n\n",'')
+    .replace("const special = normalized.match(/^##([^#]+)##$/);\n  const database = special ? chronectHubInternalDatabase : chronectHubDatabase;\n  const keyword = special ? special[1].trim() : normalized;\n  return keyword ? database.filter(item => item.keywords.some(term => term.toLocaleLowerCase('ja') === keyword)) : [];","return normalized ? chronectHubDatabase.filter(item => item.keywords.some(keyword => keyword.toLocaleLowerCase('ja') === normalized)) : [];")
+    .replace("\n    if (!results.length && cleaned === '高瀬悠真') {\n      const link = document.createElement('a');\n      link.className = 'hub-unlisted-reference';\n      link.href = 'takase-notes.html';\n      link.textContent = '資料';\n      status.replaceChildren('該当する', link, 'はありません。入力内容をご確認ください。');\n    }",'');
   if(name==='public/chronect-hub.js')for(const entry of [...facilitySearchEntries,...chapterSearchEntries,...chapterFourSearchEntries,...chapterFiveSearchEntries]){
     const addition=',\n  '+JSON.stringify(entry);
     assert.equal(result.split(addition).length,2,name+' facility search record');

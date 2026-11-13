@@ -1,5 +1,11 @@
 # TIME BACK：制作進捗・検証状況
 
+## 2026-11-13 第5章改修（現行）
+
+No.40・61→「資料参照区分」→No.62。No.62の「参照対応」でNo.63、「保守経路」でNo.64。No.64の「Webシステム保守」でNo.65（旧語「検索基盤担当」も有効）。No.65の氏名「高瀬悠真」をHubで検索し、0件文の「資料」からNo.66へ進む。No.63の直リンクは撤去。No.66〜68はノート内の通常リンクで移動できる。 No.68でHub固有の `##検索語##` を公開。通常の完全一致辞書とは別の登録対象を照会し、今回の辞書は空。`##売却処理##` は説明例で0件、通常の「売却処理」はNo.58。第6章の資料・正解語は未実装。
+
+以下の旧章記述は制作履歴。現行の内容・到達方法は本節を優先する。
+
 ## 2026-11-13 第5章「高瀬悠真の調査」
 
 現行はアーカイブNo.1〜68、上限120、未割当69〜120。公開HTML87件（登録68、対象外ニュース12、対象外Hub要旨2、検索EX4、旧URL転送1）。Hub検索は27資料。 第5章は実装済み。独立初見での発見・照合は未検証。
@@ -134,13 +140,13 @@ Hubは既存6資料＋今回3資料＝9資料。新59分類一覧、新60地域�
 | 59 | 購入セッション動作評価 ｜ Chronect Hub | [chronect-hub-purchase-evaluation.html](../../public/chronect-hub-purchase-evaluation.html) | 購入者自身の脳の活性化による活動量拡張と、倍率・消費・購入枠の扱い。 |
 | 60 | 売買セッション清算対応表 ｜ Chronect Hub | [chronect-hub-settlement-mapping.html](../../public/chronect-hub-settlement-mapping.html) | 売却・購入の実績や予約と清算数量の対応、技術処理系の区分。 |
 | 61 | 売買処理系統 接続検証記録 ｜ Chronect Hub | [chronect-hub-processing-connections.html](../../public/chronect-hub-processing-connections.html) | 全処理系の入出力と接続を検証し、売却系から購入側への時間移転経路が存在しないことを記録。 |
-| 62 | Chronect Hub 資料参照区分 ｜ Chronect Hub | [chronect-hub-reference-class.html](../../public/chronect-hub-reference-class.html) | 公開研究要旨と限定保存資料の管理区分。参照対応と保守経路を示す。 |
-| 63 | 限定資料 参照対応記録 ｜ Chronect Hub | [chronect-hub-reference-mapping.html](../../public/chronect-hub-reference-mapping.html) | 限定資料と参照語の対応。保守記録と外部の調査ノートへの接点。 |
-| 64 | 検索基盤 保守経路記録 ｜ Chronect Hub | [chronect-hub-maintenance-route.html](../../public/chronect-hub-maintenance-route.html) | 限定資料の参照確認に使われた保守経路。担当履歴への手掛かり。 |
-| 65 | 検索基盤 担当者履歴 ｜ Chronect Hub | [chronect-hub-search-staff.html](../../public/chronect-hub-search-staff.html) | 高瀬悠真の担当領域と外部参照記録との接点。 |
-| 66 | 調査ノート ｜ 調査ノート | [takase-notes.html](../../public/takase-notes.html) | 高瀬の個人メモ。時間プールや売却中の身体行動への疑問。 |
-| 67 | 資料照合記録 ｜ 調査ノート | [takase-records.html](../../public/takase-records.html) | 保存済み資料の参照対応を意図的に追加した本人記録。 |
-| 68 | 調査を引き継ぐ人へ ｜ 調査ノート | [takase-handover.html](../../public/takase-handover.html) | 証拠の保存と独立した照合を将来の調査者に託す文章。 |
+| 62 | Chronect Hub 資料参照区分 ｜ Chronect Hub | [chronect-hub-reference-class.html](../../public/chronect-hub-reference-class.html) | 公開要旨と限定保存記録の違いを平易に説明。 |
+| 63 | 限定資料 参照対応記録 ｜ Chronect Hub | [chronect-hub-reference-mapping.html](../../public/chronect-hub-reference-mapping.html) | 通常登録と異なる経路で検索対象に追加された記録。 |
+| 64 | 検索基盤 保守経路記録 ｜ Chronect Hub | [chronect-hub-maintenance-route.html](../../public/chronect-hub-maintenance-route.html) | 検索結果あり・0件・例外入力時の保守。 |
+| 65 | Webシステム 保守担当記録 ｜ Chronect Hub | [chronect-hub-search-staff.html](../../public/chronect-hub-search-staff.html) | 高瀬に集中していた企業サイト・Hub・検索画面の開発保守。 |
+| 66 | 調査ノート ｜ 調査ノート | [takase-notes.html](../../public/takase-notes.html) | Web保守から利用者の身体利用に疑いを持った経緯。 |
+| 67 | 証拠整理メモ ｜ 調査ノート | [takase-records.html](../../public/takase-records.html) | 確認できた事実、身体利用の疑い、告発に不足する証拠。 |
+| 68 | 検索機能の技術メモ ｜ 調査ノート | [takase-handover.html](../../public/takase-handover.html) | Hubの内部照会用構文と制約。 |
 
 直前のNo.1〜42は同番号。セッション運用記録は旧45→現43、旧54〜59は現44〜49。旧43・44はHub要旨、旧46〜53は一覧外ニュースとして登録解除済み。現在も公開ファイルと既存の検索・リンクから閲覧できる。ニュース一覧外12件と対応Hub要旨2件、検索結果4件、旧夢記事URL転送1件はアーカイブ非登録。
 
