@@ -1,5 +1,10 @@
 # 実装済みページ一覧
 
+## 2026-11-16 第6章後半 No.75〜77
+
+アーカイブはNo.1〜77、上限120、未割当78〜120。公開HTML96件。Hubの通常検索は27資料、特殊検索は9資料。
+
+
 ## 2026-11-16 第6章前半
 
 アーカイブはNo.1〜74、上限120、未割当75〜120。公開HTML93件。Hubの通常検索は27資料、特殊検索は6資料。 以降の旧件数は制作履歴。
@@ -154,6 +159,9 @@ No.62〜68を改修。No.65・67・68を改題。アーカイブは1〜68、上�
 | 72 | [chronect-hub-bas-application.html](../public/chronect-hub-bas-application.html) | BAS応用検討記録 ｜ Chronect Hub | BASの作業工程への応用検討。 |
 | 73 | [chronect-hub-work-use-model.html](../public/chronect-hub-work-use-model.html) | 売却時間帯の業務利用モデル ｜ Chronect Hub | 売却時間帯の身体を利用する業務モデルの基本構想。 |
 | 74 | [chronect-hub-second-shift-plan.html](../public/chronect-hub-second-shift-plan.html) | SECOND SHIFT計画概要 ｜ Chronect Hub | SECOND SHIFTの名称と企業向け作業利用の事業構想。 |
+| 75 | [chronect-hub-second-shift-operation.html](../public/chronect-hub-second-shift-operation.html) | SECOND SHIFT 運用対応記録 ｜ Chronect Hub | 施設Cの実施工程とSECOND SHIFTの業務利用評価の対応。 |
+| 76 | [chronect-hub-second-shift-management.html](../public/chronect-hub-second-shift-management.html) | SECOND SHIFT 内部管理記録 ｜ Chronect Hub | Chronect内部での試験運用と評価記録の組織的管理。 |
+| 77 | [chronect-hub-second-shift-disclosure.html](../public/chronect-hub-second-shift-disclosure.html) | 利用者向け説明 取扱記録 ｜ Chronect Hub | 身体の業務利用を利用者向け説明項目から意図的に除外した方針。 |
 | EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [chronect-search.html](../public/chronect-search.html) | 検索結果 ｜ Chronect | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
