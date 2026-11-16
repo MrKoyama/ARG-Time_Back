@@ -47,7 +47,7 @@ function canonicalPublic(name,current){
 // Preserve the immutable 2026-10-30 fixtures. Validate and remove only the later
 // approved additive changes before running the original regression meanings.
 const livingEntry={number:58,old:58,href:'chronect-hub-research-continuous-action.html',title:'環境変化下における連続行動支援の評価 ｜ Chronect Hub'};
-const archiveVersion='20261116-chapter6-evidence-v1';
+const archiveVersion='20261116-chapter6-evidence-v2';
 const facilitySearchEntries=[
   {
     "keywords": [
@@ -325,7 +325,7 @@ const chapterSixEvidenceEntries=[
     "number": 75,
     "previousNumber": 75,
     "href": "chronect-hub-second-shift-operation.html",
-    "title": "SECOND SHIFT 運用対応記録 ｜ Chronect Hub"
+    "title": "SECOND SHIFT 運用計画資料 ｜ Chronect Hub"
   },
   {
     "number": 76,
@@ -337,17 +337,17 @@ const chapterSixEvidenceEntries=[
     "number": 77,
     "previousNumber": 77,
     "href": "chronect-hub-second-shift-disclosure.html",
-    "title": "利用者向け説明 取扱記録 ｜ Chronect Hub"
+    "title": "利用者向け説明 運用指示 ｜ Chronect Hub"
   }
 ];
 const chapterSixEvidenceSearchEntries=[
   {
     "keywords": [
-      "外部指示"
+      "SECOND SHIFT"
     ],
-    "title": "SECOND SHIFT 運用対応記録",
+    "title": "SECOND SHIFT 運用計画資料",
     "href": "chronect-hub-second-shift-operation.html",
-    "description": "外部指示と実施工程の対応を確認した記録です。"
+    "description": "運用の基本方針と管理区分を整理した資料です。"
   },
   {
     "keywords": [
@@ -361,9 +361,9 @@ const chapterSixEvidenceSearchEntries=[
     "keywords": [
       "利用者向け説明"
     ],
-    "title": "利用者向け説明 取扱記録",
+    "title": "利用者向け説明 運用指示",
     "href": "chronect-hub-second-shift-disclosure.html",
-    "description": "利用者向け説明の取り扱いに関する記録です。"
+    "description": "利用者への説明範囲と回答方針を定めた指示です。"
   }
 ];
 const excludedNumbers=new Set([43,44,46,47,48,49,50,51,52,53,54,55,56,57]);
@@ -373,7 +373,7 @@ function withoutArchivePruning(name,source,frozenSource){
   const mid=require('./midroute-test-helper.cjs');
   const priorEntries=[...entries,livingEntry,...mid.entries];
   const byPriorHref=new Map(priorEntries.map(entry=>[entry.href,entry]));
-  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261116-chapter6-evidence-v1/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261116-chapter6-evidence-v1/g,'chronect-hub.js?v='+mid.cacheVersion);
+  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261116-chapter6-evidence-v2/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261116-chapter6-evidence-v2/g,'chronect-hub.js?v='+mid.cacheVersion);
   if(name==='public/chronect-hub-search.html')result=result.replace('  <link rel="stylesheet" href="chronect-hub-result.css?v=20261113">\n','');
   if(name==='public/chronect-hub.js'){
     const expected='const chronectHubInternalDatabase = [\n  '+[...chapterSixSearchEntries,...chapterSixEvidenceSearchEntries].map(e=>JSON.stringify(e)).join(',\n  ')+'\n];';

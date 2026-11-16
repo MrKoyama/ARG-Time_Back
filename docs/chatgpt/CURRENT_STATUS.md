@@ -2,7 +2,7 @@
 
 ## 2026-11-16 第6章後半 No.75〜77
 
-アーカイブはNo.1〜77、上限120、未割当78〜120。公開HTML96件。Hubの通常検索は27資料、特殊検索は9資料。 No.74の「外部指示」を `##外部指示##` で検索するとNo.75、「管理体制」を `##管理体制##` で検索するとNo.76。No.76の「利用者向け説明」を `##利用者向け説明##` で検索するとNo.77。従来の特殊検索6語と通常検索を維持。 認証は個別同意や指示者の特定を意味しない。個々の説明・同意、指示者・承認者・責任者、経営陣の認識範囲、提携企業の関与、大規模な商用提供はこの3資料では立証しない。未完成告発報告書、連絡、提出と分岐は未実装。
+アーカイブはNo.1〜77、上限120、未割当78〜120。公開HTML96件。Hubの通常検索は27資料、特殊検索は9資料。 No.74の「SECOND SHIFT」から `##SECOND SHIFT##` でNo.75へ進む。No.74・75の「管理体制」から `##管理体制##` でNo.76、No.75・76の「利用者向け説明」から `##利用者向け説明##` でNo.77へ進む。旧 `##外部指示##` は0件。特殊検索の登録は9件で、閲覧順の制限は設けない。 認証は個別同意や指示者の特定を意味しない。個々の説明・同意、指示者・承認者・責任者、経営陣の認識範囲、提携企業の関与、大規模な商用提供はこの3資料では立証しない。未完成告発報告書、連絡、提出と分岐は未実装。
 
 
 ## 2026-11-16 第6章前半
@@ -163,9 +163,9 @@ Hubは既存6資料＋今回3資料＝9資料。新59分類一覧、新60地域�
 | 72 | BAS応用検討記録 ｜ Chronect Hub | [chronect-hub-bas-application.html](../../public/chronect-hub-bas-application.html) | BASの作業工程への応用検討。 |
 | 73 | 売却時間帯の業務利用モデル ｜ Chronect Hub | [chronect-hub-work-use-model.html](../../public/chronect-hub-work-use-model.html) | 売却時間帯の身体を利用する業務モデルの基本構想。 |
 | 74 | SECOND SHIFT計画概要 ｜ Chronect Hub | [chronect-hub-second-shift-plan.html](../../public/chronect-hub-second-shift-plan.html) | SECOND SHIFTの名称と企業向け作業利用の事業構想。 |
-| 75 | SECOND SHIFT 運用対応記録 ｜ Chronect Hub | [chronect-hub-second-shift-operation.html](../../public/chronect-hub-second-shift-operation.html) | 施設Cの実施工程とSECOND SHIFTの業務利用評価の対応。 |
+| 75 | SECOND SHIFT 運用計画資料 ｜ Chronect Hub | [chronect-hub-second-shift-operation.html](../../public/chronect-hub-second-shift-operation.html) | 運用の基本方針と技術評価・試験運用・事業管理・利用者対応の区分。 |
 | 76 | SECOND SHIFT 内部管理記録 ｜ Chronect Hub | [chronect-hub-second-shift-management.html](../../public/chronect-hub-second-shift-management.html) | Chronect内部での試験運用と評価記録の組織的管理。 |
-| 77 | 利用者向け説明 取扱記録 ｜ Chronect Hub | [chronect-hub-second-shift-disclosure.html](../../public/chronect-hub-second-shift-disclosure.html) | 身体の業務利用を利用者向け説明項目から意図的に除外した方針。 |
+| 77 | 利用者向け説明 運用指示 ｜ Chronect Hub | [chronect-hub-second-shift-disclosure.html](../../public/chronect-hub-second-shift-disclosure.html) | 説明の許可・禁止、回答例、統一適用を定めた内部指示。 |
 
 直前のNo.1〜42は同番号。セッション運用記録は旧45→現43、旧54〜59は現44〜49。旧43・44はHub要旨、旧46〜53は一覧外ニュースとして登録解除済み。現在も公開ファイルと既存の検索・リンクから閲覧できる。ニュース一覧外12件と対応Hub要旨2件、検索結果4件、旧夢記事URL転送1件はアーカイブ非登録。
 
