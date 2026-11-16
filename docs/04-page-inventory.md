@@ -1,5 +1,10 @@
 # 実装済みページ一覧
 
+## 2026-11-16 第6章前半
+
+アーカイブはNo.1〜74、上限120、未割当75〜120。公開HTML93件。Hubの通常検索は27資料、特殊検索は6資料。 以降の旧件数は制作履歴。
+
+
 ## 2026-11-13 第5章改修（現行）
 
 No.62〜68を改修。No.65・67・68を改題。アーカイブは1〜68、上限120。No.63の外部リンクを撤去し、Hub検索結果からNo.66へ進む。
@@ -143,6 +148,12 @@ No.62〜68を改修。No.65・67・68を改題。アーカイブは1〜68、上�
 | 66 | [takase-notes.html](../public/takase-notes.html) | 調査ノート ｜ 調査ノート | Web保守から利用者の身体利用に疑いを持った経緯。 |
 | 67 | [takase-records.html](../public/takase-records.html) | 証拠整理メモ ｜ 調査ノート | 確認できた事実、身体利用の疑い、告発に不足する証拠。 |
 | 68 | [takase-handover.html](../public/takase-handover.html) | 検索機能の技術メモ ｜ 調査ノート | Hubの内部照会用構文と制約。 |
+| 69 | [chronect-hub-sale-reference.html](../public/chronect-hub-sale-reference.html) | 売却処理 内部参照記録 ｜ Chronect Hub | 売却処理の内部記録と施設識別記号。 |
+| 70 | [chronect-hub-facility-system.html](../public/chronect-hub-facility-system.html) | 施設管理体系記録 ｜ Chronect Hub | 施設群の正式名称、管理区分、施設Cの配置地域。 |
+| 71 | [chronect-hub-regional-network.html](../public/chronect-hub-regional-network.html) | 広域実証ネットワーク 管理概要 ｜ Chronect Hub | 施設群の記録管理と施設Cの評価対象。 |
+| 72 | [chronect-hub-bas-application.html](../public/chronect-hub-bas-application.html) | BAS応用検討記録 ｜ Chronect Hub | BASの作業工程への応用検討。 |
+| 73 | [chronect-hub-work-use-model.html](../public/chronect-hub-work-use-model.html) | 売却時間帯の業務利用モデル ｜ Chronect Hub | 売却時間帯の身体を利用する業務モデルの基本構想。 |
+| 74 | [chronect-hub-second-shift-plan.html](../public/chronect-hub-second-shift-plan.html) | SECOND SHIFT計画概要 ｜ Chronect Hub | SECOND SHIFTの名称と企業向け作業利用の事業構想。 |
 | EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [chronect-search.html](../public/chronect-search.html) | 検索結果 ｜ Chronect | 独立ホワイトリスト検索。アーカイブ登録対象外。 |

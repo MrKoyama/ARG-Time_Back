@@ -31,7 +31,14 @@ const chronectHubDatabase = [
 ];
 
 // ARG内の内部照会用。公開する架空資料のみを登録する。
-const chronectHubInternalDatabase = [];
+const chronectHubInternalDatabase = [
+  {"keywords":["売却処理"],"title":"売却処理 内部参照記録","href":"chronect-hub-sale-reference.html","description":"売却処理に関連する内部記録は、セッションの状態管理、実績の計上、身体行動の評価に区分して整理する。"},
+  {"keywords":["施設C"],"title":"施設管理体系記録","href":"chronect-hub-facility-system.html","description":"試験運用に使用する各施設は、共通の施設管理体系に従って登録される。"},
+  {"keywords":["Chronect広域実証ネットワーク"],"title":"広域実証ネットワーク 管理概要","href":"chronect-hub-regional-network.html","description":"本ネットワークは、地域ごとの試験施設における実施記録を、共通の管理区分で整理するための体系である。"},
+  {"keywords":["BAS"],"title":"BAS応用検討記録","href":"chronect-hub-bas-application.html","description":"BASの複合動作およびタスク切替に関する評価結果を踏まえ、指定された作業工程への応用可能性を検討する。"},
+  {"keywords":["作業工程"],"title":"売却時間帯の業務利用モデル","href":"chronect-hub-work-use-model.html","description":"売却セッション中の身体行動について、BASを介した業務利用モデルを検討する。"},
+  {"keywords":["事業計画"],"title":"SECOND SHIFT計画概要","href":"chronect-hub-second-shift-plan.html","description":"企業向けの事業構想を整理した資料です。"}
+];
 
 function findChronectHubMaterials(query) {
   const normalized = String(query || '').trim().toLocaleLowerCase('ja');
