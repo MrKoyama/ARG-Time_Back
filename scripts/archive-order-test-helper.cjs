@@ -47,7 +47,7 @@ function canonicalPublic(name,current){
 // Preserve the immutable 2026-10-30 fixtures. Validate and remove only the later
 // approved additive changes before running the original regression meanings.
 const livingEntry={number:58,old:58,href:'chronect-hub-research-continuous-action.html',title:'環境変化下における連続行動支援の評価 ｜ Chronect Hub'};
-const archiveVersion='20261116-chapter6-evidence-v2';
+const archiveVersion='20261116-chapter6-evidence-v3';
 const facilitySearchEntries=[
   {
     "keywords": [
@@ -366,6 +366,8 @@ const chapterSixEvidenceSearchEntries=[
     "description": "利用者への説明範囲と回答方針を定めた指示です。"
   }
 ];
+const trialOperationEntry={"number":78,"previousNumber":78,"href":"chronect-hub-trial-operation-mapping.html","title":"試験運用 対応記録 ｜ Chronect Hub"};
+const trialOperationSearchEntry={"keywords":["試験運用"],"title":"試験運用 対応記録","href":"chronect-hub-trial-operation-mapping.html","description":"試験の実施記録と事業計画上の評価対象との対応を整理した記録です。"};
 const excludedNumbers=new Set([43,44,46,47,48,49,50,51,52,53,54,55,56,57]);
 const compactNumber=number=>number-[...excludedNumbers].filter(excluded=>excluded<number).length;
 
@@ -373,10 +375,10 @@ function withoutArchivePruning(name,source,frozenSource){
   const mid=require('./midroute-test-helper.cjs');
   const priorEntries=[...entries,livingEntry,...mid.entries];
   const byPriorHref=new Map(priorEntries.map(entry=>[entry.href,entry]));
-  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261116-chapter6-evidence-v2/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261116-chapter6-evidence-v2/g,'chronect-hub.js?v='+mid.cacheVersion);
+  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261116-chapter6-evidence-v3/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261116-chapter6-evidence-v3/g,'chronect-hub.js?v='+mid.cacheVersion);
   if(name==='public/chronect-hub-search.html')result=result.replace('  <link rel="stylesheet" href="chronect-hub-result.css?v=20261113">\n','');
   if(name==='public/chronect-hub.js'){
-    const expected='const chronectHubInternalDatabase = [\n  '+[...chapterSixSearchEntries,...chapterSixEvidenceSearchEntries].map(e=>JSON.stringify(e)).join(',\n  ')+'\n];';
+    const expected='const chronectHubInternalDatabase = [\n  '+[...chapterSixSearchEntries,...chapterSixEvidenceSearchEntries,trialOperationSearchEntry].map(e=>JSON.stringify(e)).join(',\n  ')+'\n];';
     assert.equal(result.split(expected).length,2);
     result=result.replace(expected,'const chronectHubInternalDatabase = [];');
   }
@@ -423,7 +425,7 @@ function withoutArchivePruning(name,source,frozenSource){
     result=result.replace(clue[0],clue[1]);
   }
   if(!result.includes('archiveTitleByNumber'))return result;
-  const active=[...priorEntries.filter(e=>!excludedNumbers.has(e.number)).map(e=>({...e,number:compactNumber(e.number)})),...facilityEntries,...chapterEntries,...chapterFourEntries,...chapterFiveEntries,...chapterSixEntries,...chapterSixEvidenceEntries];
+  const active=[...priorEntries.filter(e=>!excludedNumbers.has(e.number)).map(e=>({...e,number:compactNumber(e.number)})),...facilityEntries,...chapterEntries,...chapterFourEntries,...chapterFiveEntries,...chapterSixEntries,...chapterSixEvidenceEntries,trialOperationEntry];
   result=result.replace(/(\barchiveTitleByNumber\s*=\s*)(\{[^{}]*\})/,(_,prefix,json)=>{
     assert.deepEqual(JSON.parse(json),Object.fromEntries(active.map(e=>[e.number,e.title])),name+' compact titles');
     return prefix+JSON.stringify(Object.fromEntries(priorEntries.map(e=>[e.number,e.title])));
@@ -485,7 +487,7 @@ function legacyTestSource(name){
 }
 function assertLegacyTestCode(name){assert.equal(fs.readFileSync(path.join(root,name),'utf8'),legacyTestSource(name),name+' exceeds legacy bridge insertion');}
 const legacyFs=Object.create(fs);
-legacyFs.readdirSync=function(dir,options){const rows=fs.readdirSync(dir,options);const added=new Set([livingEntry.href,...require('./midroute-test-helper.cjs').entries.map(e=>e.href),...facilityEntries.map(e=>e.href),...chapterEntries.map(e=>e.href),...chapterFourEntries.map(e=>e.href),...chapterFiveEntries.map(e=>e.href),...chapterSixEntries.map(e=>e.href),...chapterSixEvidenceEntries.map(e=>e.href)]);return path.resolve(String(dir))===path.join(root,'public')?rows.filter(row=>!added.has(typeof row==='string'?row:row.name)):rows;};
+legacyFs.readdirSync=function(dir,options){const rows=fs.readdirSync(dir,options);const added=new Set([livingEntry.href,...require('./midroute-test-helper.cjs').entries.map(e=>e.href),...facilityEntries.map(e=>e.href),...chapterEntries.map(e=>e.href),...chapterFourEntries.map(e=>e.href),...chapterFiveEntries.map(e=>e.href),...chapterSixEntries.map(e=>e.href),...chapterSixEvidenceEntries.map(e=>e.href),trialOperationEntry.href]);return path.resolve(String(dir))===path.join(root,'public')?rows.filter(row=>!added.has(typeof row==='string'?row:row.name)):rows;};
 legacyFs.readFileSync=function(file,options){
   const resolved=path.resolve(String(file)),relative=path.relative(root,resolved).split(path.sep).join('/');
   const value=fs.readFileSync(file,options);
@@ -493,4 +495,4 @@ legacyFs.readFileSync=function(file,options){
   const canonical=canonicalPublic(relative,value);
   return typeof value==='string'?canonical.toString(typeof options==='string'?options:options?.encoding||'utf8'):canonical;
 };
-module.exports={root,baseline,order,entries,byHref,owned,cacheVersion,forwardPublic,canonicalPublic,legacyFs,legacyTestSource,assertLegacyTestCode,sha,livingEntry,livingSearchEntry,livingParagraph,archiveVersion,excludedNumbers,compactNumber,facilityEntries,facilitySearchEntries,chapterEntries,chapterSearchEntries,chapterFourEntries,chapterFourSearchEntries,chapterFiveEntries,chapterFiveSearchEntries,chapterSixEntries,chapterSixSearchEntries,chapterSixEvidenceEntries,chapterSixEvidenceSearchEntries};
+module.exports={root,baseline,order,entries,byHref,owned,cacheVersion,forwardPublic,canonicalPublic,legacyFs,legacyTestSource,assertLegacyTestCode,sha,livingEntry,livingSearchEntry,livingParagraph,archiveVersion,excludedNumbers,compactNumber,facilityEntries,facilitySearchEntries,chapterEntries,chapterSearchEntries,chapterFourEntries,chapterFourSearchEntries,chapterFiveEntries,chapterFiveSearchEntries,chapterSixEntries,chapterSixSearchEntries,chapterSixEvidenceEntries,chapterSixEvidenceSearchEntries,trialOperationEntry,trialOperationSearchEntry};

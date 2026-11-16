@@ -40,7 +40,8 @@ const chronectHubInternalDatabase = [
   {"keywords":["事業計画"],"title":"SECOND SHIFT計画概要","href":"chronect-hub-second-shift-plan.html","description":"企業向けの事業構想を整理した資料です。"},
   {"keywords":["SECOND SHIFT"],"title":"SECOND SHIFT 運用計画資料","href":"chronect-hub-second-shift-operation.html","description":"運用の基本方針と管理区分を整理した資料です。"},
   {"keywords":["管理体制"],"title":"SECOND SHIFT 内部管理記録","href":"chronect-hub-second-shift-management.html","description":"計画と試験の管理状況を整理した記録です。"},
-  {"keywords":["利用者向け説明"],"title":"利用者向け説明 運用指示","href":"chronect-hub-second-shift-disclosure.html","description":"利用者への説明範囲と回答方針を定めた指示です。"}
+  {"keywords":["利用者向け説明"],"title":"利用者向け説明 運用指示","href":"chronect-hub-second-shift-disclosure.html","description":"利用者への説明範囲と回答方針を定めた指示です。"},
+  {"keywords":["試験運用"],"title":"試験運用 対応記録","href":"chronect-hub-trial-operation-mapping.html","description":"試験の実施記録と事業計画上の評価対象との対応を整理した記録です。"}
 ];
 
 function findChronectHubMaterials(query) {

@@ -4,7 +4,7 @@ const bridge=require('./archive-order-test-helper.cjs');
 const {root,baseline,canonicalPublic}=bridge;
 const mid=require('./midroute-test-helper.cjs'),cacheVersion=bridge.archiveVersion;
 const priorEntries=[...bridge.entries,bridge.livingEntry,...mid.entries];
-const entries=[...priorEntries.filter(e=>!bridge.excludedNumbers.has(e.number)).map(e=>({...e,previousNumber:e.number,number:bridge.compactNumber(e.number)})),...bridge.facilityEntries,...bridge.chapterEntries,...bridge.chapterFourEntries,...bridge.chapterFiveEntries,...bridge.chapterSixEntries,...bridge.chapterSixEvidenceEntries];
+const entries=[...priorEntries.filter(e=>!bridge.excludedNumbers.has(e.number)).map(e=>({...e,previousNumber:e.number,number:bridge.compactNumber(e.number)})),...bridge.facilityEntries,...bridge.chapterEntries,...bridge.chapterFourEntries,...bridge.chapterFiveEntries,...bridge.chapterSixEntries,...bridge.chapterSixEvidenceEntries,bridge.trialOperationEntry];
 const byHref=new Map(entries.map(e=>[e.href,e]));
 const read=name=>fs.readFileSync(path.join(root,'public',name),'utf8');
 function functionSource(source,name){
@@ -49,7 +49,7 @@ for(const name of fs.readdirSync(path.join(root,'public')).filter(n=>/\.(html|js
     assert(fs.existsSync(path.join(root,'public',m[1].split(/[?#]/)[0])),name+' missing '+m[1]);
   }
 }
-assert.equal(srcConsumers,84);assert.equal(numbered.size,entries.length);
+assert.equal(srcConsumers,85);assert.equal(numbered.size,entries.length);
 assert.deepEqual([...numbered.keys()].sort((a,b)=>a-b),Array.from({length:entries.length},(_,i)=>i+1));
 assert(!/data-page-number|archiveButton/.test(read('memo-dream.html')));
 const registries=fs.readdirSync(path.join(root,'public')).filter(n=>/\.(html|js)$/.test(n)&&read(n).includes('archiveTitleByNumber'));
@@ -84,7 +84,7 @@ for(const name of registries){
   const mappingMatch=source.match(/\{[^{}\r\n]*"partners\.html":37[^{}\r\n]*\}/);assert(mappingMatch,name);
   const mapping=JSON.parse(mappingMatch[0]);assert.equal(Object.keys(mapping).length,entries.length);
   for(const e of entries){assert.equal(mapping[e.href],e.number,name);assert.equal(titles[e.number],e.title,name);}
-  for(let n=78;n<=120;n++)assert.equal(titles[n],undefined,name);
+  for(let n=79;n<=120;n++)assert.equal(titles[n],undefined,name);
   for(const ex of ['search.html','business-search.html','chronect-search.html','chronect-hub-search.html'])assert.equal(mapping[ex],undefined);
   const globalMaps=[...source.matchAll(/(?:const|let)\s+(businessPageNumberByHref|pageNumberByHref)\s*=\s*(\{[^{}]*\})/g)].map(m=>'const '+m[1]+'='+m[2]+';').join('\n');
   const load=functionSource(source,'loadArchive'),save=functionSource(source,'saveArchive'),register=functionSource(source,'registerCurrentPage');
@@ -123,4 +123,4 @@ for(const name of ['search.html','business-search.html','chronect-search.html','
   const context=vm.createContext({URLSearchParams,document:{body:{dataset:{pageArchive:'exclude'},classList:{add(){},remove(){}}},getElementById(id){if(!nodes.has(id))nodes.set(id,node());return nodes.get(id)},createElement:node,addEventListener(){}},localStorage:{getItem(){return saved},setItem(k,v){saved=v;writes++}},window:{location:{search:''}}});
   vm.runInContext(script,context);vm.runInContext('renderArchive()',context);assert.equal(saved,'[]',name+' EX visited set');assert.equal(writes,0,name+' EX writes');assert.equal(nodes.get('archiveList').children.length,120,name+' archive slots');
 }
-console.log('PASS CURRENT CODE: '+checkedFiles+' prior public files preserve the approved archive and living-route additions; '+syntax+' syntax checks; 77 unique pages / 13 registries; '+singletonLoads+' singleton reloads, '+registrations+' registrations/reloads, '+mixedLoads+' full/partial/legacy cases; brand round trips, 4 EX exclusions and 84 versioned consumers. New manuscript/search checks run separately.');
+console.log('PASS CURRENT CODE: '+checkedFiles+' prior public files preserve the approved archive and living-route additions; '+syntax+' syntax checks; 78 unique pages / 13 registries; '+singletonLoads+' singleton reloads, '+registrations+' registrations/reloads, '+mixedLoads+' full/partial/legacy cases; brand round trips, 4 EX exclusions and 85 versioned consumers. New manuscript/search checks run separately.');
