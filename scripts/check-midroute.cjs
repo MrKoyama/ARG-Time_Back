@@ -19,8 +19,8 @@ const no34=read('business-demonstration.html'),no45=read('chronect-hub-session.h
 assert.equal(no34.split(mid.unitAddition).length,2);assert.equal(no45.split(mid.documentAddition).length,2);
 assert(!no45.includes('80574305'));assert(!no45.includes('href="business-demonstration.html"'));
 for(const e of mid.entries.slice(0,3)){const html=read(e.href),article=html.match(/<article class="hub-document"[\s\S]*?<\/article>/)[0];
-  assert(html.includes('data-page-number="'+compactNumber(e.number)+'"'));assert(html.includes('data-page-title="'+e.title+'"'));assert(html.includes('>'+compactNumber(e.number)+' / 120</button>'));
-  for(const x of ['G-DG4X4HMEC2','このサイトの内容はフィクションです。','archive.css?v=20261029','chronect-hub.js?v='+archiveVersion,'chronect-shared.js?v='+archiveVersion])assert(html.includes(x),e.href+' '+x);
+  assert(html.includes('data-page-number="'+(compactNumber(e.number)+1)+'"'));assert(html.includes('data-page-title="'+e.title+'"'));assert(html.includes('>'+(compactNumber(e.number)+1)+' / 120</button>'));
+  for(const x of ['G-DG4X4HMEC2','このサイトの内容はフィクションです。','archive.css?v=20261029','chronect-hub.js?v=20261116-report-reference-v1','chronect-shared.js?v='+archiveVersion])assert(html.includes(x),e.href+' '+x);
   assert(!/SECOND SHIFT|秘密|外部指示|無断|まつだ|高瀬|TB-260917|\d{4}-\d{2}-\d{2}|\d+%/.test(article));
   assert.deepEqual([...article.matchAll(/href="([^"]+)"/g)].map(m=>m[1]),['chronect-hub.html']);
 }

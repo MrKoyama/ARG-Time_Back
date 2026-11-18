@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <script>window.dataLayer=[];function gtag(){dataLayer.push(arguments);}gtag('config','G-DG4X4HMEC2',{send_page_view:false});</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="調査作業控えについてのメール画面">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="images/favicon-mail.svg">
+  <title>調査作業控えについて ｜ 調査ノート</title>
+  <style>
+    :root {
+      --bg: #f2f2f4;
+      --panel: rgba(255, 255, 255, .88);
+      --white: #fff;
+      --ink: #1d1d1f;
+      --muted: #6e6e73;
+      --line: #d6d6da;
+      --blue: #0879f9;
+      --blue-dark: #0066d6;
+      --sidebar: #e9e9ed;
+      --incoming: #e9e9eb;
+      --red: #a92222;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(130, 183, 255, .28), transparent 34%),
+        radial-gradient(circle at 88% 5%, rgba(228, 190, 255, .22), transparent 30%),
+        #dfe1e6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Yu Gothic UI", "Yu Gothic", sans-serif;
+      line-height: 1.6;
+    }
+
+    button,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page-shell {
+      min-height: calc(100vh - 76px);
+      padding: 28px;
+      display: grid;
+      place-items: center;
+    }
+
+    .mail-window {
+      width: min(1120px, 100%);
+      height: min(760px, calc(100vh - 132px));
+      min-height: 590px;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: 52px 1fr;
+      border: 1px solid rgba(90, 90, 94, .24);
+      border-radius: 14px;
+      background: var(--panel);
+      box-shadow: 0 24px 70px rgba(45, 48, 56, .23);
+      backdrop-filter: blur(24px);
+    }
+
+    .window-bar {
+      display: grid;
+      grid-template-columns: 170px 1fr 170px;
+      align-items: center;
+      padding: 0 16px;
+      border-bottom: 1px solid rgba(120, 120, 125, .24);
+      background: rgba(246, 246, 248, .9);
+    }
+
+    .traffic-lights {
+      display: flex;
+      gap: 8px;
+    }
+
+    .traffic-lights span {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .traffic-lights span:nth-child(1) {
+      background: #ff5f57;
+    }
+
+    .traffic-lights span:nth-child(2) {
+      background: #febc2e;
+    }
+
+    .traffic-lights span:nth-child(3) {
+      background: #28c840;
+    }
+
+    .window-title {
+      margin: 0;
+      text-align: center;
+      font-size: .84rem;
+      font-weight: 650;
+    }
+
+    .security-state {
+      justify-self: end;
+      color: var(--muted);
+      font-size: .72rem;
+    }
+
+    .mail-layout {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 215px 1fr;
+    }
+
+    .sidebar {
+      padding: 18px 12px;
+      border-right: 1px solid rgba(120, 120, 125, .22);
+      background: rgba(231, 231, 235, .78);
+    }
+
+    .compose-mark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 7px 20px;
+      color: #45454a;
+      font-size: .82rem;
+      font-weight: 650;
+    }
+
+    .compose-icon {
+      display: grid;
+      width: 29px;
+      height: 29px;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--blue);
+      font-size: .96rem;
+    }
+
+    .folder-label {
+      margin: 0 10px 7px;
+      color: #8a8a8f;
+      font-size: .69rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+
+    .folder-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .folder-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 10px;
+      border-radius: 7px;
+      color: #4b4b50;
+      font-size: .82rem;
+    }
+
+    .folder-item.is-active {
+      color: #fff;
+      background: var(--blue);
+    }
+
+    .folder-count {
+      min-width: 20px;
+      text-align: right;
+      font-size: .7rem;
+    }
+
+    .thread-panel {
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      background: rgba(255, 255, 255, .95);
+    }
+
+    .thread-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 13px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .sender-summary {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .avatar {
+      flex: 0 0 auto;
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: linear-gradient(145deg, #8b8d93, #56585e);
+      font-size: .98rem;
+      font-weight: 700;
+    }
+
+    .sender-text {
+      min-width: 0;
+    }
+
+    .sender-text h1 {
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: .94rem;
+    }
+
+    .sender-text p {
+      margin: 1px 0 0;
+      color: var(--muted);
+      font-size: .69rem;
+    }
+
+    .thread-status {
+      flex: 0 0 auto;
+      padding: 5px 9px;
+      border-radius: 999px;
+      color: #81702d;
+      background: #fff3bd;
+      font-size: .7rem;
+      font-weight: 650;
+    }
+
+    .thread-actions {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .reset-button {
+      padding: 6px 10px;
+      border: 1px solid #c8c8cc;
+      border-radius: 8px;
+      color: #5f6065;
+      background: #fff;
+      font-size: .69rem;
+      cursor: pointer;
+    }
+
+    .reset-button:hover,
+    .reset-button:focus-visible {
+      border-color: #e09b9b;
+      color: #a12a2a;
+      background: #fff7f7;
+    }
+
+    .message-log {
+      min-height: 0;
+      overflow-y: auto;
+      padding: 24px clamp(18px, 5vw, 64px) 30px;
+      scroll-behavior: smooth;
+    }
+
+    .date-divider {
+      margin: 0 0 20px;
+      color: #929297;
+      text-align: center;
+      font-size: .68rem;
+    }
+
+    .message-row {
+      display: flex;
+      margin: 0 0 12px;
+      animation: message-in .24s ease both;
+    }
+
+    .message-row.outgoing {
+      justify-content: flex-end;
+    }
+
+    .message-row.incoming {
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .message-avatar {
+      flex: 0 0 auto;
+      display: grid;
+      width: 30px;
+      height: 30px;
+      margin-top: 0;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: linear-gradient(145deg, #8b8d93, #56585e);
+      font-size: .72rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .message-wrap {
+      max-width: min(620px, 78%);
+    }
+
+    .message-meta {
+      margin: 0 8px 3px;
+      color: #97979c;
+      font-size: .64rem;
+    }
+
+    .outgoing .message-meta {
+      text-align: right;
+    }
+
+    .bubble {
+      padding: 10px 14px;
+      border-radius: 17px;
+      background: var(--incoming);
+      font-size: .87rem;
+      line-height: 1.72;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .incoming .bubble {
+      border-bottom-left-radius: 5px;
+    }
+
+    .outgoing .bubble {
+      color: #fff;
+      background: var(--blue);
+      border-bottom-right-radius: 5px;
+    }
+
+    .message-link {
+      display: block;
+      margin-top: 9px;
+      padding: 10px 12px;
+      border: 1px solid #b9d8fb;
+      border-radius: 10px;
+      color: #075ebc;
+      background: #fff;
+      text-decoration: none;
+      font-weight: 650;
+    }
+
+    .message-link:hover,
+    .message-link:focus-visible {
+      border-color: var(--blue);
+      background: #f2f8ff;
+    }
+
+    .link-caption {
+      display: block;
+      margin-bottom: 2px;
+      color: #6f7176;
+      font-size: .67rem;
+      font-weight: 500;
+    }
+
+    .message-attachment {
+      display: block;
+      width: min(250px, 100%);
+      aspect-ratio: 9 / 16;
+      margin-top: 10px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: #d6d6d8;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .14);
+    }
+
+    .message-attachment-link {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .message-attachment-link:hover .message-attachment,
+    .message-attachment-link:focus-visible .message-attachment {
+      outline: 3px solid rgba(19, 119, 237, .28);
+      outline-offset: 2px;
+    }
+
+    .time-skip-divider {
+      margin: 18px 0;
+    }
+
+    .typing-row {
+      display: none;
+    }
+
+    .typing-row.is-visible {
+      display: flex;
+    }
+
+    .typing-bubble {
+      display: flex;
+      gap: 4px;
+      padding: 14px 17px;
+      border-radius: 17px 17px 17px 5px;
+      background: var(--incoming);
+    }
+
+    .typing-bubble span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #8c8c91;
+      animation: typing-dot 1s infinite ease-in-out;
+    }
+
+    .typing-bubble span:nth-child(2) {
+      animation-delay: .14s;
+    }
+
+    .typing-bubble span:nth-child(3) {
+      animation-delay: .28s;
+    }
+
+    .composer {
+      padding: 13px 18px 16px;
+      border-top: 1px solid var(--line);
+      background: rgba(250, 250, 251, .96);
+      transition: background .2s ease, border-color .2s ease;
+    }
+
+    .composer.is-inputting {
+      border-top-color: #dfc66f;
+      background: #fff9e8;
+    }
+
+    .composer.is-receiving {
+      border-top-color: #c6c6ca;
+      background: #e8e8eb;
+    }
+
+    .composer-guide {
+      margin: 0 0 7px 5px;
+      color: #77777d;
+      font-size: .68rem;
+    }
+
+    .time-advance-button {
+      display: none;
+      width: min(360px, 100%);
+      margin: 4px auto 0;
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 12px;
+      color: #fff;
+      background: var(--blue);
+      box-shadow: 0 5px 14px rgba(8, 121, 249, .2);
+      font-size: .82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .time-advance-button:hover,
+    .time-advance-button:focus-visible {
+      background: #006ee6;
+    }
+
+    .composer-row {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      gap: 9px;
+    }
+
+    .composer-input {
+      position: relative;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .reply-mirror {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      padding: 10px 14px;
+      overflow: hidden;
+      scrollbar-gutter: stable;
+      border: 1px solid transparent;
+      border-radius: 18px;
+      color: var(--ink);
+      font-size: .84rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      pointer-events: none;
+      visibility: hidden;
+    }
+
+    .desktop-composer.is-scripted .reply-mirror {
+      visibility: visible;
+    }
+
+    .desktop-composer.is-scripted .reply-input {
+      color: transparent;
+      caret-color: transparent;
+    }
+
+    .scripted-caret {
+      display: inline-block;
+      width: 1px;
+      height: 1.15em;
+      margin-left: 1px;
+      vertical-align: -.18em;
+      background: #1b63b5;
+      animation: scripted-caret-blink .9s steps(1,end) infinite;
+    }
+
+    .desktop-composer.is-scripted:not(:focus-within) .scripted-caret {
+      opacity: 0;
+      animation: none;
+    }
+
+    .reply-input {
+      display: block;
+      width: 100%;
+      min-height: 44px;
+      max-height: 106px;
+      field-sizing: content;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scrollbar-gutter: stable;
+      overflow-wrap: anywhere;
+      resize: none;
+      padding: 10px 14px;
+      border: 1px solid #c8c8cc;
+      border-radius: 18px;
+      outline: none;
+      color: var(--ink);
+      background: #fff;
+      font-size: .84rem;
+      line-height: 1.55;
+    }
+
+    .reply-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(8, 121, 249, .12);
+      caret-color: #1b63b5;
+    }
+
+    .composer.is-inputting .reply-input {
+      border-color: #ddc36b;
+      background: #fffdf3;
+    }
+
+    .composer.is-inputting .reply-input:focus {
+      border-color: #c9a928;
+      box-shadow: 0 0 0 3px rgba(201, 169, 40, .14);
+    }
+
+    .composer.is-receiving .reply-input {
+      border-color: #c3c3c7;
+      color: #8b8b90;
+      background: #dedee1;
+    }
+
+    .reply-input:disabled {
+      color: #8b8b90;
+      background: #f1f1f3;
+    }
+
+    .send-button {
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--blue);
+      font-size: 1.16rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity .15s ease, transform .15s ease;
+    }
+
+    .send-button:disabled {
+      color: #fff;
+      background: var(--blue);
+      opacity: .42;
+      cursor: default;
+    }
+
+    .send-button:not(:disabled):hover,
+    .send-button:not(:disabled):focus-visible {
+      background: var(--blue-dark);
+      transform: translateY(-1px);
+    }
+
+    .mobile-reply {
+      display: none;
+      width: 100%;
+      min-height: 46px;
+      padding: 11px 15px;
+      border: 1px solid #9ac8fa;
+      border-radius: 13px;
+      color: #075ebc;
+      background: #f3f8ff;
+      text-align: left;
+      font-size: .83rem;
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    .cloze-composer {
+      display: none;
+    }
+
+    .cloze-sentence {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 12px 13px;
+      border: 1px solid #dec46d;
+      border-radius: 13px;
+      background: #fff9e7;
+      font-size: .84rem;
+    }
+
+    .cloze-input {
+      width: 150px;
+      min-height: 38px;
+      padding: 7px 10px;
+      border: 1px solid #c9a928;
+      border-radius: 9px;
+      outline: none;
+      color: var(--ink);
+      background: #fff;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .cloze-input:focus {
+      box-shadow: 0 0 0 3px rgba(201, 169, 40, .15);
+    }
+
+    .cloze-send {
+      flex: 0 0 auto;
+      min-height: 38px;
+      margin-left: auto;
+      padding: 7px 14px;
+      border: 0;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--blue);
+      font-size: .75rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .cloze-send:disabled {
+      opacity: .42;
+      cursor: default;
+    }
+
+    .cloze-feedback {
+      min-height: 20px;
+      margin: 5px 5px 0;
+      color: #a04949;
+      font-size: .7rem;
+    }
+
+    .waiting-note {
+      display: none;
+      margin: 0;
+      padding: 11px 13px;
+      border-radius: 10px;
+      color: #68686e;
+      background: #ededf0;
+      text-align: center;
+      font-size: .78rem;
+    }
+
+    .site-footer {
+      min-height: 76px;
+      border-top: 1px solid #c7c2b7;
+      background: #eeebe3;
+      color: #575550;
+    }
+
+    .footer-inner {
+      width: min(1120px, calc(100% - 32px));
+      min-height: 76px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 16px 0;
+    }
+
+    .fiction-notice {
+      margin: 0;
+      font-size: .72rem;
+      line-height: 1.7;
+    }
+
+    body.archive-open {
+      overflow: hidden;
+    }
+
+    .confirm-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(22, 22, 22, .72);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .18s ease, visibility .18s ease;
+    }
+
+    .confirm-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .confirm-dialog {
+      width: min(430px, 100%);
+      overflow: hidden;
+      border: 1px solid #aaa59a;
+      background: #faf8f3;
+      box-shadow: 0 22px 60px rgba(0, 0, 0, .36);
+      font-family: "Yu Gothic", "YuGothic", sans-serif;
+    }
+
+    .confirm-dialog h2 {
+      margin: 0;
+      padding: 16px 18px;
+      color: #fff;
+      background: #292a2c;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: 1rem;
+      letter-spacing: .06em;
+    }
+
+    .confirm-body {
+      padding: 18px;
+    }
+
+    .confirm-message {
+      margin: 0;
+      color: #53514c;
+      font-size: .84rem;
+      line-height: 1.75;
+      white-space: pre-line;
+    }
+
+    .confirm-actions {
+      margin-top: 18px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .confirm-actions button {
+      padding: 9px 14px;
+      border: 1px solid #aaa59a;
+      color: #3e3d39;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .confirm-actions .confirm-danger {
+      border-color: #9a5757;
+      color: #fff;
+      background: #9a5757;
+    }
+
+    .time-passage {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: #111217;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .32s ease, visibility .32s ease;
+      pointer-events: none;
+    }
+
+    .time-passage.is-visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .time-passage p {
+      margin: 0;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: clamp(1.15rem, 4vw, 1.75rem);
+      letter-spacing: .22em;
+    }
+
+    @keyframes message-in {
+      from {
+        opacity: 0;
+        transform: translateY(7px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes typing-dot {
+      0%, 65%, 100% {
+        transform: translateY(0);
+        opacity: .42;
+      }
+      32% {
+        transform: translateY(-3px);
+        opacity: 1;
+      }
+    }
+
+    @keyframes scripted-caret-blink {
+      0%, 48% { opacity: 1; }
+      49%, 100% { opacity: 0; }
+    }
+
+    @media (max-width: 700px) {
+      .page-shell {
+        min-height: calc(100dvh - 116px);
+        padding: 0;
+        display: block;
+      }
+
+      .mail-window {
+        width: 100%;
+        height: calc(100dvh - 116px);
+        min-height: 560px;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .window-bar {
+        grid-template-columns: 44px 1fr 44px;
+        padding: 0 10px;
+      }
+
+      .traffic-lights {
+        display: none;
+      }
+
+      .security-state {
+        overflow: hidden;
+        color: transparent;
+        font-size: 0;
+      }
+
+      .security-state::after {
+        content: "●";
+        color: #65a16d;
+        font-size: .62rem;
+      }
+
+      .mail-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .thread-header {
+        padding: 10px 13px;
+      }
+
+      .thread-status {
+        display: none;
+      }
+
+      .reset-button {
+        padding: 7px 9px;
+      }
+
+      .message-log {
+        padding: 18px 12px 24px;
+      }
+
+      .message-wrap {
+        max-width: 86%;
+      }
+
+      .message-avatar {
+        width: 27px;
+        height: 27px;
+        font-size: .66rem;
+      }
+
+      .bubble {
+        font-size: .84rem;
+      }
+
+      .composer {
+        padding: 11px 11px max(13px, env(safe-area-inset-bottom));
+      }
+
+      .desktop-composer {
+        display: none;
+      }
+
+      .composer.url-mode .desktop-composer {
+        display: flex;
+      }
+
+      .mobile-reply {
+        display: block;
+      }
+
+      .cloze-sentence {
+        align-items: stretch;
+      }
+
+      .cloze-input {
+        flex: 1 1 120px;
+        width: auto;
+      }
+
+      .cloze-send {
+        flex: 1 1 100%;
+        margin-left: 0;
+      }
+
+      .footer-inner {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .site-footer,
+      .footer-inner {
+        min-height: 116px;
+      }
+
+      .archive-button {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .message-row,
+      .typing-bubble span,
+      .send-button {
+        animation: none;
+        transition: none;
+      }
+
+      .message-log {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="archive.css?v=20261029">
+  <style>
+    #report-storage-status:empty { display: none; }
+
+    .report-actions { margin-block-start: 10px; }
+    .report-actions[hidden], .report-file[hidden] { display: none; }
+
+    .report-tool {
+      padding: 7px 12px;
+      border: 1px solid #c8c8cc;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font-size: .83rem;
+      cursor: pointer;
+    }
+
+    .report-tool:hover:not(:disabled) { background: #f3f5f8; }
+    .report-tool:disabled { cursor: default; opacity: .55; }
+    .report-tool:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+    .report-tool svg { vertical-align: -.2em; }
+
+    .report-file {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 11px;
+      border: 1px solid #cdd5df;
+      border-radius: 8px;
+      background: #f6f8fb;
+      color: var(--ink);
+      font-size: .82rem;
+      overflow-wrap: anywhere;
+    }
+
+    .report-file > span:nth-child(2) { flex: 1; min-width: 0; }
+    .report-file small { display: block; color: var(--muted); }
+    .bubble .report-file { margin-block-start: 9px; }
+
+    .report-document-icon {
+      position: relative;
+      flex: 0 0 23px;
+      width: 23px;
+      height: 29px;
+      border: 1px solid #7892af;
+      border-radius: 3px;
+      background: #fff;
+    }
+
+    .report-document-icon::after {
+      content: "";
+      position: absolute;
+      inset: 8px 5px auto;
+      height: 1px;
+      background: #7892af;
+      box-shadow: 0 4px #7892af, 0 8px #7892af;
+    }
+
+    .report-dialog {
+      width: min(440px, calc(100% - 32px));
+      max-height: calc(100dvh - 32px);
+      padding: 18px;
+      border: 1px solid #c8c8cc;
+      border-radius: 12px;
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 16px 38px rgba(0, 0, 0, .2);
+      overflow: auto;
+    }
+
+    .report-dialog::backdrop { background: rgba(25, 32, 42, .35); }
+    .report-dialog h2 { margin: 0 0 12px; font-size: 1rem; }
+    .report-dialog p { margin: 0; font-size: .85rem; }
+    .report-dialog .confirm-actions { flex-wrap: wrap; }
+    .report-dialog .confirm-actions .report-tool { border-radius: 7px; }
+    .report-dialog .confirm-actions .report-primary { color: #fff; background: var(--blue-dark); border-color: var(--blue-dark); }
+    .report-dialog progress { width: 100%; margin-block-start: 10px; accent-color: var(--blue); }
+
+    .report-delete-trigger { border-color: #b88686; color: #873a3a; }
+    .report-fade {
+      position: fixed;
+      inset: 0;
+      z-index: 12000;
+      opacity: 0;
+      background: #141619;
+      pointer-events: none;
+      transition: opacity 2.5s ease-in-out;
+    }
+    .report-fade.is-visible { opacity: 1; pointer-events: auto; }
+    @media (prefers-reduced-motion: reduce) {
+      .report-fade { transition: none; }
+    }
+  </style>
+</head>
+<body data-page-archive="exclude" data-page-number="84" data-page-title="調査作業控えについて ｜ 調査ノート" data-page-href="takase-mail.html">
+  <main class="page-shell" id="report-mail" hidden>
+    <section class="mail-window" aria-label="高瀬とのメール">
+      <header class="window-bar">
+        <div class="traffic-lights" aria-hidden="true"><span></span><span></span><span></span></div>
+        <p class="window-title">Mail</p>
+        <span class="security-state">プライベート通信</span>
+      </header>
+
+      <div class="mail-layout">
+        <aside class="sidebar" aria-label="メールボックス">
+          <p class="compose-mark"><span class="compose-icon" aria-hidden="true">✎</span>新規メッセージ</p>
+          <p class="folder-label">メールボックス</p>
+          <ul class="folder-list">
+            <li class="folder-item is-active"><span>受信</span><span class="folder-count">1</span></li>
+            <li class="folder-item"><span>フラグ付き</span><span class="folder-count">0</span></li>
+            <li class="folder-item"><span>送信済み</span><span class="folder-count">1</span></li>
+            <li class="folder-item"><span>下書き</span><span class="folder-count">0</span></li>
+          </ul>
+        </aside>
+
+        <section class="thread-panel">
+          <header class="thread-header">
+            <div class="sender-summary">
+              <span class="avatar" aria-hidden="true">高</span>
+              <div class="sender-text">
+                <h1>調査作業控えについて</h1>
+                <p>y.takase@chronect.mail</p>
+              </div>
+            </div>
+            <div class="thread-actions">
+              <span class="thread-status" id="threadStatus">あなたの入力待ち</span>
+              <button class="reset-button" id="resetButton" type="button">↻ 会話をリセット</button>
+            </div>
+          </header>
+
+          <div class="message-log" id="messageLog" aria-live="polite">
+            <p class="date-divider" id="dateDivider"></p>
+            <div class="message-row incoming typing-row" id="typingRow" aria-label="高瀬が入力中">
+              <span class="message-avatar" aria-hidden="true">高</span>
+              <div class="typing-bubble" aria-hidden="true"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+
+          <div class="composer is-inputting" id="composer">
+            <p class="composer-guide" id="composerGuide">入力欄を選択し、キーボードで文章を入力してください。</p>
+            <div class="composer-row desktop-composer" id="desktopComposer">
+              <div class="composer-input">
+                <div class="reply-mirror" id="replyMirror" aria-hidden="true"><span id="replyMirrorText"></span><span class="scripted-caret"></span></div>
+                <textarea class="reply-input" id="replyInput" rows="1" placeholder="メッセージ" aria-label="返信メッセージ"></textarea>
+              </div>
+              <button class="send-button" id="sendButton" type="button" aria-label="メッセージを送信" disabled>↑</button>
+            </div>
+            <button class="mobile-reply" id="mobileReply" type="button">高瀬に連絡する</button>
+            <div class="report-actions" id="reportAttachmentActions" hidden>
+              <button id="reportAttach" class="report-tool" type="button" aria-haspopup="dialog">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m8 13 6.5-6.5a2.1 2.1 0 0 1 3 3l-8 8a3.3 3.3 0 0 1-4.7-4.7l8-8a4.4 4.4 0 0 1 6.2 6.2l-7.5 7.5"/></svg>
+                添付ファイルを選ぶ
+              </button>
+              <div class="report-file" id="reportAttached" hidden>
+                <span class="report-document-icon" aria-hidden="true"></span>
+                <span>TIME BACKの売却時間帯における身体利用に関する調査報告書<small>添付済み</small></span>
+                <button class="report-tool" id="reportDetach" type="button">取り消す</button>
+              </div>
+            </div>
+            <div class="report-actions" id="reportDeletionActions" hidden>
+              <button class="report-tool report-delete-trigger" id="reportDelete" type="button" aria-haspopup="dialog">報告書のデータを削除する</button>
+              <a id="reportAftermathLink" href="yaboo-news-aftermath.html" hidden>後日談を読む</a>
+            </div>
+            <p class="waiting-note" id="waitingNote"></p>
+            <p id="report-storage-status" role="status"></p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="fiction-notice">このサイトの内容はフィクションです。登場する人物・団体・名称等は架空のものであり、実在のものとは関係ありません。</p>
+      <button class="archive-button" id="archiveButton" type="button" aria-haspopup="dialog" aria-controls="archiveOverlay">84 / 120</button>
+    </div>
+  </footer>
+
+  <div class="archive-overlay" id="archiveOverlay" aria-hidden="true"><section class="archive-dialog" role="dialog" aria-modal="true" aria-labelledby="archiveTitle"><header class="archive-header"><h2 id="archiveTitle">ページアーカイブ</h2><button class="archive-close" id="archiveClose" type="button" aria-label="ページアーカイブを閉じる">×</button></header><div class="archive-content"><p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。ページ番号は閲覧の目安です。順番に迷ったときは番号を参考にしつつ、気になった情報から自由にご覧ください。</p><ol class="archive-list" id="archiveList"></ol><div class="archive-tools"><button class="archive-reset-button" id="archiveResetButton" type="button">アーカイブをリセット</button><div class="reset-confirm" id="resetConfirm" role="alertdialog" aria-labelledby="resetTitle" hidden><p id="resetTitle">探索済みページの記録を消去しますか？</p><div class="reset-actions"><button id="resetCancel" type="button">キャンセル</button><button class="danger" id="resetAccept" type="button">リセットする</button></div></div></div></div></section></div>
+
+  <div class="confirm-overlay" id="confirmOverlay" aria-hidden="true">
+    <section class="confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmMessage">
+      <h2 id="confirmTitle">確認</h2>
+      <div class="confirm-body">
+        <p class="confirm-message" id="confirmMessage"></p>
+        <div class="confirm-actions"><button id="confirmCancel" type="button">キャンセル</button><button class="confirm-danger" id="confirmAccept" type="button">リセットする</button></div>
+      </div>
+    </section>
+  </div>
+
+  <dialog class="report-dialog" id="reportPicker" aria-labelledby="reportPickerTitle">
+    <h2 id="reportPickerTitle">添付ファイルを選ぶ</h2>
+    <form method="dialog">
+      <label class="report-file">
+        <span class="report-document-icon" aria-hidden="true"></span>
+        <span>TIME BACKの売却時間帯における身体利用に関する調査報告書<small>完成済み</small></span>
+        <input type="radio" name="report-file" checked aria-label="調査報告書を選択">
+      </label>
+      <div class="confirm-actions">
+        <button class="report-tool" type="submit" value="cancel">キャンセル</button>
+        <button class="report-tool report-primary" type="submit" value="attach">添付する</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="report-dialog" id="reportDeleteDialog" aria-labelledby="reportDeleteTitle" aria-describedby="reportDeleteMessage">
+    <h2 id="reportDeleteTitle">報告書のデータを削除しますか？</h2>
+    <p id="reportDeleteMessage" aria-live="polite"></p>
+    <progress id="reportDeleteProgress" aria-label="報告書データの削除" hidden></progress>
+    <div class="confirm-actions">
+      <button class="report-tool" id="reportDeleteCancel" type="button">キャンセル</button>
+      <button class="confirm-danger" id="reportDeleteConfirm" type="button">削除する</button>
+      <button class="report-tool report-primary" id="reportDeleteClose" type="button" hidden>閉じる</button>
+    </div>
+  </dialog>
+  <div class="report-fade" id="reportFade" aria-hidden="true"></div>
+
+  <script>
+    window.initTakaseMail = function ({ phase, mailPhase, advanceMail, reportComplete, resetMail, watchReport, deleteReport, shouldResumeDeletion, aftermathUrl }) {
+    const conversationSteps = [
+      {
+        "outgoing": "初めまして。突然のご連絡失礼します。\nChronectについて調査していたところ、社内の資料と思われる記録をいくつか発見しました。\n調査作業控えに記載されていたメールアドレスから連絡しています。\nこちらは高瀬悠真さんの連絡先でしょうか？",
+        "reply": "失礼ですが、どちら様でしょうか。\n内部資料というのは、何のことでしょう。\nそもそも、社外の方が閲覧できるようなものではないはずです。\nこのメールアドレスをどこで知ったのか分かりませんが、いたずらや興味本位の連絡でしたら、お控えください。",
+        "mobileLabel": "高瀬に連絡する"
+      },
+      {
+        "outgoing": "突然の連絡で驚かせてしまい、申し訳ありません。\nですが、いたずらではありません。\n私はTIME BACKについて調べる中で、Chronectが利用者に説明していない活動を行っている可能性に気づきました。\n安心してください。私はChronectの問題を明らかにするため、告発に協力したいと考えています。",
+        "reply": "……そういうことでしたか。\nそれなら安心しました。\nこちらこそ、失礼なことを申し上げました。\n実は、あなたのような方からの連絡を待っていました。\nもしかして、調査に関する報告書なども発見されていますか？",
+        "mobileLabel": "告発への協力を申し出る"
+      },
+      {
+        "outgoing": "はい。調査作業控えにあった報告書の草稿を発見しました。\n関連する記録を調べ、不足していた項目についても、すべて記入を終えています。",
+        "reply": "本当ですか。あの報告書を完成させてくださったのですね。\nありがとうございます。\n当時はWeb関連の管理業務をほとんど一人で任されていて、毎日の対応に追われるばかりでした。\nあまりにも仕事が多く、本来やるべき業務も満足に進められず、Web運用日誌の記入や資料の整理など、後回しにしてしまったことも少なくありません。\n……すみません。余計な話をしてしまいましたね。\nそれよりも、完成した報告書について、ぜひ内容を確認させていただきたいです。\nお手数ですが、こちらに送っていただくことは可能でしょうか？",
+        "mobileLabel": "報告書の完成を伝える"
+      },
+      {
+        "outgoing": "承知しました。\n完成した調査報告書を添付します。\n内容をご確認ください。",
+        "reply": "報告書を受け取りました。\nありがとうございます。\nこれだけの情報を集めるのは、決して簡単ではなかったと思います。\nいただいた資料を確認し、告発についてはこちらで対応させていただきます。\nただ、一つお願いがあります。\n今回の件は、あなたが考えている以上に慎重に扱う必要があります。\n万が一、あなたが報告書を所持していることが知られれば、調査に協力していただいたあなた自身にも危険が及ぶかもしれません。\n必要な情報はこちらで確認できましたので、お手元に残っている報告書は完全に削除してください。\nどうか、ご自身の安全を第一に考えてください。",
+        "mobileLabel": "報告書を送信する"
+      }
+    ];
+    const sentPhases = [phase.contacted, phase.offered, phase.completionSent, phase.sent];
+    const replyPhases = [phase.firstReply, phase.cooperationReply, phase.requested, phase.deleteRequested];
+    const messageLog = document.getElementById('messageLog');
+    const dateDivider = document.getElementById('dateDivider');
+    const typingRow = document.getElementById('typingRow');
+    const replyInput = document.getElementById('replyInput');
+    const replyMirror = document.getElementById('replyMirror');
+    const replyMirrorText = document.getElementById('replyMirrorText');
+    const sendButton = document.getElementById('sendButton');
+    const mobileReply = document.getElementById('mobileReply');
+    const composer = document.getElementById('composer');
+    const composerGuide = document.getElementById('composerGuide');
+    const desktopComposer = document.getElementById('desktopComposer');
+    const waitingNote = document.getElementById('waitingNote');
+    const threadStatus = document.getElementById('threadStatus');
+    const resetButton = document.getElementById('resetButton');
+    const confirmOverlay = document.getElementById('confirmOverlay');
+    const confirmTitle = document.getElementById('confirmTitle');
+    const confirmMessage = document.getElementById('confirmMessage');
+    const confirmCancel = document.getElementById('confirmCancel');
+    const confirmAccept = document.getElementById('confirmAccept');
+
+    const archiveOverlay = document.getElementById('archiveOverlay');
+    const reportAttach = document.getElementById('reportAttach');
+    const reportAttachmentActions = document.getElementById('reportAttachmentActions');
+    const reportAttached = document.getElementById('reportAttached');
+    const reportDetach = document.getElementById('reportDetach');
+    const reportPicker = document.getElementById('reportPicker');
+    const reportDelete = document.getElementById('reportDelete');
+    const reportAftermathLink = document.getElementById('reportAftermathLink');
+    const reportDeletionActions = document.getElementById('reportDeletionActions');
+    const reportDeleteDialog = document.getElementById('reportDeleteDialog');
+    const reportDeleteTitle = document.getElementById('reportDeleteTitle');
+    const reportDeleteMessage = document.getElementById('reportDeleteMessage');
+    const reportDeleteProgress = document.getElementById('reportDeleteProgress');
+    const reportDeleteCancel = document.getElementById('reportDeleteCancel');
+    const reportDeleteConfirm = document.getElementById('reportDeleteConfirm');
+    const reportDeleteClose = document.getElementById('reportDeleteClose');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const conversationStartedStorageKey = 'timeback-investigation-mail-started-at-v1';
+    let conversationStartedAt = loadConversationStartedAt();
+    let displayedPhase = null;
+    let replyTimer;
+    let currentStep = 0;
+    let typedLength = 0;
+    let isReplying = false;
+    let attached = false;
+    let deletionDialogState = '';
+    let fading = false;
+    let aftermathTimer;
+    let pendingConfirmAction = null;
+    let confirmReturnTarget = null;
+    function loadConversationStartedAt() {
+      try {
+        const storedValue = Number(localStorage.getItem(conversationStartedStorageKey));
+        return Number.isFinite(storedValue) && storedValue > 0 ? storedValue : 0;
+      } catch (error) {
+        return 0;
+      }
+    }
+
+    function saveConversationStartedAt(timestamp) {
+      conversationStartedAt = timestamp;
+      try {
+        localStorage.setItem(conversationStartedStorageKey, String(timestamp));
+      } catch (error) {
+        return;
+      }
+    }
+
+    function formatMessageTime(timestamp) {
+      return new Intl.DateTimeFormat('ja-JP', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).format(new Date(timestamp));
+    }
+
+    function updateDateDivider(timestamp) {
+      dateDivider.textContent = new Intl.DateTimeFormat('ja-JP', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }).format(new Date(timestamp));
+    }
+
+
+    function createMessage(direction, text, animate, timestamp, attachment) {
+      const row = document.createElement('div');
+      const wrap = document.createElement('div');
+      const meta = document.createElement('p');
+      const bubble = document.createElement('div');
+
+      row.className = 'message-row ' + direction;
+      if (!animate) row.style.animation = 'none';
+      wrap.className = 'message-wrap';
+      meta.className = 'message-meta';
+      bubble.className = 'bubble';
+      meta.textContent = (direction === 'outgoing' ? '自分' : '高瀬') + '・' + formatMessageTime(timestamp || Date.now());
+      bubble.textContent = text;
+
+      if (attachment) {
+        const file = reportAttached.cloneNode(true);
+        file.removeAttribute('id');
+        file.querySelector('button').remove();
+        file.hidden = false;
+        bubble.appendChild(file);
+      }
+
+      wrap.append(meta, bubble);
+      if (direction === 'incoming') {
+        const messageAvatar = document.createElement('span');
+        messageAvatar.className = 'message-avatar';
+        messageAvatar.setAttribute('aria-hidden', 'true');
+        messageAvatar.textContent = '高';
+        row.appendChild(messageAvatar);
+      }
+      row.appendChild(wrap);
+      messageLog.insertBefore(row, typingRow);
+      return row;
+    }
+
+
+    function scrollToLatest() {
+      window.requestAnimationFrame(function () {
+        messageLog.scrollTop = messageLog.scrollHeight;
+      });
+    }
+
+    function focusComposerIfReady() {
+      if (reportPicker.open || reportDeleteDialog.open || fading) return;
+      if (!window.matchMedia('(min-width: 701px)').matches) return;
+      if (isReplying) return;
+      if (document.getElementById('archiveOverlay').classList.contains('is-open')) return;
+
+      if (replyInput.disabled) return;
+
+      window.requestAnimationFrame(function () {
+        const selection = window.getSelection();
+        if (selection && !selection.isCollapsed && selection.getRangeAt(0).intersectsNode(messageLog)) return;
+
+        replyInput.focus({ preventScroll: true });
+        const caretPosition = replyInput.value.length;
+        replyInput.setSelectionRange(caretPosition, caretPosition);
+      });
+    }
+
+
+    function setReceivingState() {
+      desktopComposer.classList.remove('is-scripted');
+      composer.classList.remove('is-inputting');
+      composer.classList.add('is-receiving');
+      threadStatus.textContent = 'メッセージを受信中';
+      composerGuide.textContent = '高瀬が返信しています。';
+    }
+
+
+    function canSend() {
+      return reportComplete() && (currentStep !== 3 || attached);
+    }
+
+    function updateAttachmentControls() {
+      const complete = reportComplete();
+      if (!complete) attached = false;
+      reportAttachmentActions.hidden = isReplying || mailPhase() !== phase.requested || !complete;
+      reportAttach.hidden = attached;
+      reportAttached.hidden = !attached;
+      mobileReply.disabled = isReplying || !canSend();
+      sendButton.disabled = isReplying || !canSend() || typedLength < (conversationSteps[currentStep]?.outgoing.length || 0);
+    }
+
+    function updateDeletionActions() {
+      const current = mailPhase();
+      reportDeletionActions.hidden = current < phase.deleteRequested;
+      reportDelete.hidden = current !== phase.deleteRequested;
+      reportAftermathLink.hidden = current < phase.deleted;
+    }
+
+    function updateComposer() {
+      updateAttachmentControls();
+      updateDeletionActions();
+      if (isReplying || currentStep >= conversationSteps.length || !reportComplete()) {
+        desktopComposer.style.display = 'none';
+        mobileReply.style.display = 'none';
+        replyInput.disabled = true;
+        if (isReplying) setReceivingState();
+        else {
+          composer.classList.remove('is-receiving', 'is-inputting');
+          composerGuide.textContent = currentStep >= conversationSteps.length ? 'やり取りを終了しました。' : '完成した報告書が必要です。';
+          threadStatus.textContent = currentStep >= conversationSteps.length ? '受信済み' : '報告書待ち';
+          waitingNote.style.display = 'block';
+          const back = document.createElement("a");
+          back.href = "takase-work-notes.html";
+          back.textContent = "調査作業控えへ戻る";
+          waitingNote.replaceChildren(back);
+        }
+        return;
+      }
+      mobileReply.style.display = '';
+      const step = conversationSteps[currentStep];
+      desktopComposer.classList.add('is-scripted');
+      composer.classList.remove('url-mode', 'is-receiving');
+      composer.classList.add('is-inputting');
+      desktopComposer.style.display = '';
+      typedLength = 0;
+      replyInput.value = '';
+      replyMirrorText.textContent = '';
+      replyMirror.scrollTop = 0;
+      replyInput.placeholder = 'メッセージ';
+      replyInput.readOnly = true;
+      replyInput.setAttribute('inputmode', 'none');
+      replyInput.disabled = false;
+      sendButton.disabled = true;
+      mobileReply.disabled = false;
+      mobileReply.textContent = step.mobileLabel;
+      composerGuide.textContent = '入力欄を選択して文章を完成させ、Enterキーまたは送信ボタンで送ってください。';
+      waitingNote.style.display = 'none';
+      threadStatus.textContent = 'あなたの入力待ち';
+      updateAttachmentControls();
+      focusComposerIfReady();
+    }
+
+
+    function restoreConversation() {
+      const current = mailPhase();
+      if (displayedPhase === current) {
+        updateAttachmentControls();
+        updateDeletionActions();
+        if (!reportComplete() || replyInput.disabled) updateComposer();
+        return;
+      }
+      window.clearTimeout(replyTimer);
+      displayedPhase = current;
+      currentStep = replyPhases.filter(value => value <= current).length;
+      isReplying = sentPhases.includes(current);
+      if (current === phase.initial) conversationStartedAt = 0;
+      else if (!conversationStartedAt) saveConversationStartedAt(Date.now());
+      updateDateDivider(conversationStartedAt || Date.now());
+      messageLog.querySelectorAll('.message-row:not(.typing-row)').forEach(row => row.remove());
+      conversationSteps.forEach((step, index) => {
+        const timestamp = conversationStartedAt + index * 120000;
+        if (sentPhases[index] <= current) createMessage('outgoing', step.outgoing, false, timestamp, index === 3);
+        if (replyPhases[index] <= current) createMessage('incoming', step.reply, false, timestamp + 45000);
+      });
+      typingRow.classList.toggle('is-visible', isReplying);
+      resetButton.disabled = current >= phase.deleted;
+      updateComposer();
+      scrollToLatest();
+      if (isReplying) scheduleReply(current);
+    }
+
+    function scheduleReply(sentPhase) {
+      const index = sentPhases.indexOf(sentPhase);
+      const step = conversationSteps[index];
+      replyTimer = window.setTimeout(function () {
+        if (!advanceMail(sentPhase, replyPhases[index])) {
+          if (mailPhase() !== sentPhase) restoreConversation();
+          return;
+        }
+        displayedPhase = replyPhases[index];
+        typingRow.classList.remove('is-visible');
+        createMessage('incoming', step.reply, true);
+        currentStep += 1;
+        isReplying = false;
+        updateComposer();
+        scrollToLatest();
+      // Count one extra line break between paragraphs to retain the original delay.
+      }, 850 + Math.min(1200, (step.reply.length + step.reply.split('\n').length - 1) * 5));
+    }
+
+    function sendCurrentReply() {
+      if (isReplying || currentStep >= conversationSteps.length || !canSend()) return;
+      const expected = currentStep === 0 ? phase.initial : replyPhases[currentStep - 1];
+      const next = sentPhases[currentStep];
+      if (!advanceMail(expected, next)) return;
+      displayedPhase = next;
+      const step = conversationSteps[currentStep];
+      isReplying = true;
+      replyInput.disabled = true;
+      sendButton.disabled = true;
+      mobileReply.disabled = true;
+      reportAttachmentActions.hidden = true;
+      setReceivingState();
+      const outgoingTimestamp = Date.now();
+      if (currentStep === 0 && !conversationStartedAt) {
+        saveConversationStartedAt(outgoingTimestamp);
+        updateDateDivider(outgoingTimestamp);
+      }
+      createMessage('outgoing', step.outgoing, true, outgoingTimestamp, currentStep === 3);
+      replyInput.value = '';
+      typingRow.classList.add('is-visible');
+      scrollToLatest();
+      scheduleReply(next);
+    }
+
+    replyInput.addEventListener('keydown', function (event) {
+      if (isReplying) {
+        event.preventDefault();
+        return;
+      }
+
+      if (currentStep >= conversationSteps.length || replyInput.disabled) return;
+
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        if (!sendButton.disabled) sendCurrentReply();
+        return;
+      }
+
+      if (event.key === 'Tab') return;
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+
+      const typingCodes = /^(?:Key[A-Z]|Digit[0-9]|Numpad[0-9]|NumpadAdd|NumpadSubtract|NumpadMultiply|NumpadDivide|NumpadDecimal)$/;
+      const punctuationCodes = new Set(['Space', 'Minus', 'Equal', 'BracketLeft', 'BracketRight', 'Backslash', 'Semicolon', 'Quote', 'Comma', 'Period', 'Slash', 'Backquote', 'IntlBackslash', 'IntlRo', 'IntlYen']);
+      const isTypingKey = typingCodes.test(event.code) || punctuationCodes.has(event.code) || event.key.length === 1 || event.key === 'Process' || event.key === 'Dead' || event.key === 'Unidentified';
+      if (!isTypingKey) return;
+
+      event.preventDefault();
+      const targetText = conversationSteps[currentStep].outgoing;
+      const characterCount = Math.floor(Math.random() * 3) + 2;
+      typedLength = Math.min(targetText.length, typedLength + characterCount);
+
+      replyInput.value = targetText.slice(0, typedLength);
+      replyMirrorText.textContent = replyInput.value;
+      sendButton.disabled = !canSend() || typedLength < targetText.length;
+      replyInput.scrollTop = replyInput.scrollHeight;
+      replyMirror.scrollTop = replyMirror.scrollHeight;
+    });
+
+    replyInput.addEventListener('scroll', function () {
+      replyMirror.scrollTop = replyInput.scrollTop;
+    });
+
+    replyInput.addEventListener('paste', function (event) {
+      if (currentStep < conversationSteps.length) event.preventDefault();
+    });
+
+    replyInput.addEventListener('beforeinput', function (event) {
+      if (currentStep < conversationSteps.length) event.preventDefault();
+    });
+
+
+    sendButton.addEventListener('click', function () { if (!sendButton.disabled) sendCurrentReply(); });
+    mobileReply.addEventListener('click', sendCurrentReply);
+    reportAttach.addEventListener('click', function () {
+      if (mailPhase() !== phase.requested || !reportComplete()) return;
+      reportPicker.returnValue = '';
+      reportPicker.showModal();
+    });
+    reportPicker.addEventListener('close', function () {
+      if (reportPicker.returnValue !== 'attach' || mailPhase() !== phase.requested || !reportComplete()) return;
+      attached = true;
+      updateAttachmentControls();
+      reportDetach.focus();
+    });
+    reportDetach.addEventListener('click', function () {
+      attached = false;
+      updateAttachmentControls();
+      reportAttach.focus();
+    });
+
+    function showDeletionDialog(state) {
+      deletionDialogState = state;
+      const copy = {
+        confirm: ['報告書のデータを削除しますか？', 'この操作を実行すると、保存されている調査報告書のデータは完全に削除されます。'],
+        deleting: ['報告書のデータを削除しています…', ''],
+        done: ['データの削除が完了しました。', ''],
+        error: ['データを削除できませんでした。', 'ブラウザの保存設定を確認してから、もう一度お試しください。']
+      };
+      [reportDeleteTitle.textContent, reportDeleteMessage.textContent] = copy[state];
+      reportDeleteCancel.hidden = state !== 'confirm';
+      reportDeleteConfirm.hidden = state !== 'confirm';
+      reportDeleteClose.hidden = state !== 'done' && state !== 'error';
+      reportDeleteProgress.hidden = state !== 'deleting';
+      if (!reportDeleteDialog.open) reportDeleteDialog.showModal();
+      if (state === 'confirm') reportDeleteCancel.focus();
+      else if (state === 'done' || state === 'error') reportDeleteClose.focus();
+    }
+
+    reportDelete.addEventListener('click', function () {
+      if (mailPhase() === phase.deleteRequested) showDeletionDialog('confirm');
+    });
+    reportDeleteCancel.addEventListener('click', () => reportDeleteDialog.close());
+    reportDeleteDialog.addEventListener('cancel', function (event) {
+      if (deletionDialogState === 'deleting' || deletionDialogState === 'done') event.preventDefault();
+    });
+    reportDeleteConfirm.addEventListener('click', function () {
+      if (deletionDialogState !== 'confirm') return;
+      showDeletionDialog('deleting');
+      window.setTimeout(function () {
+        if (!deleteReport()) {
+          showDeletionDialog('error');
+          return;
+        }
+        restoreConversation();
+        showDeletionDialog('done');
+      }, reducedMotion.matches ? 100 : 1750);
+    });
+    reportDeleteClose.addEventListener('click', function () {
+      reportDeleteDialog.close();
+      if (deletionDialogState !== 'done' || fading) return;
+      fading = true;
+      document.getElementById('report-mail').inert = true;
+      document.querySelector('.site-footer').inert = true;
+      document.getElementById('reportFade').classList.add('is-visible');
+      aftermathTimer = window.setTimeout(() => location.assign(aftermathUrl), reducedMotion.matches ? 0 : 2500);
+    });
+    window.addEventListener('pagehide', () => window.clearTimeout(aftermathTimer));
+    window.addEventListener('pageshow', function (event) {
+      if (!event.persisted || !fading) return;
+      fading = false;
+      document.getElementById('report-mail').inert = false;
+      document.querySelector('.site-footer').inert = false;
+      document.getElementById('reportFade').classList.remove('is-visible');
+      if (shouldResumeDeletion()) showDeletionDialog('done');
+    });
+    function openConfirmDialog(options) {
+      confirmTitle.textContent = options.title;
+      confirmMessage.textContent = options.message;
+      confirmAccept.textContent = options.acceptLabel || 'リセットする';
+      pendingConfirmAction = options.onAccept;
+      confirmReturnTarget = options.returnTarget || null;
+      confirmOverlay.classList.add('is-open');
+      confirmOverlay.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('archive-open');
+      confirmCancel.focus();
+    }
+
+    function closeConfirmDialog() {
+      confirmOverlay.classList.remove('is-open');
+      confirmOverlay.setAttribute('aria-hidden', 'true');
+      pendingConfirmAction = null;
+      if (!archiveOverlay.classList.contains('is-open')) document.body.classList.remove('archive-open');
+      if (confirmReturnTarget) confirmReturnTarget.focus();
+      confirmReturnTarget = null;
+    }
+
+    resetButton.addEventListener('click', function () {
+      if (mailPhase() >= phase.deleted) return;
+      openConfirmDialog({
+        title: 'メールをリセット',
+        message: 'メールの会話を最初からやり直しますか？\nページアーカイブの記録は消去されません。',
+        returnTarget: resetButton,
+        onAccept: function () {
+          if (mailPhase() >= phase.deleted || !resetMail()) return;
+          window.location.reload();
+        }
+      });
+    });
+    confirmCancel.addEventListener('click', closeConfirmDialog);
+    confirmAccept.addEventListener('click', function () {
+      const action = pendingConfirmAction;
+      closeConfirmDialog();
+      if (typeof action === 'function') action();
+    });
+    confirmOverlay.addEventListener('click', function (event) {
+      if (event.target === confirmOverlay) closeConfirmDialog();
+    });
+
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && confirmOverlay.classList.contains('is-open')) closeConfirmDialog();
+    });
+    window.addEventListener('focus', focusComposerIfReady);
+    document.addEventListener('click', function (event) {
+      if (event.target.closest('button, a, textarea, input') || confirmOverlay.classList.contains('is-open')) return;
+      focusComposerIfReady();
+    });
+    watchReport(restoreConversation);
+    if (shouldResumeDeletion()) showDeletionDialog('done');
+    };
+  </script>
+  <script src="investigation-report.js?v=20261118-mail-attachment-v1"></script>
+  <script src="chronect-shared.js?v=20261118-archive88-v1"></script>
+</body>
+</html>

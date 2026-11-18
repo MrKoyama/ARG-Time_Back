@@ -1,0 +1,43 @@
+.hub-shell.hub-internal {
+  --hub-page-background: #101c21;
+  --hub-internal-panel: #182930;
+  --hub-internal-panel-hover: #233d45;
+  --hub-internal-border: #49636a;
+  --hub-internal-accent: #a5d5d6;
+  --hub-internal-text: #edf3f4;
+  background-color: var(--hub-page-background);
+  color: #d4e0e2;
+}
+
+.hub-internal :is(.hub-header, .hub-footer, .hub-result, .hub-facts > div, .hub-evidence-table thead th) {
+  background-color: var(--hub-internal-panel);
+}
+
+.hub-internal .hub-search-controls input {
+  background-color: var(--hub-page-background);
+  color: var(--hub-internal-text);
+}
+
+.hub-shell.hub-internal .hub-result {
+  padding-inline: clamp(12px, 4vw, 24px);
+}
+
+.hub-internal .hub-search-controls button {
+  background-color: var(--hub-internal-panel);
+  border-color: var(--hub-internal-accent);
+  color: var(--hub-internal-text);
+}
+
+.hub-internal .hub-search-controls button:hover {
+  background-color: var(--hub-internal-panel-hover);
+}
+
+.hub-internal :is(.hub-header, .hub-footer, .hub-page-heading, .hub-result, .hub-document-links,
+  .hub-facts, .hub-facts > div, .hub-evidence-table th, .hub-evidence-table td, .hub-search-controls input) {
+  border-color: var(--hub-internal-border);
+}
+
+.hub-internal :is(.hub-brand, .hub-footer-brand, .hub-page-heading h1, .hub-document h2,
+  .hub-results h2, .hub-result h3 a, .hub-document-links a) {
+  color: var(--hub-internal-accent);
+}

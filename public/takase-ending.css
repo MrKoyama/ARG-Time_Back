@@ -1,0 +1,55 @@
+.timeback-ending {
+  margin: 0;
+  padding: clamp(1.25rem, 6vw, 5rem);
+  background: #141619;
+  color: #e3e5e8;
+  font: 1rem/1.85 system-ui, sans-serif;
+  overflow-wrap: anywhere;
+}
+
+.ending-content {
+  max-width: 42rem;
+  margin-inline: auto;
+}
+
+.ending-brand {
+  margin: 0;
+  color: #aab2bd;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+}
+
+.ending-content h1 {
+  margin: 0.5rem 0 1.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  line-height: 1.4;
+}
+
+.ending-content section,
+.ending-footer {
+  margin-block-start: 2.5rem;
+  border-top: 1px solid #3d434c;
+  padding-block-start: 1rem;
+}
+
+.ending-content h2 {
+  font-size: 1.15rem;
+}
+
+.ending-content a {
+  color: #b4cce0;
+  text-underline-offset: 0.2em;
+}
+
+.ending-content button {
+  padding: 0.45rem 0.85rem;
+  border: 1px solid #555e68;
+  background: #23282e;
+  color: #aab2bd;
+  font: inherit;
+}
+
+.ending-footer {
+  color: #aab2bd;
+  font-size: 0.85rem;
+}

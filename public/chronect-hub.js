@@ -41,12 +41,16 @@ const chronectHubInternalDatabase = [
   {"keywords":["SECOND SHIFT"],"title":"SECOND SHIFT 運用計画資料","href":"chronect-hub-second-shift-operation.html","description":"運用の基本方針と管理区分を整理した資料です。"},
   {"keywords":["管理体制"],"title":"SECOND SHIFT 内部管理記録","href":"chronect-hub-second-shift-management.html","description":"計画と試験の管理状況を整理した記録です。"},
   {"keywords":["利用者向け説明"],"title":"利用者向け説明 運用指示","href":"chronect-hub-second-shift-disclosure.html","description":"利用者への説明範囲と回答方針を定めた指示です。"},
-  {"keywords":["試験運用"],"title":"試験運用 対応記録","href":"chronect-hub-trial-operation-mapping.html","description":"試験の実施記録と事業計画上の評価対象との対応を整理した記録です。"}
+  {"keywords":["試験運用"],"title":"試験運用 対応記録","href":"chronect-hub-trial-operation-mapping.html","description":"試験の実施記録と事業計画上の評価対象との対応を整理した記録です。"},
+  {"keywords":["報告用資料"],"title":"報告用資料 参照記録","href":"chronect-hub-report-reference.html","description":"試験運用の照合結果と報告用資料の参照関係を整理した記録です。"},
+  {"keywords":["Web運用日誌"],"title":"Web運用日誌","href":"chronect-hub-web-operations-log.html","description":"企業サイト・Chronect Hub・検索基盤の運用保守記録です。"}
 ];
+
+const chronectHubSpecialSyntax = /^##([^#]+)##$/;
 
 function findChronectHubMaterials(query) {
   const normalized = String(query || '').trim().toLocaleLowerCase('ja');
-  const special = normalized.match(/^##([^#]+)##$/);
+  const special = normalized.match(chronectHubSpecialSyntax);
   const database = special ? chronectHubInternalDatabase : chronectHubDatabase;
   const keyword = special ? special[1].trim() : normalized;
   return keyword ? database.filter(item => item.keywords.some(term => term.toLocaleLowerCase('ja') === keyword)) : [];
@@ -56,6 +60,7 @@ const hubResultsContainer = document.getElementById('hubResultsContainer');
 if (hubResultsContainer) {
   const query = new URLSearchParams(window.location.search).get('q') || '';
   const cleaned = query.trim();
+  if (chronectHubSpecialSyntax.test(cleaned)) document.body.classList.add('hub-internal');
   document.getElementById('hubSearchInput').value = cleaned;
   const display = document.getElementById('hubQueryDisplay');
   const status = document.getElementById('hubSearchStatus');
