@@ -2,7 +2,7 @@
 
 ## 2026-11-18 第7章前半 No.87・88
 
-No.84の3往復目の返信にある「Web運用日誌」をChronect Hubで特殊検索するとNo.87へ進む。末尾の「補足記録：別途管理」を展開し、「記録を参照」でNo.88へ移動する。No.88は高瀬が提携企業への潜入を検討した段階の記録。中途採用と研修利用を既存資料で照合する。
+No.84の3往復目の返信にある「Web運用日誌」をChronect Hubで特殊検索するとNo.87へ進む。No.87の作業記録03で「詳細未記入」を開き、No.65・66の保守資料と照合する。一致後に表示される「個人作業控えを参照」でNo.88へ移動する。No.88は高瀬が提携企業への潜入を検討した段階の記録。中途採用と研修利用を既存資料で照合する。
 
 ## 2026-11-18 No.84 メール画面の移植
 
@@ -217,7 +217,7 @@ Hubは既存6資料＋今回3資料＝9資料。新59分類一覧、新60地域�
 | 84 | 調査作業控えについて ｜ 調査ノート | [takase-mail.html](../../public/takase-mail.html) | 完成報告書から開始する疑似メール。手動添付・送信、削除依頼。 |
 | 85 | TIME BACK、累計1,000万ダウンロードを突破　時間活用サービスとして利用拡大 ｜ Yaboo!ニュース | [yaboo-news-aftermath.html](../../public/yaboo-news-aftermath.html) | 報告書削除後の後日談。末尾からNo.86へ。 |
 | 86 | ENDING「託された記録」 ｜ TIME BACK | [timeback-ending-record.html](../../public/timeback-ending-record.html) | 初回は後日談の閲覧後に到達。到達後は再訪可。感想フォームはURL未設定。 |
-| 87 | Web運用日誌 ｜ Chronect Hub | [chronect-hub-web-operations-log.html](../../public/chronect-hub-web-operations-log.html) | 特殊検索「Web運用日誌」。補足を展開してNo.88へ。 |
+| 87 | Web運用日誌 ｜ Chronect Hub | [chronect-hub-web-operations-log.html](../../public/chronect-hub-web-operations-log.html) | 特殊検索「Web運用日誌」。作業記録03の照合後、補足参照からNo.88へ。 |
 | 88 | 調査方法の再検討 ｜ 調査ノート | [takase-investigation-method.html](../../public/takase-investigation-method.html) | No.87の補足から到達。高瀬が提携企業への潜入を検討する記録。 |
 
 直前のNo.1〜42は同番号。セッション運用記録は旧45→現43、旧54〜59は現44〜49。旧43・44はHub要旨、旧46〜53は一覧外ニュースとして登録解除済み。現在も公開ファイルと既存の検索・リンクから閲覧できる。ニュース一覧外12件と対応Hub要旨2件、検索結果4件、旧夢記事URL転送1件はアーカイブ非登録。

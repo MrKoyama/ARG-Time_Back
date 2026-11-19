@@ -14,6 +14,33 @@
   <link rel="stylesheet" href="chronect-hub-evidence.css">
   <link rel="stylesheet" href="archive.css?v=20261029">
   <link rel="stylesheet" href="chronect-hub-internal.css?v=20261117">
+  <style>
+    #log-review-toggle {
+      min-height: 44px;
+      padding: 4px 0;
+      border: 0;
+      background: none;
+      color: var(--hub-internal-accent);
+      text-align: start;
+      text-decoration: underline;
+    }
+
+    #log-review {
+      margin-top: 24px;
+      padding: clamp(12px, 4vw, 24px);
+      border: 1px solid var(--hub-internal-border);
+    }
+
+    #log-review h3 { margin: 0 0 16px; }
+    #log-review .hub-facts { margin-bottom: 24px; }
+    #log-review .hub-search-controls { margin-top: 8px; }
+    #log-review .hub-search-controls :is(input, button) { min-height: 44px; }
+    #log-review input { font-size: 1rem; }
+    #log-review-status:not(:empty) { margin: 12px 0 0; }
+    #log-review-status:empty { margin: 0; }
+    #log-review-result a { color: var(--hub-internal-accent); }
+    #log-review-result p:last-child { margin-bottom: 0; }
+  </style>
 </head>
 <body class="hub-shell hub-internal" data-page-number="87" data-page-title="Web運用日誌 ｜ Chronect Hub" data-page-href="chronect-hub-web-operations-log.html">
   <a class="skip-link" href="#main">本文へ移動</a>
@@ -32,22 +59,43 @@
         <tbody>
           <tr><th scope="row">01</th><td>公開ページの表示確認</td><td>完了</td></tr>
           <tr><th scope="row">02</th><td>未記入</td><td>—</td></tr>
-          <tr><th scope="row">03</th><td>未記入</td><td>—</td></tr>
+          <tr><th scope="row">03</th><td>検索結果画面の保守</td><td><button type="button" id="log-review-toggle" aria-expanded="false" aria-controls="log-review">詳細未記入</button></td></tr>
           <tr><th scope="row">04</th><td>検索画面の動作確認</td><td>完了</td></tr>
           <tr><th scope="row">05</th><td>未記入</td><td>—</td></tr>
           <tr><th scope="row">06</th><td>未記入</td><td>—</td></tr>
           <tr><th scope="row">07</th><td>未記入</td><td>—</td></tr>
         </tbody>
       </table>
+      <section id="log-review" aria-labelledby="log-review-title" hidden>
+        <h3 id="log-review-title">作業記録03：詳細照合</h3>
+        <dl class="hub-facts">
+          <div><dt>作業内容</dt><dd>検索結果画面の保守</dd></div>
+          <div><dt>対象の状態</dt><dd>通常の結果表示とは異なる</dd></div>
+          <div><dt>入力処理</dt><dd>異常なし</dd></div>
+          <div><dt>具体的な対応内容</dt><dd>未記入</dd></div>
+        </dl>
+        <form id="log-review-form">
+          <label for="log-review-answer">関連する保守経路記録を参照し、対応内容を照合してください。</label>
+          <div class="hub-search-controls">
+            <input id="log-review-answer" type="text" autocomplete="off" spellcheck="false">
+            <button type="submit">照合する</button>
+          </div>
+          <p id="log-review-status" role="status"></p>
+        </form>
+        <div id="log-review-result" hidden>
+          <h3 tabindex="-1" aria-describedby="log-review-result-message">照合結果：一致</h3>
+          <p id="log-review-result-message">作業記録03の対応内容を確認しました。</p>
+          <dl class="hub-facts">
+            <div><dt>復元された作業内容</dt><dd>検索結果0件時の表示保守</dd></div>
+          </dl>
+          <p>関連する補足参照：1件</p>
+          <p><a href="takase-investigation-method.html">個人作業控えを参照</a></p>
+        </div>
+      </section>
       <h2>備考</h2>
       <p>通常の保守対応に加え、予定外の修正依頼や資料掲載作業が継続して発生。</p>
       <p>対応を優先した結果、作業記録の入力および整理に遅れが生じている。</p>
       <p>未記入分は確認のうえ、順次追記予定。</p>
-      <details>
-        <summary>補足記録：別途管理</summary>
-        <p>参照先：個人作業控え</p>
-        <p><a href="takase-investigation-method.html">記録を参照</a></p>
-      </details>
       <nav class="hub-document-links" aria-label="関連資料"><a href="chronect-hub.html">Chronect Hubへ戻る</a></nav>
     </article>
   </div></main>
@@ -55,5 +103,61 @@
   <div class="archive-overlay" id="archiveOverlay" aria-hidden="true"><section class="archive-dialog" role="dialog" aria-modal="true" aria-labelledby="archiveTitle"><header class="archive-header"><h2 id="archiveTitle">ページアーカイブ</h2><button class="archive-close" id="archiveClose" type="button" aria-label="ページアーカイブを閉じる">×</button></header><div class="archive-content"><p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。ページ番号は閲覧の目安です。順番に迷ったときは番号を参考にしつつ、気になった情報から自由にご覧ください。</p><ol class="archive-list" id="archiveList"></ol><div class="archive-tools"><button class="archive-reset-button" id="archiveResetButton" type="button">アーカイブをリセット</button><div class="reset-confirm" id="resetConfirm" role="alertdialog" aria-labelledby="resetTitle" hidden><p id="resetTitle">探索済みページの記録を消去しますか？</p><div class="reset-actions"><button id="resetCancel" type="button">キャンセル</button><button class="danger" id="resetAccept" type="button">リセットする</button></div></div></div></div></section></div>
   <script src="chronect-hub.js?v=20261116-report-reference-v1"></script>
   <script src="chronect-shared.js?v=20261118-archive88-v1"></script>
+  <script>
+    (() => {
+      const storageKey = 'timeback-web-operations-log-v1';
+      const answers = new Set([
+        '検索結果0件時の表示保守', '検索結果0件', '検索結果が0件',
+        '0件表示', '0件', '該当資料が0件の場合', '該当資料が0件の場合の表示'
+      ]);
+      const toggle = document.getElementById('log-review-toggle');
+      const panel = document.getElementById('log-review');
+      const form = document.getElementById('log-review-form');
+      const answer = document.getElementById('log-review-answer');
+      const status = document.getElementById('log-review-status');
+      const result = document.getElementById('log-review-result');
+
+      function setExpanded(expanded) {
+        panel.hidden = !expanded;
+        toggle.setAttribute('aria-expanded', String(expanded));
+      }
+
+      function showMatch() {
+        form.hidden = true;
+        result.hidden = false;
+        setExpanded(true);
+      }
+
+      toggle.addEventListener('click', () => setExpanded(panel.hidden));
+      answer.addEventListener('input', () => { status.textContent = ''; });
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const normalized = answer.value.normalize('NFKC').replace(/\s+/g, '');
+        if (!answers.has(normalized)) {
+          status.textContent = '対応する作業内容を確認できませんでした。';
+          return;
+        }
+        try {
+          localStorage.setItem(storageKey, '1');
+        } catch {
+          // Keep the result available on this page when storage is unavailable.
+        }
+        showMatch();
+        result.querySelector('h3').focus();
+      });
+
+      function restoreMatch() {
+        if (!result.hidden) return;
+        try {
+          if (localStorage.getItem(storageKey) === '1') showMatch();
+        } catch {
+          // The form remains available when storage is unavailable.
+        }
+      }
+
+      restoreMatch();
+      window.addEventListener('pageshow', restoreMatch);
+    })();
+  </script>
 </body>
 </html>

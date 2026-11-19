@@ -192,7 +192,7 @@ No.62〜68を改修。No.65・67・68を改題。アーカイブは1〜68、上�
 | 84 | [takase-mail.html](../public/takase-mail.html) | 調査作業控えについて ｜ 調査ノート | 完成報告書から開始する疑似メール。手動添付・送信、削除依頼。 |
 | 85 | [yaboo-news-aftermath.html](../public/yaboo-news-aftermath.html) | TIME BACK、累計1,000万ダウンロードを突破　時間活用サービスとして利用拡大 ｜ Yaboo!ニュース | 報告書削除後の後日談。末尾からNo.86へ。 |
 | 86 | [timeback-ending-record.html](../public/timeback-ending-record.html) | ENDING「託された記録」 ｜ TIME BACK | 初回は後日談の閲覧後に到達。到達後は再訪可。感想フォームはURL未設定。 |
-| 87 | [chronect-hub-web-operations-log.html](../public/chronect-hub-web-operations-log.html) | Web運用日誌 ｜ Chronect Hub | 特殊検索「Web運用日誌」。補足を展開してNo.88へ。 |
+| 87 | [chronect-hub-web-operations-log.html](../public/chronect-hub-web-operations-log.html) | Web運用日誌 ｜ Chronect Hub | 特殊検索「Web運用日誌」。作業記録03の照合後、補足参照からNo.88へ。 |
 | 88 | [takase-investigation-method.html](../public/takase-investigation-method.html) | 調査方法の再検討 ｜ 調査ノート | No.87の補足から到達。高瀬が提携企業への潜入を検討する記録。 |
 | EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
