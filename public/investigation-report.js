@@ -162,7 +162,7 @@
     unlockArchive();
     view.hidden = false;
     window.initTakaseMail({
-      phase, mailPhase, mailStartedKey, mailDraftKey, advanceMail, watchReport,
+      phase, mailPhase, mailStartedKey, mailDraftKey, advanceMail, watchReport, hasVisited,
       reportComplete: () => readReport().status === 'complete',
       resetMail: () => advanceMail(mailPhase(), phase.initial),
       deleteReport: () => advanceMail(phase.deleteRequested, phase.deleted, { removeReport: true }),

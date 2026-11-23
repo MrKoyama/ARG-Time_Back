@@ -43,13 +43,21 @@ const nodelinkEntries = [
   {number:92,href:'nodelink-internal-search.html',title:'内部資料検索 ｜ 株式会社ノードリンク・ワークス'},
   {number:93,href:'nodelink-personnel.html',title:'人材情報一覧 ｜ 株式会社ノードリンク・ワークス'}
 ];
+const chapterSevenFollowupEntries = [
+  {number:94,href:'takase-investigation-progress.html',title:'調査経過メモ ｜ 調査ノート'},
+  {number:95,href:'nodelink-usage-review.html',title:'利用状況照合記録 ｜ 株式会社ノードリンク・ワークス'},
+  {number:96,href:'takase-device-investigation-note.html',title:'端末・調査記録の控え ｜ 調査ノート'},
+  {number:97,href:'nodelink-external-reference-log.html',title:'外部参照経路 照会控え ｜ 株式会社ノードリンク・ワークス'},
+  {number:98,href:'chronect-internal-correspondence.html',title:'Chronect社内連絡記録 ｜ Chronect Hub'},
+  {number:99,href:'takase-reference-monitoring.html',title:'参照経路について ｜ 調査ノート'}
+];
 const webOperationsSearchEntry = {"keywords":["Web運用日誌"],"title":"Web運用日誌","href":"chronect-hub-web-operations-log.html","description":"企業サイト・Chronect Hub・検索基盤の運用保守記録です。"};
 const endingEntries = [{"number":83,"href":"takase-report-editor.html","title":"調査報告書 ｜ 調査ノート"},{"number":84,"href":"takase-mail.html","title":"メール"},{"number":85,"href":"yaboo-news-aftermath.html","title":"TIME BACK、累計1,000万ダウンロードを突破　時間活用サービスとして利用拡大 ｜ Yaboo!ニュース"},{"number":86,"href":"timeback-ending-record.html","title":"ENDING「託された記録」 ｜ TIME BACK"}];
 const reportReferenceEntries = [{"number":81,"href":"chronect-hub-report-reference.html","title":"報告用資料 参照記録 ｜ Chronect Hub"},{"number":82,"href":"takase-work-notes.html","title":"調査作業控え ｜ 調査ノート"}];
 const reportReferenceSearchEntry = {"keywords":["報告用資料"],"title":"報告用資料 参照記録","href":"chronect-hub-report-reference.html","description":"試験運用の照合結果と報告用資料の参照関係を整理した記録です。"};
 function beforeYabooRegistration(source) {
   const priorNumber = n => +n >= 23 ? +n - 1 : +n;
-  const laterEntries = [...yabooEntries,...reportReferenceEntries,...endingEntries,...chapterSevenEntries,...publicationEntries,...nodelinkEntries];
+  const laterEntries = [...yabooEntries,...reportReferenceEntries,...endingEntries,...chapterSevenEntries,...publicationEntries,...nodelinkEntries,...chapterSevenFollowupEntries];
   return source
     .replace(/(data-page-number="|\bcurrentPage\s*=\s*\{\s*number\s*:\s*|id="archiveButton"[^>]*>)(\d+)(?="|\s*[,}]| \/ 120<)/g,
       (match,prefix,n) => +n >= 23 ? prefix + priorNumber(n) : match)
@@ -92,7 +100,7 @@ function canonicalPublic(name,current){
 // Preserve the immutable 2026-10-30 fixtures. Validate and remove only the later
 // approved additive changes before running the original regression meanings.
 const livingEntry={number:58,old:58,href:'chronect-hub-research-continuous-action.html',title:'環境変化下における連続行動支援の評価 ｜ Chronect Hub'};
-const archiveVersion='20261123-archive93-v1';
+const archiveVersion='20261123-archive99-v1';
 const facilitySearchEntries=[
   {
     "keywords": [
@@ -420,7 +428,7 @@ function withoutArchivePruning(name,source,frozenSource){
   const mid=require('./midroute-test-helper.cjs');
   const priorEntries=[...entries,livingEntry,...mid.entries];
   const byPriorHref=new Map(priorEntries.map(entry=>[entry.href,entry]));
-  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261123-archive93-v1/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261116-report-reference-v1/g,'chronect-hub.js?v='+mid.cacheVersion);
+  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261123-archive99-v1/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261116-report-reference-v1/g,'chronect-hub.js?v='+mid.cacheVersion);
   if(name==='public/chronect-hub-search.html')result=result
     .replace("  <link rel=\"stylesheet\" href=\"chronect-hub-internal.css?v=20261117\">\n",'')
     .replace("chronect-hub.js?v=20261118-web-operations-v1",'chronect-hub.js?v='+mid.cacheVersion);
@@ -544,7 +552,7 @@ function legacyTestSource(name){
 }
 function assertLegacyTestCode(name){assert.equal(fs.readFileSync(path.join(root,name),'utf8'),legacyTestSource(name),name+' exceeds legacy bridge insertion');}
 const legacyFs=Object.create(fs);
-legacyFs.readdirSync=function(dir,options){const rows=fs.readdirSync(dir,options);const added=new Set([livingEntry.href,...require('./midroute-test-helper.cjs').entries.map(e=>e.href),...facilityEntries.map(e=>e.href),...chapterEntries.map(e=>e.href),...chapterFourEntries.map(e=>e.href),...chapterFiveEntries.map(e=>e.href),...chapterSixEntries.map(e=>e.href),...chapterSixEvidenceEntries.map(e=>e.href),trialOperationEntry.href,'yaboo-news-chronect.html','yaboo-news-tip.html',...reportReferenceEntries.map(e=>e.href),'investigation-report.js','investigation-report.css','takase-report-editor.html','chronect-hub-internal.css','takase-mail.html','takase-mail.js','yaboo-news-aftermath.html','timeback-ending-record.html','takase-ending.css','takase-mail.css',...chapterSevenEntries.map(e=>e.href),...publicationEntries.map(e=>e.href),...nodelinkEntries.map(e=>e.href),'nodelink-logo-hold.js','nodelink-internal-search.js','nodelink-internal.css']);return path.resolve(String(dir))===path.join(root,'public')?rows.filter(row=>!added.has(typeof row==='string'?row:row.name)):rows;};
+legacyFs.readdirSync=function(dir,options){const rows=fs.readdirSync(dir,options);const added=new Set([livingEntry.href,...require('./midroute-test-helper.cjs').entries.map(e=>e.href),...facilityEntries.map(e=>e.href),...chapterEntries.map(e=>e.href),...chapterFourEntries.map(e=>e.href),...chapterFiveEntries.map(e=>e.href),...chapterSixEntries.map(e=>e.href),...chapterSixEvidenceEntries.map(e=>e.href),trialOperationEntry.href,'yaboo-news-chronect.html','yaboo-news-tip.html',...reportReferenceEntries.map(e=>e.href),'investigation-report.js','investigation-report.css','takase-report-editor.html','chronect-hub-internal.css','takase-mail.html','takase-mail.js','yaboo-news-aftermath.html','timeback-ending-record.html','takase-ending.css','takase-mail.css',...chapterSevenEntries.map(e=>e.href),...publicationEntries.map(e=>e.href),...nodelinkEntries.map(e=>e.href),...chapterSevenFollowupEntries.map(e=>e.href),'chapter-seven-reference.js','nodelink-logo-hold.js','nodelink-internal-search.js','nodelink-internal.css']);return path.resolve(String(dir))===path.join(root,'public')?rows.filter(row=>!added.has(typeof row==='string'?row:row.name)):rows;};
 legacyFs.readFileSync=function(file,options){
   const resolved=path.resolve(String(file)),relative=path.relative(root,resolved).split(path.sep).join('/');
   const value=fs.readFileSync(file,options);
@@ -552,4 +560,4 @@ legacyFs.readFileSync=function(file,options){
   const canonical=canonicalPublic(relative,value);
   return typeof value==='string'?canonical.toString(typeof options==='string'?options:options?.encoding||'utf8'):canonical;
 };
-module.exports={root,baseline,order,entries,byHref,owned,cacheVersion,forwardPublic,canonicalPublic,legacyFs,legacyTestSource,assertLegacyTestCode,sha,livingEntry,livingSearchEntry,livingParagraph,archiveVersion,excludedNumbers,compactNumber,facilityEntries,facilitySearchEntries,chapterEntries,chapterSearchEntries,chapterFourEntries,chapterFourSearchEntries,chapterFiveEntries,chapterFiveSearchEntries,chapterSixEntries,chapterSixSearchEntries,chapterSixEvidenceEntries,chapterSixEvidenceSearchEntries,trialOperationEntry,trialOperationSearchEntry,yabooEntries,reportReferenceEntries,reportReferenceSearchEntry,endingEntries,chapterSevenEntries,publicationEntries,nodelinkEntries};
+module.exports={root,baseline,order,entries,byHref,owned,cacheVersion,forwardPublic,canonicalPublic,legacyFs,legacyTestSource,assertLegacyTestCode,sha,livingEntry,livingSearchEntry,livingParagraph,archiveVersion,excludedNumbers,compactNumber,facilityEntries,facilitySearchEntries,chapterEntries,chapterSearchEntries,chapterFourEntries,chapterFourSearchEntries,chapterFiveEntries,chapterFiveSearchEntries,chapterSixEntries,chapterSixSearchEntries,chapterSixEvidenceEntries,chapterSixEvidenceSearchEntries,trialOperationEntry,trialOperationSearchEntry,yabooEntries,reportReferenceEntries,reportReferenceSearchEntry,endingEntries,chapterSevenEntries,publicationEntries,nodelinkEntries,chapterSevenFollowupEntries};

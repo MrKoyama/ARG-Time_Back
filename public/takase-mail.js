@@ -57,6 +57,28 @@
     }
   ];
 
+  const aizawaContinuation = [
+    {
+      incoming: true,
+      text: '……ありました。\n\n作業フォルダに、調査に関する記録が残っています。\n\n作成者は俺になっているんですが、こんなことを調べていた覚えがありません。\n\nあなたの言っていた話と関係があるかもしれないので、送ります。\n\n一度、確認してもらえますか。',
+      attachment: { label: '調査経過メモ', href: 'takase-investigation-progress.html' }
+    },
+    {
+      incoming: false,
+      text: '送っていただいた記録をもとに、社内の利用状況も確認してみました。\n\n相沢さんは、以前よりTIME BACKの利用が増えているようです。\n\nこの件について、ほかに何か記録は残っていませんか？',
+      mobileLabel: '追加調査を依頼する'
+    },
+    {
+      incoming: true,
+      text: '……確かに、最近もTIME BACKは使っています。\n\nでも、そんな記録まで残っていたんですね。\n\nもう少し探してみます。'
+    },
+    {
+      incoming: true,
+      text: '別の記録が見つかりました。\n\n端末の設定と調査内容をまとめた控えのようです。\n\nただ、これも書いた覚えがありません。\n\n少なくともWeb関係の部分なら内容は理解できそうなので、送ります。',
+      attachment: { label: '端末・調査記録の控え', href: 'takase-device-investigation-note.html' }
+    }
+  ];
+
   const contacts = {
     takase: { id: 'takase', name: '高瀬', fullName: '高瀬悠真', avatar: '高', address: 'y.takase@chronect.mail', title: '調査作業控えについて', steps: takaseSteps },
     aizawa: { id: 'aizawa', name: '相沢', fullName: '相沢直人', avatar: '相', address: 'aizawa.naoto@nodelink.mail', title: '相沢直人とのやり取り', steps: aizawaSteps }
@@ -88,7 +110,7 @@
     }
   }
 
-  window.initTakaseMail = function ({ phase, mailPhase, mailStartedKey, mailDraftKey, advanceMail, reportComplete, resetMail, watchReport, deleteReport, shouldResumeDeletion, aftermathUrl }) {
+  window.initTakaseMail = function ({ phase, mailPhase, mailStartedKey, mailDraftKey, advanceMail, reportComplete, resetMail, watchReport, deleteReport, shouldResumeDeletion, aftermathUrl, hasVisited }) {
     const checkpoints = [phase.initial, phase.contacted, phase.firstReply, phase.offered, phase.cooperationReply, phase.completionSent, phase.requested, phase.sent, phase.deleteRequested];
     const newMessage = byId('newMessage');
     const addressPanel = byId('addressPanel');
@@ -148,6 +170,7 @@
     let activeContact = null;
     let renderedProgress = null;
     let renderedComplete = null;
+    let renderedDraft = false;
     let typedLength = 0;
     let attached = false;
     let deletionDialogState = '';
@@ -159,8 +182,25 @@
 
     function aizawaState() {
       const state = readObject(aizawaKey);
-      return Number.isInteger(state?.progress) && state.progress >= 0 && state.progress <= aizawaSteps.length * 2
+      const total = aizawaSteps.length * 2 + aizawaContinuation.length;
+      return Number.isInteger(state?.progress) && state.progress >= 0 && state.progress <= total
         ? state : { progress: 0, startedAt: 0, draftLength: 0 };
+    }
+
+    function messageAt(contact, index) {
+      const step = contact.steps[Math.floor(index / 2)];
+      if (step) return index % 2 === 1
+        ? { incoming: true, text: step.reply }
+        : { incoming: false, text: step.outgoing, mobileLabel: step.mobileLabel };
+      if (contact.id === 'aizawa') return aizawaContinuation[index - aizawaSteps.length * 2];
+    }
+
+    function availableDraft(contact, current) {
+      const message = messageAt(contact, current);
+      if (!message || message.incoming) return null;
+      if (contact.id === 'aizawa' && current >= aizawaSteps.length * 2
+        && (!hasVisited(aizawaContinuation[0].attachment.href) || !hasVisited('nodelink-usage-review.html'))) return null;
+      return message;
     }
 
     function progress(contact) {
@@ -184,10 +224,11 @@
     }
 
     function draftLength(contact, current) {
-      if (current % 2 || current === contact.steps.length * 2) return 0;
+      const message = messageAt(contact, current);
+      if (!message || message.incoming) return 0;
       const draft = contact.id === 'takase' ? readObject(mailDraftKey) : aizawaState();
       return draft?.progress === current && Number.isInteger(draft.draftLength)
-        ? Math.min(contact.steps[current / 2].outgoing.length, Math.max(0, draft.draftLength))
+        ? Math.min(message.text.length, Math.max(0, draft.draftLength))
         : 0;
     }
 
@@ -207,8 +248,8 @@
     }
 
     function createMessage(contact, index, animate) {
-      const incoming = index % 2 === 1;
-      const step = contact.steps[Math.floor(index / 2)];
+      const message = messageAt(contact, index);
+      const { incoming } = message;
       const row = document.createElement('div');
       const wrap = document.createElement('div');
       const meta = document.createElement('p');
@@ -222,7 +263,7 @@
       meta.textContent = (incoming ? contact.name : '自分') + '・' + new Intl.DateTimeFormat('ja-JP', {
         hour: '2-digit', minute: '2-digit', hour12: false
       }).format(new Date(stamp || Date.now()));
-      bubble.textContent = incoming ? step.reply : step.outgoing;
+      bubble.textContent = message.text;
 
       if (contact.id === 'takase' && index === 6) {
         const file = reportAttached.cloneNode(true);
@@ -230,6 +271,17 @@
         file.querySelector('button').remove();
         file.hidden = false;
         bubble.appendChild(file);
+      }
+
+      if (message.attachment) {
+        const link = document.createElement('a');
+        const caption = document.createElement('span');
+        link.className = 'message-link';
+        link.href = message.attachment.href;
+        caption.className = 'link-caption';
+        caption.textContent = '添付資料';
+        link.append(caption, message.attachment.label);
+        bubble.append(link);
       }
 
       if (incoming) {
@@ -276,7 +328,7 @@
       reportAttach.hidden = attached;
       reportAttached.hidden = !attached;
       const current = progress(activeContact);
-      const outgoing = activeContact.steps[current / 2]?.outgoing;
+      const outgoing = availableDraft(activeContact, current)?.text;
       const ready = Boolean(outgoing) && canSend(activeContact, current);
       mobileReply.disabled = !ready;
       sendButton.disabled = !ready || typedLength < outgoing.length;
@@ -284,33 +336,33 @@
 
     function updateComposer(current) {
       const contact = activeContact;
-      const step = contact.steps[current / 2];
-      const receiving = current % 2 === 1;
-      const complete = current === contact.steps.length * 2;
+      const next = messageAt(contact, current);
+      const draft = availableDraft(contact, current);
+      const receiving = next?.incoming === true;
+      const complete = !next;
       const takase = contact.id === 'takase';
       const needsReport = takase && !reportComplete() && !complete;
-      const ready = Boolean(step) && !needsReport;
+      const ready = Boolean(draft) && !needsReport;
       desktopComposer.style.display = ready ? '' : 'none';
       desktopComposer.classList.toggle('is-scripted', ready);
       mobileReply.style.display = ready ? '' : 'none';
-      mobileReply.textContent = step?.mobileLabel || '';
+      mobileReply.textContent = draft?.mobileLabel || '';
       replyInput.disabled = !ready;
       composer.classList.toggle('is-receiving', receiving);
       composer.classList.toggle('is-inputting', ready);
-      threadStatus.textContent = receiving ? 'メッセージを受信中' : complete ? '受信済み' : needsReport ? '報告書待ち' : 'あなたの入力待ち';
+      threadStatus.textContent = receiving ? 'メッセージを受信中' : needsReport ? '報告書待ち' : ready ? 'あなたの入力待ち' : '受信済み';
       composerGuide.textContent = receiving ? contact.name + 'が返信しています。'
         : needsReport ? '完成した報告書が必要です。'
-          : complete ? (takase ? 'やり取りを終了しました。' : '')
-            : '入力欄を選択して文章を完成させ、Enterキーまたは送信ボタンで送ってください。';
+          : ready ? '入力欄を選択して文章を完成させ、Enterキーまたは送信ボタンで送ってください。'
+            : takase ? 'やり取りを終了しました。' : '';
       composerGuide.hidden = !composerGuide.textContent;
       waitingNote.style.display = takase && !receiving && !ready ? 'block' : 'none';
       reportDeletionActions.hidden = !takase || mailPhase() < phase.deleteRequested;
       reportDelete.hidden = !takase || mailPhase() !== phase.deleteRequested;
       reportAftermathLink.hidden = !takase || mailPhase() < phase.deleted;
-      resetButton.hidden = !takase;
-      resetButton.disabled = !takase || mailPhase() >= phase.deleted;
+      resetButton.disabled = takase && mailPhase() >= phase.deleted;
       typedLength = draftLength(contact, current);
-      replyInput.value = ready ? step.outgoing.slice(0, typedLength) : '';
+      replyInput.value = ready ? draft.text.slice(0, typedLength) : '';
       replyMirrorText.textContent = replyInput.value;
       replyInput.scrollTop = replyInput.scrollHeight;
       replyMirror.scrollTop = replyMirror.scrollHeight;
@@ -320,7 +372,8 @@
     function renderThread({ animate = false } = {}) {
       const current = progress(activeContact);
       const report = activeContact.id === 'takase' && reportComplete();
-      if (current === renderedProgress && report === renderedComplete) return;
+      const draft = Boolean(availableDraft(activeContact, current));
+      if (current === renderedProgress && report === renderedComplete && draft === renderedDraft) return;
       if (activeContact.id === 'takase' && current === 0) {
         attached = false;
         window.clearTimeout(deletionTimer);
@@ -341,7 +394,8 @@
       }
       renderedProgress = current;
       renderedComplete = report;
-      typingRow.classList.toggle('is-visible', current % 2 === 1);
+      renderedDraft = draft;
+      typingRow.classList.toggle('is-visible', messageAt(activeContact, current)?.incoming === true);
       updateComposer(current);
       scrollToLatest();
       focusComposerIfReady();
@@ -439,15 +493,15 @@
       if (timer?.current === current) return;
       if (timer) window.clearTimeout(timer.id);
       replyTimers.delete(contact.id);
-      if (current % 2 === 0) return;
-      const step = contact.steps[(current - 1) / 2];
+      const message = messageAt(contact, current);
+      if (!message?.incoming) return;
       const id = window.setTimeout(() => {
         replyTimers.delete(contact.id);
         if (advance(contact, current)) refresh(contact);
         else if (progress(contact) !== current) refresh();
         else if (view === 'thread' && activeContact === contact) showStorageError();
       // The Takase exchange keeps its existing reply delay.
-      }, 850 + Math.min(1200, (step.reply.length + step.reply.split('\n').length - 1) * 5));
+      }, 850 + Math.min(1200, (message.text.length + message.text.split('\n').length - 1) * 5));
       replyTimers.set(contact.id, { id, current });
     }
 
@@ -474,7 +528,7 @@
         refresh();
         return;
       }
-      if (!contact.steps[current / 2] || !canSend(contact, current)) return;
+      if (!availableDraft(contact, current) || !canSend(contact, current)) return;
       if (!advance(contact, current)) {
         showStorageError();
         return;
@@ -522,8 +576,8 @@
         refresh();
         return;
       }
-      const step = activeContact.steps[current / 2];
-      if (!step) return;
+      const draft = availableDraft(activeContact, current);
+      if (!draft) return;
       if (event.key === 'Enter') {
         event.preventDefault();
         if (!sendButton.disabled) sendCurrentReply();
@@ -533,8 +587,8 @@
       const isTypingKey = typingCodes.test(event.code) || punctuationCodes.has(event.code) || event.key.length === 1 || event.key === 'Process' || event.key === 'Dead' || event.key === 'Unidentified';
       if (!isTypingKey) return;
       event.preventDefault();
-      typedLength = Math.min(step.outgoing.length, typedLength + Math.floor(Math.random() * 3) + 2);
-      replyInput.value = step.outgoing.slice(0, typedLength);
+      typedLength = Math.min(draft.text.length, typedLength + Math.floor(Math.random() * 3) + 2);
+      replyInput.value = draft.text.slice(0, typedLength);
       replyMirrorText.textContent = replyInput.value;
       replyInput.scrollTop = replyInput.scrollHeight;
       replyMirror.scrollTop = replyMirror.scrollHeight;
@@ -650,6 +704,23 @@
 
 
     resetButton.addEventListener('click', () => {
+      if (activeContact?.id === 'aizawa') {
+        openConfirmDialog({
+          title: '相沢直人との会話をリセット',
+          message: '相沢直人との会話を最初からやり直しますか？\nこの会話のメッセージと下書きが消去されます。',
+          returnTarget: resetButton,
+          onAccept: () => {
+            if (!write(aizawaKey, null)) {
+              showStorageError();
+              return;
+            }
+            byId('report-storage-status').textContent = '';
+            renderedProgress = null;
+            refresh();
+          }
+        });
+        return;
+      }
       if (activeContact?.id !== 'takase' || mailPhase() >= phase.deleted) return;
       openConfirmDialog({
         title: 'メールをリセット',
@@ -680,6 +751,7 @@
       if (!event.target.closest('button, a, textarea, input')) focusComposerIfReady();
     });
     window.addEventListener('storage', event => {
+      if (event.key === 'timeback-page-archive-v1') refresh();
       if (event.key === contactsKey || event.key === aizawaKey || event.key === mailDraftKey) {
         if (activeContact && event.key === (activeContact.id === 'aizawa' ? aizawaKey : mailDraftKey)
           && progress(activeContact) === renderedProgress && view === 'thread') updateComposer(renderedProgress);

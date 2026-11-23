@@ -5,7 +5,7 @@ const {root,baseline,canonicalPublic}=bridge;
 const mid=require('./midroute-test-helper.cjs'),cacheVersion=bridge.archiveVersion;
 const priorEntries=[...bridge.entries,bridge.livingEntry,...mid.entries];
 const beforeYaboo=[...priorEntries.filter(e=>!bridge.excludedNumbers.has(e.number)).map(e=>({...e,previousNumber:e.number,number:bridge.compactNumber(e.number)})),...bridge.facilityEntries,...bridge.chapterEntries,...bridge.chapterFourEntries,...bridge.chapterFiveEntries,...bridge.chapterSixEntries,...bridge.chapterSixEvidenceEntries,bridge.trialOperationEntry];
-const entries=[...beforeYaboo.map(e=>({...e,previousNumber:e.number,number:e.number>=22?e.number+1:e.number})),...[...bridge.yabooEntries,...bridge.reportReferenceEntries,...bridge.endingEntries,...bridge.chapterSevenEntries,...bridge.publicationEntries,...bridge.nodelinkEntries].map(e=>({...e,previousNumber:e.number}))].sort((a,b)=>a.number-b.number);
+const entries=[...beforeYaboo.map(e=>({...e,previousNumber:e.number,number:e.number>=22?e.number+1:e.number})),...[...bridge.yabooEntries,...bridge.reportReferenceEntries,...bridge.endingEntries,...bridge.chapterSevenEntries,...bridge.publicationEntries,...bridge.nodelinkEntries,...bridge.chapterSevenFollowupEntries].map(e=>({...e,previousNumber:e.number}))].sort((a,b)=>a.number-b.number);
 const byHref=new Map(entries.map(e=>[e.href,e]));
 const read=name=>fs.readFileSync(path.join(root,'public',name),'utf8');
 function functionSource(source,name){
@@ -50,7 +50,7 @@ for(const name of fs.readdirSync(path.join(root,'public')).filter(n=>/\.(html|js
     assert(fs.existsSync(path.join(root,'public',m[1].split(/[?#]/)[0])),name+' missing '+m[1]);
   }
 }
-assert.equal(srcConsumers,100);assert.equal(numbered.size,entries.length);
+assert.equal(srcConsumers,106);assert.equal(numbered.size,entries.length);
 assert.deepEqual([...numbered.keys()].sort((a,b)=>a-b),Array.from({length:entries.length},(_,i)=>i+1));
 assert(!/data-page-number|archiveButton/.test(read('memo-dream.html')));
 const registries=fs.readdirSync(path.join(root,'public')).filter(n=>/\.(html|js)$/.test(n)&&read(n).includes('archiveTitleByNumber'));

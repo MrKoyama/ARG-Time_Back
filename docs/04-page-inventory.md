@@ -2,7 +2,7 @@
 
 ## 2026-11-23 ノードリンクの内部資料検索と人材情報
 
-現行はNo.1〜93、上限120、未割当No.94〜120。公開HTML112件。No.91を「潜入後の調査ノート」に変更し、番号とURLを継承。No.92は内部資料検索の入口のみ登録し、検索結果の表示は登録対象外。No.93に人材情報一覧を追加。
+現行はNo.1〜99、上限120、未割当No.100〜120。公開HTML118件。No.95・97を正式な業務資料に整え、No.98を旧Web保守業務の引き継ぎ連絡へ差し替えた。No.99に高瀬の個人ノートを追加。No.91を「潜入後の調査ノート」に変更し、番号とURLを継承。No.92は内部資料検索の入口のみ登録し、検索結果の表示は登録対象外。No.93に人材情報一覧を追加。
 
 ## 2026-11-20 自力告発ルート「正義の盲点」
 
@@ -197,7 +197,7 @@ No.62〜68を改修。No.65・67・68を改題。アーカイブは1〜68、上�
 | 81 | [chronect-hub-report-reference.html](../public/chronect-hub-report-reference.html) | 報告用資料 参照記録 ｜ Chronect Hub | No.79の「報告用資料」を特殊検索。No.82への追加参照を掲載。 |
 | 82 | [takase-work-notes.html](../public/takase-work-notes.html) | 調査作業控え ｜ 調査ノート | No.81からリンク。高瀬がChronect在籍時に使用していた社用メールアドレス `y.takase@chronect.mail` をテキストで掲載。現在の利用状況は不明。疑似ダウンロードから専用画面で編集・完成でき、完成後は「連絡する」から疑似メールを開ける。 |
 | 83 | [takase-report-editor.html](../public/takase-report-editor.html) | 調査報告書 ｜ 調査ノート | No.82から取得した報告書を編集する。削除後は訪問済み画面を再訪できるが、本文は復元しない。 |
-| 84 | [takase-mail.html](../public/takase-mail.html) | メール | 高瀬宛ての報告書送信・削除と、相沢宛ての初回6往復を扱う疑似メール。 |
+| 84 | [takase-mail.html](../public/takase-mail.html) | メール | 高瀬宛ての報告書送信・削除と、相沢宛ての初回6往復と続報・追加問い合わせを扱う疑似メール。 |
 | 85 | [yaboo-news-aftermath.html](../public/yaboo-news-aftermath.html) | TIME BACK、累計1,000万ダウンロードを突破　時間活用サービスとして利用拡大 ｜ Yaboo!ニュース | 報告書削除後の後日談。末尾からNo.86へ。 |
 | 86 | [timeback-ending-record.html](../public/timeback-ending-record.html) | ENDING「託された記録」 ｜ TIME BACK | 初回は後日談の閲覧後に到達。到達後は再訪可。感想フォームはURL未設定。 |
 | 87 | [chronect-hub-web-operations-log.html](../public/chronect-hub-web-operations-log.html) | Web運用日誌 ｜ Chronect Hub | 特殊検索「Web運用日誌」。作業記録03の照合後、補足参照からNo.88へ。 |
@@ -207,6 +207,12 @@ No.62〜68を改修。No.65・67・68を改題。アーカイブは1〜68、上�
 | 91 | [nodelink-web-maintenance.html](../public/nodelink-web-maintenance.html) | 潜入後の調査ノート ｜ 調査ノート | No.39のロゴを3秒長押しして到達。潜入成功と内部資料への参照経路。末尾からNo.92へ。旧「Web保守記録」と同じURL。 |
 | 92 | [nodelink-internal-search.html](../public/nodelink-internal-search.html) | 内部資料検索 ｜ 株式会社ノードリンク・ワークス | ノードリンク独自の完全一致検索。入口のみ登録し、`?q=` の結果表示はEX扱い。 |
 | 93 | [nodelink-personnel.html](../public/nodelink-personnel.html) | 人材情報一覧 ｜ 株式会社ノードリンク・ワークス | No.92で「人材情報」を検索。8名分の6項目プロフィールとテキストの社内連絡アドレスを掲載。 |
+| 94 | [takase-investigation-progress.html](../public/takase-investigation-progress.html) | 調査経過メモ ｜ 調査ノート | 相沢の1回目の添付。購入利用の増加、記憶への違和感と「利用状況照合」。 |
+| 95 | [nodelink-usage-review.html](../public/nodelink-usage-review.html) | 利用状況照合記録 ｜ 株式会社ノードリンク・ワークス | ノードリンクの研修・業務管理資料。「利用状況照合」で検索。No.94と両方の閲覧で相沢への追加問い合わせを解放。 |
+| 96 | [takase-device-investigation-note.html](../public/takase-device-investigation-note.html) | 端末・調査記録の控え ｜ 調査ノート | 相沢の2回目の添付。No.97の閲覧後にNo.98、No.98の閲覧後にNo.99への参照を表示。 |
+| 97 | [nodelink-external-reference-log.html](../public/nodelink-external-reference-log.html) | 外部参照経路 照会控え ｜ 株式会社ノードリンク・ワークス | ノードリンクの公開情報参照管理資料。「保守参照経路」で検索。 |
+| 98 | [chronect-internal-correspondence.html](../public/chronect-internal-correspondence.html) | Chronect社内連絡記録 ｜ Chronect Hub | No.97閲覧後のNo.96から初回到達。旧Web保守業務の引き継ぎで見つかった不明な編集履歴と調査指示。 |
+| 99 | [takase-reference-monitoring.html](../public/takase-reference-monitoring.html) | 参照経路について ｜ 調査ノート | No.98閲覧後のNo.96から初回到達。社内連絡を読んだ高瀬個人の判断と危機感。 |
 | EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [chronect-search.html](../public/chronect-search.html) | 検索結果 ｜ Chronect | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
@@ -218,7 +224,7 @@ No.62〜68を改修。No.65・67・68を改題。アーカイブは1〜68、上�
 
 ## 空き番号
 
-No.94〜120は未割当。管理上限は120。
+No.100〜120は未割当。管理上限は120。
 
 ## 実ファイルがないもの
 
