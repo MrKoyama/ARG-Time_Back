@@ -1,5 +1,13 @@
 # 実装済みページ一覧
 
+## 2026-11-23 ノードリンクの内部資料検索と人材情報
+
+現行はNo.1〜93、上限120、未割当No.94〜120。公開HTML112件。No.91を「潜入後の調査ノート」に変更し、番号とURLを継承。No.92は内部資料検索の入口のみ登録し、検索結果の表示は登録対象外。No.93に人材情報一覧を追加。
+
+## 2026-11-20 自力告発ルート「正義の盲点」
+
+当時のアーカイブはNo.1〜90、上限120、未割当No.91〜120。公開HTML109件。 No.89に調査報道、No.90にENDING「正義の盲点」を追加。
+
 ## 2026-11-17 疑似メールと後日談「託された記録」
 
 No.83に報告書編集画面、No.84に疑似メール、No.85に後日談、No.86にエンディングを登録。上限120、未訪問は「？？？」。
@@ -10,7 +18,7 @@ No.83に報告書編集画面、No.84に疑似メール、No.85に後日談、No
 
 ## 2026-11-16 Yaboo!ニュースのアーカイブ登録と改番
 
-現行アーカイブはNo.1〜88、上限120、未割当No.89〜120。公開HTML107件。 No.21の外部メディア掲載リンクからNo.22のYaboo!ニュース記事へ進み、フッターの「情報提供」からNo.80「情報提供・取材依頼」へ進む。両ページに右下の共通ページアーカイブを設置。「情報提供」は下線なしで表示する。 旧No.1〜21は同番号。旧No.22〜78は新No.23〜79へ繰り下げ。旧No.79は未割当。旧保存データは同じ保存キーを使い、URLを基準に番号を移行する。 ページ一覧表は現行番号。
+当時のアーカイブはNo.1〜88、上限120、未割当No.89〜120。公開HTML107件。 No.21の外部メディア掲載リンクからNo.22のYaboo!ニュース記事へ進み、フッターの「情報提供」からNo.80「情報提供・取材依頼」へ進む。両ページに右下の共通ページアーカイブを設置。「情報提供」は下線なしで表示する。 旧No.1〜21は同番号。旧No.22〜78は新No.23〜79へ繰り下げ。旧No.79は未割当。旧保存データは同じ保存キーを使い、URLを基準に番号を移行する。 ページ一覧表は現行番号。
 
 以前の章別節にある改番前の番号は制作当時のもの。現行番号はページ一覧と検索対応表を参照。
 
@@ -185,15 +193,20 @@ No.62〜68を改修。No.65・67・68を改題。アーカイブは1〜68、上�
 | 77 | [chronect-hub-second-shift-management.html](../public/chronect-hub-second-shift-management.html) | SECOND SHIFT 内部管理記録 ｜ Chronect Hub | Chronect内部での試験運用と評価記録の組織的管理。 |
 | 78 | [chronect-hub-second-shift-disclosure.html](../public/chronect-hub-second-shift-disclosure.html) | 利用者向け説明 運用指示 ｜ Chronect Hub | 説明の許可・禁止、回答例、統一適用を定めた内部指示。 |
 | 79 | [chronect-hub-trial-operation-mapping.html](../public/chronect-hub-trial-operation-mapping.html) | 試験運用 対応記録 ｜ Chronect Hub | 施設CのSUB-117の個別試験とSECOND SHIFTの直接対応。 |
-| 80 | [yaboo-news-tip.html](../public/yaboo-news-tip.html) | 情報提供・取材依頼 ｜ Yaboo!ニュース | No.22のフッターから到達。完成文書の添付・解除が可能。提出は無効。 |
+| 80 | [yaboo-news-tip.html](../public/yaboo-news-tip.html) | 情報提供・取材依頼 ｜ Yaboo!ニュース | No.22のフッターから到達。完成文書を添付し、確認後に疑似提出できる。受付後はNo.89へ。 |
 | 81 | [chronect-hub-report-reference.html](../public/chronect-hub-report-reference.html) | 報告用資料 参照記録 ｜ Chronect Hub | No.79の「報告用資料」を特殊検索。No.82への追加参照を掲載。 |
 | 82 | [takase-work-notes.html](../public/takase-work-notes.html) | 調査作業控え ｜ 調査ノート | No.81からリンク。高瀬がChronect在籍時に使用していた社用メールアドレス `y.takase@chronect.mail` をテキストで掲載。現在の利用状況は不明。疑似ダウンロードから専用画面で編集・完成でき、完成後は「連絡する」から疑似メールを開ける。 |
 | 83 | [takase-report-editor.html](../public/takase-report-editor.html) | 調査報告書 ｜ 調査ノート | No.82から取得した報告書を編集する。削除後は訪問済み画面を再訪できるが、本文は復元しない。 |
-| 84 | [takase-mail.html](../public/takase-mail.html) | 調査作業控えについて ｜ 調査ノート | 完成報告書から開始する疑似メール。手動添付・送信、削除依頼。 |
+| 84 | [takase-mail.html](../public/takase-mail.html) | メール | 高瀬宛ての報告書送信・削除と、相沢宛ての初回6往復を扱う疑似メール。 |
 | 85 | [yaboo-news-aftermath.html](../public/yaboo-news-aftermath.html) | TIME BACK、累計1,000万ダウンロードを突破　時間活用サービスとして利用拡大 ｜ Yaboo!ニュース | 報告書削除後の後日談。末尾からNo.86へ。 |
 | 86 | [timeback-ending-record.html](../public/timeback-ending-record.html) | ENDING「託された記録」 ｜ TIME BACK | 初回は後日談の閲覧後に到達。到達後は再訪可。感想フォームはURL未設定。 |
 | 87 | [chronect-hub-web-operations-log.html](../public/chronect-hub-web-operations-log.html) | Web運用日誌 ｜ Chronect Hub | 特殊検索「Web運用日誌」。作業記録03の照合後、補足参照からNo.88へ。 |
-| 88 | [takase-investigation-method.html](../public/takase-investigation-method.html) | 調査方法の再検討 ｜ 調査ノート | No.87の補足から到達。高瀬が提携企業への潜入を検討する記録。 |
+| 88 | [takase-investigation-method.html](../public/takase-investigation-method.html) | 調査方法の再検討 ｜ 調査ノート | No.87の補足から到達。潜入を検討する記録と、ロゴの長押しを示す後書き。 |
+| 89 | [yaboo-news-investigation.html](../public/yaboo-news-investigation.html) | 「TIME BACK」に不適切な試験運用の疑い　利用者への説明と実態に食い違い ｜ Yaboo!ニュース | No.80の提出後に初回到達。本社外観と研究・試験環境のイメージ画像を掲載。末尾の「その後」からNo.90へ。 |
+| 90 | [timeback-ending-blind-spot.html](../public/timeback-ending-blind-spot.html) | ENDING「正義の盲点」 ｜ TIME BACK | 初回はNo.89の閲覧後に到達。到達後は再訪可能。感想フォームURL未設定。 |
+| 91 | [nodelink-web-maintenance.html](../public/nodelink-web-maintenance.html) | 潜入後の調査ノート ｜ 調査ノート | No.39のロゴを3秒長押しして到達。潜入成功と内部資料への参照経路。末尾からNo.92へ。旧「Web保守記録」と同じURL。 |
+| 92 | [nodelink-internal-search.html](../public/nodelink-internal-search.html) | 内部資料検索 ｜ 株式会社ノードリンク・ワークス | ノードリンク独自の完全一致検索。入口のみ登録し、`?q=` の結果表示はEX扱い。 |
+| 93 | [nodelink-personnel.html](../public/nodelink-personnel.html) | 人材情報一覧 ｜ 株式会社ノードリンク・ワークス | No.92で「人材情報」を検索。8名分の6項目プロフィールとテキストの社内連絡アドレスを掲載。 |
 | EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [chronect-search.html](../public/chronect-search.html) | 検索結果 ｜ Chronect | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
@@ -205,7 +218,7 @@ No.62〜68を改修。No.65・67・68を改題。アーカイブは1〜68、上�
 
 ## 空き番号
 
-No.89〜120は未割当。管理上限は120。
+No.94〜120は未割当。管理上限は120。
 
 ## 実ファイルがないもの
 

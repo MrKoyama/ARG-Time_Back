@@ -1,55 +1,170 @@
 .timeback-ending {
   margin: 0;
-  padding: clamp(1.25rem, 6vw, 5rem);
-  background: #141619;
-  color: #e3e5e8;
-  font: 1rem/1.85 system-ui, sans-serif;
-  overflow-wrap: anywhere;
+  background: #343434;
+  color: #262421;
+  font: 1rem/1.85 "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", "MS PMincho", serif;
 }
 
+.timeback-ending.archive-open { overflow: hidden; }
+
 .ending-content {
-  max-width: 42rem;
+  box-sizing: border-box;
+  width: min(76rem, calc(100% - clamp(1.5rem, 8vw, 4rem)));
+  margin: clamp(1.25rem, 4vw, 2rem) auto 2rem;
+  overflow-wrap: anywhere;
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 5vw, 4rem);
+  border: 1px solid #cecece;
+  background: #f8f5f0;
+}
+
+.ending-intro { text-align: center; }
+
+.ending-arrival {
+  max-width: 19rem;
+  margin: 0 auto .85rem;
+  padding-bottom: .7rem;
+  border-bottom: 1px solid #c5bfb8;
+}
+
+.ending-label {
+  margin: 0;
+  font-size: .95rem;
+  letter-spacing: .12em;
+}
+
+.ending-intro h1 {
+  margin: .25rem 0 0;
+  font-size: clamp(2rem, 5.3vw, 3.6rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: .12em;
+}
+
+.ending-intro h1::after {
+  display: block;
+  width: 4rem;
+  margin: .8rem auto 1.1rem;
+  border-bottom: 1px solid #8a8178;
+  content: "";
+}
+
+.ending-method {
+  max-width: 43rem;
+  margin: 0 auto;
+  padding: .55rem .9rem;
+  background: #ebe6df;
+  font-size: .9rem;
+}
+
+.ending-story, .ending-feedback, .ending-branch {
+  max-width: 52rem;
   margin-inline: auto;
 }
 
-.ending-brand {
-  margin: 0;
-  color: #aab2bd;
-  font-weight: 650;
-  letter-spacing: 0.14em;
+.ending-story {
+  margin-block: clamp(1.25rem, 3vw, 1.8rem) clamp(1.25rem, 3vw, 2rem);
+  text-align: start;
 }
 
-.ending-content h1 {
-  margin: 0.5rem 0 1.5rem;
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
-  line-height: 1.4;
+.ending-story p { margin: 0 0 .7em; }
+.ending-story p:last-child { margin-bottom: 0; }
+
+.ending-feedback, .ending-branch {
+  padding-top: clamp(1.25rem, 3vw, 1.8rem);
+  border-top: 1px solid #a9a39d;
+  text-align: center;
 }
 
-.ending-content section,
-.ending-footer {
-  margin-block-start: 2.5rem;
-  border-top: 1px solid #3d434c;
-  padding-block-start: 1rem;
+.ending-feedback h2, .ending-branch h2 {
+  margin: 0 0 .6rem;
+  font-size: clamp(1.2rem, 3vw, 1.65rem);
+  line-height: 1.5;
 }
 
-.ending-content h2 {
-  font-size: 1.15rem;
+.ending-feedback p, .ending-branch p { margin: 0; }
+.ending-feedback p + p { margin-top: .65rem; }
+
+.ending-branch { margin-bottom: clamp(1.25rem, 3vw, 2rem); }
+
+.ending-branch-dialog {
+  box-sizing: border-box;
+  width: min(32rem, calc(100% - 2rem));
+  padding: clamp(1rem, 4vw, 1.5rem);
+  border: 1px solid #a9a39d;
+  background: #f8f5f0;
+  color: inherit;
 }
 
-.ending-content a {
-  color: #b4cce0;
-  text-underline-offset: 0.2em;
+.ending-branch-dialog::backdrop { background: rgb(0 0 0 / 48%); }
+.ending-branch-dialog h2 { margin: 0 0 .6rem; font-size: 1.25rem; }
+.ending-branch-dialog p { margin: 0 0 1rem; }
+#branch-return-status:empty { margin: 0; }
+#branch-return-status { color: #852f2b; }
+.ending-branch-buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
+
+.ending-actions {
+  display: grid;
+  justify-items: center;
+  gap: .85rem;
+  margin-top: 1.25rem;
 }
 
-.ending-content button {
-  padding: 0.45rem 0.85rem;
-  border: 1px solid #555e68;
-  background: #23282e;
-  color: #aab2bd;
+.ending-action {
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  width: min(100%, 23rem);
+  min-height: 3rem;
+  padding: .55rem .85rem;
+  border: 1px solid #383838;
+  border-radius: .25rem;
+  background: #383838;
+  color: #fff;
   font: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.ending-footer {
-  color: #aab2bd;
-  font-size: 0.85rem;
+.ending-action:hover { background: #484848; }
+.ending-action:disabled { opacity: .76; cursor: default; }
+.ending-action:disabled:hover { background: #383838; }
+
+.ending-action-secondary {
+  width: min(100%, 20rem);
+  border-color: #777;
+  background: transparent;
+  color: #262421;
+}
+
+.ending-action-secondary:hover { background: #ebe6df; }
+.ending-action:focus-visible { outline: 2px solid #555; outline-offset: 3px; }
+
+.ending-related { margin: 1.25rem 0 0; text-align: center; }
+.ending-related a { color: inherit; text-underline-offset: .2em; }
+
+/* Footer layout and typography follow the TIME BACK service pages. */
+.site-footer {
+  border-top: 1px solid #284946;
+  color: #cfdbd9;
+  background: #414141;
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  line-height: 1.8;
+}
+
+.footer-inner {
+  box-sizing: border-box;
+  width: min(1180px, calc(100% - 40px));
+  min-height: 82px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.fiction-notice { margin: 0; font-size: .67rem; line-height: 1.7; }
+
+@media (max-width: 580px) {
+  .footer-inner { width: min(100% - 28px, 1180px); padding: 18px 0; align-items: flex-end; }
+  .fiction-notice { font-size: .59rem; }
 }

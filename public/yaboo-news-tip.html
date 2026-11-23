@@ -11,7 +11,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('config', 'G-DG4X4HMEC2', {send_page_view: false});
   </script>
-  <link rel="stylesheet" href="yaboo-news.css">
+  <link rel="stylesheet" href="yaboo-news.css?v=20261120-tip-submission-v1">
   <link rel="stylesheet" href="archive.css?v=20261029">
 </head>
 <body data-page-number="80" data-page-title="情報提供・取材依頼 ｜ Yaboo!ニュース" data-page-href="yaboo-news-tip.html">
@@ -36,15 +36,39 @@
   <main class="yaboo-inner">
     <nav class="yaboo-breadcrumb" aria-label="パンくずリスト"><a href="yaboo-news-chronect.html">Yaboo!ニュース</a> <span aria-hidden="true">›</span> <span aria-current="page">情報提供・取材依頼</span></nav>
     <h1>情報提供・取材依頼</h1>
-    <p>Yaboo!ニュースでは、企業活動や社会問題などに関する情報提供を受け付けています。</p>
-    <p>内容を確認できる資料を添付のうえ、お送りください。</p>
-    <section class="yaboo-attachment" aria-labelledby="attachment-heading">
-      <h2 id="attachment-heading">添付書類</h2>
-      <p id="attachment-status" role="status">添付できる文書がありません。</p>
-      <button id="report-attach" type="button" disabled aria-describedby="attachment-status">文書を添付する</button>
+    <div id="tip-controls">
+      <p>Yaboo!ニュースでは、企業活動や社会問題などに関する情報提供を受け付けています。</p>
+      <p>内容を確認できる資料を添付のうえ、お送りください。</p>
+      <section class="yaboo-attachment" aria-labelledby="attachment-heading">
+        <h2 id="attachment-heading">添付書類</h2>
+        <p id="attachment-status" role="status">添付できる文書がありません。</p>
+        <div id="tip-file" class="yaboo-tip-file" hidden>
+          <span class="yaboo-tip-file-mark" aria-hidden="true">✓</span>
+          <span>TIME BACKの売却時間帯における身体利用に関する調査報告書</span>
+        </div>
+        <button id="report-attach" type="button" disabled aria-describedby="attachment-status">文書を添付する</button>
+      </section>
+      <button id="tip-submit" class="yaboo-tip-primary" type="button" disabled>情報提供を送信する</button>
+      <p id="tip-sending" role="status"></p>
+      <p id="submission-status" role="status"></p>
+    </div>
+    <dialog id="tip-confirmation" class="yaboo-tip-dialog" aria-labelledby="tip-confirmation-title" aria-describedby="tip-confirmation-body">
+      <h2 id="tip-confirmation-title">情報提供の確認</h2>
+      <div id="tip-confirmation-body">
+        <p>添付された調査報告書をYaboo!ニュース編集部へ提供します。</p>
+        <p>提供された資料は編集部で確認されます。記事への掲載を保証するものではありません。</p>
+      </div>
+      <form method="dialog" class="yaboo-tip-actions">
+        <button type="submit" value="cancel" autofocus>戻る</button>
+        <button id="tip-confirm-submit" class="yaboo-tip-primary" type="submit" value="submit" disabled>情報提供を送信する</button>
+      </form>
+    </dialog>
+    <section id="tip-receipt" class="yaboo-tip-receipt" aria-labelledby="tip-receipt-title" hidden>
+      <h2 id="tip-receipt-title" tabindex="-1">情報提供を受け付けました</h2>
+      <p>情報提供を受け付けました。お送りいただいた内容は、編集部で確認いたします。</p>
+      <p id="tip-article-notice" role="status"></p>
+      <a id="tip-article" href="yaboo-news-investigation.html" hidden>数日後のYaboo!ニュースを確認する</a>
     </section>
-    <button type="button" disabled aria-describedby="submission-status">情報を提供する</button>
-    <p id="submission-status" hidden>送信機能は現在利用できません。</p>
     <p><a href="yaboo-news-chronect.html">記事に戻る</a></p>
   </main>
   <footer class="yaboo-footer">
@@ -55,7 +79,7 @@
   </footer>
   <button id="archiveButton" type="button" aria-label="ページアーカイブ 80 / 120" aria-haspopup="dialog" aria-controls="archiveOverlay">80 / 120</button>
   <div class="archive-overlay" id="archiveOverlay" aria-hidden="true"><section class="archive-dialog" role="dialog" aria-modal="true" aria-labelledby="archiveTitle"><header class="archive-header"><h2 id="archiveTitle">ページアーカイブ</h2><button class="archive-close" id="archiveClose" type="button" aria-label="ページアーカイブを閉じる">×</button></header><div class="archive-content"><p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。ページ番号は閲覧の目安です。順番に迷ったときは番号を参考にしつつ、気になった情報から自由にご覧ください。</p><ol class="archive-list" id="archiveList"></ol><div class="archive-tools"><button class="archive-reset-button" id="archiveResetButton" type="button">アーカイブをリセット</button><div class="reset-confirm" id="resetConfirm" role="alertdialog" aria-labelledby="resetTitle" hidden><p id="resetTitle">探索済みページの記録を消去しますか？</p><div class="reset-actions"><button id="resetCancel" type="button">キャンセル</button><button class="danger" id="resetAccept" type="button">リセットする</button></div></div></div></div></section></div>
-  <script src="chronect-shared.js?v=20261118-archive88-v1"></script>
-  <script src="investigation-report.js?v=20261116-report-dialog-v1"></script>
+  <script src="chronect-shared.js?v=20261123-archive93-v1"></script>
+  <script src="investigation-report.js?v=20261120-tip-submission-v1"></script>
 </body>
 </html>

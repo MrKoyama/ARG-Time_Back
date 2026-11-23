@@ -3,6 +3,10 @@
 
   const storageKey = 'timeback-investigation-report-v1';
   const mailKey = 'timeback-investigation-mail-v1';
+  const mailStartedKey = 'timeback-investigation-mail-started-at-v1';
+  const mailDraftKey = 'timeback-mail-takase-draft-v1';
+  const legacyMailHistoryKey = 'timeback-investigation-mail-history-v1';
+  const tipKey = 'timeback-investigation-tip-v1';
   // Keep the original checkpoints so existing saves retain their progress.
   const phase = {
     initial: 0, contacted: 1, firstReply: 1.1, offered: 1.2,
@@ -10,6 +14,8 @@
     sent: 3, deleteRequested: 4, deleted: 5, ended: 6
   };
   const aftermathUrl = 'yaboo-news-aftermath.html';
+  const tipUrl = 'yaboo-news-tip.html';
+  const investigationUrl = 'yaboo-news-investigation.html';
   const answers = ['BAS', 'SECOND SHIFT', '施設C', 'SUB-117', 'TB-260917-4826'];
   const normalize = value => value.normalize('NFKC').trim().toUpperCase();
   const notesUrl = 'takase-work-notes.html';
@@ -138,7 +144,7 @@
     });
 
     contact.addEventListener('click', () => {
-      if (readReport().status === 'complete') location.assign('takase-mail.html');
+      if (readReport().status === 'complete') location.assign('takase-mail.html#new-message');
     });
     window.addEventListener('pagehide', () => {
       if (frame !== null) cancelAnimationFrame(frame);
@@ -156,7 +162,7 @@
     unlockArchive();
     view.hidden = false;
     window.initTakaseMail({
-      phase, mailPhase, advanceMail, watchReport,
+      phase, mailPhase, mailStartedKey, mailDraftKey, advanceMail, watchReport,
       reportComplete: () => readReport().status === 'complete',
       resetMail: () => advanceMail(mailPhase(), phase.initial),
       deleteReport: () => advanceMail(phase.deleteRequested, phase.deleted, { removeReport: true }),
@@ -181,6 +187,96 @@
     if (ending) advanceMail(phase.deleted, phase.ended);
     unlockArchive();
     view.hidden = false;
+  }
+
+  function tipSubmitted() {
+    try {
+      return localStorage.getItem(tipKey) === 'submitted';
+    } catch {
+      return false;
+    }
+  }
+
+  function initInvestigationViews() {
+    const article = byId('tip-investigation');
+    const ending = byId('tip-ending');
+    const view = article || ending;
+    if (!view) return;
+
+    const revisit = hasVisited(document.body.dataset.pageHref);
+    const eligible = tipSubmitted() && (article || hasVisited(investigationUrl));
+    if (!revisit && !eligible) {
+      location.replace(tipUrl);
+      return;
+    }
+    unlockArchive();
+    view.hidden = false;
+  }
+
+  function initEndingFeedback() {
+    const page = document.querySelector('.ending-page');
+    if (!page || page.hidden) return;
+
+    const feedback = page.querySelector('[data-feedback-url]');
+    const feedbackUrl = feedback?.dataset.feedbackUrl.trim();
+    if (feedbackUrl) {
+      feedback.disabled = false;
+      feedback.addEventListener('click', () => window.open(feedbackUrl, '_blank', 'noopener,noreferrer'));
+    }
+  }
+
+  function rewindBranch() {
+    if (!hasVisited(document.body.dataset.pageHref)) return false;
+    const restore = [];
+    function write(key, value) {
+      if (value === null) localStorage.removeItem(key);
+      else localStorage.setItem(key, value);
+    }
+
+    try {
+      const report = readReport();
+      const entries = report.status === 'complete' ? report.entries : [...answers];
+      const updates = [
+        [storageKey, JSON.stringify({ status: 'complete', entries, confirmed: entries.map(matches) })],
+        [legacyMailHistoryKey, null],
+        [mailStartedKey, null],
+        [mailDraftKey, null],
+        [tipKey, null],
+        [mailKey, null]
+      ];
+      const previous = new Map(updates.map(([key]) => [key, localStorage.getItem(key)]));
+      for (const [key, value] of updates) {
+        const original = previous.get(key);
+        if (original === value) continue;
+        write(key, value);
+        restore.push([key, original]);
+      }
+      return true;
+    } catch {
+      for (const [key, value] of restore.reverse()) {
+        try { write(key, value); } catch { /* Keep restoring the other keys if possible. */ }
+      }
+      return false;
+    }
+  }
+
+  function initBranchReturn(button) {
+    const dialog = byId('branch-return-dialog');
+    const status = byId('branch-return-status');
+    button.addEventListener('click', () => {
+      status.textContent = '';
+      dialog.showModal();
+    });
+    dialog.querySelector('form').addEventListener('submit', event => {
+      if (event.submitter?.value !== 'rewind') return;
+      event.preventDefault();
+      if (!rewindBranch()) {
+        status.textContent = '進行状況を保存できません。ブラウザの保存設定を確認してください。';
+        return;
+      }
+      dialog.close();
+      location.assign(notesUrl);
+    });
   }
 
   function initEditor(paper) {
@@ -302,26 +398,94 @@
 
   function initAttachment(button) {
     const status = byId('attachment-status');
-    const submission = byId('submission-status');
+    const file = byId('tip-file');
+    const message = byId('submission-status');
+    const controls = byId('tip-controls');
+    const submit = byId('tip-submit');
+    const dialog = byId('tip-confirmation');
+    const confirm = byId('tip-confirm-submit');
+    const sendingStatus = byId('tip-sending');
+    const receipt = byId('tip-receipt');
+    const elapsedStatus = byId('tip-article-notice');
+    const articleLink = byId('tip-article');
     let attached = false;
+    let presentation = '';
+    let presentationTimer;
+
+    function stopPresentation() {
+      window.clearTimeout(presentationTimer);
+      presentation = '';
+    }
 
     function render() {
       const report = readReport();
       const complete = report.status === 'complete';
-      if (!complete) attached = false;
+      const submitted = tipSubmitted();
+      if (!submitted) stopPresentation();
+      const sending = presentation === 'sending';
+      if (!complete || (submitted && !sending)) attached = false;
       status.textContent = {
         unacquired: '添付できる文書がありません。',
         draft: '調査報告書_草稿（未完成）',
-        complete: attached ? '調査報告書（完成済み・添付済み）' : '調査報告書（完成済み）'
+        complete: attached ? '添付済み' : '調査報告書（完成済み）'
       }[report.status];
-      button.disabled = !complete;
+      file.hidden = !attached;
+      button.disabled = !complete || sending;
       button.textContent = attached ? '添付を解除する' : '文書を添付する';
-      submission.hidden = !attached;
+      submit.disabled = confirm.disabled = !attached || sending;
+      controls.hidden = submitted && !sending;
+      sendingStatus.textContent = sending ? '送信しています…' : '';
+      receipt.hidden = !submitted || sending;
+      elapsedStatus.textContent = presentation === 'elapsed' ? '数日後' : '';
+      articleLink.hidden = !submitted || presentation !== '';
+      if (submitted && dialog.open) dialog.close('');
     }
 
     button.addEventListener('click', () => {
+      if (tipSubmitted()) return;
       attached = readReport().status === 'complete' && !attached;
+      message.textContent = '';
       render();
+    });
+    submit.addEventListener('click', () => {
+      render();
+      if (submit.disabled || controls.hidden || dialog.open) return;
+      message.textContent = '';
+      dialog.returnValue = '';
+      dialog.showModal();
+    });
+    dialog.addEventListener('close', () => {
+      if (dialog.returnValue !== 'submit' || tipSubmitted()) return;
+      if (!attached || readReport().status !== 'complete') {
+        render();
+        message.textContent = '添付した調査報告書を確認できませんでした。';
+        return;
+      }
+      try {
+        localStorage.setItem(tipKey, 'submitted');
+      } catch {
+        message.textContent = '情報提供の状態を保存できません。ブラウザの保存設定を確認してください。';
+        return;
+      }
+      presentation = 'sending';
+      render();
+      presentationTimer = window.setTimeout(() => {
+        presentation = 'receipt';
+        render();
+        byId('tip-receipt-title').focus();
+        presentationTimer = window.setTimeout(() => {
+          presentation = 'elapsed';
+          render();
+          presentationTimer = window.setTimeout(() => {
+            stopPresentation();
+            render();
+          }, 850);
+        }, 500);
+      }, 650);
+    });
+    window.addEventListener('pagehide', stopPresentation);
+    window.addEventListener('storage', event => {
+      if (event.key === tipKey) render();
     });
     watchReport(render);
   }
@@ -330,9 +494,13 @@
   const editor = byId('report-document');
   const attach = byId('report-attach');
   const mail = byId('report-mail');
+  const branchReturn = byId('branch-return');
   if (download) initDownloads(download);
   if (editor) initEditor(editor);
   if (attach) initAttachment(attach);
   if (mail) initMail(mail);
   initEndingViews();
+  initInvestigationViews();
+  initEndingFeedback();
+  if (branchReturn) initBranchReturn(branchReturn);
 })();

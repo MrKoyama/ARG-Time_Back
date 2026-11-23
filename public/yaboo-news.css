@@ -81,6 +81,8 @@ a { color: #005eaa; text-underline-offset: .18em; }
 .yaboo-article-image { margin: 0 0 20px; background: #eaeaea; text-align: center; }
 .yaboo-article-image img { display: block; width: 100%; max-width: 600px; height: auto; margin: auto; }
 .yaboo-article-image figcaption { padding: .35rem; color: #555; font-size: .8125rem; }
+#tip-investigation .yaboo-article-image { margin-block: 1.25rem; background: transparent; }
+#tip-investigation article > .yaboo-article-image img { max-width: none; }
 .yaboo-content p { margin-bottom: 1.5em; }
 .yaboo-attachment {
   margin-block: 1.5rem 1rem;
@@ -98,6 +100,96 @@ button {
 button:disabled { background: #eceeee; color: #555d5f; }
 .yaboo-search button:disabled { background: #23699a; color: #fff; }
 main > button + p { margin-top: 1rem; }
+.yaboo-tip-dialog {
+  width: min(30rem, calc(100% - 2rem));
+  padding: clamp(1rem, 4vw, 1.5rem);
+  border: 1px solid #a6adae;
+  color: inherit;
+  overflow: auto;
+}
+.yaboo-tip-dialog::backdrop { background: rgb(0 0 0 / 40%); }
+.yaboo-tip-dialog h2, #tip-receipt h2 { margin-bottom: .75rem; }
+.yaboo-tip-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .5rem; }
+.yaboo-tip-primary:enabled {
+  border-color: #005eaa;
+  background: #005eaa;
+  color: #fff;
+  cursor: pointer;
+}
+.yaboo-tip-primary:enabled:hover { background: #004b8a; }
+.yaboo-tip-file {
+  display: flex;
+  align-items: flex-start;
+  gap: .65rem;
+  margin-bottom: .75rem;
+  padding: .7rem .8rem;
+  border: 1px solid #b2cddd;
+  border-radius: .25rem;
+  background: #fff;
+  line-height: 1.55;
+}
+.yaboo-tip-file[hidden] { display: none; }
+.yaboo-tip-file-mark {
+  flex: 0 0 1.25rem;
+  border-radius: 50%;
+  background: #e6f1f7;
+  color: #005eaa;
+  font-weight: 700;
+  line-height: 1.25rem;
+  text-align: center;
+}
+#submission-status:not(:empty) { margin-top: 1rem; }
+#tip-sending:empty, #tip-article-notice:empty { margin: 0; }
+#tip-sending:not(:empty) { margin-top: .75rem; }
+#tip-sending:not(:empty)::before {
+  display: inline-block;
+  width: .9em;
+  height: .9em;
+  margin-inline-end: .5em;
+  border: 2px solid #c9dce8;
+  border-top-color: #005eaa;
+  border-radius: 50%;
+  vertical-align: -.05em;
+  animation: yaboo-tip-spin .7s linear infinite;
+  content: "";
+}
+@keyframes yaboo-tip-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  #tip-sending:not(:empty)::before { animation: none; }
+}
+.yaboo-tip-receipt {
+  margin-block: 1rem;
+  padding: clamp(1rem, 4vw, 1.5rem);
+  border: 1px solid #d4dadb;
+  background: #f6f7f7;
+}
+#tip-article-notice:not(:empty) {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 11;
+  margin: 0;
+  padding: .45rem 1rem;
+  transform: translate(-50%, -50%);
+  border: 1px solid #d4dadb;
+  border-radius: .25rem;
+  background: #fff;
+  color: #333;
+  text-align: center;
+  pointer-events: none;
+}
+#tip-article {
+  display: inline-block;
+  min-height: 2.75rem;
+  padding: .45rem .85rem;
+  border: 1px solid #9ab6c8;
+  border-radius: .25rem;
+  background: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+#tip-article:hover { text-decoration: underline; }
+#tip-article[hidden] { display: none; }
 .yaboo-footer {
   margin-top: 40px;
   padding: 20px;

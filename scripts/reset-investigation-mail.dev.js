@@ -17,5 +17,7 @@
 
   // The game treats a missing mail phase as 0 (before the first message).
   localStorage.removeItem('timeback-investigation-mail-v1');
-  console.info('報告書を完成済み、疑似メールを初回送信前に戻しました。No.82を再読み込みしてください。');
+  localStorage.removeItem('timeback-investigation-mail-started-at-v1');
+  localStorage.removeItem('timeback-mail-takase-draft-v1');
+  console.info('報告書を完成済み、高瀬宛ての疑似メールを初回送信前に戻しました。No.82を再読み込みしてください。');
 })();

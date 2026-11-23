@@ -1,0 +1,23 @@
+.chronect-brand-logo {
+  display: block;
+  height: auto;
+}
+
+.site-header .chronect-brand-logo { width: 144px; }
+
+.hub-shell .hub-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hub-shell .hub-brand .chronect-brand-logo { width: 112px; }
+
+.hub-shell .hub-brand-label {
+  padding-inline-start: 10px;
+  border-inline-start: 1px solid currentColor;
+}
+
+@media (max-width: 700px) {
+  .site-header .chronect-brand-logo { width: 118px; }
+}
