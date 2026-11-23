@@ -760,10 +760,14 @@
     });
     watchReport(refresh);
 
-    const forcedCompose = location.hash === '#new-message';
-    if (forcedCompose) {
+    const requestedView = location.hash;
+    if (requestedView === '#new-message' || requestedView === '#aizawa') {
       history.replaceState(history.state, '', '#');
-      openAddress(false);
+      if (requestedView === '#aizawa' && registeredContacts.has('aizawa')) {
+        openThread(contacts.aizawa);
+      } else {
+        openAddress(false);
+      }
     } else if (Object.hasOwn(contacts, savedContact)) openThread(contacts[savedContact]);
     else if (mailPhase() !== phase.initial || draftLength(contacts.takase, 0)) openThread(contacts.takase);
     else openAddress(false);
