@@ -1,74 +1,85 @@
 (() => {
   'use strict';
 
-  const noteUrl = 'takase-device-investigation-note.html';
-  const externalReferenceUrl = 'nodelink-external-reference-log.html';
-  const correspondenceUrl = 'chronect-internal-correspondence.html';
-  const monitoringUrl = 'takase-reference-monitoring.html';
-  const navigationKey = 'timeback-correspondence-navigation';
   const archiveKey = 'timeback-page-archive-v1';
-  const navigationFrom = (source, href) => source + '\n' + href;
-  const routes = [
-    { from: noteUrl, to: correspondenceUrl, prerequisites: [noteUrl, externalReferenceUrl], linkId: 'correspondenceLink', recordId: 'correspondenceRecord' },
-    { from: noteUrl, to: monitoringUrl, prerequisites: [correspondenceUrl], linkId: 'monitoringLink', recordId: 'monitoringRecord' }
+  const mailKey = 'timeback-investigation-mail-v1';
+  const aizawaKey = 'timeback-mail-aizawa-v1';
+  const approvalUrl = 'chronect-trial-continuation-approval.html';
+  const lastNoteUrl = 'takase-final-investigation-note.html';
+  const discoveryNoteUrl = 'takase-evidence-discovery.html';
+  const reportUrl = 'takase-completed-report.html';
+  const reportTitle = 'TIME BACKおよびSECOND SHIFTに関する調査報告書';
+  const requiredReferences = [
+    approvalUrl,
+    lastNoteUrl,
+    'chronect-hub-business-integration-plan.html',
+    'chronect-hub-second-shift-settlement.html',
+    'chronect-hub-skill-model-record.html',
+    'chronect-hub-second-shift-strategy.html'
   ];
 
-  function visitedPages() {
-    try {
-      const saved = JSON.parse(localStorage.getItem(archiveKey));
-      if (Array.isArray(saved)) return new Set(saved.map(page => page?.href));
-    } catch {}
-    return new Set();
+  function read(key) {
+    try { return localStorage.getItem(key); } catch { return null; }
   }
 
-  const hasPrerequisites = (route, visited) => route.prerequisites.every(href => visited.has(href));
-  const currentPage = document.body.dataset.pageHref;
-  const incoming = routes.find(route => route.to === currentPage);
-
-  if (incoming) {
-    const visited = visitedPages();
-    let followedLink = false;
+  function hasVisited(href) {
     try {
-      followedLink = sessionStorage.getItem(navigationKey) === navigationFrom(incoming.from, location.href);
-      sessionStorage.removeItem(navigationKey);
-    } catch {}
-    followedLink ||= document.referrer === new URL(incoming.from, location.href).href;
-
-    if (!visited.has(currentPage) && !(followedLink && hasPrerequisites(incoming, visited))) {
-      const fallback = hasPrerequisites(incoming, visited) ? incoming.from
-        : visited.has(noteUrl) ? noteUrl : 'nodelink-internal-search.html';
-      location.replace(fallback);
-      return;
-    }
-    delete document.body.dataset.pageArchive;
-    document.getElementById(incoming.recordId).hidden = false;
-  }
-
-  const outgoing = routes.filter(route => route.from === currentPage)
-    .map(route => ({ route, link: document.getElementById(route.linkId) }));
-  if (!outgoing.length) return;
-
-  function refreshLinks() {
-    const visited = visitedPages();
-    for (const { route, link } of outgoing) {
-      link.hidden = !hasPrerequisites(route, visited);
+      const pages = JSON.parse(read(archiveKey));
+      return Array.isArray(pages) && pages.some(page => page?.href === href);
+    } catch {
+      return false;
     }
   }
 
-  for (const { route, link } of outgoing) {
-    link.addEventListener('click', event => {
-      if (!hasPrerequisites(route, visitedPages())) {
-        event.preventDefault();
-        refreshLinks();
-        return;
+  function aizawaState() {
+    try {
+      const state = JSON.parse(read(aizawaKey));
+      const progress = state?.progress;
+      if (Number.isInteger(progress) && progress >= 0) {
+        if (state.route === 2 && progress <= 15) return state;
+        if (state.route === undefined && progress <= 16) {
+          return { ...state, route: 2, progress: Math.min(progress, 8),
+            draftLength: progress < 8 ? state.draftLength : 0, reportReceived: false };
+        }
       }
-      // Preserve normal link navigation on local HTML pages without a referrer.
-      try { sessionStorage.setItem(navigationKey, navigationFrom(currentPage, link.href)); } catch {}
-    });
+    } catch { /* Allow an unreadable save to fall back to the initial state. */ }
+    return { route: 2, progress: 0, startedAt: 0, draftLength: 0, reportReceived: false };
   }
-  window.addEventListener('pageshow', refreshLinks);
-  window.addEventListener('storage', event => {
-    if (event.key === archiveKey || event.key === null) refreshLinks();
-  });
-  refreshLinks();
+
+  const reportReceived = () => aizawaState().reportReceived === true;
+  const canContactAgain = () => requiredReferences.every(hasVisited);
+
+  window.timebackChapterSeven = {
+    archiveKey, aizawaKey, aizawaState, reportReceived, reportUrl, reportTitle, canContactAgain
+  };
+
+  const view = document.querySelector('[data-chapter-seven-view]');
+  if (!view) return;
+
+  const current = document.body.dataset.pageHref;
+  const priorPage = {
+    'chronect-internal-correspondence.html': 'takase-investigation-stall.html',
+    [reportUrl]: 'takase-mail.html#aizawa'
+  }[current] ?? (requiredReferences.includes(current) ? discoveryNoteUrl : null);
+  const allowed = current === reportUrl ? reportReceived() : hasVisited(current) || hasVisited(priorPage);
+  if (!allowed) {
+    location.replace(current === reportUrl ? priorPage : 'nodelink-internal-search.html');
+    return;
+  }
+
+  delete document.body.dataset.pageArchive;
+  view.hidden = false;
+
+  const followup = document.getElementById('chapter-seven-followup');
+  if (followup) {
+    function render() {
+      // The final reply is delivered at 4. Deletion and ending are later checkpoints.
+      followup.hidden = !['4', '5', '6'].includes(read(mailKey));
+    }
+    window.addEventListener('pageshow', render);
+    window.addEventListener('storage', event => {
+      if (event.key === mailKey || event.key === null) render();
+    });
+    render();
+  }
 })();

@@ -7,6 +7,7 @@
   const mailDraftKey = 'timeback-mail-takase-draft-v1';
   const legacyMailHistoryKey = 'timeback-investigation-mail-history-v1';
   const tipKey = 'timeback-investigation-tip-v1';
+  const takaseTipKey = 'timeback-investigation-tip-takase-v1';
   // Keep the original checkpoints so existing saves retain their progress.
   const phase = {
     initial: 0, contacted: 1, firstReply: 1.1, offered: 1.2,
@@ -16,6 +17,7 @@
   const aftermathUrl = 'yaboo-news-aftermath.html';
   const tipUrl = 'yaboo-news-tip.html';
   const investigationUrl = 'yaboo-news-investigation.html';
+  const fullInvestigationUrl = 'yaboo-news-trial-disclosure.html';
   const answers = ['BAS', 'SECOND SHIFT', '施設C', 'SUB-117', 'TB-260917-4826'];
   const normalize = value => value.normalize('NFKC').trim().toUpperCase();
   const notesUrl = 'takase-work-notes.html';
@@ -162,7 +164,7 @@
     unlockArchive();
     view.hidden = false;
     window.initTakaseMail({
-      phase, mailPhase, mailStartedKey, mailDraftKey, advanceMail, watchReport, hasVisited,
+      phase, mailPhase, mailStartedKey, mailDraftKey, advanceMail, watchReport,
       reportComplete: () => readReport().status === 'complete',
       resetMail: () => advanceMail(mailPhase(), phase.initial),
       deleteReport: () => advanceMail(phase.deleteRequested, phase.deleted, { removeReport: true }),
@@ -189,22 +191,25 @@
     view.hidden = false;
   }
 
-  function tipSubmitted() {
+  function tipSubmitted(kind = 'player') {
     try {
-      return localStorage.getItem(tipKey) === 'submitted';
+      return localStorage.getItem(kind === 'takase' ? takaseTipKey : tipKey) === 'submitted';
     } catch {
       return false;
     }
   }
 
   function initInvestigationViews() {
-    const article = byId('tip-investigation');
-    const ending = byId('tip-ending');
-    const view = article || ending;
+    const fullArticle = byId('tip-full-investigation');
+    const fullEnding = byId('tip-full-ending');
+    const full = Boolean(fullArticle || fullEnding);
+    const article = fullArticle || byId('tip-investigation');
+    const view = article || fullEnding || byId('tip-ending');
     if (!view) return;
 
     const revisit = hasVisited(document.body.dataset.pageHref);
-    const eligible = tipSubmitted() && (article || hasVisited(investigationUrl));
+    const eligible = tipSubmitted(full ? 'takase' : 'player')
+      && (article || hasVisited(full ? fullInvestigationUrl : investigationUrl));
     if (!revisit && !eligible) {
       location.replace(tipUrl);
       return;
@@ -242,6 +247,7 @@
         [mailStartedKey, null],
         [mailDraftKey, null],
         [tipKey, null],
+        [takaseTipKey, null],
         [mailKey, null]
       ];
       const previous = new Map(updates.map(([key]) => [key, localStorage.getItem(key)]));
@@ -397,53 +403,100 @@
   }
 
   function initAttachment(button) {
+    const chapterSeven = window.timebackChapterSeven;
     const status = byId('attachment-status');
+    const choice = byId('tip-report-choice');
+    const select = byId('tip-report-kind');
     const file = byId('tip-file');
+    const fileName = byId('tip-file-name');
     const message = byId('submission-status');
     const controls = byId('tip-controls');
     const submit = byId('tip-submit');
     const dialog = byId('tip-confirmation');
     const confirm = byId('tip-confirm-submit');
+    const confirmFile = byId('tip-confirm-file');
     const sendingStatus = byId('tip-sending');
     const receipt = byId('tip-receipt');
     const elapsedStatus = byId('tip-article-notice');
-    const articleLink = byId('tip-article');
-    let attached = false;
+    const reports = {
+      player: {
+        name: 'TIME BACKの売却時間帯における身体利用に関する調査報告書',
+        label: 'あなたが完成させた報告書',
+        link: byId('tip-article'),
+        key: tipKey
+      },
+      takase: {
+        name: chapterSeven.reportTitle,
+        label: '高瀬悠真が完成させた報告書',
+        link: byId('tip-full-article'),
+        key: takaseTipKey
+      }
+    };
+    let selected = '';
+    let attached = '';
+    let confirmed = '';
     let presentation = '';
+    let activeSubmission = '';
     let presentationTimer;
+
+    function availableReports() {
+      const available = [];
+      if (readReport().status === 'complete' && !tipSubmitted()) available.push('player');
+      if (chapterSeven.reportReceived() && !tipSubmitted('takase')) available.push('takase');
+      return available;
+    }
 
     function stopPresentation() {
       window.clearTimeout(presentationTimer);
       presentation = '';
+      activeSubmission = '';
     }
 
     function render() {
-      const report = readReport();
-      const complete = report.status === 'complete';
-      const submitted = tipSubmitted();
-      if (!submitted) stopPresentation();
+      const available = availableReports();
+      const submitted = Object.keys(reports).filter(kind => tipSubmitted(kind));
+      if (activeSubmission && !submitted.includes(activeSubmission)) stopPresentation();
       const sending = presentation === 'sending';
-      if (!complete || (submitted && !sending)) attached = false;
-      status.textContent = {
-        unacquired: '添付できる文書がありません。',
-        draft: '調査報告書_草稿（未完成）',
-        complete: attached ? '添付済み' : '調査報告書（完成済み）'
-      }[report.status];
+      if (!available.includes(attached)) attached = '';
+      if (!available.includes(selected)) selected = available.length === 1 ? available[0] : '';
+
+      const options = available.length > 1 ? ['', ...available] : available;
+      if (Array.from(select.options, option => option.value).join() !== options.join()) {
+        select.replaceChildren(...options.map(kind => new Option(reports[kind]?.label || '文書を選択', kind)));
+      }
+      select.value = selected;
+      choice.hidden = available.length < 2;
+      select.disabled = sending || Boolean(attached);
+      status.textContent = attached ? '添付済み'
+        : available.length === 1 ? (available[0] === 'player' ? '調査報告書（完成済み）' : reports.takase.label)
+          : available.length ? '添付する文書を選んでください。'
+            : readReport().status === 'draft' ? '調査報告書_草稿（未完成）' : '添付できる文書がありません。';
       file.hidden = !attached;
-      button.disabled = !complete || sending;
+      fileName.textContent = reports[attached]?.name || '';
+      button.disabled = !selected || sending;
       button.textContent = attached ? '添付を解除する' : '文書を添付する';
       submit.disabled = confirm.disabled = !attached || sending;
-      controls.hidden = submitted && !sending;
+      controls.hidden = submitted.length > 0 && !available.length && !sending;
       sendingStatus.textContent = sending ? '送信しています…' : '';
-      receipt.hidden = !submitted || sending;
+      receipt.hidden = !submitted.length || sending;
       elapsedStatus.textContent = presentation === 'elapsed' ? '数日後' : '';
-      articleLink.hidden = !submitted || presentation !== '';
-      if (submitted && dialog.open) dialog.close('');
+      for (const [kind, report] of Object.entries(reports)) {
+        report.link.hidden = !submitted.includes(kind) || presentation !== '';
+      }
+      reports.player.link.textContent = submitted.includes('takase')
+        ? '数日後のYaboo!ニュースを確認する（あなたが完成させた報告書）'
+        : '数日後のYaboo!ニュースを確認する';
+      if (dialog.open && !available.includes(confirmed)) dialog.close('');
     }
 
+    select.addEventListener('change', () => {
+      selected = select.value;
+      message.textContent = '';
+      render();
+    });
     button.addEventListener('click', () => {
-      if (tipSubmitted()) return;
-      attached = readReport().status === 'complete' && !attached;
+      if (!availableReports().includes(selected) || presentation === 'sending') return;
+      attached = attached ? '' : selected;
       message.textContent = '';
       render();
     });
@@ -451,22 +504,30 @@
       render();
       if (submit.disabled || controls.hidden || dialog.open) return;
       message.textContent = '';
+      confirmed = attached;
+      confirmFile.textContent = confirmed === 'player'
+        ? reports.player.name + '（' + reports.player.label + '）'
+        : reports.takase.name;
       dialog.returnValue = '';
       dialog.showModal();
     });
     dialog.addEventListener('close', () => {
-      if (dialog.returnValue !== 'submit' || tipSubmitted()) return;
-      if (!attached || readReport().status !== 'complete') {
+      const kind = confirmed;
+      confirmed = '';
+      if (dialog.returnValue !== 'submit' || !kind || tipSubmitted(kind)) return;
+      if (attached !== kind || !availableReports().includes(kind)) {
         render();
         message.textContent = '添付した調査報告書を確認できませんでした。';
         return;
       }
       try {
-        localStorage.setItem(tipKey, 'submitted');
+        localStorage.setItem(reports[kind].key, 'submitted');
       } catch {
         message.textContent = '情報提供の状態を保存できません。ブラウザの保存設定を確認してください。';
         return;
       }
+      stopPresentation();
+      activeSubmission = kind;
       presentation = 'sending';
       render();
       presentationTimer = window.setTimeout(() => {
@@ -485,7 +546,7 @@
     });
     window.addEventListener('pagehide', stopPresentation);
     window.addEventListener('storage', event => {
-      if (event.key === tipKey) render();
+      if ([tipKey, takaseTipKey, chapterSeven.aizawaKey].includes(event.key)) render();
     });
     watchReport(render);
   }

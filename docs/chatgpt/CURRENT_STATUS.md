@@ -1,10 +1,28 @@
 # TIME BACK：制作進捗・検証状況
 
-## 2026-11-23 ノードリンク内部検索と相沢の特定を実装
+## 2026-11-24 最終章の実装状況
 
-No.88の中途Web職の計画を具体化し、手書き風「HPのロゴを3秒長押し」は維持。No.39のロゴ長押し先のNo.91を「潜入後の調査ノート」に差し替え、番号とURLを継承。No.92で「人材情報」を検索してNo.93の人材情報一覧へ。8名の採用区分・担当とNo.88・91を照合すれば相沢直人を特定できる。記憶異常の詳しい説明、救助要請、告発用の追加証拠、通常ENDING 3・4とSECRET ENDING 5は未実装。 [設計と開示順](STORY_DESIGN.md)・[正式な制作項目](../06-backlog.md)
+現行アーカイブはNo.1〜118、上限120。No.119・120の2枠が未割当。公開HTMLは137件。 No.110〜118とNo.84の診断・照合・復旧・最終送信、No.86・90・105の断片を実装済み。分岐点復帰と旧保存に対応する。独立初見プレイ、スマートフォン実機、公開環境は未確認。 [制作項目](../06-backlog.md)・[検証記録](../10-audit-and-sources.md)
 
-No.91の本文は作者指定稿に更新済み。No.93の8名は6項目の詳細プロフィールとして掲載し、8件の社内連絡アドレスは通常のテキストで表示する。No.84「メール」では、宛先を入力して左の連絡先一覧に追加し、人物名を選んで会話を開く。No.84の相沢の第6返信後、続報の添付からNo.94「調査経過メモ」を開く。「利用状況照合」をNo.92・93で検索してNo.95を読む。No.95の本文外の「メールへ戻る」で、登録済みの相沢との会話を開く。両資料の閲覧後に追加調査を依頼すると、相沢の返信2通と添付No.96が届く。No.96の「保守参照経路」を検索してNo.97を読み、「調査ノートへ戻る」でNo.96に戻る。No.96・97の両方を閲覧すると、No.96の「調査について」に「Chronect社内連絡を確認する」が表示され、No.98へ進める。No.98を閲覧後、ブラウザの戻る操作またはアーカイブでNo.96に戻り、「監視後の記録を読む」からNo.99へ進む。 No.98には、退職後の引き継ぎ中に見つかった不明な編集履歴への調査指示と、後日の独断によるなりすまし・事後報告を異なる件名で掲載する。No.99は引き継ぎ時の連絡を読んだ高瀬の主観。高瀬が後日の連絡も読んだか、Chronectが高瀬や相沢の動きをどこまで把握しているかは未確定。
+## 2026-11-24 ノードリンクの検索操作を改善
+
+No.93〜97・99・100・102の本文上部からノードリンクの内部資料を検索できる。No.92の初期画面は「92 / 120」、検索結果は件数を問わず「EX」と表示する。既存のNo.92の訪問履歴を保持し、検索結果から資料を開くとその資料を登録する。 [検索とアーカイブ仕様](../09-search-and-links.md)
+
+## 2026-11-24 ENDING 3を実装
+
+ENDING 3「完全な告発」の改稿では、No.106〜109の限定内部資料を追加し、No.100・103〜105を改稿した。No.94〜97・99は旧導線を終了し、異なるURLの資料に差し替えた。旧URLの記録は新資料の訪問に移行しない。No.98、No.1〜93の番号とURLは維持する。No.100〜105を追加し、検索結果EXは引き続き登録しない。
+
+相沢との初回会話は第4返信「……誰ですか、それ。」で止まる。No.101・102・106〜109をすべて閲覧して初回会話も終えると、フォルダの確認を頼める。フォルダ名「調査記録_最終」は前後の空白を除去しNFCで正規化して照合する。誤答は再入力できる。最終返信の添付を受領するとNo.103の閲覧とNo.80への添付が可能。相沢の会話をリセットしても受領済みの報告書は保持する。
+
+No.80はNo.83の報告書を提出するとNo.89→90へ、高瀬作成版を提出するとNo.104→105へ進む。二種類の提出は独立し、両方ある場合は選択できる。分岐点復帰はNo.82に戻り、プレイヤー編集版を復元し、旧高瀬宛てメールと両提出を初期化する。相沢との会話、受領済みの報告書、既訪問資料および到達済み結末は保持する。
+
+最新の実装範囲と未検証事項は上記の最終章を参照。
+
+## 2026-11-23 ノードリンク内部検索と相沢の特定を実装（当時の記録）
+
+No.88の中途Web職の計画を具体化し、手書き風「HPのロゴを3秒長押し」は維持。No.39のロゴ長押し先のNo.91を「潜入後の調査ノート」に差し替え、番号とURLを継承。No.92で「人材情報」を検索してNo.93の人材情報一覧へ。8名の採用区分・担当とNo.88・91を照合すれば相沢直人を特定できる。記憶異常の詳しい説明、救助要請、告発用の追加証拠、ENDING 3・4は未実装。 [設計と開示順](STORY_DESIGN.md)・[正式な制作項目](../06-backlog.md)
+
+No.91の本文は作者指定稿に更新済み。No.93の8名は6項目の詳細プロフィールとして掲載し、8件の社内連絡アドレスは通常のテキストで表示する。No.84「メール」では、宛先を入力して左の連絡先一覧に追加し、人物名を選んで会話を開く。No.84の相沢の第6返信後、続報の添付からNo.94「調査経過メモ」を開く。「利用状況照合」をNo.92・93で検索してNo.95を読む。No.95の本文外の「メールへ戻る」で、登録済みの相沢との会話を開く。両資料の閲覧後に追加調査を依頼すると、相沢の返信2通と添付No.96が届く。No.96の「保守参照経路」を検索してNo.97を読み、「調査ノートへ戻る」でNo.96に戻る。No.96・97の両方を閲覧すると、No.96の「調査について」に「Chronect社内連絡を確認する」が表示され、No.98へ進める。No.98を閲覧後、ブラウザの戻る操作またはアーカイブでNo.96に戻り、「監視後の記録を読む」からNo.99へ進む。 No.98には、退職後の引き継ぎ中に見つかった不明な編集履歴への調査指示と、後日の独断によるなりすまし・事後報告を異なる件名で掲載する。No.99は引き継ぎ時の連絡を読んだ高瀬の主観。Chronectが高瀬や相沢の動きをどこまで把握しているかは未確定。
 
 ## 2026-11-21 高瀬の潜入構想（当時の資料更新）
 
@@ -143,13 +161,13 @@ Hubは既存6資料＋今回3資料＝9資料。新59分類一覧、新60地域�
 
 2026-11-02：34の指定段落、Hub検索「生活動線」、新規58の指定研究要旨に続き、作者承認の43への「生活動線や」5文字挿入を実装。34＋43の共通語配置から既存Hub検索58への探索導線は実装完了。今回34・44・45・58・検索DB・番号・保存は未変更。製品更新通知・中盤以降の証拠・個別の秘密成果還元対応は保留。語句への気づき・入力は初見未検証で、開発検証と区別する。初見環境にはアクセスしていない。
 
-静的HTML/CSS/JavaScriptで構成。現行アーカイブはNo.1〜99、上限120、未割当No.100〜120。公開HTML118件。Hubの通常検索は27資料、特殊検索は12資料。ノードリンク独自検索は3件。最終制作総数は未確定。
+静的HTML/CSS/JavaScriptで構成。現行アーカイブはNo.1〜118、上限120。No.119・120の2枠が未割当。公開HTMLは137件。Hubの通常検索は27資料、特殊検索は従来12資料と、条件付きの最終章5資料。ノードリンク独自検索は7件。
 
 正式な開発環境は `C:\Users\koyam\Desktop\Web_ARG\ARG-Time_Back`。OneDriveからのローカル移行は完了。既存5コミットを取り込み、移行時HEADは `faf3d2045a18eaa4bace918d907031fb9711759e`。移行直後は未コミット作業もあり、当時のHEADだけではその時点のサイト・資料を再現できなかった。その後の作者によるコミットを経て、2026-10-30のBAS資料更新開始時は `5e63e8ef2a26cd38c362962d69b45ac542cfcff8`・作業ツリーcleanを確認した。11月2日の今回開始時は前回の12資料が未コミットで、これらを保護して今回のWeb・資料・テスト変更を追加した。コミット・プッシュは行っていない。最新状態は作業時に確認する。
 
 ## 2. 現行ページ一覧
 
-現行の登録はNo.1〜99。上限は120。タイトル・ファイル・ページ内容は[正本のページ一覧](../04-page-inventory.md)と現行実装を参照。
+現行の登録はNo.1〜118。上限は120。タイトル・ファイル・ページ内容は[正本のページ一覧](../04-page-inventory.md)と現行実装を参照。
 
 | 現行番号 | タイトル | 公開ファイル | ページ内容 |
 |---:|---|---|---|
@@ -245,13 +263,32 @@ Hubは既存6資料＋今回3資料＝9資料。新59分類一覧、新60地域�
 | 90 | ENDING「正義の盲点」 ｜ TIME BACK | [timeback-ending-blind-spot.html](../../public/timeback-ending-blind-spot.html) | 初回はNo.89の閲覧後に到達。到達後は再訪可能。感想フォームURL未設定。 |
 | 91 | 潜入後の調査ノート ｜ 調査ノート | [nodelink-web-maintenance.html](../../public/nodelink-web-maintenance.html) | No.39のロゴ長押しで到達。潜入成功と参照経路。末尾からNo.92へ。旧ページと同じURL。 |
 | 92 | 内部資料検索 ｜ 株式会社ノードリンク・ワークス | [nodelink-internal-search.html](../../public/nodelink-internal-search.html) | ノードリンク独自の検索入口。検索結果の表示はEX扱い。 |
-| 93 | 人材情報一覧 ｜ 株式会社ノードリンク・ワークス | [nodelink-personnel.html](../../public/nodelink-personnel.html) | 「人材情報」で到達。8名分の6項目プロフィールとテキストの社内連絡アドレスを掲載。 |
-| 94 | 調査経過メモ ｜ 調査ノート | [takase-investigation-progress.html](../../public/takase-investigation-progress.html) | 相沢の1回目の添付。購入利用の増加、記憶への違和感と「利用状況照合」。 |
-| 95 | 利用状況照合記録 ｜ 株式会社ノードリンク・ワークス | [nodelink-usage-review.html](../../public/nodelink-usage-review.html) | ノードリンクの研修・業務管理資料。「利用状況照合」で検索。本文外から相沢とのメールに戻れる。追加問い合わせにはNo.94・95の両訪問が必要。 |
-| 96 | 端末・調査記録の控え ｜ 調査ノート | [takase-device-investigation-note.html](../../public/takase-device-investigation-note.html) | 相沢の2回目の添付。「保守参照経路」を発見。No.96・97の既訪問後にNo.98、No.98の既訪問後にNo.99への参照を表示。 |
-| 97 | 外部参照経路 照会控え ｜ 株式会社ノードリンク・ワークス | [nodelink-external-reference-log.html](../../public/nodelink-external-reference-log.html) | ノードリンクの公開情報参照管理資料。「保守参照経路」で検索。本文外の戻りリンクからNo.96へ。 |
-| 98 | Chronect社内連絡記録 ｜ Chronect Hub | [chronect-internal-correspondence.html](../../public/chronect-internal-correspondence.html) | No.96・97の両訪問後、No.96の調査記録から初回到達。引き継ぎ時の編集履歴と調査指示、後日の独断によるなりすましと事後報告を別スレッドに掲載。 |
-| 99 | 参照経路について ｜ 調査ノート | [takase-reference-monitoring.html](../../public/takase-reference-monitoring.html) | No.98を閲覧後、No.96の「監視後の記録を読む」から初回到達。引き継ぎ時の社内連絡を読んだ高瀬個人の判断。 |
+| 93 | 人材情報一覧 ｜ 株式会社ノードリンク・ワークス | [nodelink-personnel.html](../../public/nodelink-personnel.html) | 「人材情報」で到達。8名分の7項目プロフィールとテキストの社内連絡アドレスを掲載。相沢の担当区域は「社内情報管理基盤」。 |
+| 94 | 社内情報管理基盤 業務一覧 ｜ 株式会社ノードリンク・ワークス | [nodelink-info-duties.html](../../public/nodelink-info-duties.html) | 「社内情報管理基盤」で検索。 |
+| 95 | 潜入後の業務 ｜ 調査ノート | [takase-infiltration-duties.html](../../public/takase-infiltration-duties.html) | 「資料検索基盤」で検索。 |
+| 96 | 法人利用管理記録 ｜ 株式会社ノードリンク・ワークス | [nodelink-corporate-usage.html](../../public/nodelink-corporate-usage.html) | 「法人利用管理記録」で検索。 |
+| 97 | 調査の停滞 ｜ 調査ノート | [takase-investigation-stall.html](../../public/takase-investigation-stall.html) | 「利用実績照合」で検索。No.98への参照。 |
+| 98 | Chronect社内連絡記録 ｜ Chronect Hub | [chronect-internal-correspondence.html](../../public/chronect-internal-correspondence.html) | No.97から参照。事後報告は旧高瀬宛てメールの最終返信後のみ。 |
+| 99 | 法人機器 保守管理記録 ｜ 株式会社ノードリンク・ワークス | [nodelink-device-maintenance.html](../../public/nodelink-device-maintenance.html) | 「法人機器保守管理」で検索。 |
+| 100 | 証拠の発見 ｜ 調査ノート | [takase-evidence-discovery.html](../../public/takase-evidence-discovery.html) | 「機器動作記録」で検索。No.101・102・106〜109への参照。 |
+| 101 | 試験運用継続承認記録 ｜ Chronect Hub | [chronect-trial-continuation-approval.html](../../public/chronect-trial-continuation-approval.html) | No.100から参照。個別同意の未取得を認識した継続承認。 |
+| 102 | 最終記録 ｜ 調査ノート | [takase-final-investigation-note.html](../../public/takase-final-investigation-note.html) | No.100から参照。救助要請。 |
+| 103 | TIME BACKおよびSECOND SHIFTに関する調査報告書 ｜ 調査ノート | [takase-completed-report.html](../../public/takase-completed-report.html) | 相沢から受領後に閲覧。 |
+| 104 | 「売られていたのは時間ではなかった」Chronect、人間の身体と技能を無断で商用利用 ｜ Yaboo!ニュース | [yaboo-news-trial-disclosure.html](../../public/yaboo-news-trial-disclosure.html) | No.80で高瀬作成版を提出後に閲覧。 |
+| 105 | ENDING「完全な告発」 ｜ TIME BACK | [timeback-ending-full-disclosure.html](../../public/timeback-ending-full-disclosure.html) | No.104を読んで到達。 |
+| 106 | TIME BACK・SECOND SHIFT 事業統合計画 ｜ Chronect Hub | [chronect-hub-business-integration-plan.html](../../public/chronect-hub-business-integration-plan.html) | No.100から参照。売却・購入を同じ市場で扱う経済的な目的。 |
+| 107 | SECOND SHIFT 業務実績・清算対応記録 ｜ Chronect Hub | [chronect-hub-second-shift-settlement.html](../../public/chronect-hub-second-shift-settlement.html) | No.100から参照。SUB-117の業務実績、法人入金9,600円、売却報酬2,560円。 |
+| 108 | 技能モデル生成・適用記録 ｜ Chronect Hub | [chronect-hub-skill-model-record.html](../../public/chronect-hub-skill-model-record.html) | No.100から参照。SM-0142を同一セッションで適用した実績と、取得元への説明・同意の記録。 |
+| 109 | SECOND SHIFT 中長期事業戦略 ｜ Chronect Hub | [chronect-hub-second-shift-strategy.html](../../public/chronect-hub-second-shift-strategy.html) | No.100から参照。限定運用と市場拡大計画、記憶隔離の事業評価。 |
+| 110 | Behavior Assistance Terminal 製品仕様書 ｜ Chronect Hub | [chronect-hub-bat-spec.html](../../public/chronect-hub-bat-spec.html) | 3つの結末の累積到達と特殊検索で解放。BATの製品概要。 |
+| 111 | BAT制御系統図 ｜ Chronect Hub | [chronect-hub-bat-control.html](../../public/chronect-hub-bat-control.html) | No.110から特殊検索。BAPとTIRの入力系統、SCU・BAC・CAU・MMU・SMU。 |
+| 112 | MMU — 記憶管理機構 詳細仕様 ｜ Chronect Hub | [chronect-hub-mmu-spec.html](../../public/chronect-hub-mmu-spec.html) | No.111から特殊検索。記憶管理プロファイルと参照境界。 |
+| 113 | 機器設定・状態確認記録 ｜ BAT | [bat-device-diagnostics.html](../../public/bat-device-diagnostics.html) | No.84で相沢から受領する診断記録。設定値と安全状態。 |
+| 114 | BAT緊急対応マニュアル ｜ Chronect Hub | [chronect-hub-bat-emergency.html](../../public/chronect-hub-bat-emergency.html) | No.112から特殊検索。異常分類と利用者向け緊急復旧の参照。 |
+| 115 | 隔離記憶復旧手順書 ｜ Chronect Hub | [chronect-hub-memory-recovery.html](../../public/chronect-hub-memory-recovery.html) | No.114から特殊検索。設定正常化と復旧処理の依存関係。 |
+| 116 | 復旧処理結果 ｜ BAT | [bat-recovery-report.html](../../public/bat-recovery-report.html) | 相沢の同意と復旧完了後、No.84で受領。記憶の参照復元と整合性。 |
+| 117 | TIME BACK、全サービス停止　元社員が内部資料を公開、経営責任の追及へ ｜ Yaboo!ニュース | [yaboo-news-timeback-suspension.html](../../public/yaboo-news-timeback-suspension.html) | No.84で完成済みNo.83を手動送信し、最後の返信を受けた後に解放。本人による告発とサービス停止。 |
+| 118 | ENDING「自分の時間」 ｜ TIME BACK | [timeback-ending-own-time.html](../../public/timeback-ending-own-time.html) | No.117の記事末尾から到達。記憶を取り戻した本人のこれから。 |
 
 直前のNo.1〜42は同番号。セッション運用記録は旧45→現43、旧54〜59は現44〜49。旧43・44はHub要旨、旧46〜53は一覧外ニュースとして登録解除済み。現在も公開ファイルと既存の検索・リンクから閲覧できる。ニュース一覧外12件と対応Hub要旨2件、検索結果4件、旧夢記事URL転送1件はアーカイブ非登録。
 
@@ -299,7 +336,7 @@ Hubは既存6資料＋今回3資料＝9資料。新59分類一覧、新60地域�
 
 1. 第5・6回の一次ログや管理者レビューが渡されたら、観測の範囲と版を確認する。未入手部分を推測で埋めない。最新UX・改番後の再テストは専用環境管理側で判断する。
 2. 承認されたBAS進化の方向に沿い、既存11（BAS）、15（研究開発）、2（体験談）、関連ニュース・Hub要旨の比較から、次の公開情報・文案・検索経路を作者と検討する。現行の能力の幅と経時的改善を区別し、秘密成果の個別対応を推測で追加しない。個別改修は別途承認後。
-3. 相沢の後続確認と救助要請、調査遮断の条件、機器の具体動作と安全、通常ENDING 3・4とSECRET ENDING 5の詳細を制作前に確認する。 [未確定事項の正本](../08-open-questions.md)
+3. 独立初見プレイ、スマートフォン実機確認と公開準備を進める。 [未確定事項の正本](../08-open-questions.md)
 4. 提携一覧5社中2社だけリンクする現況と、具体的な実名導入事例にする方針との差（R-01）を、必要な範囲で作者へ確認する。
 5. 旧公開素材の扱い（R-03）、実機表示・本番配信範囲等を別途確認する。旧画像を未使用と判断して無断削除しない。
 

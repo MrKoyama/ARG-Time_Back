@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Chronect Hubに収録された情報を検索・閲覧できます。">
+  <meta name="robots" content="noindex">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DG4X4HMEC2"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-DG4X4HMEC2');</script>
+  <link rel="icon" href="images/chronect-hub-favicon-c.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="chronect-hub.css?v=20261029">
+  <link rel="stylesheet" href="chronect-brand.css?v=20261120-brand-v1">
+  <title>BAT制御系統図 ｜ Chronect Hub</title>
+  <link rel="stylesheet" href="chronect-hub-evidence.css">
+  <link rel="stylesheet" href="archive.css?v=20261029">
+  <link rel="stylesheet" href="chronect-hub-internal.css?v=20261117">
+  <style>
+    .bat-flow {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .65rem;
+      margin: 0 0 1.5rem;
+      text-align: center;
+    }
+    .bat-flow figcaption, .bat-flow .bat-flow-common { grid-column: 1 / -1; }
+    .bat-flow figcaption { text-align: start; }
+    .bat-flow-source { display: grid; grid-template-rows: 1fr auto; gap: .45rem; }
+    .bat-flow-box {
+      display: grid;
+      align-content: center;
+      min-width: 0;
+      padding: .55rem .3rem;
+      border: 1px solid var(--hub-internal-border);
+      background: var(--hub-page-background);
+      overflow-wrap: anywhere;
+    }
+    .bat-flow-box strong { color: var(--hub-internal-accent); }
+    .bat-flow .bat-flow-arrow { margin: 0; color: var(--hub-internal-accent); }
+    .bat-flow .bat-flow-safety { border-style: dashed; }
+  </style>
+</head>
+<body class="hub-shell hub-internal" data-page-archive="exclude" data-page-number="111" data-page-title="BAT制御系統図 ｜ Chronect Hub" data-page-href="chronect-hub-bat-control.html">
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="hub-header"><div class="hub-header-inner"><a class="hub-brand" href="chronect-hub.html" aria-label="Chronect Hub トップページ"><img class="chronect-brand-logo" src="images/chronect-logo-dark.png" width="800" height="193" alt=""><span class="hub-brand-label">HUB</span></a><form class="hub-search-form" action="chronect-hub-search.html" method="get" role="search"><label for="hubSearchInput">キーワード検索</label><div class="hub-search-controls"><input id="hubSearchInput" name="q" type="search" placeholder="キーワードを入力" aria-describedby="hubSearchHelp" autocomplete="off"><button type="submit">検索</button></div><p id="hubSearchHelp">関連する語句のほか、資料名や管理コードからも検索できます。</p></form></div></header>
+  <main id="main" class="hub-main" data-final-chapter-view hidden>
+    <div class="hub-inner">
+      <header class="hub-page-heading"><h1 id="document-title">BAT制御系統図</h1></header>
+      <article class="hub-document" aria-labelledby="document-title">
+        <p class="hub-document-label">資料区分：技術資料</p>
+        <h2>機能構成</h2>
+        <figure class="bat-flow" aria-labelledby="bat-flow-title">
+          <figcaption id="bat-flow-title">BATの論理系統図</figcaption>
+          <div class="bat-flow-source">
+            <div class="bat-flow-box"><strong>BAP・管理サーバー</strong>利用承認・管理通信</div>
+            <span class="bat-flow-arrow" aria-hidden="true">↓</span>
+          </div>
+          <div class="bat-flow-source">
+            <div class="bat-flow-box">外部タスク指示<span class="bat-flow-arrow" aria-hidden="true">↓</span><strong>TIR</strong>外部指示受信部</div>
+            <span class="bat-flow-arrow" aria-hidden="true">↓</span>
+          </div>
+          <div class="bat-flow-box bat-flow-common"><strong>SCU</strong>セッション制御部</div>
+          <span class="bat-flow-arrow" aria-hidden="true">↙</span>
+          <span class="bat-flow-arrow" aria-hidden="true">↘</span>
+          <div class="bat-flow-box"><strong>BAC</strong>身体行動制御部（売却）</div>
+          <div class="bat-flow-box"><strong>CAU</strong>認知活性化制御部（購入）</div>
+          <span class="bat-flow-arrow" aria-hidden="true">↘</span>
+          <span class="bat-flow-arrow" aria-hidden="true">↙</span>
+          <div class="bat-flow-box bat-flow-common"><strong>MMU</strong>記憶管理部（共通）</div>
+          <div class="bat-flow-box bat-flow-common bat-flow-safety"><strong>SMU</strong>安全監視部（各制御系統を独立して監視）</div>
+        </figure>
+        <p>BAP・管理サーバーからの利用承認・管理通信はSCUへ連携する。外部タスク指示はTIRを経由してSCUへ連携する。</p>
+        <p>SCUから売却時のBACと購入時のCAUに分岐する。両系統は共通のMMUを使用する。SMUは独立した機構として各制御系統を監視する。</p>
+        <h2>外部指示処理</h2>
+        <p>TIRは受信した外部タスク指示をSCUへ通知する。</p>
+        <p>外部タスクを拒否する場合は、拒否処理の対象を当該タスクに限定すること。</p>
+        <p>セッション全体を拒否処理の対象とした場合、共通制御機構への状態引き継ぎが正常に完了しない可能性がある。</p>
+        <h2>外部指示設定</h2>
+        <table class="hub-evidence-table">
+          <thead><tr><th scope="col" style="width:29%">設定コード</th><th scope="col" style="width:29%">設定値</th><th scope="col">処理内容</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">TASK_ACCEPT</th><td>ALLOW</td><td>外部タスク指示を受け付ける</td></tr>
+            <tr><th scope="row">TASK_ACCEPT</th><td>DENY</td><td>外部タスク指示を拒否する</td></tr>
+            <tr><th scope="row">REJECT_SCOPE</th><td>TASK_ONLY</td><td>拒否処理を当該タスクに限定する</td></tr>
+            <tr><th scope="row">REJECT_SCOPE</th><td>SESSION_WIDE</td><td>拒否処理の対象にセッション共通処理を含める</td></tr>
+          </tbody>
+        </table>
+        <p>外部タスクを拒否する場合も、通常のセッション制御、安全監視、利用承認に必要な処理は維持すること。</p>
+        <p>外部タスクの拒否は利用者側の設定として維持できる。</p>
+        <h2>共通制御機構</h2>
+        <p>BACおよびCAUは独立した処理系統であるが、記憶処理には共通のMMUを使用する。</p>
+        <p>MMUの設定は、セッション種別に応じて更新される。</p>
+        <h2>安全監視</h2>
+        <p>SMUは各制御系統から独立して動作する。</p>
+      </article>
+    </div>
+  </main>
+  <section class="hub-main" data-final-chapter-locked>
+    <div class="hub-inner"><p>この資料は現在表示できません。</p></div>
+  </section>
+  <footer class="hub-footer"><div class="hub-footer-inner"><span class="hub-footer-brand">CHRONECT HUB</span><p class="fiction-notice">このサイトの内容はフィクションです。登場する人物・団体・名称等は架空のものであり、実在のものとは関係ありません。</p><button class="archive-button" id="archiveButton" type="button" aria-haspopup="dialog" aria-controls="archiveOverlay">111 / 120</button></div></footer>
+  <div class="archive-overlay" id="archiveOverlay" aria-hidden="true"><section class="archive-dialog" role="dialog" aria-modal="true" aria-labelledby="archiveTitle"><header class="archive-header"><h2 id="archiveTitle">ページアーカイブ</h2><button class="archive-close" id="archiveClose" type="button" aria-label="ページアーカイブを閉じる">×</button></header><div class="archive-content"><p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。ページ番号は閲覧の目安です。順番に迷ったときは番号を参考にしつつ、気になった情報から自由にご覧ください。</p><ol class="archive-list" id="archiveList"></ol><div class="archive-tools"><button class="archive-reset-button" id="archiveResetButton" type="button">アーカイブをリセット</button><div class="reset-confirm" id="resetConfirm" role="alertdialog" aria-labelledby="resetTitle" hidden><p id="resetTitle">探索済みページの記録を消去しますか？</p><div class="reset-actions"><button id="resetCancel" type="button">キャンセル</button><button class="danger" id="resetAccept" type="button">リセットする</button></div></div></div></div></section></div>
+  <script src="chronect-hub.js?v=20261116-report-reference-v1"></script>
+  <script src="final-chapter.js?v=20261124-final118"></script>
+  <script src="chronect-shared.js?v=20261124-archive118"></script>
+</body>
+</html>

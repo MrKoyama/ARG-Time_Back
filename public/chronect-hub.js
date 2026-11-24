@@ -70,6 +70,9 @@ if (hubResultsContainer) {
   } else {
     display.textContent = '「' + cleaned + '」の検索結果';
     const results = findChronectHubMaterials(cleaned);
+    const special = cleaned.match(chronectHubSpecialSyntax);
+    const finalMaterial = special && window.timebackFinalChapter?.search(special[1]);
+    if (finalMaterial) results.push(finalMaterial);
     status.textContent = results.length ? '該当する資料が ' + results.length + ' 件見つかりました。' : '該当する資料はありません。入力内容をご確認ください';
     if (!results.length && cleaned === '高瀬悠真') {
       const link = document.createElement('a');

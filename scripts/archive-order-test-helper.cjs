@@ -44,12 +44,31 @@ const nodelinkEntries = [
   {number:93,href:'nodelink-personnel.html',title:'人材情報一覧 ｜ 株式会社ノードリンク・ワークス'}
 ];
 const chapterSevenFollowupEntries = [
-  {number:94,href:'takase-investigation-progress.html',title:'調査経過メモ ｜ 調査ノート'},
-  {number:95,href:'nodelink-usage-review.html',title:'利用状況照合記録 ｜ 株式会社ノードリンク・ワークス'},
-  {number:96,href:'takase-device-investigation-note.html',title:'端末・調査記録の控え ｜ 調査ノート'},
-  {number:97,href:'nodelink-external-reference-log.html',title:'外部参照経路 照会控え ｜ 株式会社ノードリンク・ワークス'},
-  {number:98,href:'chronect-internal-correspondence.html',title:'Chronect社内連絡記録 ｜ Chronect Hub'},
-  {number:99,href:'takase-reference-monitoring.html',title:'参照経路について ｜ 調査ノート'}
+  {"number":94,"href":"nodelink-info-duties.html","title":"社内情報管理基盤 業務一覧 ｜ 株式会社ノードリンク・ワークス"},
+  {"number":95,"href":"takase-infiltration-duties.html","title":"潜入後の業務 ｜ 調査ノート"},
+  {"number":96,"href":"nodelink-corporate-usage.html","title":"法人利用管理記録 ｜ 株式会社ノードリンク・ワークス"},
+  {"number":97,"href":"takase-investigation-stall.html","title":"調査の停滞 ｜ 調査ノート"},
+  {"number":98,"href":"chronect-internal-correspondence.html","title":"Chronect社内連絡記録 ｜ Chronect Hub"},
+  {"number":99,"href":"nodelink-device-maintenance.html","title":"法人機器 保守管理記録 ｜ 株式会社ノードリンク・ワークス"},
+  {"number":100,"href":"takase-evidence-discovery.html","title":"証拠の発見 ｜ 調査ノート"},
+  {"number":101,"href":"chronect-trial-continuation-approval.html","title":"試験運用継続承認記録 ｜ Chronect Hub"},
+  {"number":102,"href":"takase-final-investigation-note.html","title":"最終記録 ｜ 調査ノート"},
+  {"number":103,"href":"takase-completed-report.html","title":"TIME BACKおよびSECOND SHIFTに関する調査報告書 ｜ 調査ノート"},
+  {"number":104,"href":"yaboo-news-trial-disclosure.html","title":"「売られていたのは時間ではなかった」Chronect、人間の身体と技能を無断で商用利用 ｜ Yaboo!ニュース"},
+  {"number":105,"href":"timeback-ending-full-disclosure.html","title":"ENDING「完全な告発」 ｜ TIME BACK"},
+  {"number":106,"href":"chronect-hub-business-integration-plan.html","title":"TIME BACK・SECOND SHIFT 事業統合計画 ｜ Chronect Hub"},
+  {"number":107,"href":"chronect-hub-second-shift-settlement.html","title":"SECOND SHIFT 業務実績・清算対応記録 ｜ Chronect Hub"},
+  {"number":108,"href":"chronect-hub-skill-model-record.html","title":"技能モデル生成・適用記録 ｜ Chronect Hub"},
+  {"number":109,"href":"chronect-hub-second-shift-strategy.html","title":"SECOND SHIFT 中長期事業戦略 ｜ Chronect Hub"},
+  {"number":110,"href":"chronect-hub-bat-spec.html","title":"Behavior Assistance Terminal 製品仕様書 ｜ Chronect Hub"},
+  {"number":111,"href":"chronect-hub-bat-control.html","title":"BAT制御系統図 ｜ Chronect Hub"},
+  {"number":112,"href":"chronect-hub-mmu-spec.html","title":"MMU — 記憶管理機構 詳細仕様 ｜ Chronect Hub"},
+  {"number":113,"href":"bat-device-diagnostics.html","title":"機器設定・状態確認記録 ｜ BAT"},
+  {"number":114,"href":"chronect-hub-bat-emergency.html","title":"BAT緊急対応マニュアル ｜ Chronect Hub"},
+  {"number":115,"href":"chronect-hub-memory-recovery.html","title":"隔離記憶復旧手順書 ｜ Chronect Hub"},
+  {"number":116,"href":"bat-recovery-report.html","title":"復旧処理結果 ｜ BAT"},
+  {"number":117,"href":"yaboo-news-timeback-suspension.html","title":"TIME BACK、全サービス停止　元社員が内部資料を公開、経営責任の追及へ ｜ Yaboo!ニュース"},
+  {"number":118,"href":"timeback-ending-own-time.html","title":"ENDING「自分の時間」 ｜ TIME BACK"}
 ];
 const webOperationsSearchEntry = {"keywords":["Web運用日誌"],"title":"Web運用日誌","href":"chronect-hub-web-operations-log.html","description":"企業サイト・Chronect Hub・検索基盤の運用保守記録です。"};
 const endingEntries = [{"number":83,"href":"takase-report-editor.html","title":"調査報告書 ｜ 調査ノート"},{"number":84,"href":"takase-mail.html","title":"メール"},{"number":85,"href":"yaboo-news-aftermath.html","title":"TIME BACK、累計1,000万ダウンロードを突破　時間活用サービスとして利用拡大 ｜ Yaboo!ニュース"},{"number":86,"href":"timeback-ending-record.html","title":"ENDING「託された記録」 ｜ TIME BACK"}];
@@ -88,6 +107,13 @@ function canonicalPublic(name,current){
   assert.equal(sha(Buffer.from(file.text)),file.sha256,name+' frozen text hash');
   const expected=forwardPublic(name,file.text);
   let source=Buffer.isBuffer(current)?current.toString('utf8'):current;
+  source=source.replaceAll("localStorage.removeItem('timeback-final-chapter-v1');",'');
+  if(name==='public/chronect-shared.js')source=source.replace("if(!currentPage||document.body.dataset.pageArchive==='exclude')return pages;","if(!currentPage)return pages;");
+  if(name==='public/chronect-hub-search.html')source=source
+    .replace('  <script src="final-chapter.js?v=20261124-final118"></script>\n','')
+    .replace('chronect-hub.js?v=20261124-final118','chronect-hub.js?v=20261118-web-operations-v1');
+  if(name==='public/chronect-hub.js')source=source.replace(
+    "    const special = cleaned.match(chronectHubSpecialSyntax);\n    const finalMaterial = special && window.timebackFinalChapter?.search(special[1]);\n    if (finalMaterial) results.push(finalMaterial);\n",'');
   if(name==='public/nodelink-works.html')source=source
     .replace(' class="corporate-brand" id="nodelink-logo" href',' class="corporate-brand" href')
     .replace('<script src="nodelink-logo-hold.js?v=20261123"></script>','');
@@ -100,7 +126,7 @@ function canonicalPublic(name,current){
 // Preserve the immutable 2026-10-30 fixtures. Validate and remove only the later
 // approved additive changes before running the original regression meanings.
 const livingEntry={number:58,old:58,href:'chronect-hub-research-continuous-action.html',title:'環境変化下における連続行動支援の評価 ｜ Chronect Hub'};
-const archiveVersion='20261123-archive99-v1';
+const archiveVersion='20261124-archive118';
 const facilitySearchEntries=[
   {
     "keywords": [
@@ -428,7 +454,7 @@ function withoutArchivePruning(name,source,frozenSource){
   const mid=require('./midroute-test-helper.cjs');
   const priorEntries=[...entries,livingEntry,...mid.entries];
   const byPriorHref=new Map(priorEntries.map(entry=>[entry.href,entry]));
-  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261123-archive99-v1/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261116-report-reference-v1/g,'chronect-hub.js?v='+mid.cacheVersion);
+  let result=source.replace(/((?:business|chronect)-shared\.js\?v=)20261124-archive118/g,'$1'+mid.cacheVersion).replace(/chronect-hub\.js\?v=20261116-report-reference-v1/g,'chronect-hub.js?v='+mid.cacheVersion);
   if(name==='public/chronect-hub-search.html')result=result
     .replace("  <link rel=\"stylesheet\" href=\"chronect-hub-internal.css?v=20261117\">\n",'')
     .replace("chronect-hub.js?v=20261118-web-operations-v1",'chronect-hub.js?v='+mid.cacheVersion);
@@ -552,7 +578,7 @@ function legacyTestSource(name){
 }
 function assertLegacyTestCode(name){assert.equal(fs.readFileSync(path.join(root,name),'utf8'),legacyTestSource(name),name+' exceeds legacy bridge insertion');}
 const legacyFs=Object.create(fs);
-legacyFs.readdirSync=function(dir,options){const rows=fs.readdirSync(dir,options);const added=new Set([livingEntry.href,...require('./midroute-test-helper.cjs').entries.map(e=>e.href),...facilityEntries.map(e=>e.href),...chapterEntries.map(e=>e.href),...chapterFourEntries.map(e=>e.href),...chapterFiveEntries.map(e=>e.href),...chapterSixEntries.map(e=>e.href),...chapterSixEvidenceEntries.map(e=>e.href),trialOperationEntry.href,'yaboo-news-chronect.html','yaboo-news-tip.html',...reportReferenceEntries.map(e=>e.href),'investigation-report.js','investigation-report.css','takase-report-editor.html','chronect-hub-internal.css','takase-mail.html','takase-mail.js','yaboo-news-aftermath.html','timeback-ending-record.html','takase-ending.css','takase-mail.css',...chapterSevenEntries.map(e=>e.href),...publicationEntries.map(e=>e.href),...nodelinkEntries.map(e=>e.href),...chapterSevenFollowupEntries.map(e=>e.href),'chapter-seven-reference.js','nodelink-logo-hold.js','nodelink-internal-search.js','nodelink-internal.css']);return path.resolve(String(dir))===path.join(root,'public')?rows.filter(row=>!added.has(typeof row==='string'?row:row.name)):rows;};
+legacyFs.readdirSync=function(dir,options){const rows=fs.readdirSync(dir,options);const added=new Set([livingEntry.href,...require('./midroute-test-helper.cjs').entries.map(e=>e.href),...facilityEntries.map(e=>e.href),...chapterEntries.map(e=>e.href),...chapterFourEntries.map(e=>e.href),...chapterFiveEntries.map(e=>e.href),...chapterSixEntries.map(e=>e.href),...chapterSixEvidenceEntries.map(e=>e.href),trialOperationEntry.href,'yaboo-news-chronect.html','yaboo-news-tip.html',...reportReferenceEntries.map(e=>e.href),'investigation-report.js','investigation-report.css','takase-report-editor.html','chronect-hub-internal.css','takase-mail.html','takase-mail.js','yaboo-news-aftermath.html','timeback-ending-record.html','takase-ending.css','takase-mail.css',...chapterSevenEntries.map(e=>e.href),...publicationEntries.map(e=>e.href),...nodelinkEntries.map(e=>e.href),...chapterSevenFollowupEntries.map(e=>e.href),'chapter-seven-reference.js','nodelink-logo-hold.js','nodelink-internal-search.js','nodelink-internal.css','final-chapter.js','final-chapter-mail.js']);return path.resolve(String(dir))===path.join(root,'public')?rows.filter(row=>!added.has(typeof row==='string'?row:row.name)):rows;};
 legacyFs.readFileSync=function(file,options){
   const resolved=path.resolve(String(file)),relative=path.relative(root,resolved).split(path.sep).join('/');
   const value=fs.readFileSync(file,options);

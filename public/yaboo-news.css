@@ -129,6 +129,12 @@ main > button + p { margin-top: 1rem; }
   line-height: 1.55;
 }
 .yaboo-tip-file[hidden] { display: none; }
+#tip-report-kind {
+  display: block;
+  max-width: 100%;
+  margin: .4rem 0 .75rem;
+  font: inherit;
+}
 .yaboo-tip-file-mark {
   flex: 0 0 1.25rem;
   border-radius: 50%;
@@ -178,7 +184,7 @@ main > button + p { margin-top: 1rem; }
   text-align: center;
   pointer-events: none;
 }
-#tip-article {
+#tip-article, #tip-full-article {
   display: inline-block;
   min-height: 2.75rem;
   padding: .45rem .85rem;
@@ -187,9 +193,12 @@ main > button + p { margin-top: 1rem; }
   background: #fff;
   font-weight: 700;
   text-decoration: none;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
-#tip-article:hover { text-decoration: underline; }
-#tip-article[hidden] { display: none; }
+#tip-full-article { margin-top: .35rem; }
+#tip-article:hover, #tip-full-article:hover { text-decoration: underline; }
+#tip-article[hidden], #tip-full-article[hidden] { display: none; }
 .yaboo-footer {
   margin-top: 40px;
   padding: 20px;

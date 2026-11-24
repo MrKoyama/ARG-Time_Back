@@ -480,6 +480,17 @@
       min-width: 0;
     }
 
+    #folderInput {
+      flex: 1 1 auto;
+      width: 100%;
+      min-width: 0;
+      padding: 10px 12px;
+      font: inherit;
+      font-size: max(1em, 16px);
+      border: 1px solid #c7cdd4;
+      border-radius: 8px;
+    }
+
     .reply-mirror {
       position: absolute;
       z-index: 2;
@@ -1057,9 +1068,59 @@
       transition: opacity 2.5s ease-in-out;
     }
     .report-fade.is-visible { opacity: 1; pointer-events: auto; }
+    .report-fade.is-final { transition-duration: 1.2s; }
     @media (prefers-reduced-motion: reduce) {
       .report-fade { transition: none; }
     }
+
+    .recovery-form {
+      margin: 18px 0 0;
+      padding: clamp(12px, 3vw, 22px);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #f7f8fa;
+      color: var(--ink);
+    }
+    .recovery-form h2 { margin: 0 0 14px; font-size: 1rem; }
+    .recovery-form fieldset {
+      min-inline-size: 0;
+      margin: 0 0 12px;
+      padding: 10px 0 0;
+      border: 0;
+      border-block-start: 1px solid var(--line);
+    }
+    .recovery-form legend { padding-inline: 0 8px; font-size: .88rem; font-weight: 700; }
+    .recovery-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 175px), 1fr)); gap: 10px; }
+    .recovery-fields label, .recovery-fields small { display: block; font-size: .82rem; }
+    .recovery-fields input {
+      width: 100%;
+      min-width: 0;
+      min-height: 42px;
+      margin-top: 4px;
+      padding: 8px;
+      border: 1px solid #a8b0ba;
+      border-radius: 6px;
+      font: inherit;
+      font-size: 1rem;
+    }
+    .recovery-fields input[aria-invalid="true"] { border-color: #a33434; }
+    .recovery-fields small, .recovery-status { color: #8b2929; }
+    .recovery-controls, .recovery-order-controls { display: flex; flex-wrap: wrap; gap: 6px; }
+    .recovery-form .report-tool { min-height: 42px; }
+    .recovery-form .report-primary {
+      color: #fff;
+      border-color: var(--blue-dark);
+      background: var(--blue-dark);
+    }
+    .recovery-form .report-primary:hover { color: var(--blue-dark); }
+    .recovery-order { margin: 9px 0 0; padding-inline-start: 1.75rem; }
+    .recovery-order li { padding: 5px 0; overflow-wrap: anywhere; }
+    .recovery-order-controls { margin-block-start: 4px; }
+    .recovery-order-controls button { min-width: 42px; }
+    .recovery-status { margin: 8px 0 0; font-size: .85rem; }
+    .recovery-status:empty { margin: 0; }
+    .final-mail-link { display: inline-block; margin-block-start: 5px; color: var(--blue-dark); }
+    .final-mail-link[hidden] { display: none; }
 
     .page-shell[hidden], .mail-view[hidden], .thread-panel[hidden] { display: none; }
     .sidebar { min-height: 0; overflow-y: auto; }
@@ -1169,6 +1230,23 @@
               <span class="message-avatar" id="typingAvatar" aria-hidden="true"></span>
               <div class="typing-bubble" aria-hidden="true"><span></span><span></span><span></span></div>
             </div>
+            <form class="recovery-form" id="final-recovery-form" aria-labelledby="final-recovery-title" aria-live="off" hidden>
+              <h2 id="final-recovery-title">設定値と復旧手順の照合</h2>
+              <fieldset>
+                <legend>設定値</legend>
+                <div class="recovery-fields" id="final-recovery-fields"></div>
+              </fieldset>
+              <fieldset>
+                <legend>処理順序</legend>
+                <div class="recovery-controls" id="final-recovery-actions"></div>
+                <ol class="recovery-order" id="final-recovery-order" aria-label="現在の処理順序"></ol>
+              </fieldset>
+              <div class="recovery-controls">
+                <button class="report-tool report-primary" id="final-recovery-submit" type="submit">設定と手順を照合する</button>
+                <button class="report-tool" id="final-recovery-reset" type="button">入力をリセット</button>
+              </div>
+              <p class="recovery-status" id="final-recovery-status" role="status"></p>
+            </form>
           </div>
 
           <div class="composer is-inputting" id="composer">
@@ -1181,6 +1259,14 @@
               <button class="send-button" id="sendButton" type="button" aria-label="メッセージを送信" disabled>↑</button>
             </div>
             <button class="mobile-reply" id="mobileReply" type="button">高瀬に連絡する</button>
+            <form id="folderForm" hidden>
+              <label for="folderInput">フォルダ名</label>
+              <div class="composer-row">
+                <input id="folderInput" type="text" autocomplete="off" spellcheck="false" required>
+                <button class="send-button" type="submit" aria-label="フォルダ名を送信">↑</button>
+              </div>
+              <p id="folderStatus" class="composer-guide" role="status"></p>
+            </form>
             <div class="report-actions" id="reportAttachmentActions" hidden>
               <button id="reportAttach" class="report-tool" type="button" aria-haspopup="dialog">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m8 13 6.5-6.5a2.1 2.1 0 0 1 3 3l-8 8a3.3 3.3 0 0 1-4.7-4.7l8-8a4.4 4.4 0 0 1 6.2 6.2l-7.5 7.5"/></svg>
@@ -1196,6 +1282,8 @@
               <button class="report-tool report-delete-trigger" id="reportDelete" type="button" aria-haspopup="dialog">報告書のデータを削除する</button>
               <a id="reportAftermathLink" href="yaboo-news-aftermath.html" hidden>後日談を読む</a>
             </div>
+            <a class="final-mail-link" id="final-report-recovery-link" href="takase-work-notes.html" hidden></a>
+            <a class="final-mail-link" id="final-chapter-news-link" href="yaboo-news-timeback-suspension.html" hidden>後日談を読む</a>
             <p class="waiting-note" id="waitingNote"></p>
             <p id="report-storage-status" role="status"></p>
           </div>
@@ -1250,8 +1338,11 @@
   </dialog>
   <div class="report-fade" id="reportFade" aria-hidden="true"></div>
 
-  <script src="takase-mail.js?v=20261123-stream-v1"></script>
-  <script src="investigation-report.js?v=20261123-chapter-seven-v1"></script>
-  <script src="chronect-shared.js?v=20261123-archive99-v1"></script>
+  <script src="chapter-seven-reference.js?v=20261124-evidence109"></script>
+  <script src="final-chapter.js?v=20261124-final118"></script>
+  <script src="final-chapter-mail.js?v=20261124-final118"></script>
+  <script src="takase-mail.js?v=20261124-final118"></script>
+  <script src="investigation-report.js?v=20261124-ending3"></script>
+  <script src="chronect-shared.js?v=20261124-archive118"></script>
 </body>
 </html>

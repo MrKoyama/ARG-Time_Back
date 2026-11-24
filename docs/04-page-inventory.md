@@ -1,8 +1,10 @@
 # 実装済みページ一覧
 
-## 2026-11-23 ノードリンクの内部資料検索と人材情報
+## 2026-11-24 第7章後半と最終章
 
-現行はNo.1〜99、上限120、未割当No.100〜120。公開HTML118件。No.95・97を正式な業務資料に整え、No.98には旧Web保守業務の引き継ぎ時の連絡と、後日のなりすましの事後報告を掲載。No.99に高瀬の個人ノートを追加。No.91を「潜入後の調査ノート」に変更し、番号とURLを継承。No.92は内部資料検索の入口のみ登録し、検索結果の表示は登録対象外。No.93に人材情報一覧を追加。
+現行アーカイブはNo.1〜118、上限120。No.119・120の2枠が未割当。公開HTMLは137件。
+
+No.94〜97・99は旧導線を終了し、異なるURLの資料に差し替えた。旧URLの記録は新資料の訪問に移行しない。No.98、No.1〜93の番号とURLは維持する。No.100〜105を追加し、検索結果EXは引き続き登録しない。
 
 ## 2026-11-20 自力告発ルート「正義の盲点」
 
@@ -206,13 +208,32 @@ No.62〜68を改修。No.65・67・68を改題。アーカイブは1〜68、上�
 | 90 | [timeback-ending-blind-spot.html](../public/timeback-ending-blind-spot.html) | ENDING「正義の盲点」 ｜ TIME BACK | 初回はNo.89の閲覧後に到達。到達後は再訪可能。感想フォームURL未設定。 |
 | 91 | [nodelink-web-maintenance.html](../public/nodelink-web-maintenance.html) | 潜入後の調査ノート ｜ 調査ノート | No.39のロゴを3秒長押しして到達。潜入成功と内部資料への参照経路。末尾からNo.92へ。旧「Web保守記録」と同じURL。 |
 | 92 | [nodelink-internal-search.html](../public/nodelink-internal-search.html) | 内部資料検索 ｜ 株式会社ノードリンク・ワークス | ノードリンク独自の完全一致検索。入口のみ登録し、`?q=` の結果表示はEX扱い。 |
-| 93 | [nodelink-personnel.html](../public/nodelink-personnel.html) | 人材情報一覧 ｜ 株式会社ノードリンク・ワークス | No.92で「人材情報」を検索。8名分の6項目プロフィールとテキストの社内連絡アドレスを掲載。 |
-| 94 | [takase-investigation-progress.html](../public/takase-investigation-progress.html) | 調査経過メモ ｜ 調査ノート | 相沢の1回目の添付。購入利用の増加、記憶への違和感と「利用状況照合」。 |
-| 95 | [nodelink-usage-review.html](../public/nodelink-usage-review.html) | 利用状況照合記録 ｜ 株式会社ノードリンク・ワークス | ノードリンクの研修・業務管理資料。「利用状況照合」で検索。本文外から相沢とのメールに戻れる。追加問い合わせにはNo.94・95の両訪問が必要。 |
-| 96 | [takase-device-investigation-note.html](../public/takase-device-investigation-note.html) | 端末・調査記録の控え ｜ 調査ノート | 相沢の2回目の添付。「保守参照経路」を発見。No.96・97の既訪問後にNo.98、No.98の既訪問後にNo.99への参照を表示。 |
-| 97 | [nodelink-external-reference-log.html](../public/nodelink-external-reference-log.html) | 外部参照経路 照会控え ｜ 株式会社ノードリンク・ワークス | ノードリンクの公開情報参照管理資料。「保守参照経路」で検索。本文外の戻りリンクからNo.96へ。 |
-| 98 | [chronect-internal-correspondence.html](../public/chronect-internal-correspondence.html) | Chronect社内連絡記録 ｜ Chronect Hub | No.96・97の両訪問後、No.96の調査記録から初回到達。引き継ぎ時の編集履歴と調査指示、後日の独断によるなりすましと事後報告を別スレッドに掲載。 |
-| 99 | [takase-reference-monitoring.html](../public/takase-reference-monitoring.html) | 参照経路について ｜ 調査ノート | No.98を閲覧後、No.96の「監視後の記録を読む」から初回到達。引き継ぎ時の社内連絡を読んだ高瀬個人の判断。 |
+| 93 | [nodelink-personnel.html](../public/nodelink-personnel.html) | 人材情報一覧 ｜ 株式会社ノードリンク・ワークス | No.92で「人材情報」を検索。8名分の7項目プロフィールとテキストの社内連絡アドレスを掲載。 「担当区域」を追加。 |
+| 94 | [nodelink-info-duties.html](../public/nodelink-info-duties.html) | 社内情報管理基盤 業務一覧 ｜ 株式会社ノードリンク・ワークス | 人材情報の担当区域「社内情報管理基盤」で検索する。 |
+| 95 | [takase-infiltration-duties.html](../public/takase-infiltration-duties.html) | 潜入後の業務 ｜ 調査ノート | 業務一覧の「資料検索基盤」で検索する。個人記録。 |
+| 96 | [nodelink-corporate-usage.html](../public/nodelink-corporate-usage.html) | 法人利用管理記録 ｜ 株式会社ノードリンク・ワークス | ノート①の「法人利用管理記録」で検索する。 |
+| 97 | [takase-investigation-stall.html](../public/takase-investigation-stall.html) | 調査の停滞 ｜ 調査ノート | 管理記録の「利用実績照合」で検索する。個人記録からNo.98を参照する。 |
+| 98 | [chronect-internal-correspondence.html](../public/chronect-internal-correspondence.html) | Chronect社内連絡記録 ｜ Chronect Hub | No.97から参照し、既訪問なら再訪できる。事後報告は旧高瀬宛てメールの最終返信以降に表示。 |
+| 99 | [nodelink-device-maintenance.html](../public/nodelink-device-maintenance.html) | 法人機器 保守管理記録 ｜ 株式会社ノードリンク・ワークス | ノート②の「法人機器保守管理」で検索する。 |
+| 100 | [takase-evidence-discovery.html](../public/takase-evidence-discovery.html) | 証拠の発見 ｜ 調査ノート | 保守管理記録の「機器動作記録」で検索する。No.101・102・106〜109への参照を含む。 |
+| 101 | [chronect-trial-continuation-approval.html](../public/chronect-trial-continuation-approval.html) | 試験運用継続承認記録 ｜ Chronect Hub | No.100から参照する。個別同意が未取得と認識して継続を承認した内部記録。 |
+| 102 | [takase-final-investigation-note.html](../public/takase-final-investigation-note.html) | 最終記録 ｜ 調査ノート | No.100から参照する。高瀬の救助要請。他資料に先立って閲覧できる。 |
+| 103 | [takase-completed-report.html](../public/takase-completed-report.html) | TIME BACKおよびSECOND SHIFTに関する調査報告書 ｜ 調査ノート | 相沢から受領した後、No.84の添付から開く読み取り専用の完成版。 |
+| 104 | [yaboo-news-trial-disclosure.html](../public/yaboo-news-trial-disclosure.html) | 「売られていたのは時間ではなかった」Chronect、人間の身体と技能を無断で商用利用 ｜ Yaboo!ニュース | No.80から高瀬作成版を提出して閲覧する。 |
+| 105 | [timeback-ending-full-disclosure.html](../public/timeback-ending-full-disclosure.html) | ENDING「完全な告発」 ｜ TIME BACK | No.104の記事末尾から到達し、以後アーカイブから再訪できる。 |
+| 106 | [chronect-hub-business-integration-plan.html](../public/chronect-hub-business-integration-plan.html) | TIME BACK・SECOND SHIFT 事業統合計画 ｜ Chronect Hub | No.100から参照。売却・購入を同じ市場で扱う経済的な目的。 |
+| 107 | [chronect-hub-second-shift-settlement.html](../public/chronect-hub-second-shift-settlement.html) | SECOND SHIFT 業務実績・清算対応記録 ｜ Chronect Hub | No.100から参照。SUB-117の業務実績、法人入金9,600円、売却報酬2,560円。 |
+| 108 | [chronect-hub-skill-model-record.html](../public/chronect-hub-skill-model-record.html) | 技能モデル生成・適用記録 ｜ Chronect Hub | No.100から参照。SM-0142を同一セッションで適用した実績と、取得元への説明・同意の記録。 |
+| 109 | [chronect-hub-second-shift-strategy.html](../public/chronect-hub-second-shift-strategy.html) | SECOND SHIFT 中長期事業戦略 ｜ Chronect Hub | No.100から参照。限定運用と市場拡大計画、記憶隔離の事業評価。 |
+| 110 | [chronect-hub-bat-spec.html](../public/chronect-hub-bat-spec.html) | Behavior Assistance Terminal 製品仕様書 ｜ Chronect Hub | 3つの結末の累積到達と特殊検索で解放。BATの製品概要。 |
+| 111 | [chronect-hub-bat-control.html](../public/chronect-hub-bat-control.html) | BAT制御系統図 ｜ Chronect Hub | No.110から特殊検索。BAPとTIRの入力系統、SCU・BAC・CAU・MMU・SMU。 |
+| 112 | [chronect-hub-mmu-spec.html](../public/chronect-hub-mmu-spec.html) | MMU — 記憶管理機構 詳細仕様 ｜ Chronect Hub | No.111から特殊検索。記憶管理プロファイルと参照境界。 |
+| 113 | [bat-device-diagnostics.html](../public/bat-device-diagnostics.html) | 機器設定・状態確認記録 ｜ BAT | No.84で相沢から受領する診断記録。設定値と安全状態。 |
+| 114 | [chronect-hub-bat-emergency.html](../public/chronect-hub-bat-emergency.html) | BAT緊急対応マニュアル ｜ Chronect Hub | No.112から特殊検索。異常分類と利用者向け緊急復旧の参照。 |
+| 115 | [chronect-hub-memory-recovery.html](../public/chronect-hub-memory-recovery.html) | 隔離記憶復旧手順書 ｜ Chronect Hub | No.114から特殊検索。設定正常化と復旧処理の依存関係。 |
+| 116 | [bat-recovery-report.html](../public/bat-recovery-report.html) | 復旧処理結果 ｜ BAT | 相沢の同意と復旧完了後、No.84で受領。記憶の参照復元と整合性。 |
+| 117 | [yaboo-news-timeback-suspension.html](../public/yaboo-news-timeback-suspension.html) | TIME BACK、全サービス停止　元社員が内部資料を公開、経営責任の追及へ ｜ Yaboo!ニュース | No.84で完成済みNo.83を手動送信し、最後の返信を受けた後に解放。本人による告発とサービス停止。 |
+| 118 | [timeback-ending-own-time.html](../public/timeback-ending-own-time.html) | ENDING「自分の時間」 ｜ TIME BACK | No.117の記事末尾から到達。記憶を取り戻した本人のこれから。 |
 | EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [chronect-search.html](../public/chronect-search.html) | 検索結果 ｜ Chronect | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
@@ -224,13 +245,13 @@ No.62〜68を改修。No.65・67・68を改題。アーカイブは1〜68、上�
 
 ## 空き番号
 
-No.100〜120は未割当。管理上限は120。
+No.119・120は未割当。管理上限は120。
 
 ## 実ファイルがないもの
 
 - 既知の研究ニュース3件とchronect-projects.htmlは2026-10-29に補完。既存の一覧・トップから開ける。
 - business-park.htmlは作成しない。2026-10-26の作者承認により旧検索登録を削除。実ファイルは元から存在せず、ページ削除・改番は発生していない。
-- Hubの深部資料、内部資料、高瀬メモ、社員番号の隠しページ、告発・エンドは、ページ番号も未確定。
+- 旧案の社員番号による隠しページには番号を割り当てていない。
 
 リンクの抽出一覧は [検索・リンク](09-search-and-links.md)。公開済みという表現はローカル実装を指し、Cloudflareでの公開状況を保証しません。
 

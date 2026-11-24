@@ -50,7 +50,7 @@ for(const name of fs.readdirSync(path.join(root,'public')).filter(n=>/\.(html|js
     assert(fs.existsSync(path.join(root,'public',m[1].split(/[?#]/)[0])),name+' missing '+m[1]);
   }
 }
-assert.equal(srcConsumers,106);assert.equal(numbered.size,entries.length);
+assert.equal(srcConsumers,125);assert.equal(numbered.size,entries.length);
 assert.deepEqual([...numbered.keys()].sort((a,b)=>a-b),Array.from({length:entries.length},(_,i)=>i+1));
 assert(!/data-page-number|archiveButton/.test(read('memo-dream.html')));
 const registries=fs.readdirSync(path.join(root,'public')).filter(n=>/\.(html|js)$/.test(n)&&read(n).includes('archiveTitleByNumber'));
@@ -93,7 +93,7 @@ for(const name of registries){
   const load=functionSource(source,'loadArchive'),save=functionSource(source,'saveArchive'),register=functionSource(source,'registerCurrentPage');
   const defs='const archiveStorageKey="timeback-page-archive-v1";const archiveTitleByNumber='+JSON.stringify(titles)+';let currentPage=null;'+globalMaps+'\n'+load+'\n'+save+'\n'+register;
   definitions.set(name,defs);
-  function env(seed){let stored=typeof seed==='string'?seed:JSON.stringify(seed);const context=vm.createContext({localStorage:{getItem(){return stored},setItem(k,v){assert.equal(k,'timeback-page-archive-v1');stored=v}}});vm.runInContext(defs,context);return{context,set:v=>stored=JSON.stringify(v)};}
+  function env(seed){let stored=typeof seed==='string'?seed:JSON.stringify(seed);const context=vm.createContext({document:{body:{dataset:{}}},localStorage:{getItem(){return stored},setItem(k,v){assert.equal(k,'timeback-page-archive-v1');stored=v}}});vm.runInContext(defs,context);return{context,set:v=>stored=JSON.stringify(v)};}
   for(const excluded of previousAll.filter(e=>bridge.excludedNumbers.has(e.number))){
     assert.equal(mapping[excluded.href],undefined,name+' excluded URL');
     const migrated=vm.runInContext('loadArchive()',env([excluded]).context);
@@ -115,7 +115,7 @@ for(const name of registries){
 // Save through alternating real brand implementations, not through a simulated mapping.
 let stored=JSON.stringify([...legacyMixed,...newAll.filter(p=>p.number>=51||p.number===22)]);
 for(const name of ['business-shared.js','chronect-shared.js','about.html','business-shared.js','chronect-shared.js','about.html']){
-  const context=vm.createContext({page:newAll[30],localStorage:{getItem(){return stored},setItem(k,v){stored=v}}});vm.runInContext(definitions.get(name),context);vm.runInContext('currentPage=page;registerCurrentPage()',context);checkRecords(JSON.parse(stored),entries.map(e=>e.href),'brand round trip');
+  const context=vm.createContext({document:{body:{dataset:{}}},page:newAll[30],localStorage:{getItem(){return stored},setItem(k,v){stored=v}}});vm.runInContext(definitions.get(name),context);vm.runInContext('currentPage=page;registerCurrentPage()',context);checkRecords(JSON.parse(stored),entries.map(e=>e.href),'brand round trip');
 }
 function node(){return{children:[],classList:{add(){},remove(){},contains(){return false}},append(...a){this.children.push(...a)},appendChild(a){this.children.push(a)},addEventListener(){},setAttribute(){},focus(){}};}
 const excludedPages=previousAll.filter(e=>bridge.excludedNumbers.has(e.number)).map(e=>e.href);

@@ -69,6 +69,17 @@
 .ending-story p { margin: 0 0 .7em; }
 .ending-story p:last-child { margin-bottom: 0; }
 
+.ending-fragment {
+  max-width: 52rem;
+  margin: 0 auto clamp(1.25rem, 3vw, 2rem);
+  padding: .8rem 0 0;
+  border-top: 1px solid #cbc5bf;
+  color: #575451;
+  font: .875rem/1.6 ui-monospace, monospace;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
 .ending-feedback, .ending-branch {
   padding-top: clamp(1.25rem, 3vw, 1.8rem);
   border-top: 1px solid #a9a39d;

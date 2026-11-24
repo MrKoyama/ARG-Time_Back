@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Chronect Hubに収録された情報を検索・閲覧できます。">
+  <meta name="robots" content="noindex">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DG4X4HMEC2"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-DG4X4HMEC2');</script>
+  <link rel="icon" href="images/chronect-hub-favicon-c.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="chronect-hub.css?v=20261029">
+  <link rel="stylesheet" href="chronect-brand.css?v=20261120-brand-v1">
+  <title>隔離記憶復旧手順書 ｜ Chronect Hub</title>
+  <link rel="stylesheet" href="chronect-hub-evidence.css">
+  <link rel="stylesheet" href="archive.css?v=20261029">
+  <link rel="stylesheet" href="chronect-hub-internal.css?v=20261117">
+</head>
+<body class="hub-shell hub-internal" data-page-archive="exclude" data-page-number="115" data-page-title="隔離記憶復旧手順書 ｜ Chronect Hub" data-page-href="chronect-hub-memory-recovery.html">
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="hub-header"><div class="hub-header-inner"><a class="hub-brand" href="chronect-hub.html" aria-label="Chronect Hub トップページ"><img class="chronect-brand-logo" src="images/chronect-logo-dark.png" width="800" height="193" alt=""><span class="hub-brand-label">HUB</span></a><form class="hub-search-form" action="chronect-hub-search.html" method="get" role="search"><label for="hubSearchInput">キーワード検索</label><div class="hub-search-controls"><input id="hubSearchInput" name="q" type="search" placeholder="キーワードを入力" aria-describedby="hubSearchHelp" autocomplete="off"><button type="submit">検索</button></div><p id="hubSearchHelp">関連する語句のほか、資料名や管理コードからも検索できます。</p></form></div></header>
+  <main id="main" class="hub-main" data-final-chapter-view hidden>
+    <div class="hub-inner">
+      <header class="hub-page-heading"><h1 id="document-title">隔離記憶復旧手順書</h1></header>
+      <article class="hub-document" aria-labelledby="document-title">
+        <p class="hub-document-label">資料区分：技術資料</p>
+        <h2>適用対象：異常分類 M-03</h2>
+        <p>隔離記憶の整合性が維持されており、本人の承認および安全監視の有効状態が確認できる場合に限り、利用者向け緊急復旧機能を利用できる。</p>
+        <p>本処理は現在の記憶を消去・上書きするものではない。</p>
+        <h2>復旧機能一覧</h2>
+        <table class="hub-evidence-table">
+          <thead><tr><th scope="col" style="width:26%">処理名</th><th scope="col" style="width:24%">コード</th><th scope="col">実行条件</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">記憶統合</th><td>MERGE</td><td>隔離記憶の参照復元が完了していること</td></tr>
+            <tr><th scope="row">整合性確認</th><td>VERIFY</td><td>記憶統合が完了していること</td></tr>
+            <tr><th scope="row">参照復元</th><td>RESTORE</td><td>記憶管理設定の正常化が完了していること</td></tr>
+            <tr><th scope="row">復旧モード移行</th><td>RECOVERY</td><td>セッション未実行・本人承認・安全監視有効</td></tr>
+            <tr><th scope="row">設定正常化</th><td>NORMALIZE</td><td>復旧モードに移行していること</td></tr>
+          </tbody>
+        </table>
+        <h2>注意事項</h2>
+        <p>外部タスク受信の可否は、記憶復旧処理とは独立した設定である。</p>
+        <p>設定の全面初期化は行わず、異常のある項目のみを正常化すること。</p>
+        <p>復旧対象は、設定異常によって誤って隔離された記憶とする。</p>
+        <p>通常の売却処理に基づいて隔離された記憶を一律に解放するものではない。</p>
+        <p>記憶の参照復元と統合は復旧処理内で準備され、最終的な整合性確認の成功によって確定する。</p>
+        <p>整合性確認に失敗した場合は処理を中止し、復旧を確定しないこと。</p>
+        <h2>復旧後の状態</h2>
+        <p>復旧対象となった記憶への参照が再び可能となる。</p>
+        <p>復旧前に参照可能だった記憶は保持される。</p>
+      </article>
+    </div>
+  </main>
+  <section class="hub-main" data-final-chapter-locked>
+    <div class="hub-inner"><p>この資料は現在表示できません。</p></div>
+  </section>
+  <footer class="hub-footer"><div class="hub-footer-inner"><span class="hub-footer-brand">CHRONECT HUB</span><p class="fiction-notice">このサイトの内容はフィクションです。登場する人物・団体・名称等は架空のものであり、実在のものとは関係ありません。</p><button class="archive-button" id="archiveButton" type="button" aria-haspopup="dialog" aria-controls="archiveOverlay">115 / 120</button></div></footer>
+  <div class="archive-overlay" id="archiveOverlay" aria-hidden="true"><section class="archive-dialog" role="dialog" aria-modal="true" aria-labelledby="archiveTitle"><header class="archive-header"><h2 id="archiveTitle">ページアーカイブ</h2><button class="archive-close" id="archiveClose" type="button" aria-label="ページアーカイブを閉じる">×</button></header><div class="archive-content"><p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。ページ番号は閲覧の目安です。順番に迷ったときは番号を参考にしつつ、気になった情報から自由にご覧ください。</p><ol class="archive-list" id="archiveList"></ol><div class="archive-tools"><button class="archive-reset-button" id="archiveResetButton" type="button">アーカイブをリセット</button><div class="reset-confirm" id="resetConfirm" role="alertdialog" aria-labelledby="resetTitle" hidden><p id="resetTitle">探索済みページの記録を消去しますか？</p><div class="reset-actions"><button id="resetCancel" type="button">キャンセル</button><button class="danger" id="resetAccept" type="button">リセットする</button></div></div></div></div></section></div>
+  <script src="chronect-hub.js?v=20261116-report-reference-v1"></script>
+  <script src="final-chapter.js?v=20261124-final118"></script>
+  <script src="chronect-shared.js?v=20261124-archive118"></script>
+</body>
+</html>
