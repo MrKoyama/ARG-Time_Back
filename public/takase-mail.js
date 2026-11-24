@@ -86,6 +86,7 @@
   }
 
   function write(key, value) {
+    if (!window.timebackProgress.isCurrent()) return false;
     try {
       if (value === null) localStorage.removeItem(key);
       else localStorage.setItem(key, value);

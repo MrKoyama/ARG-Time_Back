@@ -101,13 +101,37 @@ function beforeChronectBrand(name, source) {
     .replace('href="images/chronect-hub-favicon-c.svg"', 'href="images/chronect-hub-favicon.svg"');
 }
 
+function withoutProgressReset(name, source) {
+  let result = source
+    .replace(/(?:  )?<script src="progress-reset\.js\?v=20261124"><\/script>(?:\r?\n)?/, '')
+    .replaceAll('>すべての進行状況をリセット</button>', '>アーカイブをリセット</button>')
+    .replace(' aria-describedby="resetDescription resetWarning"', '')
+    .replace('<strong>進行状況をリセットしますか？</strong>', '探索済みページの記録を消去しますか？')
+    .replace(/(?:\r?\n[ \t]*)?<p id="reset(?:Description|Warning|Error)"[^>]*>[^<]*<\/p>/g, '')
+    .replace(/if \(!window\.timebackProgress\.isCurrent\(\)\) return;(?:\r?\n[ \t]*)?/, '')
+    .replace('window.timebackProgress.isCurrent() && JSON.stringify(pages)', 'JSON.stringify(pages)')
+    .replace(/((?:business|chronect)-shared\.js\?v=)reset20261124/g, '$1' + '20261124-archive118')
+    .replace('final-chapter.js?v=reset20261124', 'final-chapter.js?v=20261124-final118');
+  if (name === 'public/time-back.html') {
+    result = result.replace('window.timebackProgress.reset();',
+      "try {\n        localStorage.removeItem(archiveStorageKey);\n      } catch (error) {\n        return;\n      }\n      window.location.href = 'index.html';");
+  } else if (name === 'public/search.html') {
+    result = result.replace('window.timebackProgress.reset();',
+      "try { localStorage.removeItem(archiveStorageKey); }\n      catch (error) { return; }\n      window.location.href = 'index.html';");
+  } else {
+    const location = name === 'public/chronect-shared.js' ? 'location' : 'window.location';
+    result = result.replace('window.timebackProgress.reset()',
+      "try{localStorage.removeItem(archiveStorageKey)}catch(error){return}" + location + ".href='index.html'");
+  }
+  return result;
+}
+
 function canonicalPublic(name,current){
   const file=baseline.files[name];assert(file,name+' absent from frozen baseline');
   if(typeof file.text!=='string'){assert.equal(sha(current),file.sha256,name+' immutable binary');return current;}
   assert.equal(sha(Buffer.from(file.text)),file.sha256,name+' frozen text hash');
   const expected=forwardPublic(name,file.text);
-  let source=Buffer.isBuffer(current)?current.toString('utf8'):current;
-  source=source.replaceAll("localStorage.removeItem('timeback-final-chapter-v1');",'');
+  let source=withoutProgressReset(name, Buffer.isBuffer(current)?current.toString('utf8'):current);
   if(name==='public/chronect-shared.js')source=source.replace("if(!currentPage||document.body.dataset.pageArchive==='exclude')return pages;","if(!currentPage)return pages;");
   if(name==='public/chronect-hub-search.html')source=source
     .replace('  <script src="final-chapter.js?v=20261124-final118"></script>\n','')
@@ -126,7 +150,7 @@ function canonicalPublic(name,current){
 // Preserve the immutable 2026-10-30 fixtures. Validate and remove only the later
 // approved additive changes before running the original regression meanings.
 const livingEntry={number:58,old:58,href:'chronect-hub-research-continuous-action.html',title:'環境変化下における連続行動支援の評価 ｜ Chronect Hub'};
-const archiveVersion='20261124-archive118';
+const archiveVersion='reset20261124';
 const facilitySearchEntries=[
   {
     "keywords": [
@@ -578,7 +602,7 @@ function legacyTestSource(name){
 }
 function assertLegacyTestCode(name){assert.equal(fs.readFileSync(path.join(root,name),'utf8'),legacyTestSource(name),name+' exceeds legacy bridge insertion');}
 const legacyFs=Object.create(fs);
-legacyFs.readdirSync=function(dir,options){const rows=fs.readdirSync(dir,options);const added=new Set([livingEntry.href,...require('./midroute-test-helper.cjs').entries.map(e=>e.href),...facilityEntries.map(e=>e.href),...chapterEntries.map(e=>e.href),...chapterFourEntries.map(e=>e.href),...chapterFiveEntries.map(e=>e.href),...chapterSixEntries.map(e=>e.href),...chapterSixEvidenceEntries.map(e=>e.href),trialOperationEntry.href,'yaboo-news-chronect.html','yaboo-news-tip.html',...reportReferenceEntries.map(e=>e.href),'investigation-report.js','investigation-report.css','takase-report-editor.html','chronect-hub-internal.css','takase-mail.html','takase-mail.js','yaboo-news-aftermath.html','timeback-ending-record.html','takase-ending.css','takase-mail.css',...chapterSevenEntries.map(e=>e.href),...publicationEntries.map(e=>e.href),...nodelinkEntries.map(e=>e.href),...chapterSevenFollowupEntries.map(e=>e.href),'chapter-seven-reference.js','nodelink-logo-hold.js','nodelink-internal-search.js','nodelink-internal.css','final-chapter.js','final-chapter-mail.js']);return path.resolve(String(dir))===path.join(root,'public')?rows.filter(row=>!added.has(typeof row==='string'?row:row.name)):rows;};
+legacyFs.readdirSync=function(dir,options){const rows=fs.readdirSync(dir,options);const added=new Set([livingEntry.href,...require('./midroute-test-helper.cjs').entries.map(e=>e.href),...facilityEntries.map(e=>e.href),...chapterEntries.map(e=>e.href),...chapterFourEntries.map(e=>e.href),...chapterFiveEntries.map(e=>e.href),...chapterSixEntries.map(e=>e.href),...chapterSixEvidenceEntries.map(e=>e.href),trialOperationEntry.href,'yaboo-news-chronect.html','yaboo-news-tip.html',...reportReferenceEntries.map(e=>e.href),'investigation-report.js','investigation-report.css','takase-report-editor.html','chronect-hub-internal.css','takase-mail.html','takase-mail.js','yaboo-news-aftermath.html','timeback-ending-record.html','takase-ending.css','takase-mail.css',...chapterSevenEntries.map(e=>e.href),...publicationEntries.map(e=>e.href),...nodelinkEntries.map(e=>e.href),...chapterSevenFollowupEntries.map(e=>e.href),'chapter-seven-reference.js','nodelink-logo-hold.js','nodelink-internal-search.js','nodelink-internal.css','final-chapter.js','final-chapter-mail.js','progress-reset.js']);return path.resolve(String(dir))===path.join(root,'public')?rows.filter(row=>!added.has(typeof row==='string'?row:row.name)):rows;};
 legacyFs.readFileSync=function(file,options){
   const resolved=path.resolve(String(file)),relative=path.relative(root,resolved).split(path.sep).join('/');
   const value=fs.readFileSync(file,options);

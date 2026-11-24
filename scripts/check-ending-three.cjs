@@ -83,11 +83,11 @@ async function main(runScenario) {
         complaints.push(packet.params.response.url + ' ' + packet.params.response.status);
       }
     });
-    function send(method, params = {}) {
+    function send(method, params = {}, sessionId) {
       return new Promise((resolve, reject) => {
         const current = ++id;
         pending.set(current, { resolve, reject });
-        socket.send(JSON.stringify({ id: current, method, params }));
+        socket.send(JSON.stringify({ id: current, method, params, sessionId }));
       });
     }
     async function evaluate(expression, allowNavigation = false) {
@@ -176,7 +176,7 @@ async function main(runScenario) {
     await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
     await width(1440);
     if (runScenario) {
-      await runScenario({ evaluate, wait, visible, click, input, page, go, width, checkWidth, scripted, returnToBranch });
+      await runScenario({ evaluate, wait, visible, click, input, page, go, width, checkWidth, scripted, returnToBranch, send, origin });
       assert.deepEqual(complaints, []);
       return;
     }

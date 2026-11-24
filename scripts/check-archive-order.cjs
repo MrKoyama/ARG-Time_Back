@@ -93,7 +93,7 @@ for(const name of registries){
   const load=functionSource(source,'loadArchive'),save=functionSource(source,'saveArchive'),register=functionSource(source,'registerCurrentPage');
   const defs='const archiveStorageKey="timeback-page-archive-v1";const archiveTitleByNumber='+JSON.stringify(titles)+';let currentPage=null;'+globalMaps+'\n'+load+'\n'+save+'\n'+register;
   definitions.set(name,defs);
-  function env(seed){let stored=typeof seed==='string'?seed:JSON.stringify(seed);const context=vm.createContext({document:{body:{dataset:{}}},localStorage:{getItem(){return stored},setItem(k,v){assert.equal(k,'timeback-page-archive-v1');stored=v}}});vm.runInContext(defs,context);return{context,set:v=>stored=JSON.stringify(v)};}
+  function env(seed){let stored=typeof seed==='string'?seed:JSON.stringify(seed);const context=vm.createContext({window:{timebackProgress:{isCurrent:()=>true}},document:{body:{dataset:{}}},localStorage:{getItem(){return stored},setItem(k,v){assert.equal(k,'timeback-page-archive-v1');stored=v}}});vm.runInContext(defs,context);return{context,set:v=>stored=JSON.stringify(v)};}
   for(const excluded of previousAll.filter(e=>bridge.excludedNumbers.has(e.number))){
     assert.equal(mapping[excluded.href],undefined,name+' excluded URL');
     const migrated=vm.runInContext('loadArchive()',env([excluded]).context);
@@ -115,7 +115,7 @@ for(const name of registries){
 // Save through alternating real brand implementations, not through a simulated mapping.
 let stored=JSON.stringify([...legacyMixed,...newAll.filter(p=>p.number>=51||p.number===22)]);
 for(const name of ['business-shared.js','chronect-shared.js','about.html','business-shared.js','chronect-shared.js','about.html']){
-  const context=vm.createContext({document:{body:{dataset:{}}},page:newAll[30],localStorage:{getItem(){return stored},setItem(k,v){stored=v}}});vm.runInContext(definitions.get(name),context);vm.runInContext('currentPage=page;registerCurrentPage()',context);checkRecords(JSON.parse(stored),entries.map(e=>e.href),'brand round trip');
+  const context=vm.createContext({window:{timebackProgress:{isCurrent:()=>true}},document:{body:{dataset:{}}},page:newAll[30],localStorage:{getItem(){return stored},setItem(k,v){stored=v}}});vm.runInContext(definitions.get(name),context);vm.runInContext('currentPage=page;registerCurrentPage()',context);checkRecords(JSON.parse(stored),entries.map(e=>e.href),'brand round trip');
 }
 function node(){return{children:[],classList:{add(){},remove(){},contains(){return false}},append(...a){this.children.push(...a)},appendChild(a){this.children.push(a)},addEventListener(){},setAttribute(){},focus(){}};}
 const excludedPages=previousAll.filter(e=>bridge.excludedNumbers.has(e.number)).map(e=>e.href);
@@ -123,7 +123,7 @@ for(const name of ['search.html','business-search.html','chronect-search.html','
   const html=read(name),external=html.match(/src="((?:business|chronect)-shared\.js)/),script=external?read(external[1]):[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].find(m=>m[1].includes('const archiveStorageKey'))[1];
   if(excludedPages.includes(name))assert(html.includes('data-page-archive="exclude"'),name+' exclusion metadata');
   const nodes=new Map();let saved='[]',writes=0;
-  const context=vm.createContext({URLSearchParams,document:{body:{dataset:{pageArchive:'exclude'},classList:{add(){},remove(){}}},getElementById(id){if(!nodes.has(id))nodes.set(id,node());return nodes.get(id)},createElement:node,addEventListener(){}},localStorage:{getItem(){return saved},setItem(k,v){saved=v;writes++}},window:{location:{search:''}}});
+  const context=vm.createContext({URLSearchParams,document:{body:{dataset:{pageArchive:'exclude'},classList:{add(){},remove(){}}},getElementById(id){if(!nodes.has(id))nodes.set(id,node());return nodes.get(id)},createElement:node,addEventListener(){}},localStorage:{getItem(){return saved},setItem(k,v){saved=v;writes++}},window:{location:{search:''},timebackProgress:{isCurrent:()=>true}}});
   vm.runInContext(script,context);vm.runInContext('renderArchive()',context);assert.equal(saved,'[]',name+' EX visited set');assert.equal(writes,0,name+' EX writes');assert.equal(nodes.get('archiveList').children.length,120,name+' archive slots');
 }
 console.log('PASS CURRENT CODE: '+checkedFiles+' prior public files preserve the approved archive and route additions; '+syntax+' syntax checks; '+numbered.size+' unique pages / '+registries.length+' registries; '+singletonLoads+' singleton reloads, '+registrations+' registrations/reloads, '+mixedLoads+' full/partial/legacy cases; brand round trips, 4 EX exclusions and '+srcConsumers+' versioned consumers. New manuscript/search checks run separately.');

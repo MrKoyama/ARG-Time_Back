@@ -97,6 +97,7 @@
   }
 
   function store(state) {
+    if (!window.timebackProgress.isCurrent()) return false;
     try {
       localStorage.setItem(key, JSON.stringify(state));
       return true;

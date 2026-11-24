@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="takase-notes.css?v=20261117-viewer-v1">
   <link rel="stylesheet" href="nodelink-internal.css?v=20261124-search-header">
   <link rel="stylesheet" href="archive.css?v=20261029">
+  <script src="progress-reset.js?v=20261124"></script>
 </head>
 <body class="takase-site" data-page-number="100" data-page-title="証拠の発見 ｜ 調査ノート" data-page-href="takase-evidence-discovery.html">
   <a class="takase-skip" href="#investigationNote">本文へ移動</a>
@@ -62,12 +63,12 @@
         <p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。ページ番号は閲覧の目安です。順番に迷ったときは番号を参考にしつつ、気になった情報から自由にご覧ください。</p>
         <ol class="archive-list" id="archiveList"></ol>
         <div class="archive-tools">
-          <button class="archive-reset-button" id="archiveResetButton" type="button">アーカイブをリセット</button>
-          <div class="reset-confirm" id="resetConfirm" role="alertdialog" aria-labelledby="resetTitle" hidden><p id="resetTitle">探索済みページの記録を消去しますか？</p><div class="reset-actions"><button id="resetCancel" type="button">キャンセル</button><button class="danger" id="resetAccept" type="button">リセットする</button></div></div>
+          <button class="archive-reset-button" id="archiveResetButton" type="button">すべての進行状況をリセット</button>
+          <div class="reset-confirm" id="resetConfirm" role="alertdialog" aria-labelledby="resetTitle" aria-describedby="resetDescription resetWarning" hidden><p id="resetTitle"><strong>進行状況をリセットしますか？</strong></p><p id="resetDescription">これまでに閲覧したページ、メール、報告書、エンディングの到達記録など、すべての進行状況が削除されます。</p><p id="resetWarning">この操作は取り消せません。</p><p id="resetError" role="status" hidden>進行状況をリセットできませんでした。ブラウザの保存設定を確認してください。</p><div class="reset-actions"><button id="resetCancel" type="button">キャンセル</button><button class="danger" id="resetAccept" type="button">リセットする</button></div></div>
         </div>
       </div>
     </section>
   </div>
-  <script src="chronect-shared.js?v=20261124-archive118"></script>
+  <script src="chronect-shared.js?v=reset20261124"></script>
 </body>
 </html>

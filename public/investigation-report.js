@@ -49,7 +49,7 @@
   }
 
   function advanceMail(expected, next, { removeReport = false } = {}) {
-    if (mailPhase() !== expected) return false;
+    if (!window.timebackProgress.isCurrent() || mailPhase() !== expected) return false;
     try {
       localStorage.setItem(mailKey, String(next));
       if (removeReport) {
@@ -95,7 +95,7 @@
 
   function saveReport(report) {
     const status = byId('report-storage-status');
-    if (mailPhase() >= phase.deleted) return false;
+    if (!window.timebackProgress.isCurrent() || mailPhase() >= phase.deleted) return false;
     try {
       localStorage.setItem(storageKey, JSON.stringify(report));
       status.textContent = '';
@@ -231,7 +231,7 @@
   }
 
   function rewindBranch() {
-    if (!hasVisited(document.body.dataset.pageHref)) return false;
+    if (!window.timebackProgress.isCurrent() || !hasVisited(document.body.dataset.pageHref)) return false;
     const restore = [];
     function write(key, value) {
       if (value === null) localStorage.removeItem(key);
@@ -514,7 +514,7 @@
     dialog.addEventListener('close', () => {
       const kind = confirmed;
       confirmed = '';
-      if (dialog.returnValue !== 'submit' || !kind || tipSubmitted(kind)) return;
+      if (dialog.returnValue !== 'submit' || !kind || !window.timebackProgress.isCurrent() || tipSubmitted(kind)) return;
       if (attached !== kind || !availableReports().includes(kind)) {
         render();
         message.textContent = '添付した調査報告書を確認できませんでした。';
