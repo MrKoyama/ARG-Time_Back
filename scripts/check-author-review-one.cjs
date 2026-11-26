@@ -302,6 +302,26 @@ runChrome(async ({ evaluate, wait, visible, click, input, page, go, width, check
   await input('#mailAddress', 'y.takase@chronect.mail');
   await click('#addressForm button[type=submit]');
   await click('#mail-thread-takase');
+  await scripted();
+  // Exercise pointer hit testing through the confirmation overlay, including a fast retry.
+  async function clickResetControl(selector) {
+    const point = await evaluate(`(() => {
+      const {x,y,width,height} = document.querySelector(${JSON.stringify(selector)}).getBoundingClientRect();
+      return {x: x + width / 2, y: y + height / 2};
+    })()`);
+    await send('Input.dispatchMouseEvent', { type: 'mousePressed', ...point, button: 'left', clickCount: 1 });
+    await send('Input.dispatchMouseEvent', { type: 'mouseReleased', ...point, button: 'left', clickCount: 1 });
+  }
+  await clickResetControl('#resetButton');
+  assert.equal(await evaluate('document.activeElement.id'), 'confirmCancel');
+  await clickResetControl('#confirmCancel');
+  assert.equal(await evaluate('localStorage.getItem("timeback-investigation-mail-v1")'), '1.1');
+  await clickResetControl('#resetButton');
+  assert.equal(await evaluate(visible('#confirmOverlay.is-open')), true);
+  await clickResetControl('#confirmAccept');
+  await wait('document.readyState === "complete" && localStorage.getItem("timeback-investigation-mail-v1") === "0"'
+    + ' && document.querySelector("#mail-thread-takase")?.getAttribute("aria-current") === "true"'
+    + ' && document.querySelectorAll("#messageLog .bubble").length === 0');
   for (let i = 0; i < 3; i++) await scripted();
   const mailBubbles = await evaluate('Array.from(document.querySelectorAll("#messageLog .bubble"), bubble => bubble.textContent)');
   assert.match(mailBubbles[0], /資料を調べる中で、このメールアドレスを見つけました。/);
