@@ -26,23 +26,23 @@
 
   const aizawaSteps = [
     {
-      outgoing: '突然のご連絡、失礼します。\n相沢直人さんでお間違いないでしょうか。',
-      reply: 'はい、相沢です。\n失礼ですが、どちら様でしょうか。',
+      outgoing: '突然のご連絡、失礼します。相沢直人さんでお間違いないでしょうか。',
+      reply: 'はい、ノードリンク・ワークスの相沢です。失礼ですが、どちら様でしょうか。',
       mobileLabel: '相沢に連絡する'
     },
     {
-      outgoing: 'Chronectという企業について調べています。\n突然こんなことを言われても困ると思いますが、私はあなたの味方です。',
-      reply: '……すみません、話が見えないんですが。\nどういうご用件ですか？',
+      outgoing: 'Chronectという企業について調べています。突然こんなことを言われても困ると思いますが、私はあなたの味方です。',
+      reply: '申し訳ありませんが、お話の意図が分かりかねます。弊社へのお問い合わせでしょうか。',
       mobileLabel: 'Chronectについて伝える'
     },
     {
       outgoing: 'あなたが身分を偽って、ノードリンクに入社したことも知っています。',
-      reply: 'は？\nちょっと待ってください。何を言ってるんですか？',
+      reply: '何かのお間違いではないでしょうか。いたずらでしたら、このようなご連絡はお控えください。',
       mobileLabel: '入社について伝える'
     },
     {
       outgoing: '高瀬悠真さん、ですよね？',
-      reply: '……誰ですか、それ。',
+      reply: '……申し訳ありませんが、どなたのことでしょうか。',
       mobileLabel: '名前を確認する'
     }
   ];
@@ -167,7 +167,6 @@
     let typedLength = 0;
     let attached = false;
     let deletionDialogState = '';
-    let deletionTimer;
     let deletionFrame;
     let fading = false;
     let aftermathTimer;
@@ -431,7 +430,6 @@
       if (current === renderedProgress && report === renderedComplete && draft === renderedDraft && nextContent === renderedNext) return;
       if (activeContact.id === 'takase' && current === 0) {
         attached = false;
-        window.clearTimeout(deletionTimer);
         window.cancelAnimationFrame(deletionFrame);
         if (reportPicker.open) reportPicker.close();
         if (reportDeleteDialog.open) reportDeleteDialog.close();
@@ -726,27 +724,27 @@
     });
     reportDeleteConfirm.addEventListener('click', function () {
       if (deletionDialogState !== 'confirm') return;
-      const duration = reducedMotion.matches ? 100 : 5000;
+      const duration = 3000;
       const started = performance.now();
       reportDeleteProgress.value = 0;
       showDeletionDialog('deleting');
-      if (!reducedMotion.matches) {
-        function showProgress(now) {
-          reportDeleteProgress.value = Math.min(100, (now - started) / duration * 100);
-          if (reportDeleteProgress.value < 100) deletionFrame = window.requestAnimationFrame(showProgress);
-        }
-        deletionFrame = window.requestAnimationFrame(showProgress);
-      }
-      deletionTimer = window.setTimeout(function () {
-        window.cancelAnimationFrame(deletionFrame);
-        reportDeleteProgress.value = 100;
+      const step = reducedMotion.matches ? 500 : 0;
+      function finishDeletion() {
         if (!deleteReport()) {
           showDeletionDialog('error');
           return;
         }
         refresh();
         showDeletionDialog('done');
-      }, duration);
+      }
+      function showProgress(now) {
+        const elapsed = Math.max(0, now - started);
+        const displayed = step ? Math.floor(elapsed / step) * step : elapsed;
+        const value = Math.min(100, displayed / duration * 100);
+        if (reportDeleteProgress.value !== value) reportDeleteProgress.value = value;
+        deletionFrame = window.requestAnimationFrame(value === 100 ? finishDeletion : showProgress);
+      }
+      deletionFrame = window.requestAnimationFrame(showProgress);
     });
     reportDeleteClose.addEventListener('click', function () {
       reportDeleteDialog.close();

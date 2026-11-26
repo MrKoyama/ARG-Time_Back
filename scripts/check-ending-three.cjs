@@ -203,7 +203,7 @@ async function main(runScenario) {
     await scripted(true);
     await width(390);
     for (let i=0; i<3; i++) await scripted();
-    assert.match(await evaluate('document.querySelector("#messageLog").textContent'), /誰ですか、それ/);
+    assert.match(await evaluate('document.querySelector("#messageLog").textContent'), /……申し訳ありませんが、どなたのことでしょうか。/);
     assert.equal(await evaluate(visible('#mobileReply')), false);
     assert.equal(await evaluate('document.querySelector("#messageLog a")'), null);
     await checkWidth('No.84 initial');

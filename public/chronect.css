@@ -42,6 +42,7 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
 #company .hero-inner { max-width: 1180px; }
+.recruit-copy { display: block; }
 
 /* Chronect corporate subpages */
 .global-nav a[aria-current="page"]{color:var(--cyan)}

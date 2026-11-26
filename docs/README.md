@@ -95,7 +95,7 @@ No.79「試験運用 対応記録」の「報告用資料」をChronect Hubで `
 8. [不整合・未確定事項](08-open-questions.md)
 9. [検索ホワイトリスト・リンク現況](09-search-and-links.md)
 10. [調査範囲・根拠・検証記録](10-audit-and-sources.md)
-11. [第1回作者テストプレイ 改善管理](11-playtest-improvements.md) — 改善31件の対応状況と作者の再確認を管理する。
+11. [第1回作者テストプレイ 改善管理](11-playtest-improvements.md) — 改善32件の対応状況と作者の再確認を管理する。
 
 プロジェクト直下の [AGENTS.md](../AGENTS.md) は今後の作業手順です。既存のブランド設計は `planning/` にあり、本資料で置き換えません。
 
