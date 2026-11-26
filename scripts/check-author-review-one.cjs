@@ -72,14 +72,24 @@ runChrome(async ({ evaluate, wait, visible, click, input, page, go, width, check
   await search('search.html', '運営会社', 'chronect-company.html');
   await search('search.html', 'Chron', null);
   await go('chronect-hub.html');
-  const earlyRoute = [
+  const hubIntro = await evaluate('document.querySelector("main").innerText');
+  assert.match(hubIntro, /公開研究要旨と限定保存資料は、それぞれの公開範囲に応じて管理しています。/);
+  assert.doesNotMatch(hubIntro, /資料参照区分/);
+  await input('#hubSearchInput', '資料参照区分');
+  await click('.hub-search-form button');
+  await page('chronect-hub-search.html');
+  assert.equal(await evaluate('document.querySelector(".hub-result a").getAttribute("href")'), 'chronect-hub-reference-class.html');
+  assert.equal(await evaluate('JSON.parse(localStorage.getItem("timeback-page-archive-v1")).some(page => page.number === 62)'), false);
+  await go('chronect-hub-processing-connections.html');
+  assert.match(await evaluate('document.querySelector("article").innerText'), /本記録の参照上の扱いは、資料参照区分に従います。/);
+  const referenceRoute = [
     ['資料参照区分', 'chronect-hub-reference-class.html'],
     ['参照対応', 'chronect-hub-reference-mapping.html'],
     ['保守経路', 'chronect-hub-maintenance-route.html'],
     ['Webシステム保守', 'chronect-hub-search-staff.html'],
     ['高瀬悠真', 'takase-notes.html']
   ];
-  for (const [term, target] of earlyRoute) {
+  for (const [term, target] of referenceRoute) {
     await input('#hubSearchInput', term);
     await click('.hub-search-form button');
     await page('chronect-hub-search.html');
@@ -116,7 +126,6 @@ runChrome(async ({ evaluate, wait, visible, click, input, page, go, width, check
   await wait('document.querySelector(".report-hidden-reference").classList.contains("is-revealed")');
   await click('a[href="takase-work-notes.html"]');
   await page('takase-work-notes.html');
-  assert.equal(await evaluate('JSON.parse(localStorage.getItem("timeback-page-archive-v1")).some(page => page.number === 62)'), false);
   for (const term of ['提携企業一覧', '提携企業']) await search('business-search.html', term, 'partners.html');
   await search('business-search.html', '提携', null);
   await go('nodelink-internal-search.html');
@@ -145,8 +154,8 @@ runChrome(async ({ evaluate, wait, visible, click, input, page, go, width, check
   }
   await go('chronect-hub-web-operations-log.html');
   for (const [id, contents] of [
-    ['01', ['公開ページの表示確認', '検索結果あり', '通常検索', '登録済みの検索語を入力し、検索結果に表示された資料が正常に閲覧できることを確認した。']],
-    ['04', ['検索画面の動作確認', '例外的な入力', '例外入力処理', '通常の検索条件に該当しない入力に対し、既定の処理が行われることを確認した。']]
+    ['01', ['公開ページの表示確認', '検索結果あり', '通常検索', '結果がある場合の表示対応']],
+    ['04', ['検索画面の動作確認', '例外的な入力', '例外入力処理', '例外的な入力があった場合の表示対応']]
   ]) {
     const button = `button[aria-controls="log-record-${id}"]`;
     const details = '#log-record-' + id;
@@ -164,12 +173,33 @@ runChrome(async ({ evaluate, wait, visible, click, input, page, go, width, check
     await click(button);
     assert.equal(await evaluate(visible(details)), false);
   }
+  assert.equal(await evaluate(visible('#log-review-form')), false);
+  await click('#log-review-toggle');
+  assert.equal(await evaluate(visible('#log-review-form')), true);
+  assert.equal(await evaluate('document.querySelector("#log-review-toggle").getAttribute("aria-expanded")'), 'true');
+  for (const px of widths) {
+    await width(px);
+    await checkWidth('No.87 with the form open');
+    assert.equal(await evaluate(`(() => {
+      const record03 = document.querySelector('#log-review-toggle').closest('tr');
+      const record04 = document.querySelector('[aria-controls="log-record-04"]').closest('tr');
+      const row = document.querySelector('#log-review');
+      const form = row.querySelector('#log-review-form').getBoundingClientRect();
+      return row.previousElementSibling === record03 && row.nextElementSibling === record04
+        && form.top >= record03.getBoundingClientRect().bottom
+        && form.bottom <= record04.getBoundingClientRect().top
+        && form.left >= 0 && form.right <= innerWidth;
+    })()`), true, 'No.87 at ' + px);
+  }
+  await click('#log-review-toggle');
+  assert.equal(await evaluate(visible('#log-review-form')), false);
   await click('#log-review-toggle');
   assert.equal(await evaluate(visible('#log-review-result')), false);
   for (const [term, success] of [['検索', false], ['0件', true]]) {
     await input('#log-review-answer', term);
     await click('#log-review-form button');
     assert.equal(await evaluate(visible('#log-review-result')), success);
+    assert.equal(await evaluate('localStorage.getItem("timeback-web-operations-log-v1")'), success ? '1' : null);
   }
   for (const px of widths) {
     await width(px);

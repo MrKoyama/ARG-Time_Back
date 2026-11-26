@@ -527,7 +527,7 @@ function withoutArchivePruning(name,source,frozenSource){
     assert.equal(result.split(clue).length,2,name+' chapter clue');
     result=result.replace(clue,'支援内容や利用可能時間は');
   }
-  if(name==='public/chronect-hub.html')result=result.replace("\n      <p>公開研究要旨と限定保存資料は、資料参照区分に基づいて管理しています。</p>\n    ", '');
+  if(name==='public/chronect-hub.html')result=result.replace("\n      <p>公開研究要旨と限定保存資料は、それぞれの公開範囲に応じて管理しています。</p>\n    ", '');
   // Restore only the approved copy edits for the frozen baseline checks.
   if(name==='public/chronect-hub-session.html'){
     const approved="<p>対象セッションの位置確認記録から、明浜みどり公園を通過し、住宅間の細道を経由して明浜商店街に至る区間を抜粋した。</p>\n      <p>これらは予定された経路ではなく、売却者本人が実際に通過した記録に基づく。</p>";

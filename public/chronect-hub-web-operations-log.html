@@ -26,8 +26,7 @@
       text-decoration: underline;
     }
 
-    #log-review {
-      margin-top: 24px;
+    .log-review-content {
       padding: clamp(12px, 4vw, 24px);
       border: 1px solid var(--hub-internal-border);
     }
@@ -65,18 +64,48 @@
               <div><dt>作業内容</dt><dd>公開ページの表示確認</dd></div>
               <div><dt>対象の状態</dt><dd>検索結果あり</dd></div>
               <div><dt>入力処理</dt><dd>通常検索</dd></div>
-              <div><dt>具体的な対応内容</dt><dd>登録済みの検索語を入力し、検索結果に表示された資料が正常に閲覧できることを確認した。</dd></div>
+              <div><dt>具体的な対応内容</dt><dd>結果がある場合の表示対応</dd></div>
             </dl>
           </td></tr>
           <tr><th scope="row">02</th><td>未記入</td><td>—</td></tr>
           <tr><th scope="row">03</th><td>検索結果画面の保守</td><td><button type="button" id="log-review-toggle" aria-expanded="false" aria-controls="log-review">詳細未記入</button></td></tr>
+          <tr id="log-review" hidden>
+            <td colspan="3">
+              <section class="log-review-content" aria-labelledby="log-review-title">
+                <h3 id="log-review-title">作業記録03：詳細照合</h3>
+                <dl class="hub-facts">
+                  <div><dt>作業内容</dt><dd>検索結果画面の保守</dd></div>
+                  <div><dt>対象の状態</dt><dd>通常の結果表示とは異なる</dd></div>
+                  <div><dt>入力処理</dt><dd>異常なし</dd></div>
+                  <div><dt>具体的な対応内容</dt><dd>未記入</dd></div>
+                </dl>
+                <form id="log-review-form">
+                  <label for="log-review-answer">関連する保守経路記録を参照し、対応内容を照合してください。</label>
+                  <div class="hub-search-controls">
+                    <input id="log-review-answer" type="text" autocomplete="off" spellcheck="false">
+                    <button type="submit">照合する</button>
+                  </div>
+                  <p id="log-review-status" role="status"></p>
+                </form>
+                <div id="log-review-result" hidden>
+                  <h3 tabindex="-1" aria-describedby="log-review-result-message">照合結果：一致</h3>
+                  <p id="log-review-result-message">作業記録03の対応内容を確認しました。</p>
+                  <dl class="hub-facts">
+                    <div><dt>復元された作業内容</dt><dd>検索結果0件時の表示保守</dd></div>
+                  </dl>
+                  <p>関連する補足参照：1件</p>
+                  <p><a href="takase-investigation-method.html">個人作業控えを参照</a></p>
+                </div>
+              </section>
+            </td>
+          </tr>
           <tr><th scope="row">04</th><td>検索画面の動作確認</td><td><button type="button" class="log-record-toggle" aria-label="作業記録04の記入内容（完了）" aria-controls="log-record-04" aria-expanded="false">完了</button></td></tr>
           <tr id="log-record-04" hidden><td colspan="3">
             <dl class="hub-facts">
               <div><dt>作業内容</dt><dd>検索画面の動作確認</dd></div>
               <div><dt>対象の状態</dt><dd>例外的な入力</dd></div>
               <div><dt>入力処理</dt><dd>例外入力処理</dd></div>
-              <div><dt>具体的な対応内容</dt><dd>通常の検索条件に該当しない入力に対し、既定の処理が行われることを確認した。</dd></div>
+              <div><dt>具体的な対応内容</dt><dd>例外的な入力があった場合の表示対応</dd></div>
             </dl>
           </td></tr>
           <tr><th scope="row">05</th><td>未記入</td><td>—</td></tr>
@@ -84,32 +113,6 @@
           <tr><th scope="row">07</th><td>未記入</td><td>—</td></tr>
         </tbody>
       </table>
-      <section id="log-review" aria-labelledby="log-review-title" hidden>
-        <h3 id="log-review-title">作業記録03：詳細照合</h3>
-        <dl class="hub-facts">
-          <div><dt>作業内容</dt><dd>検索結果画面の保守</dd></div>
-          <div><dt>対象の状態</dt><dd>通常の結果表示とは異なる</dd></div>
-          <div><dt>入力処理</dt><dd>異常なし</dd></div>
-          <div><dt>具体的な対応内容</dt><dd>未記入</dd></div>
-        </dl>
-        <form id="log-review-form">
-          <label for="log-review-answer">関連する保守経路記録を参照し、対応内容を照合してください。</label>
-          <div class="hub-search-controls">
-            <input id="log-review-answer" type="text" autocomplete="off" spellcheck="false">
-            <button type="submit">照合する</button>
-          </div>
-          <p id="log-review-status" role="status"></p>
-        </form>
-        <div id="log-review-result" hidden>
-          <h3 tabindex="-1" aria-describedby="log-review-result-message">照合結果：一致</h3>
-          <p id="log-review-result-message">作業記録03の対応内容を確認しました。</p>
-          <dl class="hub-facts">
-            <div><dt>復元された作業内容</dt><dd>検索結果0件時の表示保守</dd></div>
-          </dl>
-          <p>関連する補足参照：1件</p>
-          <p><a href="takase-investigation-method.html">個人作業控えを参照</a></p>
-        </div>
-      </section>
       <h2>備考</h2>
       <p>通常の保守対応に加え、予定外の修正依頼や資料掲載作業が継続して発生。</p>
       <p>対応を優先した結果、作業記録の入力および整理に遅れが生じている。</p>
