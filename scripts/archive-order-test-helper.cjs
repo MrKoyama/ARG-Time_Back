@@ -132,6 +132,12 @@ function canonicalPublic(name,current){
   assert.equal(sha(Buffer.from(file.text)),file.sha256,name+' frozen text hash');
   const expected=forwardPublic(name,file.text);
   let source=withoutProgressReset(name, Buffer.isBuffer(current)?current.toString('utf8'):current);
+  if(name==='public/business-search.html')source=source.replace("['提携企業一覧','提携企業']","['提携企業一覧']");
+  if(name==='public/chronect-search.html')source=source
+    .replace(/^ {1}\{keywords:\['Chronect'\],title:'Chronect',url:'chronect\.html',description:'Chronectの公式サイトです。研究開発、事業・サービス、企業情報をご案内します。'\},\r?\n/m,'')
+    .replace("['クロネクト','運営会社','企業情報','会社概要']","['Chronect','クロネクト','運営会社','企業情報','会社概要']");
+  if(name==='public/chronect.html')source=source.replace('href="chronect.css?v=20261125-review1"','href="chronect.css"');
+  if(name==='public/chronect.css')source=source.replace('\n#company .hero-inner { max-width: 1180px; }\n\n','\n');
   if(name==='public/chronect-shared.js')source=source.replace("if(!currentPage||document.body.dataset.pageArchive==='exclude')return pages;","if(!currentPage)return pages;");
   if(name==='public/chronect-hub-search.html')source=source
     .replace('  <script src="final-chapter.js?v=20261124-final118"></script>\n','')

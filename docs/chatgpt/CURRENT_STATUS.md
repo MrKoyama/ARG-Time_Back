@@ -1,5 +1,9 @@
 # TIME BACK：制作進捗・検証状況
 
+## 2026-11-25 第1回作者テストプレイ
+
+作者のレビューから31件を登録。13件を実装し、作者の再確認待ち。A11は既存記録の表示を実装し、追加の記入例は一部保留。17件は未着手。ENDING 3到達時点での未訪問8ページは作者の観測として記録した。 [正式な改善管理資料](../11-playtest-improvements.md)
+
 ## 2026-11-24 本格テストプレイ向けの初期化
 
 共通アーカイブのリセットを全進行の初期化に置き換えた。確定後はNo.1へ戻る。公開No.82の開発用ボタンと強制完成処理は撤去済み。分岐点復帰や個別入力の正規リセット、公開外の回帰・結合テストは維持する。 [保存とテストの仕様](../07-development-and-design.md)・[検証記録](../10-audit-and-sources.md)
@@ -70,7 +74,7 @@ Chronect Hubでは、特殊検索結果（0件を含む）と専用辞書の登�
 
 ## 2026-11-16 調査報告書の取得・完成・添付
 
-No.82の「報告書をダウンロード」から約1.5秒の疑似ダウンロードを経て、No.83の編集ページ（takase-report-editor.html）を開く。本文の5項目を記入して「変更内容を保存する」を押すと、正解欄は緑色で確定し、誤答・未入力欄は赤色で再編集できる。保存時は約0.65秒スピナーを表示し、保存結果をダイアログで知らせる。未完成時は確認後も編集画面に留まる。全項目確定時は完成ダイアログの「確認」でNo.82へ戻る。「入力状況をリセット」を確認すると、取得状態を保持したまま5項目の入力・確定・完成状態を初期化する。完成文書は再閲覧でき、No.82の連絡先の下に「連絡する」が表示される。No.80では完成文書を手動で添付・解除できる。No.80からの提出と第7章の現行導線は冒頭の各節を参照。
+No.82の「報告書をダウンロード」から約1.5秒の疑似ダウンロードを経て、完了ダイアログの「ファイルを開く」でNo.83の編集ページ（takase-report-editor.html）を開く。BAS欄は `BAS` と `Behavior Assistance System` を同じ正解として判定する。本文の5項目を記入して「変更内容を保存する」を押すと、正解欄は緑色で確定し、誤答・未入力欄は赤色で再編集できる。保存時は約0.65秒スピナーを表示し、保存結果をダイアログで知らせる。未完成時は確認後も編集画面に留まる。全項目確定時は完成ダイアログの「確認」でNo.82へ戻る。「入力状況をリセット」を確認すると、取得状態を保持したまま5項目の入力・確定・完成状態を初期化する。完成文書は再閲覧でき、No.82の連絡先の下に「連絡する」が表示される。No.80では完成文書を手動で添付・解除できる。No.80からの提出と第7章の現行導線は冒頭の各節を参照。
 
 ## 2026-11-16 報告用資料の参照導線と調査作業控え
 
@@ -256,7 +260,7 @@ Hubは既存6資料＋今回3資料＝9資料。新59分類一覧、新60地域�
 | 79 | 試験運用 対応記録 ｜ Chronect Hub | [chronect-hub-trial-operation-mapping.html](../../public/chronect-hub-trial-operation-mapping.html) | 施設CのSUB-117の個別試験とSECOND SHIFTの直接対応。 |
 | 80 | 情報提供・取材依頼 ｜ Yaboo!ニュース | [yaboo-news-tip.html](../../public/yaboo-news-tip.html) | No.22のフッターから到達。完成文書を添付し、確認後に疑似提出できる。受付後はNo.89へ。 |
 | 81 | 報告用資料 参照記録 ｜ Chronect Hub | [chronect-hub-report-reference.html](../../public/chronect-hub-report-reference.html) | No.79の「報告用資料」を特殊検索。末尾の空白を操作して追加参照を表示し、リンクからNo.82へ進む。 |
-| 82 | 調査作業控え ｜ 調査ノート | [takase-work-notes.html](../../public/takase-work-notes.html) | No.81からリンク。高瀬がChronect在籍時に使用していた社用メールアドレス `y.takase@chronect.mail` をテキストで掲載。現在の利用状況は不明。疑似ダウンロードから専用画面で編集・完成でき、完成後は「連絡する」から疑似メールを開ける。 |
+| 82 | 調査作業控え ｜ 調査ノート | [takase-work-notes.html](../../public/takase-work-notes.html) | No.81からリンク。高瀬がChronect在籍時に使用していた社用メールアドレス `y.takase@chronect.mail` をテキストで掲載。現在の利用状況は不明。疑似ダウンロード完了後に「ファイルを開く」で専用画面に進み、完成後は「連絡する」から疑似メールを開ける。 |
 | 83 | 調査報告書 ｜ 調査ノート | [takase-report-editor.html](../../public/takase-report-editor.html) | No.82から取得した報告書を編集する。削除後は訪問済み画面を再訪できるが、本文は復元しない。 |
 | 84 | メール | [takase-mail.html](../../public/takase-mail.html) | 高瀬宛ての報告書送信・削除と、相沢宛ての初回6往復、続報、追加問い合わせと資料2件。 |
 | 85 | TIME BACK、累計1,000万ダウンロードを突破　時間活用サービスとして利用拡大 ｜ Yaboo!ニュース | [yaboo-news-aftermath.html](../../public/yaboo-news-aftermath.html) | 報告書削除後の後日談。末尾からNo.86へ。 |
@@ -271,7 +275,7 @@ Hubは既存6資料＋今回3資料＝9資料。新59分類一覧、新60地域�
 | 94 | 社内情報管理基盤 業務一覧 ｜ 株式会社ノードリンク・ワークス | [nodelink-info-duties.html](../../public/nodelink-info-duties.html) | 「社内情報管理基盤」で検索。 |
 | 95 | 潜入後の業務 ｜ 調査ノート | [takase-infiltration-duties.html](../../public/takase-infiltration-duties.html) | 「資料検索基盤」で検索。 |
 | 96 | 法人利用管理記録 ｜ 株式会社ノードリンク・ワークス | [nodelink-corporate-usage.html](../../public/nodelink-corporate-usage.html) | 「法人利用管理記録」で検索。 |
-| 97 | 調査の停滞 ｜ 調査ノート | [takase-investigation-stall.html](../../public/takase-investigation-stall.html) | 「利用実績照合」で検索。No.98への参照。 |
+| 97 | 調査の停滞 ｜ 調査ノート | [takase-investigation-stall.html](../../public/takase-investigation-stall.html) | 「利用実績照合」または「利用実績照合記録」で検索。No.98への参照。 |
 | 98 | Chronect社内連絡記録 ｜ Chronect Hub | [chronect-internal-correspondence.html](../../public/chronect-internal-correspondence.html) | No.97から参照。事後報告は旧高瀬宛てメールの最終返信後のみ。 |
 | 99 | 法人機器 保守管理記録 ｜ 株式会社ノードリンク・ワークス | [nodelink-device-maintenance.html](../../public/nodelink-device-maintenance.html) | 「法人機器保守管理」で検索。 |
 | 100 | 証拠の発見 ｜ 調査ノート | [takase-evidence-discovery.html](../../public/takase-evidence-discovery.html) | 「機器動作記録」で検索。No.101・102・106〜109への参照。 |

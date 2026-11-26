@@ -69,6 +69,8 @@
 .ending-story p { margin: 0 0 .7em; }
 .ending-story p:last-child { margin-bottom: 0; }
 
+#tip-full-ending .ending-story { text-align: center; }
+
 .ending-fragment {
   max-width: 52rem;
   margin: 0 auto clamp(1.25rem, 3vw, 2rem);

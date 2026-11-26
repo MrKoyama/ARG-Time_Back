@@ -3,7 +3,7 @@
 
   const takaseSteps = [
     {
-      "outgoing": "初めまして。突然のご連絡失礼します。\nChronectについて調査していたところ、社内の資料と思われる記録をいくつか発見しました。\n調査作業控えに記載されていたメールアドレスから連絡しています。\nこちらは高瀬悠真さんの連絡先でしょうか？",
+      "outgoing": "初めまして。突然のご連絡失礼します。\nChronectについて調査していたところ、社内の資料と思われる記録をいくつか発見しました。\n調査作業控えに記載されていたメールアドレスを見つけ、ご連絡しました。\nこちらは高瀬悠真さんの連絡先でしょうか？",
       "reply": "失礼ですが、どちら様でしょうか。\n内部資料というのは、何のことでしょう。\nそもそも、社外の方が閲覧できるようなものではないはずです。\nこのメールアドレスをどこで知ったのか分かりませんが、いたずらや興味本位の連絡でしたら、お控えください。",
       "mobileLabel": "高瀬に連絡する"
     },
@@ -168,6 +168,7 @@
     let attached = false;
     let deletionDialogState = '';
     let deletionTimer;
+    let deletionFrame;
     let fading = false;
     let aftermathTimer;
     let pendingConfirmAction = null;
@@ -431,6 +432,7 @@
       if (activeContact.id === 'takase' && current === 0) {
         attached = false;
         window.clearTimeout(deletionTimer);
+        window.cancelAnimationFrame(deletionFrame);
         if (reportPicker.open) reportPicker.close();
         if (reportDeleteDialog.open) reportDeleteDialog.close();
         if (fading) resetAftermathFade();
@@ -724,15 +726,27 @@
     });
     reportDeleteConfirm.addEventListener('click', function () {
       if (deletionDialogState !== 'confirm') return;
+      const duration = reducedMotion.matches ? 100 : 5000;
+      const started = performance.now();
+      reportDeleteProgress.value = 0;
       showDeletionDialog('deleting');
+      if (!reducedMotion.matches) {
+        function showProgress(now) {
+          reportDeleteProgress.value = Math.min(100, (now - started) / duration * 100);
+          if (reportDeleteProgress.value < 100) deletionFrame = window.requestAnimationFrame(showProgress);
+        }
+        deletionFrame = window.requestAnimationFrame(showProgress);
+      }
       deletionTimer = window.setTimeout(function () {
+        window.cancelAnimationFrame(deletionFrame);
+        reportDeleteProgress.value = 100;
         if (!deleteReport()) {
           showDeletionDialog('error');
           return;
         }
         refresh();
         showDeletionDialog('done');
-      }, reducedMotion.matches ? 100 : 1750);
+      }, duration);
     });
     reportDeleteClose.addEventListener('click', function () {
       reportDeleteDialog.close();

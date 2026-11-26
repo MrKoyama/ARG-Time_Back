@@ -63,7 +63,16 @@
   width: 25%;
 }
 
+.hub-shell .hub-facts > .hub-facts-lookup {
+  grid-template-columns: max-content minmax(0, 1fr);
+}
+
 @media (max-width: 480px) {
+  .hub-shell .hub-facts > .hub-facts-lookup {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3px;
+  }
+
   .hub-evidence-table th,
   .hub-evidence-table td {
     padding-inline: 4px;

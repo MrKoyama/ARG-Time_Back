@@ -22,7 +22,7 @@ No.92と、No.93〜97・99・100・102の本文上部にある検索欄は同一
 | `社内情報管理基盤` | No.94 [社内情報管理基盤 業務一覧](../public/nodelink-info-duties.html) |
 | `資料検索基盤` | No.95 [潜入後の業務](../public/takase-infiltration-duties.html) |
 | `法人利用管理記録` | No.96 [法人利用管理記録](../public/nodelink-corporate-usage.html) |
-| `利用実績照合` | No.97 [調査の停滞](../public/takase-investigation-stall.html) |
+| `利用実績照合`、`利用実績照合記録` | No.97 [調査の停滞](../public/takase-investigation-stall.html) |
 | `法人機器保守管理` | No.99 [法人機器 保守管理記録](../public/nodelink-device-maintenance.html) |
 | `機器動作記録` | No.100 [証拠の発見](../public/takase-evidence-discovery.html) |
 
@@ -247,13 +247,14 @@ No.45→34直リンクは作らず、新3資料も関連ナビはHub入口のみ
 | Behavior Assistance Platform / BAP / 従業員動向管理 | Behavior Assistance Platform | `behavior-assistance-platform.html` | 実在 |
 | 行動支援機器・システム / 行動支援機器 / 行動支援システム | 行動支援機器・システム | `behavior-assistance-equipment.html` | 実在 |
 | 利用前オリエンテーション | 利用前オリエンテーション | `pre-use-orientation.html` | 実在 |
-| 提携企業一覧 | 提携企業一覧 | `partners.html` | 実在 |
+| 提携企業一覧 / 提携企業 | 提携企業一覧 | `partners.html` | 実在 |
 
 ## chronect-search.html
 
 | 許可される検索語 | 結果名 | 遷移先 | 現況 |
 |---|---|---|---|
-| Chronect / クロネクト / 運営会社 / 企業情報 / 会社概要 | 企業情報 | `chronect-company.html` | 実在 |
+| Chronect | Chronect | `chronect.html` | 実在 |
+| クロネクト / 運営会社 / 企業情報 / 会社概要 | 企業情報 | `chronect-company.html` | 実在 |
 | 研究開発 / 神経科学 / 時間認知 / 睡眠研究 | 研究開発 | `chronect-research.html` | 実在 |
 | 事業・サービス / 事業内容 / サービス / TIME BACK | 事業・サービス | `chronect-services.html` | 実在 |
 | TIME BACK for Business / 法人向け / 法人向けサービス | TIME BACK for Business | `business.html` | 実在 |
@@ -358,7 +359,7 @@ HTMLのhref/srcと検索DBのurlから検出。外部サイトへの通信確認
 
 - この一覧は2026-10-23時点。新規追加時は実ファイルと一緒に更新する。
 - 検索に登録されないページも通常リンク・アーカイブから到達する。逆に検索に登録されてもファイルがない例がある。
-- TIME BACKのChronect検索は企業概要14番へ直接到達する。必ず13番トップを経由するわけではない。
+- 個人向けTIME BACKで `Chronect` を検索するとNo.14、Chronect企業サイト内で同じ語を検索するとNo.13が表示される。No.14へは企業サイトの「企業情報」リンクや `企業情報` など既存の検索語からも到達できる。
 - 2026-10-26作者承認：Businessの公園検索登録を削除。「明浜みどり公園」「みどり公園」「公園」は0件。「明浜商店街振興会」→36番と「生活環境実証エリア」→35番は維持。
 - 高瀬、SECOND SHIFT、HubのC/B/A階層は未実装。管理コード1件と公開要旨の照会だけはHub専用DBへ実装済み。
 

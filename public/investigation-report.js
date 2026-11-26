@@ -23,7 +23,10 @@
   const notesUrl = 'takase-work-notes.html';
   const editorUrl = 'takase-report-editor.html';
   const emptyDraft = () => ({ status: 'unacquired', entries: answers.map(() => ''), confirmed: answers.map(() => false) });
-  const matches = (value, index) => normalize(value) === answers[index];
+  const matches = (value, index) => {
+    const normalized = normalize(value);
+    return normalized === answers[index] || (index === 0 && normalized === 'BEHAVIOR ASSISTANCE SYSTEM');
+  };
   const byId = id => document.getElementById(id);
 
   function hasVisited(href) {
@@ -110,6 +113,7 @@
     const progressPanel = byId('report-download-progress');
     const progress = progressPanel.querySelector('progress');
     const contact = byId('report-contact');
+    const dialog = byId('report-download-dialog');
     let frame = null;
 
     function render() {
@@ -139,10 +143,22 @@
       const started = performance.now();
       function update(now) {
         progress.value = Math.min(100, (now - started) / 15);
-        if (progress.value < 100) frame = requestAnimationFrame(update);
-        else location.assign(editorUrl);
+        if (progress.value < 100) {
+          frame = requestAnimationFrame(update);
+          return;
+        }
+        frame = null;
+        progressPanel.hidden = true;
+        render();
+        if (readReport().status !== 'unacquired') {
+          dialog.returnValue = '';
+          dialog.showModal();
+        }
       }
       frame = requestAnimationFrame(update);
+    });
+    dialog.addEventListener('close', () => {
+      if (dialog.returnValue === 'open' && readReport().status !== 'unacquired') location.assign(editorUrl);
     });
 
     contact.addEventListener('click', () => {

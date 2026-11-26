@@ -197,7 +197,7 @@ No.62〜68を改修。No.65・67・68を改題。アーカイブは1〜68、上�
 | 79 | [chronect-hub-trial-operation-mapping.html](../public/chronect-hub-trial-operation-mapping.html) | 試験運用 対応記録 ｜ Chronect Hub | 施設CのSUB-117の個別試験とSECOND SHIFTの直接対応。 |
 | 80 | [yaboo-news-tip.html](../public/yaboo-news-tip.html) | 情報提供・取材依頼 ｜ Yaboo!ニュース | No.22のフッターから到達。完成文書を添付し、確認後に疑似提出できる。受付後はNo.89へ。 |
 | 81 | [chronect-hub-report-reference.html](../public/chronect-hub-report-reference.html) | 報告用資料 参照記録 ｜ Chronect Hub | No.79の「報告用資料」を特殊検索。No.82への追加参照を掲載。 |
-| 82 | [takase-work-notes.html](../public/takase-work-notes.html) | 調査作業控え ｜ 調査ノート | No.81からリンク。高瀬がChronect在籍時に使用していた社用メールアドレス `y.takase@chronect.mail` をテキストで掲載。現在の利用状況は不明。疑似ダウンロードから専用画面で編集・完成でき、完成後は「連絡する」から疑似メールを開ける。 |
+| 82 | [takase-work-notes.html](../public/takase-work-notes.html) | 調査作業控え ｜ 調査ノート | No.81からリンク。高瀬がChronect在籍時に使用していた社用メールアドレス `y.takase@chronect.mail` をテキストで掲載。現在の利用状況は不明。疑似ダウンロード完了後に「ファイルを開く」で専用画面に進み、完成後は「連絡する」から疑似メールを開ける。 |
 | 83 | [takase-report-editor.html](../public/takase-report-editor.html) | 調査報告書 ｜ 調査ノート | No.82から取得した報告書を編集する。削除後は訪問済み画面を再訪できるが、本文は復元しない。 |
 | 84 | [takase-mail.html](../public/takase-mail.html) | メール | 高瀬宛ての報告書送信・削除と、相沢宛ての初回6往復と続報・追加問い合わせを扱う疑似メール。 |
 | 85 | [yaboo-news-aftermath.html](../public/yaboo-news-aftermath.html) | TIME BACK、累計1,000万ダウンロードを突破　時間活用サービスとして利用拡大 ｜ Yaboo!ニュース | 報告書削除後の後日談。末尾からNo.86へ。 |
@@ -212,7 +212,7 @@ No.62〜68を改修。No.65・67・68を改題。アーカイブは1〜68、上�
 | 94 | [nodelink-info-duties.html](../public/nodelink-info-duties.html) | 社内情報管理基盤 業務一覧 ｜ 株式会社ノードリンク・ワークス | 人材情報の担当区域「社内情報管理基盤」で検索する。 |
 | 95 | [takase-infiltration-duties.html](../public/takase-infiltration-duties.html) | 潜入後の業務 ｜ 調査ノート | 業務一覧の「資料検索基盤」で検索する。個人記録。 |
 | 96 | [nodelink-corporate-usage.html](../public/nodelink-corporate-usage.html) | 法人利用管理記録 ｜ 株式会社ノードリンク・ワークス | ノート①の「法人利用管理記録」で検索する。 |
-| 97 | [takase-investigation-stall.html](../public/takase-investigation-stall.html) | 調査の停滞 ｜ 調査ノート | 管理記録の「利用実績照合」で検索する。個人記録からNo.98を参照する。 |
+| 97 | [takase-investigation-stall.html](../public/takase-investigation-stall.html) | 調査の停滞 ｜ 調査ノート | 管理記録の「利用実績照合」または別名「利用実績照合記録」で検索する。個人記録からNo.98を参照する。 |
 | 98 | [chronect-internal-correspondence.html](../public/chronect-internal-correspondence.html) | Chronect社内連絡記録 ｜ Chronect Hub | No.97から参照し、既訪問なら再訪できる。事後報告は旧高瀬宛てメールの最終返信以降に表示。 |
 | 99 | [nodelink-device-maintenance.html](../public/nodelink-device-maintenance.html) | 法人機器 保守管理記録 ｜ 株式会社ノードリンク・ワークス | ノート②の「法人機器保守管理」で検索する。 |
 | 100 | [takase-evidence-discovery.html](../public/takase-evidence-discovery.html) | 証拠の発見 ｜ 調査ノート | 保守管理記録の「機器動作記録」で検索する。No.101・102・106〜109への参照を含む。 |
