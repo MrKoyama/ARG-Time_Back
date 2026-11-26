@@ -394,6 +394,13 @@ runChrome(async ({ evaluate, wait, visible, click, input, page, go, width, check
   await page('yaboo-news-aftermath.html');
   await click('a[href="timeback-ending-record.html"]');
   await page('timeback-ending-record.html');
+  await go('takase-mail.html');
+  await wait(visible('#resetButton:disabled .reset-reason'));
+  assert.equal(await evaluate('document.querySelector("#resetButton .reset-reason").textContent'), '報告書は完全削除済み');
+  await clickResetControl('#resetButton');
+  assert.equal(await evaluate(visible('#confirmOverlay.is-open')), false);
+  assert.equal(await evaluate('localStorage.getItem("timeback-investigation-mail-v1")'), '6');
+  await go('timeback-ending-record.html');
   await returnToBranch();
   assert.equal(await evaluate('JSON.parse(' + report + ').status'), 'complete');
   await go(editor);

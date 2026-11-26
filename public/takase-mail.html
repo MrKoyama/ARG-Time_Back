@@ -252,12 +252,21 @@
       cursor: pointer;
     }
 
-    .reset-button:hover,
-    .reset-button:focus-visible {
+    .reset-button:enabled:hover,
+    .reset-button:enabled:focus-visible {
       border-color: #e09b9b;
       color: #a12a2a;
       background: #fff7f7;
     }
+
+    .reset-button:disabled {
+      color: #64656a;
+      background: #f1f0f1;
+      cursor: not-allowed;
+    }
+
+    .reset-reason { display: none; }
+    .reset-button:disabled .reset-reason { display: block; }
 
     .message-log {
       min-height: 0;
@@ -1221,7 +1230,7 @@
             </div>
             <div class="thread-actions">
               <span class="thread-status" id="threadStatus">あなたの入力待ち</span>
-              <button class="reset-button" id="resetButton" type="button">↻ 会話をリセット</button>
+              <button class="reset-button" id="resetButton" type="button">↻ 会話をリセット<span class="reset-reason">報告書は完全削除済み</span></button>
             </div>
           </header>
 
