@@ -305,6 +305,16 @@ async function main(runScenario) {
     await send('Page.reload');
     await wait(`document.readyState === 'complete' && ${visible(dateSelector)}`);
     assert.equal(await evaluate(receivedAt), String(stamp));
+    // No.84 accepts the numeric checkpoint even when the stored string isn't canonical.
+    await evaluate(`localStorage.setItem('timeback-investigation-mail-v1', '4.0');
+      localStorage.removeItem(${JSON.stringify(receivedKey)});`);
+    const beforeLegacyReload = await evaluate('performance.timeOrigin');
+    await send('Page.reload');
+    await wait(`performance.timeOrigin !== ${beforeLegacyReload} && document.readyState === 'complete'
+      && ${visible('#chapter-seven-followup')}`);
+    assert.equal(await evaluate(visible(dateSelector)), false);
+    assert.equal(await evaluate(receivedAt), null);
+    await evaluate(`localStorage.setItem(${JSON.stringify(receivedKey)}, ${JSON.stringify(String(stamp))});`);
     await go('takase-mail.html');
     await click('#reportDelete');
     await click('#reportDeleteConfirm');

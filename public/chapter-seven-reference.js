@@ -81,8 +81,9 @@
       hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
     });
     function render() {
-      // The final reply is delivered at 4. Deletion and ending are later checkpoints.
-      followup.hidden = !['4', '5', '6'].includes(read(mailKey));
+      // Match No.84's numeric checkpoints. The timestamp is optional.
+      const phase = Number(read(mailKey));
+      followup.hidden = ![4, 5, 6].includes(phase);
       if (!time) return;
       const stored = read(mailFinalReplyAtKey);
       const date = new Date(/^\d+$/.test(stored ?? '') ? Number(stored) : NaN);
