@@ -11,7 +11,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('config', 'G-DG4X4HMEC2', {send_page_view: false});
   </script>
-  <link rel="stylesheet" href="yaboo-news.css?v=20261126-review2">
+  <link rel="stylesheet" href="yaboo-news.css?v=20261127-tip">
   <link rel="stylesheet" href="archive.css?v=20261029">
   <script src="progress-reset.js?v=20261124"></script>
 </head>
@@ -43,19 +43,39 @@
       <section class="yaboo-attachment" aria-labelledby="attachment-heading">
         <h2 id="attachment-heading">添付書類</h2>
         <p id="attachment-status" role="status">添付できる文書がありません。</p>
-        <label id="tip-report-choice" hidden>添付する文書
-          <select id="tip-report-kind"></select>
-        </label>
         <div id="tip-file" class="yaboo-tip-file" hidden>
           <span class="yaboo-tip-file-mark" aria-hidden="true">✓</span>
-          <span id="tip-file-name">TIME BACKの売却時間帯における身体利用に関する調査報告書</span>
+          <span id="tip-file-name"></span>
         </div>
-        <button id="report-attach" type="button" disabled aria-describedby="attachment-status">文書を添付する</button>
+        <div class="yaboo-tip-attachment-actions">
+          <button id="report-attach" type="button" aria-haspopup="dialog" aria-describedby="attachment-status">文書を添付する</button>
+          <button id="tip-remove-file" type="button" hidden>添付を解除する</button>
+        </div>
       </section>
-      <button id="tip-submit" class="yaboo-tip-primary" type="button" disabled>情報提供を送信する</button>
-      <p id="tip-sending" role="status"></p>
+      <button id="tip-submit" class="yaboo-tip-primary" type="button" aria-haspopup="dialog" disabled>情報提供する</button>
       <p id="submission-status" role="status"></p>
     </div>
+    <dialog id="tip-picker" class="yaboo-tip-dialog yaboo-tip-picker" aria-labelledby="tip-picker-title">
+      <h2 id="tip-picker-title">ファイルを選択</h2>
+      <form method="dialog">
+        <fieldset class="yaboo-tip-folder">
+          <legend>ダウンロード</legend>
+          <div id="tip-picker-files"></div>
+          <p id="tip-picker-empty">添付できる文書がありません。</p>
+        </fieldset>
+        <div class="yaboo-tip-actions">
+          <button type="submit" value="cancel">キャンセル</button>
+          <button id="tip-picker-open" class="yaboo-tip-primary" type="submit" value="attach" disabled>開く</button>
+        </div>
+      </form>
+    </dialog>
+    <template id="tip-picker-entry">
+      <label class="yaboo-tip-picker-entry">
+        <input type="radio" name="tip-report">
+        <span class="yaboo-tip-document-icon" aria-hidden="true"></span>
+        <span class="yaboo-tip-picker-name"></span>
+      </label>
+    </template>
     <dialog id="tip-confirmation" class="yaboo-tip-dialog" aria-labelledby="tip-confirmation-title" aria-describedby="tip-confirmation-body">
       <h2 id="tip-confirmation-title">情報提供の確認</h2>
       <div id="tip-confirmation-body">
@@ -64,16 +84,31 @@
         <p>提供された資料は編集部で確認されます。記事への掲載を保証するものではありません。</p>
       </div>
       <form method="dialog" class="yaboo-tip-actions">
-        <button type="submit" value="cancel" autofocus>戻る</button>
+        <button type="submit" value="cancel" autofocus>キャンセル</button>
         <button id="tip-confirm-submit" class="yaboo-tip-primary" type="submit" value="submit" disabled>情報提供を送信する</button>
       </form>
     </dialog>
-    <section id="tip-receipt" class="yaboo-tip-receipt" aria-labelledby="tip-receipt-title" hidden>
-      <h2 id="tip-receipt-title" tabindex="-1">情報提供を受け付けました</h2>
-      <p>情報提供を受け付けました。お送りいただいた内容は、編集部で確認いたします。</p>
-      <p id="tip-article-notice" role="status"></p>
-      <a id="tip-article" href="yaboo-news-investigation.html" hidden>数日後のYaboo!ニュースを確認する</a>
-      <a id="tip-full-article" href="yaboo-news-trial-disclosure.html" hidden>数日後のYaboo!ニュースを確認する（高瀬悠真の完成報告書）</a>
+    <dialog id="tip-sending" class="yaboo-tip-dialog" aria-labelledby="tip-sending-title">
+      <h2 id="tip-sending-title" tabindex="-1" autofocus>資料を送信しています</h2>
+      <div class="yaboo-tip-meter">
+        <progress id="tip-progress" max="100" value="0" aria-labelledby="tip-sending-title"></progress>
+        <span id="tip-percent" aria-hidden="true">0%</span>
+      </div>
+    </dialog>
+    <dialog id="tip-receipt" class="yaboo-tip-dialog" aria-labelledby="tip-receipt-title" aria-describedby="tip-receipt-body">
+      <h2 id="tip-receipt-title">情報提供を受け付けました</h2>
+      <p id="tip-receipt-body">ご提供いただいた資料は、編集部にて内容を確認いたします。情報提供にご協力いただき、ありがとうございました。</p>
+      <form method="dialog" class="yaboo-tip-actions">
+        <button class="yaboo-tip-primary" type="submit" autofocus>閉じる</button>
+      </form>
+    </dialog>
+    <dialog id="tip-elapsed" class="yaboo-tip-elapsed" aria-labelledby="tip-elapsed-title">
+      <p id="tip-elapsed-title" tabindex="-1" autofocus>数日後――</p>
+    </dialog>
+    <section id="tip-submitted" class="yaboo-tip-receipt" aria-labelledby="tip-submitted-title" hidden>
+      <h2 id="tip-submitted-title">提出済みの情報提供</h2>
+      <a id="tip-article" href="yaboo-news-investigation.html" hidden>調査報道を読む（あなたが完成させた報告書）</a>
+      <a id="tip-full-article" href="yaboo-news-trial-disclosure.html" hidden>調査報道を読む（高瀬悠真の完成報告書）</a>
     </section>
     <p><a href="yaboo-news-chronect.html">記事に戻る</a></p>
   </main>
@@ -89,6 +124,6 @@
   <div class="archive-overlay" id="archiveOverlay" aria-hidden="true"><section class="archive-dialog" role="dialog" aria-modal="true" aria-labelledby="archiveTitle"><header class="archive-header"><h2 id="archiveTitle">ページアーカイブ</h2><button class="archive-close" id="archiveClose" type="button" aria-label="ページアーカイブを閉じる">×</button></header><div class="archive-content"><p class="archive-description">一度訪れたページが記録されます。解放済みのページを選ぶと、そのページへ戻れます。未探索のページは「？？？」と表示されます。ページ番号は閲覧の目安です。順番に迷ったときは番号を参考にしつつ、気になった情報から自由にご覧ください。</p><ol class="archive-list" id="archiveList"></ol><div class="archive-tools"><button class="archive-reset-button" id="archiveResetButton" type="button">すべての進行状況をリセット</button><div class="reset-confirm" id="resetConfirm" role="alertdialog" aria-labelledby="resetTitle" aria-describedby="resetDescription resetWarning" hidden><p id="resetTitle"><strong>進行状況をリセットしますか？</strong></p><p id="resetDescription">これまでに閲覧したページ、メール、報告書、エンディングの到達記録など、すべての進行状況が削除されます。</p><p id="resetWarning">この操作は取り消せません。</p><p id="resetError" role="status" hidden>進行状況をリセットできませんでした。ブラウザの保存設定を確認してください。</p><div class="reset-actions"><button id="resetCancel" type="button">キャンセル</button><button class="danger" id="resetAccept" type="button">リセットする</button></div></div></div></div></section></div>
   <script src="chronect-shared.js?v=reset20261124"></script>
   <script src="chapter-seven-reference.js?v=20261124-evidence109"></script>
-  <script src="investigation-report.js?v=20261125-review1"></script>
+  <script src="investigation-report.js?v=20261127-tip"></script>
 </body>
 </html>

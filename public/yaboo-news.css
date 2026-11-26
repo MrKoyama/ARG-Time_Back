@@ -101,6 +101,7 @@ button {
 button:disabled { background: #eceeee; color: #555d5f; }
 .yaboo-search button:disabled { background: #23699a; color: #fff; }
 main > button + p { margin-top: 1rem; }
+html:has(.yaboo-tip-dialog[open], .yaboo-tip-elapsed[open]) { overflow: hidden; }
 .yaboo-tip-dialog {
   width: min(30rem, calc(100% - 2rem));
   padding: clamp(1rem, 4vw, 1.5rem);
@@ -109,8 +110,10 @@ main > button + p { margin-top: 1rem; }
   overflow: auto;
 }
 .yaboo-tip-dialog::backdrop { background: rgb(0 0 0 / 40%); }
-.yaboo-tip-dialog h2, #tip-receipt h2 { margin-bottom: .75rem; }
-.yaboo-tip-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .5rem; }
+.yaboo-tip-dialog h2 { margin: 0 0 .75rem; }
+.yaboo-tip-actions, .yaboo-tip-attachment-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.yaboo-tip-actions { justify-content: flex-end; margin-top: 1rem; }
+.yaboo-tip-dialog :focus-visible { outline: 2px solid #005eaa; outline-offset: 2px; }
 .yaboo-tip-primary:enabled {
   border-color: #005eaa;
   background: #005eaa;
@@ -130,11 +133,40 @@ main > button + p { margin-top: 1rem; }
   line-height: 1.55;
 }
 .yaboo-tip-file[hidden] { display: none; }
-#tip-report-kind {
-  display: block;
-  max-width: 100%;
-  margin: .4rem 0 .75rem;
-  font: inherit;
+.yaboo-tip-picker { width: min(36rem, calc(100% - 2rem)); }
+.yaboo-tip-folder {
+  min-width: 0;
+  margin: 0;
+  padding: .5rem;
+  border: 1px solid #c8d1d9;
+  border-radius: .25rem;
+  background: #f6f8fa;
+}
+.yaboo-tip-folder legend { padding-inline: .4rem; font-weight: 700; }
+.yaboo-tip-folder p { margin: .5rem; }
+.yaboo-tip-picker-entry {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: center;
+  gap: .65rem;
+  min-height: 3rem;
+  padding: .6rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.yaboo-tip-picker-entry:hover { background: #eef3f7; }
+.yaboo-tip-picker-entry:has(input:checked) { border-color: #6b99bf; background: #e3eff8; }
+.yaboo-tip-picker-entry:focus-within { outline: 2px solid #005eaa; outline-offset: -2px; }
+.yaboo-tip-picker-entry input { margin: 0; accent-color: #005eaa; }
+.yaboo-tip-document-icon {
+  width: 1.05rem;
+  height: 1.3rem;
+  border: 1px solid #58788e;
+  border-radius: .15rem;
+  background: linear-gradient(#58788e, #58788e) center 45% / 55% 1px no-repeat,
+    linear-gradient(#58788e, #58788e) center 68% / 55% 1px no-repeat #fff;
 }
 .yaboo-tip-file-mark {
   flex: 0 0 1.25rem;
@@ -146,44 +178,38 @@ main > button + p { margin-top: 1rem; }
   text-align: center;
 }
 #submission-status:not(:empty) { margin-top: 1rem; }
-#tip-sending:empty, #tip-article-notice:empty { margin: 0; }
-#tip-sending:not(:empty) { margin-top: .75rem; }
-#tip-sending:not(:empty)::before {
-  display: inline-block;
-  width: .9em;
-  height: .9em;
-  margin-inline-end: .5em;
-  border: 2px solid #c9dce8;
-  border-top-color: #005eaa;
-  border-radius: 50%;
-  vertical-align: -.05em;
-  animation: yaboo-tip-spin .7s linear infinite;
-  content: "";
+.yaboo-tip-meter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 4ch;
+  gap: .75rem;
+  align-items: center;
+  font-variant-numeric: tabular-nums;
 }
-@keyframes yaboo-tip-spin { to { transform: rotate(360deg); } }
+.yaboo-tip-meter progress { width: 100%; height: .8rem; accent-color: #005eaa; }
+.yaboo-tip-meter span { text-align: end; }
+.yaboo-tip-elapsed {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: clamp(1.35rem, 4vw, 2rem);
+  text-align: center;
+}
+.yaboo-tip-elapsed::backdrop { background: #000; animation: yaboo-tip-darken 400ms ease-out both; }
+.yaboo-tip-elapsed p { margin: 0; outline: none; animation: yaboo-tip-elapsed 4s ease-in-out both; }
+@keyframes yaboo-tip-darken { from { opacity: 0; } to { opacity: 1; } }
+@keyframes yaboo-tip-elapsed {
+  0%, 12%, 92%, 100% { opacity: 0; }
+  28%, 74% { opacity: 1; }
+}
 @media (prefers-reduced-motion: reduce) {
-  #tip-sending:not(:empty)::before { animation: none; }
+  .yaboo-tip-elapsed::backdrop, .yaboo-tip-elapsed p { animation: none; }
 }
 .yaboo-tip-receipt {
   margin-block: 1rem;
   padding: clamp(1rem, 4vw, 1.5rem);
   border: 1px solid #d4dadb;
   background: #f6f7f7;
-}
-#tip-article-notice:not(:empty) {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 11;
-  margin: 0;
-  padding: .45rem 1rem;
-  transform: translate(-50%, -50%);
-  border: 1px solid #d4dadb;
-  border-radius: .25rem;
-  background: #fff;
-  color: #333;
-  text-align: center;
-  pointer-events: none;
 }
 #tip-article, #tip-full-article {
   display: inline-block;

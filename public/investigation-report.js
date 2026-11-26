@@ -435,38 +435,45 @@
   function initAttachment(button) {
     const chapterSeven = window.timebackChapterSeven;
     const status = byId('attachment-status');
-    const choice = byId('tip-report-choice');
-    const select = byId('tip-report-kind');
+    const picker = byId('tip-picker');
+    const pickerFiles = byId('tip-picker-files');
+    const pickerEmpty = byId('tip-picker-empty');
+    const pickerEntry = byId('tip-picker-entry');
+    const pickerOpen = byId('tip-picker-open');
     const file = byId('tip-file');
     const fileName = byId('tip-file-name');
+    const remove = byId('tip-remove-file');
     const message = byId('submission-status');
     const controls = byId('tip-controls');
     const submit = byId('tip-submit');
     const dialog = byId('tip-confirmation');
     const confirm = byId('tip-confirm-submit');
     const confirmFile = byId('tip-confirm-file');
-    const sendingStatus = byId('tip-sending');
+    const sending = byId('tip-sending');
+    const progress = byId('tip-progress');
+    const percent = byId('tip-percent');
     const receipt = byId('tip-receipt');
-    const elapsedStatus = byId('tip-article-notice');
+    const elapsed = byId('tip-elapsed');
+    const submittedPanel = byId('tip-submitted');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const sendDuration = 2400;
+    const elapsedDuration = 4000;
     const reports = {
       player: {
         name: 'TIME BACKの売却時間帯における身体利用に関する調査報告書',
-        label: 'あなたが完成させた報告書',
         link: byId('tip-article'),
         key: tipKey
       },
       takase: {
         name: chapterSeven.reportTitle,
-        label: '高瀬悠真が完成させた報告書',
         link: byId('tip-full-article'),
         key: takaseTipKey
       }
     };
-    let selected = '';
     let attached = '';
     let confirmed = '';
-    let presentation = '';
     let activeSubmission = '';
+    let frame;
     let presentationTimer;
 
     function availableReports() {
@@ -478,104 +485,163 @@
 
     function stopPresentation() {
       window.clearTimeout(presentationTimer);
-      presentation = '';
+      window.cancelAnimationFrame(frame);
       activeSubmission = '';
+      for (const panel of [sending, receipt, elapsed]) {
+        if (panel.open) panel.close();
+      }
+    }
+
+    const selectedReport = () => pickerFiles.querySelector('input:checked')?.value;
+
+    function renderPicker(available) {
+      const current = Array.from(pickerFiles.querySelectorAll('input'), input => input.value);
+      if (current.join() !== available.join()) {
+        pickerFiles.replaceChildren(...available.map(kind => {
+          const entry = pickerEntry.content.cloneNode(true);
+          entry.querySelector('input').value = kind;
+          entry.querySelector('.yaboo-tip-picker-name').textContent = reports[kind].name;
+          return entry;
+        }));
+      }
+      pickerEmpty.hidden = available.length > 0;
+      pickerOpen.disabled = !available.includes(selectedReport());
     }
 
     function render() {
       const available = availableReports();
       const submitted = Object.keys(reports).filter(kind => tipSubmitted(kind));
       if (activeSubmission && !submitted.includes(activeSubmission)) stopPresentation();
-      const sending = presentation === 'sending';
-      if (!available.includes(attached)) attached = '';
-      if (!available.includes(selected)) selected = available.length === 1 ? available[0] : '';
-
-      const options = available.length > 1 ? ['', ...available] : available;
-      if (Array.from(select.options, option => option.value).join() !== options.join()) {
-        select.replaceChildren(...options.map(kind => new Option(reports[kind]?.label || '文書を選択', kind)));
-      }
-      select.value = selected;
-      choice.hidden = available.length < 2;
-      select.disabled = sending || Boolean(attached);
+      const busy = Boolean(activeSubmission);
+      if (!busy && !available.includes(attached)) attached = '';
       status.textContent = attached ? '添付済み'
-        : available.length === 1 ? (available[0] === 'player' ? '調査報告書（完成済み）' : reports.takase.label)
-          : available.length ? '添付する文書を選んでください。'
-            : readReport().status === 'draft' ? '調査報告書_草稿（未完成）' : '添付できる文書がありません。';
+        : available.length ? 'ダウンロードから文書を選択できます。' : '添付できる文書がありません。';
       file.hidden = !attached;
       fileName.textContent = reports[attached]?.name || '';
-      button.disabled = !selected || sending;
-      button.textContent = attached ? '添付を解除する' : '文書を添付する';
-      submit.disabled = confirm.disabled = !attached || sending;
-      controls.hidden = submitted.length > 0 && !available.length && !sending;
-      sendingStatus.textContent = sending ? '送信しています…' : '';
-      receipt.hidden = !submitted.length || sending;
-      elapsedStatus.textContent = presentation === 'elapsed' ? '数日後' : '';
+      button.disabled = remove.disabled = busy;
+      button.textContent = attached ? '別の文書を選ぶ' : '文書を添付する';
+      remove.hidden = !attached;
+      submit.disabled = confirm.disabled = !attached || busy;
+      controls.hidden = submitted.length > 0 && !available.length && !busy;
+      submittedPanel.hidden = !submitted.length || busy;
       for (const [kind, report] of Object.entries(reports)) {
-        report.link.hidden = !submitted.includes(kind) || presentation !== '';
+        report.link.hidden = !submitted.includes(kind);
       }
-      reports.player.link.textContent = submitted.includes('takase')
-        ? '数日後のYaboo!ニュースを確認する（あなたが完成させた報告書）'
-        : '数日後のYaboo!ニュースを確認する';
-      if (dialog.open && !available.includes(confirmed)) dialog.close('');
+      if (dialog.open && attached !== confirmed) dialog.close();
+      if (picker.open) renderPicker(available);
     }
 
-    select.addEventListener('change', () => {
-      selected = select.value;
+    button.addEventListener('click', () => {
+      if (activeSubmission || controls.hidden || picker.open || !window.timebackProgress.isCurrent()) return;
       message.textContent = '';
+      picker.querySelector('form').reset();
+      renderPicker(availableReports());
+      button.focus({ preventScroll: true });
+      picker.showModal();
+    });
+    picker.addEventListener('change', () => renderPicker(availableReports()));
+    picker.addEventListener('submit', event => {
+      if (event.submitter !== pickerOpen) return;
+      event.preventDefault();
+      const kind = selectedReport();
+      if (activeSubmission || !window.timebackProgress.isCurrent() || !availableReports().includes(kind)) {
+        render();
+        return;
+      }
+      attached = kind;
+      picker.close();
       render();
     });
-    button.addEventListener('click', () => {
-      if (!availableReports().includes(selected) || presentation === 'sending') return;
-      attached = attached ? '' : selected;
+    remove.addEventListener('click', () => {
+      attached = '';
       message.textContent = '';
       render();
+      button.focus();
     });
     submit.addEventListener('click', () => {
       render();
-      if (submit.disabled || controls.hidden || dialog.open) return;
+      if (submit.disabled || controls.hidden || dialog.open || !window.timebackProgress.isCurrent()) return;
       message.textContent = '';
       confirmed = attached;
-      confirmFile.textContent = confirmed === 'player'
-        ? reports.player.name + '（' + reports.player.label + '）'
-        : reports.takase.name;
-      dialog.returnValue = '';
+      confirmFile.textContent = reports[confirmed].name;
+      submit.focus({ preventScroll: true });
       dialog.showModal();
     });
-    dialog.addEventListener('close', () => {
+
+    function submissionStillCurrent() {
+      if (activeSubmission && window.timebackProgress.isCurrent() && tipSubmitted(activeSubmission)) return true;
+      stopPresentation();
+      render();
+      return false;
+    }
+
+    function setProgress(value) {
+      progress.value = value;
+      percent.textContent = `${value}%`;
+    }
+
+    function startSending() {
+      setProgress(0);
+      sending.showModal();
+      const start = performance.now();
+      function update(now) {
+        const fraction = Math.min(1, (now - start) / sendDuration);
+        const step = reducedMotion.matches ? 25 : 1;
+        const value = Math.floor(fraction * 100 / step) * step;
+        if (value !== progress.value) setProgress(value);
+        if (fraction < 1) {
+          frame = window.requestAnimationFrame(update);
+          return;
+        }
+        presentationTimer = window.setTimeout(() => {
+          if (!submissionStillCurrent()) return;
+          sending.close();
+          receipt.showModal();
+        }, 100);
+      }
+      frame = window.requestAnimationFrame(update);
+    }
+
+    dialog.addEventListener('submit', event => {
+      if (event.submitter !== confirm) return;
+      event.preventDefault();
       const kind = confirmed;
-      confirmed = '';
-      if (dialog.returnValue !== 'submit' || !kind || !window.timebackProgress.isCurrent() || tipSubmitted(kind)) return;
+      if (!dialog.open || activeSubmission || !window.timebackProgress.isCurrent()) return;
       if (attached !== kind || !availableReports().includes(kind)) {
         render();
         message.textContent = '添付した調査報告書を確認できませんでした。';
         return;
       }
+      dialog.close();
+      confirmed = '';
+      // Commit at explicit confirmation, so a reload can resume via the submitted report link.
       try {
         localStorage.setItem(reports[kind].key, 'submitted');
       } catch {
         message.textContent = '情報提供の状態を保存できません。ブラウザの保存設定を確認してください。';
         return;
       }
-      stopPresentation();
       activeSubmission = kind;
-      presentation = 'sending';
       render();
-      presentationTimer = window.setTimeout(() => {
-        presentation = 'receipt';
-        render();
-        byId('tip-receipt-title').focus();
-        presentationTimer = window.setTimeout(() => {
-          presentation = 'elapsed';
-          render();
-          presentationTimer = window.setTimeout(() => {
-            stopPresentation();
-            render();
-          }, 850);
-        }, 500);
-      }, 650);
+      startSending();
     });
+    receipt.addEventListener('close', () => {
+      if (!activeSubmission || !submissionStillCurrent()) return;
+      elapsed.showModal();
+      presentationTimer = window.setTimeout(() => {
+        if (submissionStillCurrent()) location.assign(reports[activeSubmission].link.href);
+      }, elapsedDuration);
+    });
+    for (const panel of [sending, elapsed]) panel.addEventListener('cancel', event => event.preventDefault());
     window.addEventListener('pagehide', stopPresentation);
     window.addEventListener('storage', event => {
+      if ([tipKey, takaseTipKey].includes(event.key) && event.newValue === null) {
+        if (reports[activeSubmission]?.key === event.key) stopPresentation();
+        if (!activeSubmission) {
+          attached = '';
+          if (picker.open) picker.close();
+        }
+      }
       if ([tipKey, takaseTipKey, chapterSeven.aizawaKey].includes(event.key)) render();
     });
     watchReport(render);

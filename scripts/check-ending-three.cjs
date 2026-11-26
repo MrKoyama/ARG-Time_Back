@@ -153,15 +153,20 @@ async function main(runScenario) {
       }
     }
     async function submit(kind) {
-      if (await evaluate(visible('#tip-report-kind'))) await input('#tip-report-kind', kind);
       await click('#report-attach');
+      await wait(visible('#tip-picker'));
+      await click(`#tip-picker input[value="${kind}"]`);
+      await click('#tip-picker-open');
       await wait(visible('#tip-file'));
       await click('#tip-submit');
       await wait(visible('#tip-confirmation'));
       assert.match(await evaluate('document.querySelector("#tip-confirm-file").textContent'),
-        kind === 'takase' ? /TIME BACKおよびSECOND SHIFTに関する調査報告書/ : /あなたが完成/);
+        kind === 'takase' ? /TIME BACKおよびSECOND SHIFTに関する調査報告書/ : /TIME BACKの売却時間帯における身体利用に関する調査報告書/);
       await click('#tip-confirm-submit');
-      await wait(visible(kind === 'takase' ? '#tip-full-article' : '#tip-article'));
+      await wait(visible('#tip-sending'));
+      await wait(visible('#tip-receipt'));
+      await click('#tip-receipt button');
+      await wait(visible('#tip-elapsed'));
     }
     async function returnToBranch() {
       await click('#branch-return');
@@ -270,13 +275,11 @@ async function main(runScenario) {
     await go('yaboo-news-tip.html');
     await checkWidth('No.80 report choice');
     await submit('player');
-    await click('#tip-article');
     await page('yaboo-news-investigation.html');
     await click('a[href="timeback-ending-blind-spot.html"]');
     await page('timeback-ending-blind-spot.html');
     await go('yaboo-news-trial-disclosure.html', 'yaboo-news-tip.html');
     await submit('takase');
-    await click('#tip-full-article');
     await page('yaboo-news-trial-disclosure.html');
     assert.match(await evaluate('document.querySelector("main h1").textContent'), /売られていたのは時間ではなかった/);
     await click('a[href="timeback-ending-full-disclosure.html"]');

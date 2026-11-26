@@ -119,7 +119,7 @@
 | 86 | [ENDING「託された記録」 ｜ TIME BACK](https://missing-hours.pages.dev/timeback-ending-record) | なし | 削除後、No.85を実際に閲覧し「エンディングページへ」。到達後はNo.82の「エンディングを再閲覧する」（旧高瀬メールの到達状態がある間）またはアーカイブ。 | 旧社用メールの相手に託して手を引いた結末。最終章の第1断片。 |
 | 87 | [Web運用日誌 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-web-operations-log) | Chronect Hub 特殊　`##Web運用日誌##` | — | 高瀬のWeb運用日誌。作業記録03を照合して個人作業控えを発見する。 |
 | 88 | [調査方法の再検討 ｜ 調査ノート](https://missing-hours.pages.dev/takase-investigation-method) | なし | No.87の作業記録03を正しく照合し、出現した「個人作業控えを参照」を押す。 | 提携企業への潜入条件を検討する高瀬のノート。手書き風のロゴ長押し指示。 |
-| 89 | [「TIME BACK」に不適切な試験運用の疑い　利用者への説明と実態に食い違い ｜ Yaboo!ニュース](https://missing-hours.pages.dev/yaboo-news-investigation) | なし | No.80でプレイヤーが完成させたNo.83を選び、添付して提出。受付演出後にニュースへのリンクを選ぶ。 | プレイヤー作成報告書をもとに、利用者説明と試験運用の食い違いを報じる。 |
+| 89 | [「TIME BACK」に不適切な試験運用の疑い　利用者への説明と実態に食い違い ｜ Yaboo!ニュース](https://missing-hours.pages.dev/yaboo-news-investigation) | なし | No.80の疑似「ダウンロード」で完成済みのNo.83を選んで提出する。受付を閉じると暗転後に自動遷移する。 | プレイヤー作成報告書をもとに、利用者説明と試験運用の食い違いを報じる。 |
 | 90 | [ENDING「正義の盲点」 ｜ TIME BACK](https://missing-hours.pages.dev/timeback-ending-blind-spot) | なし | No.83を提出してNo.89を実際に閲覧し、記事末尾「その後」を選ぶ。 | 自力で報道機関に提出した結末。高瀬からの反応がなく、最終章の第2断片を得る。 |
 | 91 | [潜入後の調査ノート ｜ 調査ノート](https://missing-hours.pages.dev/nodelink-web-maintenance) | なし | No.39のロゴを約3秒長押し。キーボードはロゴをフォーカスしてSpaceを約3秒保持。手掛かりはNo.88の末尾。 | 潜入に成功し、Web業務を任された高瀬の調査ノート。「人材情報」と内部検索への入口。 |
 | 92 | [内部資料検索 ｜ 株式会社ノードリンク・ワークス](https://missing-hours.pages.dev/nodelink-internal-search) | なし | No.91「内部資料を参照する」、または各資料の戻りリンク。No.98・101・102・106〜109の解放条件を欠く場合の戻り先でもある。検索を送信した表示は登録外のEX。 通常リンク元 No.91、No.93〜97、No.99・100。 | ノードリンク内部資料の検索フォーム。入力前だけ通常の番号付きページ。 |
@@ -134,7 +134,7 @@
 | 101 | [試験運用継続承認記録 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-trial-continuation-approval) | なし | No.100の参照リンク。No.100訪問後に開ける。 | 個別同意未取得と認識した上で試験運用の継続を承認した記録。 |
 | 102 | [最終記録 ｜ 調査ノート](https://missing-hours.pages.dev/takase-final-investigation-note) | なし | No.100の参照リンク。他の証拠5件の閲覧前にも開ける。 | 記憶を失いつつあった高瀬の救助要請。高瀬と相沢が同一人物と分かる。 |
 | 103 | [TIME BACKおよびSECOND SHIFTに関する調査報告書 ｜ 調査ノート](https://missing-hours.pages.dev/takase-completed-report) | なし | No.84で相沢との再連絡を終え、受信添付を開く。アーカイブから開く場合も受領済みであること。 | 高瀬本人がPCに保存した完成報告書。相沢から受け取る読み取り専用の告発資料。 |
-| 104 | [「売られていたのは時間ではなかった」Chronect、人間の身体と技能を無断で商用利用 ｜ Yaboo!ニュース](https://missing-hours.pages.dev/yaboo-news-trial-disclosure) | なし | No.80で受領済みの高瀬作成版No.103を選び、添付して提出。受付後に高瀬作成版のニュースへのリンクを選ぶ。 | 高瀬作成版をもとに、身体・技能の限定商用利用と世界市場への展開計画を報じる。 |
+| 104 | [「売られていたのは時間ではなかった」Chronect、人間の身体と技能を無断で商用利用 ｜ Yaboo!ニュース](https://missing-hours.pages.dev/yaboo-news-trial-disclosure) | なし | No.80の疑似「ダウンロード」で受領済みのNo.103を選んで提出する。受付を閉じると暗転後に自動遷移する。 | 高瀬作成版をもとに、身体・技能の限定商用利用と世界市場への展開計画を報じる。 |
 | 105 | [ENDING「完全な告発」 ｜ TIME BACK](https://missing-hours.pages.dev/timeback-ending-full-disclosure) | なし | No.103を提出してNo.104を実際に閲覧し、記事末尾「その後」を選ぶ。 | 企業の真相を伝えた一方、高瀬本人の記憶は戻らない結末。最終章の第3断片。 |
 | 106 | [TIME BACK・SECOND SHIFT 事業統合計画 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-business-integration-plan) | なし | No.100の参照リンク。No.100訪問後に開ける。 | 購入収益と売却者の身体稼働資源の調達を並行させる事業統合計画。 |
 | 107 | [SECOND SHIFT 業務実績・清算対応記録 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-second-shift-settlement) | なし | No.100の参照リンク。No.100訪問後に開ける。 | 同一セッションでの有償業務。法人から9,600円を受領し、本人への追加支給はなし。 |
@@ -249,7 +249,7 @@
 ### ENDING 2「正義の盲点」 No.90
 
 1. No.83が削除済みなら、No.86から「分岐点に戻る」を確定して復元する。
-2. No.80でプレイヤーが完成させた報告書を手動添付・提出する。受付後「数日後のYaboo!ニュースを確認する」を選ぶ。
+2. No.80の「文書を添付する」から疑似「ダウンロード」を開き、「TIME BACKの売却時間帯における身体利用に関する調査報告書」を選んで提出する。受付で「閉じる」を選ぶと暗転後にNo.89へ進む。
 3. No.89の記事末尾の「その後」でNo.90へ。`□□□□□□□□ Assistance □□□□□□□□` を確認する。
 
 ### ENDING 3「完全な告発」 No.105
@@ -258,7 +258,7 @@
 2. `人材情報` でNo.93を開いて相沢を特定。No.84に `aizawa.naoto@nodelink.mail` を登録し、第4返信まで進める。
 3. ノードリンクの検索でNo.94→95→96→97→99→100と進む。No.98はNo.97のリンクで確認できる。No.100からNo.101・102・106〜109をすべて開く。
 4. No.84で相沢に再連絡し、`調査記録_最終` を入力する。送付を依頼し、受信添付のNo.103を開く。
-5. No.80で「高瀬悠真の完成報告書」を選んで手動添付・提出。No.104の記事末尾の「その後」でNo.105へ。`□□□□□□□□ □□□□□□□□□□ Terminal` を確認する。
+5. No.80の疑似「ダウンロード」で「TIME BACKおよびSECOND SHIFTに関する調査報告書」を選んで提出する。受付を閉じてNo.104へ進み、記事末尾の「その後」でNo.105へ。`□□□□□□□□ □□□□□□□□□□ Terminal` を確認する。
 
 ### ENDING 4「自分の時間」 No.118
 
