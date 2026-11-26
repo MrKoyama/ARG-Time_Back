@@ -169,9 +169,25 @@ runChrome(async ({ evaluate, wait, visible, click, input, page, go, width, check
     for (const px of widths) {
       await width(px);
       await checkWidth('No.87 record ' + id);
+      const [completeStyle, reviewStyle] = await evaluate(`[${JSON.stringify(button)}, '#log-review-toggle'].map(selector => {
+        const style = getComputedStyle(document.querySelector(selector));
+        return [style.color, style.fontSize, style.borderTopWidth, style.backgroundColor,
+          style.textDecorationLine, style.cursor];
+      })`);
+      assert.deepEqual(completeStyle, reviewStyle);
+      assert.equal(completeStyle[0], 'rgb(165, 213, 214)');
+      assert.deepEqual(completeStyle.slice(2), ['0px', 'rgba(0, 0, 0, 0)', 'underline', 'pointer']);
     }
     await click(button);
     assert.equal(await evaluate(visible(details)), false);
+    await evaluate(`document.querySelector(${JSON.stringify(button)}).focus()`);
+    for (const [key, code, keyCode, text, open] of [['Enter', 'Enter', 13, '\r', true], [' ', 'Space', 32, ' ', false]]) {
+      const keyEvent = {key, code, windowsVirtualKeyCode: keyCode, nativeVirtualKeyCode: keyCode};
+      await send('Input.dispatchKeyEvent', {...keyEvent, type: 'keyDown', text, unmodifiedText: text});
+      await send('Input.dispatchKeyEvent', {...keyEvent, type: 'keyUp'});
+      assert.equal(await evaluate(visible(details)), open, 'No.87 ' + id + ' ' + code);
+      assert.equal(await evaluate(`document.querySelector(${JSON.stringify(button)}).getAttribute("aria-expanded")`), String(open));
+    }
   }
   assert.equal(await evaluate(visible('#log-review-form')), false);
   await click('#log-review-toggle');
@@ -195,11 +211,34 @@ runChrome(async ({ evaluate, wait, visible, click, input, page, go, width, check
   assert.equal(await evaluate(visible('#log-review-form')), false);
   await click('#log-review-toggle');
   assert.equal(await evaluate(visible('#log-review-result')), false);
-  for (const [term, success] of [['検索', false], ['0件', true]]) {
+  const logSave = 'localStorage.getItem("timeback-web-operations-log-v1")';
+  for (const term of [
+    '結果がある場合の表示対応', '例外的な入力があった場合の表示対応', '該当資料が0件ではない場合',
+    '該当資料が0件の場合の表示対応ではありません', '無関係な文章', '検索', '', '　 '
+  ]) {
     await input('#log-review-answer', term);
     await click('#log-review-form button');
-    assert.equal(await evaluate(visible('#log-review-result')), success);
-    assert.equal(await evaluate('localStorage.getItem("timeback-web-operations-log-v1")'), success ? '1' : null);
+    assert.equal(await evaluate(visible('#log-review-result')), false, term);
+    assert.equal(await evaluate('document.querySelector("#log-review-status").textContent'), '対応する作業内容を確認できませんでした。');
+    assert.equal(await evaluate(logSave), null);
+  }
+  for (const term of [
+    '該当資料が0件の場合の表示対応', '該当資料が0件', '該当資料が0件の場合',
+    '該当資料が０件の場合の表示対応', '該当資料がゼロ件の場合の表示対応', '0件の場合の表示対応',
+    '検索結果が0件の場合の表示対応', '検索結果が0件の場合', '検索結果が0件',
+    '検索結果0件時の表示保守', '検索結果0件', '0件表示', '0件', '該当資料が0件の場合の表示',
+    '　該当資料が ０件の場合の表示対応　'
+  ]) {
+    if (await evaluate(logSave)) {
+      await evaluate('localStorage.removeItem("timeback-web-operations-log-v1")');
+      await send('Page.reload');
+      await wait('document.readyState === "complete" && document.querySelector("#log-review-result")?.hidden === true');
+      await click('#log-review-toggle');
+    }
+    await input('#log-review-answer', term);
+    await click('#log-review-form button');
+    assert.equal(await evaluate(visible('#log-review-result')), true, term);
+    assert.equal(await evaluate(logSave), '1');
   }
   for (const px of widths) {
     await width(px);

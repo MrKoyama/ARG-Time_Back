@@ -16,12 +16,14 @@
   <link rel="stylesheet" href="archive.css?v=20261029">
   <link rel="stylesheet" href="chronect-hub-internal.css?v=20261117">
   <style>
-    #log-review-toggle {
+    #log-review-toggle,
+    .log-record-toggle {
       min-height: 44px;
       padding: 4px 0;
       border: 0;
       background: none;
       color: var(--hub-internal-accent);
+      cursor: pointer;
       text-align: start;
       text-decoration: underline;
     }
@@ -129,7 +131,10 @@
       const storageKey = 'timeback-web-operations-log-v1';
       const answers = new Set([
         '検索結果0件時の表示保守', '検索結果0件', '検索結果が0件',
-        '0件表示', '0件', '該当資料が0件の場合', '該当資料が0件の場合の表示'
+        '0件表示', '0件', '該当資料が0件の場合', '該当資料が0件の場合の表示',
+        '該当資料が0件の場合の表示対応', '該当資料が0件',
+        '該当資料がゼロ件の場合の表示対応', '0件の場合の表示対応',
+        '検索結果が0件の場合の表示対応', '検索結果が0件の場合'
       ]);
       const toggle = document.getElementById('log-review-toggle');
       const panel = document.getElementById('log-review');
