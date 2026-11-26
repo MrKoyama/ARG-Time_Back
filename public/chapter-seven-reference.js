@@ -3,6 +3,7 @@
 
   const archiveKey = 'timeback-page-archive-v1';
   const mailKey = 'timeback-investigation-mail-v1';
+  const mailFinalReplyAtKey = 'timeback-investigation-mail-final-reply-at-v1';
   const aizawaKey = 'timeback-mail-aizawa-v1';
   const approvalUrl = 'chronect-trial-continuation-approval.html';
   const lastNoteUrl = 'takase-final-investigation-note.html';
@@ -72,13 +73,31 @@
 
   const followup = document.getElementById('chapter-seven-followup');
   if (followup) {
+    const referenceDate = document.getElementById('old-mail-reference-date');
+    const time = referenceDate?.querySelector('time');
+    const firstPostAt = Date.parse('2026-09-28T21:14:00+09:00');
+    const formatDate = new Intl.DateTimeFormat('ja-JP', {
+      timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+    });
     function render() {
       // The final reply is delivered at 4. Deletion and ending are later checkpoints.
       followup.hidden = !['4', '5', '6'].includes(read(mailKey));
+      if (!time) return;
+      const stored = read(mailFinalReplyAtKey);
+      const date = new Date(/^\d+$/.test(stored ?? '') ? Number(stored) : NaN);
+      referenceDate.hidden = followup.hidden || !(date.getTime() >= firstPostAt);
+      if (referenceDate.hidden) {
+        time.removeAttribute('datetime');
+        time.textContent = '';
+      } else {
+        time.dateTime = date.toISOString();
+        time.textContent = formatDate.format(date);
+      }
     }
     window.addEventListener('pageshow', render);
     window.addEventListener('storage', event => {
-      if (event.key === mailKey || event.key === null) render();
+      if ([mailKey, mailFinalReplyAtKey, null].includes(event.key)) render();
     });
     render();
   }

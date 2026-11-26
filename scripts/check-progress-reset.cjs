@@ -19,6 +19,7 @@ const progress = {
   [reportKey]: { status: 'complete', entries: ['BAS', 'SECOND SHIFT', '施設C', 'SUB-117', 'TB-260917-4826'] },
   [mailKey]: '6',
   'timeback-investigation-mail-started-at-v1': '12345',
+  'timeback-investigation-mail-final-reply-at-v1': '1795671120000',
   'timeback-investigation-mail-history-v1': { received: 4 },
   'timeback-mail-takase-draft-v1': { progress: 0, draftLength: 4 },
   'timeback-mail-aizawa-v1': { route: 2, progress: 15, reportReceived: true, draftLength: 4 },
@@ -146,6 +147,7 @@ async function scenario({ evaluate, wait, visible, click, page, go, width, check
   };
   await send('Page.navigate', { url: origin + 'takase-mail.html#aizawa' }, sessionId);
   await waitInOtherTab('location.pathname.endsWith("takase-mail.html") && document.readyState === "complete"');
+  await send('Page.bringToFront');
   await confirmReset();
   await waitInOtherTab('location.pathname.endsWith("index.html") && document.readyState === "complete"');
   assert.equal(await otherEvaluate('localStorage.getItem("timeback-mail-aizawa-v1")'), null);
@@ -178,7 +180,7 @@ async function scenario({ evaluate, wait, visible, click, page, go, width, check
   const fileProgress = await gameValues();
   assert.deepEqual(JSON.parse(fileProgress[archiveKey]).map(page => page.number), [1]);
   assert.equal(fileProgress[reportKey], null);
-  console.log('PASS PROGRESS RESET: 13 keys, 136 archive controls, cancellation/failure, fresh/partial/all endings, second tab, history, file URLs and four Chrome widths.');
+  console.log('PASS PROGRESS RESET: ' + keys.length + ' keys, 136 archive controls, cancellation/failure, fresh/partial/all endings, second tab, history, file URLs and four Chrome widths.');
 }
 
 checkPublicSources();

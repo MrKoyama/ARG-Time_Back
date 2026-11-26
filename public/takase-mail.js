@@ -3,18 +3,18 @@
 
   const takaseSteps = [
     {
-      "outgoing": "初めまして。突然のご連絡失礼します。\nChronectについて調査していたところ、社内の資料と思われる記録をいくつか発見しました。\n調査作業控えに記載されていたメールアドレスを見つけ、ご連絡しました。\nこちらは高瀬悠真さんの連絡先でしょうか？",
+      "outgoing": "初めまして。突然のご連絡失礼します。\nChronectについて調査していたところ、社内の資料と思われる記録をいくつか発見しました。\n資料を調べる中で、このメールアドレスを見つけました。\nこちらは高瀬悠真さんの連絡先でしょうか？",
       "reply": "失礼ですが、どちら様でしょうか。\n内部資料というのは、何のことでしょう。\nそもそも、社外の方が閲覧できるようなものではないはずです。\nこのメールアドレスをどこで知ったのか分かりませんが、いたずらや興味本位の連絡でしたら、お控えください。",
       "mobileLabel": "高瀬に連絡する"
     },
     {
       "outgoing": "突然の連絡で驚かせてしまい、申し訳ありません。\nですが、いたずらではありません。\n私はTIME BACKについて調べる中で、Chronectが利用者に説明していない活動を行っている可能性に気づきました。\n安心してください。私はChronectの問題を明らかにするため、告発に協力したいと考えています。",
-      "reply": "……そういうことでしたか。\nそれなら安心しました。\nこちらこそ、失礼なことを申し上げました。\n実は、あなたのような方からの連絡を待っていました。\nもしかして、調査に関する報告書なども発見されていますか？",
+      "reply": "……そういうことでしたか。\nそれなら安心しました。\nこちらこそ、失礼なことを申し上げました。\n実は、あなたのような方からの連絡を待っていました。\n見つけた記録のほかに、調査の内容をまとめた文書もありましたか？",
       "mobileLabel": "告発への協力を申し出る"
     },
     {
       "outgoing": "はい。調査作業控えにあった報告書の草稿を発見しました。\n関連する記録を調べ、不足していた項目についても、すべて記入を終えています。",
-      "reply": "本当ですか。あの報告書を完成させてくださったのですね。\nありがとうございます。\n当時はWeb関連の管理業務をほとんど一人で任されていて、毎日の対応に追われるばかりでした。\nあまりにも仕事が多く、本来やるべき業務も満足に進められず、Web運用日誌の記入や資料の整理など、後回しにしてしまったことも少なくありません。\n……すみません。余計な話をしてしまいましたね。\nそれよりも、完成した報告書について、ぜひ内容を確認させていただきたいです。\nお手数ですが、こちらに送っていただくことは可能でしょうか？",
+      "reply": "本当ですか。草稿を見つけて、完成させてくださったのですね。\nありがとうございます。\n当時はWeb関連の管理業務をほとんど一人で任されていて、毎日の対応に追われるばかりでした。\nあまりにも仕事が多く、本来やるべき業務も満足に進められず、Web運用日誌の記入や資料の整理など、後回しにしてしまったことも少なくありません。\n……すみません。余計な話をしてしまいましたね。\nそれよりも、完成した報告書について、ぜひ内容を確認させていただきたいです。\nお手数ですが、こちらに送っていただくことは可能でしょうか？",
       "mobileLabel": "報告書の完成を伝える"
     },
     {
@@ -437,6 +437,7 @@
       }
       if (activeContact.id === 'takase' && current > 0 && !startedAt(activeContact)) {
         write(mailStartedKey, String(Date.now()));
+        if (checkpoints[current] === phase.sent) scheduleReply(activeContact);
       }
       dateDivider.textContent = new Intl.DateTimeFormat('ja-JP', {
         year: 'numeric', month: 'long', day: 'numeric'
@@ -545,8 +546,10 @@
 
     function scheduleReply(contact) {
       const current = progress(contact);
+      const finalTakaseReply = contact.id === 'takase' && checkpoints[current] === phase.sent;
+      const conversationStart = finalTakaseReply ? read(mailStartedKey) : null;
       const timer = replyTimers.get(contact.id);
-      if (timer?.current === current) return;
+      if (timer?.current === current && timer.conversationStart === conversationStart) return;
       if (timer) window.clearTimeout(timer.id);
       replyTimers.delete(contact.id);
       const message = messageAt(contact, current);
@@ -556,11 +559,15 @@
         : 850 + Math.min(1200, (message.text.length + message.text.split('\n').length - 1) * 5);
       const id = window.setTimeout(() => {
         replyTimers.delete(contact.id);
+        if (finalTakaseReply && read(mailStartedKey) !== conversationStart) {
+          refresh();
+          return;
+        }
         if (advance(contact, current)) refresh(contact);
         else if (progress(contact) !== current) refresh();
         else if (view === 'thread' && activeContact === contact) showStorageError();
       }, delay);
-      replyTimers.set(contact.id, { id, current });
+      replyTimers.set(contact.id, { id, current, conversationStart });
     }
 
     function refresh(animateContact = null) {
@@ -858,7 +865,7 @@
       if (!event.target.closest('button, a, textarea, input')) focusComposerIfReady();
     });
     window.addEventListener('storage', event => {
-      if (event.key === 'timeback-page-archive-v1') refresh();
+      if (event.key === 'timeback-page-archive-v1' || event.key === mailStartedKey) refresh();
       if (finalChapter && event.key === finalChapter.key) {
         if (view === 'thread' && activeContact.id === 'aizawa') renderedNext = null;
         refresh();

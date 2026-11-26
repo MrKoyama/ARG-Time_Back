@@ -8,7 +8,7 @@
 |---|---|
 | 訪問・4結末の累積到達 | `timeback-page-archive-v1` |
 | プレイヤー作成報告書 | `timeback-investigation-report-v1` |
-| 高瀬宛てメールの段階・削除、開始時刻、旧履歴、下書き | `timeback-investigation-mail-v1`、`timeback-investigation-mail-started-at-v1`、`timeback-investigation-mail-history-v1`、`timeback-mail-takase-draft-v1` |
+| 高瀬宛てメールの段階・削除、開始時刻、第4返信の受信時刻、旧履歴、下書き | `timeback-investigation-mail-v1`、`timeback-investigation-mail-started-at-v1`、`timeback-investigation-mail-final-reply-at-v1`、`timeback-investigation-mail-history-v1`、`timeback-mail-takase-draft-v1` |
 | 相沢宛てメール・下書き・高瀬作成報告書の受領、連絡先、前回の表示 | `timeback-mail-aizawa-v1`、`timeback-mail-contacts-v1`、`timeback-mail-view-v1` |
 | ニュースへの2種類の提出 | `timeback-investigation-tip-v1`、`timeback-investigation-tip-takase-v1` |
 | Web運用日誌の照合 | `timeback-web-operations-log-v1` |
@@ -17,6 +17,8 @@
 共通の `progress-reset.js` をアーカイブのある全136画面で読み込み、13個のアーカイブ実装から同じ処理を呼ぶ。`timeback-progress-reset-v1` は削除完了を共有する世代情報。前の世代で開いたタブや履歴の保存処理を止め、No.1へ移動させる。削除中は進行の書き込みを止め、失敗時は削除済みの値の復元を試みて確認欄にエラーを表示する。
 
 分岐点復帰はNo.82へ戻り、到達記録や相沢・最終章の進行を従来どおり保持する。会話、報告書の入力、最終照合の各リセットも従来の範囲で動作する。No.82にあったローカル開発用のメールリセットは、ボタン生成と報告書の強制完成処理を撤去した。公開外の結合・回帰テストは隔離プロファイルで使用する。
+
+2026-11-26追記。高瀬宛ての第4返信を受信して進行が `3 → 4` になったとき、端末時刻をミリ秒のUNIX時刻として保存する。No.98後半ではスレッド共通の基準日時として `YYYY/MM/DD HH:mm`（日本時間）を表示する。日時がない旧保存、不正な値、No.1掲載時刻より前の値は既存の「後日の連絡」だけを表示する。高瀬宛ての会話リセット・分岐点復帰・完全リセットで受信時刻も消す。 [改修記録](MAIL_CORRESPONDENCE_IMPLEMENTATION.md)
 
 ## 2026-11-24 最終章のUI・保存・アーカイブ
 

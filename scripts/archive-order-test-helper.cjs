@@ -593,8 +593,9 @@ function withoutLivingAddition(name,source){
     result=result.replace(/\{[^{}\r\n]*"partners\.html":37[^{}\r\n]*\}/g,json=>{const map=JSON.parse(json);assert.equal(map[livingEntry.href],58,name);delete map[livingEntry.href];return JSON.stringify(map);});
   }
   if(name==='public/business-demonstration.html'){
-    const addition='    <div class="demo-notice"><h3>周辺環境について</h3><p>'+livingParagraph+'</p></div>\n';
-    assert.equal(result.split(addition).length,2,name+' exact approved paragraph');result=result.replace(addition,'');
+    const hubReference='生活動線の変化に対する行動支援技術の評価については、Chronect Hubの公開研究要旨でも紹介しています。';
+    const addition='    <div class="demo-notice"><h3>周辺環境について</h3><p>'+livingParagraph+'</p><p>'+hubReference+'</p></div>\n';
+    assert.equal(result.split(addition).length,2,name+' exact approved paragraphs');result=result.replace(addition,'');
   }
   if(name==='public/chronect-hub.js'){
     const addition=',\n  '+JSON.stringify(livingSearchEntry);assert.equal(result.split(addition).length,2,name+' exact additive search record');result=result.replace(addition,'');

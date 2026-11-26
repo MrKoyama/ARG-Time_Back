@@ -4,6 +4,7 @@
   const storageKey = 'timeback-investigation-report-v1';
   const mailKey = 'timeback-investigation-mail-v1';
   const mailStartedKey = 'timeback-investigation-mail-started-at-v1';
+  const mailFinalReplyAtKey = 'timeback-investigation-mail-final-reply-at-v1';
   const mailDraftKey = 'timeback-mail-takase-draft-v1';
   const legacyMailHistoryKey = 'timeback-investigation-mail-history-v1';
   const tipKey = 'timeback-investigation-tip-v1';
@@ -51,6 +52,17 @@
     }
   }
 
+  function updateMailFinalReplyTime(expected, next) {
+    try {
+      if (next === phase.initial || (expected === phase.initial && next === phase.contacted)) {
+        localStorage.removeItem(mailFinalReplyAtKey);
+      } else if (expected === phase.sent && next === phase.deleteRequested
+        && localStorage.getItem(mailFinalReplyAtKey) === null) {
+        localStorage.setItem(mailFinalReplyAtKey, String(Date.now()));
+      }
+    } catch { /* The optional date does not affect the mail checkpoint. */ }
+  }
+
   function advanceMail(expected, next, { removeReport = false } = {}) {
     if (!window.timebackProgress.isCurrent() || mailPhase() !== expected) return false;
     try {
@@ -63,6 +75,7 @@
           throw error;
         }
       }
+      updateMailFinalReplyTime(expected, next);
       const status = byId('report-storage-status');
       if (status) status.textContent = '';
       return true;
@@ -261,6 +274,7 @@
         [storageKey, JSON.stringify({ status: 'complete', entries, confirmed: entries.map(matches) })],
         [legacyMailHistoryKey, null],
         [mailStartedKey, null],
+        [mailFinalReplyAtKey, null],
         [mailDraftKey, null],
         [tipKey, null],
         [takaseTipKey, null],

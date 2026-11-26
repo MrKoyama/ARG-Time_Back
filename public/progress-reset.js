@@ -6,6 +6,7 @@
     'timeback-investigation-report-v1',
     'timeback-investigation-mail-v1',
     'timeback-investigation-mail-started-at-v1',
+    'timeback-investigation-mail-final-reply-at-v1',
     'timeback-investigation-mail-history-v1',
     'timeback-mail-takase-draft-v1',
     'timeback-mail-aizawa-v1',

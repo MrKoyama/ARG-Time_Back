@@ -303,7 +303,12 @@ runChrome(async ({ evaluate, wait, visible, click, input, page, go, width, check
   await click('#addressForm button[type=submit]');
   await click('#mail-thread-takase');
   for (let i = 0; i < 3; i++) await scripted();
-  assert.match(await evaluate('document.querySelector("#messageLog").innerText'), /調査作業控えに記載されていたメールアドレスを見つけ、ご連絡しました。/);
+  const mailBubbles = await evaluate('Array.from(document.querySelectorAll("#messageLog .bubble"), bubble => bubble.textContent)');
+  assert.match(mailBubbles[0], /資料を調べる中で、このメールアドレスを見つけました。/);
+  assert.doesNotMatch(mailBubbles[0], /調査作業控え/);
+  assert.match(mailBubbles[3], /見つけた記録のほかに、調査の内容をまとめた文書もありましたか？/);
+  assert.match(mailBubbles[5], /^本当ですか。草稿を見つけて、完成させてくださったのですね。/);
+  assert.match(mailBubbles[5], /Web運用日誌/);
   await click('#reportAttach');
   await click('#reportPicker button[value=attach]');
   await wait('!document.querySelector("#mobileReply").disabled');
