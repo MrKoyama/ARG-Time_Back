@@ -73,8 +73,7 @@
 
   const followup = document.getElementById('chapter-seven-followup');
   if (followup) {
-    const referenceDate = document.getElementById('old-mail-reference-date');
-    const time = referenceDate?.querySelector('time');
+    const dateFields = followup.querySelectorAll('[data-old-mail-reference-date]');
     const firstPostAt = Date.parse('2026-09-28T21:14:00+09:00');
     const formatDate = new Intl.DateTimeFormat('ja-JP', {
       timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit',
@@ -84,16 +83,15 @@
       // Match No.84's numeric checkpoints. The timestamp is optional.
       const phase = Number(read(mailKey));
       followup.hidden = ![4, 5, 6].includes(phase);
-      if (!time) return;
       const stored = read(mailFinalReplyAtKey);
       const date = new Date(/^\d+$/.test(stored ?? '') ? Number(stored) : NaN);
-      referenceDate.hidden = followup.hidden || !(date.getTime() >= firstPostAt);
-      if (referenceDate.hidden) {
-        time.removeAttribute('datetime');
-        time.textContent = '';
-      } else {
+      if (!followup.hidden && date.getTime() >= firstPostAt) {
+        const time = document.createElement('time');
         time.dateTime = date.toISOString();
         time.textContent = formatDate.format(date);
+        for (const field of dateFields) field.replaceChildren(time.cloneNode(true));
+      } else {
+        for (const field of dateFields) field.textContent = '不明';
       }
     }
     window.addEventListener('pageshow', render);

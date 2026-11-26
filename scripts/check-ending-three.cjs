@@ -299,9 +299,13 @@ async function main(runScenario) {
     assert.ok(stamp >= beforeReceive && stamp <= await evaluate('Date.now()'));
     await go('chronect-internal-correspondence.html');
     assert.equal(await evaluate(visible('#chapter-seven-followup')), true);
-    const dateSelector = '#old-mail-reference-date time';
-    assert.equal(await evaluate(`document.querySelector('${dateSelector}').dateTime`), new Date(stamp).toISOString());
-    assert.match(await evaluate(`document.querySelector('${dateSelector}').textContent`), /^\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}$/);
+    const dateFields = '[data-old-mail-reference-date]';
+    const dateSelector = `${dateFields} time`;
+    const dates = await evaluate(`Array.from(document.querySelectorAll('${dateSelector}'), time => [time.dateTime, time.textContent])`);
+    assert.equal(dates.length, 2);
+    assert.equal(dates[0][0], new Date(stamp).toISOString());
+    assert.match(dates[0][1], /^\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}$/);
+    assert.deepEqual(dates[1], dates[0]);
     await send('Page.reload');
     await wait(`document.readyState === 'complete' && ${visible(dateSelector)}`);
     assert.equal(await evaluate(receivedAt), String(stamp));
@@ -313,6 +317,7 @@ async function main(runScenario) {
     await wait(`performance.timeOrigin !== ${beforeLegacyReload} && document.readyState === 'complete'
       && ${visible('#chapter-seven-followup')}`);
     assert.equal(await evaluate(visible(dateSelector)), false);
+    assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('${dateFields}'), field => field.textContent)`), ['不明', '不明']);
     assert.equal(await evaluate(receivedAt), null);
     await evaluate(`localStorage.setItem(${JSON.stringify(receivedKey)}, ${JSON.stringify(String(stamp))});`);
     await go('takase-mail.html');
