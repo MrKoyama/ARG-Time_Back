@@ -9,249 +9,130 @@ const priorEndings = [
   { number: 90, href: 'timeback-ending-blind-spot.html', fragment: '*e*av*o* A*s**t*n** ****i***' },
   { number: 105, href: 'timeback-ending-full-disclosure.html', fragment: '******** ****s***c* T*rm*nal' }
 ];
-const pages = [
+const drawing = 'chronect-hub-bat-drawing.html';
+const retired = [
   'chronect-hub-bat-spec.html', 'chronect-hub-bat-control.html', 'chronect-hub-mmu-spec.html',
   'bat-device-diagnostics.html', 'chronect-hub-bat-emergency.html', 'chronect-hub-memory-recovery.html',
-  'bat-recovery-report.html', 'yaboo-news-timeback-suspension.html', 'timeback-ending-own-time.html'
+  'bat-recovery-report.html'
 ];
-const terms = ['Behavior Assistance Terminal', 'BAT制御系統', 'MMU', '', 'BAT緊急対応', '隔離記憶復旧'];
-const settings = {
-  CLASSIFICATION: 'ｍ-０３', TASK_ACCEPT: ' deny ', REJECT_SCOPE: 'TASK_ONLY',
-  MEMORY_PROFILE: 'SESSION', REFERENCE_BOUNDARY: 'DYNAMIC'
-};
-const correctOrder = ['RECOVERY', 'NORMALIZE', 'RESTORE', 'MERGE', 'VERIFY'];
-const widths = [1440, 768, 390, 320];
-const state = 'window.timebackFinalChapter.read()';
-const openedView = '[data-final-chapter-view]';
-const form = '#final-recovery-form';
-const mail = 'takase-mail.html';
+const news = 'yaboo-news-timeback-suspension.html';
+const ending = 'timeback-ending-own-time.html';
+const term = '##Behavior Assistance Terminal##';
+const view = '[data-final-chapter-view]';
+const imageNames = ['bat-exterior-views.png', 'bat-exploded-view.png', 'bat-development-sketch.png'];
 
-async function scenario({ evaluate, wait, visible, click, input, page, go, width, checkWidth, scripted, returnToBranch }) {
-  const solution = terms[0];
-  const fragments = priorEndings.map(({ fragment }) => fragment);
-  assert(fragments.every(fragment => fragment.length === solution.length));
-  assert.deepEqual(fragments.map(fragment => fragment.replace(/[* ]/g, '').length), [9, 9, 8]);
-  assert.deepEqual(fragments.map(fragment => fragment.split(' ')[2].replace(/\*/g, '').length), [1, 1, 6]);
-  for (const [position, letter] of [...solution].entries()) {
-    const revealed = fragments.map(fragment => fragment[position]).filter(char => char !== '*');
-    assert.deepEqual(revealed, letter === ' ' ? [' ', ' ', ' '] : [letter], `Fragment position ${position + 1}`);
+async function scenario({ evaluate, wait, visible, click, page, go, width, checkWidth, send, origin }) {
+  const put = (key, value) => evaluate('localStorage.setItem(' + JSON.stringify(key) + ',' + JSON.stringify(JSON.stringify(value)) + ')');
+  const read = key => evaluate('JSON.parse(localStorage.getItem(' + JSON.stringify(key) + '))');
+  async function search(query, href) {
+    await go('chronect-hub-search.html?q=' + encodeURIComponent(query));
+    assert.equal(await evaluate('document.querySelector("#archiveButton").textContent.trim()'), 'EX');
+    assert.deepEqual(await evaluate('[...document.querySelectorAll(".hub-result a")].map(a => a.getAttribute("href"))'), href ? [href] : [], query);
   }
-
-  async function put(key, value) {
-    await evaluate(`localStorage.setItem(${JSON.stringify(key)}, ${JSON.stringify(JSON.stringify(value))})`);
-  }
-
-  function visitCount() {
-    return evaluate(`JSON.parse(localStorage.getItem('${archiveKey}') || '[]').filter(page => page.number >= 110).length`);
-  }
-
-  async function search(term, href, follow = false) {
-    const query = '?q=' + encodeURIComponent(term);
-    await go('chronect-hub-search.html' + query);
-    await wait(`location.search === ${JSON.stringify(query)}`);
-    assert.equal(await evaluate('document.getElementById("archiveButton").textContent.trim()'), 'EX');
-    assert.deepEqual(await evaluate('Array.from(document.querySelectorAll(".hub-result a"), a => a.getAttribute("href"))'),
-      href ? [href] : [], term);
-    if (follow) {
-      await click('.hub-result a');
-      await page(href);
-      await wait(visible(openedView));
-    }
-  }
-
-  async function locked(href) {
-    await go(href);
-    assert.equal(await evaluate(visible(openedView)), false, href);
-    assert.equal(await evaluate('document.body.dataset.pageArchive'), 'exclude', href);
-  }
-
-  async function restartMail() {
-    await go(mail + '#aizawa');
-    await wait(visible('#messageLog'));
-  }
-
-  async function addAction(code) {
-    await click(`button[data-final-action="${code}"]`);
-  }
-
-  async function moveAction(code, direction) {
-    await click(`button[data-final-code="${code}"][data-final-move="${direction}"]`);
-  }
-
+  const oldVisits = retired.map((href, index) => ({ href, number: 110 + index }));
+  const oldState = {
+    opened: [110, 111, 112, 114, 115], mailProgress: 37, mailDraftLength: 0,
+    answers: {}, order: [], solved: true, diagnostics: true, consented: true, recovered: true,
+    reportSent: true, disclosed: true
+  };
   await go('index.html');
-  for (const href of pages) await locked(href);
   for (let mask = 0; mask < 7; mask++) {
     await put(archiveKey, priorEndings.filter((_, index) => mask & (1 << index)));
-    await search('##' + terms[0] + '##');
-    assert.equal(await evaluate(`localStorage.getItem('${finalKey}')`), null);
+    await search(term);
+    assert.equal(await read(finalKey), null);
   }
-  // Titles and historical numbers are irrelevant, provided the ending URLs were recorded.
-  await put(archiveKey, [...priorEndings].reverse().map(({ href }, index) => ({ href, number: 48 + index })));
-  for (const value of [terms[0], '##BAT##', '##Behavior Assistance##', '##MMU##']) await search(value);
-  assert.equal(await visitCount(), 0);
-  await locked(pages[0]);
-  await search('##web運用日誌##', 'chronect-hub-web-operations-log.html');
-  await search('##' + terms[0] + '##', pages[0]);
-  assert.equal(await visitCount(), 0, 'EX must not create a visit');
-  await search('##' + terms[1] + '##');
-  assert.equal(await visitCount(), 0);
-  for (let index = 0; index < 3; index++) {
-    await search('##' + terms[index] + '##', pages[index], true);
-    const clue = index === 2 ? terms[4] : terms[index + 1];
-    assert((await evaluate('document.querySelector(".hub-document").textContent')).includes(clue));
+  await put(archiveKey, priorEndings);
+  await search(term, drawing);
+  assert.equal((await read(finalKey)).drawingOpened, true);
+  assert((await read(archiveKey)).every(entry => entry.href !== drawing));
+  for (const href of [news, ending]) {
+    await go(href);
+    assert.equal(await evaluate(visible(view)), false, 'The new entrance does not complete the old route');
   }
-  await put('timeback-mail-aizawa-v1', { route: 2, progress: 15, reportReceived: true, startedAt: Date.now() });
-  await evaluate('localStorage.setItem("timeback-investigation-mail-v1", "6")');
-  await restartMail();
-  await scripted(true);
-  await wait(state + '.mailProgress === 2');
-  await width(390);
-  for (const checkpoint of [4, 7]) {
-    await scripted();
-    await wait(state + '.mailProgress === ' + checkpoint);
+  await put(archiveKey, [...priorEndings, ...oldVisits]);
+  await put(finalKey, oldState);
+  await go(drawing);
+  assert.equal(await evaluate(visible(view)), false, 'Legacy No.110 must not unlock the drawing');
+  assert((await read(archiveKey)).every(entry => entry.href !== drawing));
+  for (const href of retired) {
+    await go(href);
+    assert.equal(await evaluate(visible(view)), false, href);
+    assert.equal(await evaluate('document.body.dataset.pageNumber'), undefined);
   }
-  await wait(visible(`#messageLog a[href="${pages[3]}"]`));
-  assert.equal(await evaluate(visible(form)), false);
-  // The manual can be read before the already-received diagnostics attachment.
-  for (let index = 4; index < 6; index++) {
-    await search('##' + terms[index] + '##', pages[index], true);
-    if (index === 4) assert((await evaluate('document.querySelector(".hub-document").textContent')).includes(terms[5]));
-  }
-  await restartMail();
-  assert.equal(await evaluate(visible(form)), false);
-  await click(`#messageLog a[href="${pages[3]}"]`);
-  await page(pages[3]);
-  await wait(visible(openedView));
-  await click('a[href="takase-mail.html#aizawa"]');
-  await page(mail);
-  await wait(visible(form));
-  await locked(pages[6]);
-  await locked(pages[7]);
-  await locked(pages[8]);
-  await restartMail();
-  for (const pixels of widths) {
+  for (const query of ['Behavior Assistance Terminal', '##BAT##', '##BAT制御系統##', '##MMU##',
+    '##BAT緊急対応##', '##隔離記憶復旧##', '##BAT製品仕様書##', 'BAT製品仕様書']) await search(query);
+  await search(term, drawing);
+  assert((await read(archiveKey)).every(entry => entry.href !== drawing), 'Search result must not add a visit');
+  assert.deepEqual(await read(finalKey), { ...oldState, drawingOpened: true });
+  await click('.hub-result a');
+  await page(drawing);
+  await wait(visible(view));
+  assert.deepEqual((await read(archiveKey)).filter(entry => entry.number >= 110).map(({ number, href }) => [number, href]), [[110, drawing]]);
+
+  for (const pixels of [1440, 768, 390, 320]) {
     await width(pixels);
-    await checkWidth('Recovery form @ ' + pixels);
+    await wait('innerWidth === ' + pixels);
+    await checkWidth(drawing + ' @ ' + pixels);
+    await wait('[...document.querySelectorAll(".bat-drawing img")].every(img => img.complete && img.naturalWidth > 0)');
+    const images = await evaluate('[...document.querySelectorAll(".bat-drawing a")].map(a => {' +
+      'const box = a.getBoundingClientRect(); return [a.getAttribute("href"), a.target, box.left >= 0 && box.right <= innerWidth]; })');
+    assert.deepEqual(images, imageNames.map(name => ['images/' + name, '_blank', true]));
+    if (pixels === 1440 || pixels === 390) {
+      await send('Emulation.setTouchEmulationEnabled', { enabled: pixels === 390 });
+      for (const name of imageNames) {
+        await send('Page.bringToFront');
+        const point = await evaluate(`(() => {
+          const link = document.querySelector('a[href="images/${name}"]');
+          link.scrollIntoView({ block: 'center' });
+          const box = link.getBoundingClientRect();
+          return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+        })()`);
+        if (pixels === 390) {
+          await send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [point] });
+          await send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+        } else {
+          await send('Input.dispatchMouseEvent', { type: 'mousePressed', button: 'left', clickCount: 1, ...point });
+          await send('Input.dispatchMouseEvent', { type: 'mouseReleased', button: 'left', clickCount: 1, ...point });
+        }
+        let target;
+        for (let attempt = 0; attempt < 100 && !target; attempt++) {
+          const { targetInfos } = await send('Target.getTargets');
+          target = targetInfos.find(info => info.url === origin + 'images/' + name);
+          if (!target) await new Promise(resolve => setTimeout(resolve, 30));
+        }
+        assert(target, 'Image did not open in a new tab: ' + name);
+        await send('Target.closeTarget', { targetId: target.targetId });
+      }
+      await send('Emulation.setTouchEmulationEnabled', { enabled: false });
+    }
   }
-  await input(form + ' [name=CLASSIFICATION]', settings.CLASSIFICATION);
-  await addAction('NORMALIZE');
-  await addAction('RECOVERY');
-  await moveAction('RECOVERY', 'up');
-  await moveAction('NORMALIZE', 'remove');
-  await addAction('NORMALIZE');
-  await restartMail();
-  assert.deepEqual(await evaluate(state + '.order'), correctOrder.slice(0, 2));
-  assert.equal(await evaluate(`document.querySelector('${form} [name=CLASSIFICATION]').value`), settings.CLASSIFICATION);
-  for (const [name, value] of Object.entries(settings)) await input(`[name="${name}"]`, value);
-  for (const code of ['MERGE', 'RESTORE', 'VERIFY']) await addAction(code);
-  await click('#final-recovery-submit');
-  assert.equal(await evaluate(state + '.solved'), false);
-  await moveAction('RESTORE', 'up');
-  await input('[name="TASK_ACCEPT"]', 'ALLOW');
-  await click('#final-recovery-submit');
-  assert.equal(await evaluate(state + '.solved'), false);
-  await input('[name="TASK_ACCEPT"]', settings.TASK_ACCEPT);
-  await click('#final-recovery-submit');
-  await wait(state + '.solved');
-  assert.equal(await evaluate(state + '.recovered'), false);
-  await locked(pages[6]);
-  await restartMail();
-  for (const checkpoint of [10, 12]) {
-    await scripted();
-    await wait(state + '.mailProgress === ' + checkpoint);
-    assert.equal(await evaluate(state + '.consented'), false);
-  }
-  await scripted();
-  await wait(state + '.mailProgress >= 18', 'consent and recovery receipt');
-  assert.equal(await evaluate(state + '.consented && ' + state + '.recovered'), true);
-  await click(`#messageLog a[href="${pages[6]}"]`);
-  await page(pages[6]);
-  await wait(visible(openedView));
-  await click('a[href="takase-mail.html#aizawa"]');
-  await page(mail);
-  for (const checkpoint of [26, 30]) {
-    await scripted();
-    await wait(state + '.mailProgress === ' + checkpoint);
-  }
+
+  await put(reportKey, { status: 'complete', entries: ['BAS', 'SECOND SHIFT', '施設C', 'SUB-117', 'TB-260917-4826'] });
+  await put('timeback-mail-aizawa-v1', { route: 2, progress: 15, reportReceived: true });
+  await put('timeback-mail-contacts-v1', ['aizawa']);
+  await go('takase-mail.html#aizawa');
+  assert.equal(await evaluate('typeof window.timebackFinalMail'), 'undefined');
   assert.equal(await evaluate(visible('#final-chapter-news-link')), false);
-  assert.equal(await evaluate(visible('#reportAttach')), false);
-  assert.equal(await evaluate(visible('#mobileReply')), false);
-  await wait(visible('#final-report-recovery-link'));
-  assert.equal(await evaluate(`localStorage.getItem('${reportKey}')`), null);
-  await go(priorEndings[0].href);
-  await returnToBranch();
-  await restartMail();
-  assert.equal(await evaluate(state + '.mailProgress'), 30);
-  assert.equal(await evaluate(state + '.recovered'), true);
-  assert.equal(await evaluate('document.getElementById("mobileReply").disabled'), true);
-  await click('#reportAttach');
-  await wait(visible('#reportPicker'));
-  assert.doesNotMatch(await evaluate('document.getElementById("reportPicker").textContent'), /TIME BACKおよびSECOND SHIFT/);
-  await click('#reportPicker button[value="attach"]');
-  await wait(visible('#reportAttached'));
-  const originalReport = await evaluate(`localStorage.getItem('${reportKey}')`);
-  await scripted();
-  await wait(state + '.mailProgress === 37');
-  assert.equal(await evaluate(`localStorage.getItem('${reportKey}')`), originalReport);
-  await locked(pages[8]);
-  await restartMail();
-  await click('#final-chapter-news-link');
-  await page(pages[7]);
-  await wait(visible(openedView));
-  await click(`a[href="${pages[8]}"]`);
-  await page(pages[8]);
-  await wait(visible(openedView));
-  assert.equal(await visitCount(), 9);
-  await returnToBranch();
-  assert.equal(await visitCount(), 9);
-  await go(pages[8]);
-  await wait(visible(openedView));
-
-  for (const pixels of widths) {
-    await width(pixels);
-    for (const href of pages) {
-      await go(href);
-      await wait(visible(openedView));
-      await checkWidth(href + ' @ ' + pixels);
-    }
-    let wordLayout;
-    for (const { href, fragment } of priorEndings) {
-      await go(href);
-      await wait(visible('.ending-fragment'));
-      assert.equal(await evaluate('document.querySelector(".ending-fragment").textContent'), fragment);
-      await checkWidth(href + ' @ ' + pixels);
-      const layout = await evaluate(`(() => {
-        const clue = document.querySelector('.ending-fragment');
-        const bounds = clue.getBoundingClientRect();
-        return [...clue.children].map(word => {
-          const box = word.getBoundingClientRect();
-          return {
-            font: getComputedStyle(word).fontFamily,
-            intact: word.getClientRects().length === 1 && box.left >= bounds.left && box.right <= bounds.right,
-            left: box.left - bounds.left, top: box.top - bounds.top, width: box.width
-          };
-        });
-      })()`);
-      assert.equal(layout.length, 3);
-      assert(layout.every(word => word.intact && word.font.includes('monospace')), href + ' @ ' + pixels);
-      wordLayout ??= layout;
-      assert.deepEqual(layout, wordLayout, href + ' word alignment @ ' + pixels);
-    }
-    await restartMail();
-    await checkWidth('No.84 @ ' + pixels);
+  await go(news);
+  await wait(visible(view));
+  await click('a[href="' + ending + '"]');
+  await page(ending);
+  await wait(visible(view));
+  for (const {href, fragment} of priorEndings) {
+    await go(href);
+    await wait(visible('.ending-fragment'));
+    assert.equal(await evaluate('document.querySelector(".ending-fragment").textContent'), fragment);
   }
 
-  await go('time-back.html');
   await click('#archiveButton');
-  await wait(visible(`#archiveList a[href="${pages[8]}"]`));
+  await wait(visible('#archiveList a[href="' + drawing + '"]'));
   await click('#archiveResetButton');
   await click('#resetAccept');
   await page('index.html');
-  assert.equal(await evaluate(`localStorage.getItem('${finalKey}')`), null);
-  assert.equal(await visitCount(), 0);
-  await search('##' + terms[0] + '##');
-  await locked(pages[8]);
-  console.log('PASS ENDING 4: gates, staged mail, puzzle/draft, recovery, report rewind/attachment, prior endings, archive reset and four Chrome widths.');
+  assert.equal(await read(finalKey), null);
+  assert.equal(await read(reportKey), null);
+  await search(term);
+  console.log('PASS final chapter interim: three-ending gate, retired URLs and terms, legacy isolation, EX, 4 widths, image zoom, legacy ending revisit and reset.');
 }
 
 runChrome(scenario).catch(error => { console.error(error); process.exitCode = 1; });

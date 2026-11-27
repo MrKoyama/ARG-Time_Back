@@ -74,9 +74,10 @@ const webOperationsSearchEntry = {"keywords":["Web運用日誌"],"title":"Web運
 const endingEntries = [{"number":83,"href":"takase-report-editor.html","title":"調査報告書 ｜ 調査ノート"},{"number":84,"href":"takase-mail.html","title":"メール"},{"number":85,"href":"yaboo-news-aftermath.html","title":"TIME BACK、累計1,000万ダウンロードを突破　時間活用サービスとして利用拡大 ｜ Yaboo!ニュース"},{"number":86,"href":"timeback-ending-record.html","title":"ENDING「託された記録」 ｜ TIME BACK"}];
 const reportReferenceEntries = [{"number":81,"href":"chronect-hub-report-reference.html","title":"報告用資料 参照記録 ｜ Chronect Hub"},{"number":82,"href":"takase-work-notes.html","title":"調査作業控え ｜ 調査ノート"}];
 const reportReferenceSearchEntry = {"keywords":["報告用資料"],"title":"報告用資料 参照記録","href":"chronect-hub-report-reference.html","description":"試験運用の照合結果と報告用資料の参照関係を整理した記録です。"};
+const batDrawingEntry = {number:110, href:'chronect-hub-bat-drawing.html', title:'BAT製品設計図 ｜ Chronect Hub'};
 function beforeYabooRegistration(source) {
   const priorNumber = n => +n >= 23 ? +n - 1 : +n;
-  const laterEntries = [...yabooEntries,...reportReferenceEntries,...endingEntries,...chapterSevenEntries,...publicationEntries,...nodelinkEntries,...chapterSevenFollowupEntries];
+  const laterEntries = [...yabooEntries,...reportReferenceEntries,...endingEntries,...chapterSevenEntries,...publicationEntries,...nodelinkEntries,...chapterSevenFollowupEntries,batDrawingEntry];
   return source
     .replace(/(data-page-number="|\bcurrentPage\s*=\s*\{\s*number\s*:\s*|id="archiveButton"[^>]*>)(\d+)(?="|\s*[,}]| \/ 120<)/g,
       (match,prefix,n) => +n >= 23 ? prefix + priorNumber(n) : match)
@@ -111,7 +112,7 @@ function withoutProgressReset(name, source) {
     .replace(/if \(!window\.timebackProgress\.isCurrent\(\)\) return;(?:\r?\n[ \t]*)?/, '')
     .replace('window.timebackProgress.isCurrent() && JSON.stringify(pages)', 'JSON.stringify(pages)')
     .replace(/((?:business|chronect)-shared\.js\?v=)reset20261124/g, '$1' + '20261124-archive118')
-    .replace('final-chapter.js?v=reset20261124', 'final-chapter.js?v=20261124-final118');
+    .replace(/final-chapter\.js\?v=(?:reset20261124|20261127-bat-drawing)/, 'final-chapter.js?v=20261124-final118');
   if (name === 'public/time-back.html') {
     result = result.replace('window.timebackProgress.reset();',
       "try {\n        localStorage.removeItem(archiveStorageKey);\n      } catch (error) {\n        return;\n      }\n      window.location.href = 'index.html';");
@@ -141,6 +142,12 @@ function canonicalPublic(name,current){
     .replace("['クロネクト','運営会社','企業情報','会社概要']","['Chronect','クロネクト','運営会社','企業情報','会社概要']");
   if(name==='public/chronect.html')source=source.replace('href="chronect.css?v=20261126-review2"','href="chronect.css"');
   if(name==='public/chronect.css')source=source.replace('\n#company .hero-inner { max-width: 1180px; }\n.recruit-copy { display: block; }\n\n','\n');
+  if(name==='public/behavior-assistance-equipment.html')source=source
+    .replace('.equipment-figure img{display:block;width:100%;height:auto}', '.equipment-figure img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}')
+    .replace(/^    \.equipment-operations\{[^\r\n]*\}\r?\n/m,'')
+    .replace(/^    @media\(max-width:780px\)\{\.equipment-operations\{[^\r\n]*\}\}\r?\n/m,'')
+    .replace(/<img src="images\/behavior-assistance-device\.png"[^>]*>/, file.text.match(/<img src="images\/behavior-assistance-equipment\.png"[^>]*>/)[0])
+    .replace(/      <div class="equipment-operations">\r?\n        (<table class="spec-table">[^\r\n]*<\/table>)\r?\n        <figure class="equipment-figure"><img src="images\/behavior-assistance-device-wearing\.png"[^\r\n]*<\/figure>\r?\n      <\/div>/, '      $1');
   if(name==='public/chronect-shared.js')source=source.replace("if(!currentPage||document.body.dataset.pageArchive==='exclude')return pages;","if(!currentPage)return pages;");
   if(name==='public/chronect-hub-search.html')source=source
     .replace('  <script src="final-chapter.js?v=20261124-final118"></script>\n','')
@@ -612,7 +619,7 @@ function legacyTestSource(name){
 }
 function assertLegacyTestCode(name){assert.equal(fs.readFileSync(path.join(root,name),'utf8'),legacyTestSource(name),name+' exceeds legacy bridge insertion');}
 const legacyFs=Object.create(fs);
-legacyFs.readdirSync=function(dir,options){const rows=fs.readdirSync(dir,options);const added=new Set([livingEntry.href,...require('./midroute-test-helper.cjs').entries.map(e=>e.href),...facilityEntries.map(e=>e.href),...chapterEntries.map(e=>e.href),...chapterFourEntries.map(e=>e.href),...chapterFiveEntries.map(e=>e.href),...chapterSixEntries.map(e=>e.href),...chapterSixEvidenceEntries.map(e=>e.href),trialOperationEntry.href,'yaboo-news-chronect.html','yaboo-news-tip.html',...reportReferenceEntries.map(e=>e.href),'investigation-report.js','investigation-report.css','takase-report-editor.html','chronect-hub-internal.css','takase-mail.html','takase-mail.js','yaboo-news-aftermath.html','timeback-ending-record.html','takase-ending.css','takase-mail.css',...chapterSevenEntries.map(e=>e.href),...publicationEntries.map(e=>e.href),...nodelinkEntries.map(e=>e.href),...chapterSevenFollowupEntries.map(e=>e.href),'chapter-seven-reference.js','nodelink-logo-hold.js','nodelink-internal-search.js','nodelink-internal.css','final-chapter.js','final-chapter-mail.js','progress-reset.js']);return path.resolve(String(dir))===path.join(root,'public')?rows.filter(row=>!added.has(typeof row==='string'?row:row.name)):rows;};
+legacyFs.readdirSync=function(dir,options){const rows=fs.readdirSync(dir,options);const added=new Set([batDrawingEntry.href,livingEntry.href,...require('./midroute-test-helper.cjs').entries.map(e=>e.href),...facilityEntries.map(e=>e.href),...chapterEntries.map(e=>e.href),...chapterFourEntries.map(e=>e.href),...chapterFiveEntries.map(e=>e.href),...chapterSixEntries.map(e=>e.href),...chapterSixEvidenceEntries.map(e=>e.href),trialOperationEntry.href,'yaboo-news-chronect.html','yaboo-news-tip.html',...reportReferenceEntries.map(e=>e.href),'investigation-report.js','investigation-report.css','takase-report-editor.html','chronect-hub-internal.css','takase-mail.html','takase-mail.js','yaboo-news-aftermath.html','timeback-ending-record.html','takase-ending.css','takase-mail.css',...chapterSevenEntries.map(e=>e.href),...publicationEntries.map(e=>e.href),...nodelinkEntries.map(e=>e.href),...chapterSevenFollowupEntries.map(e=>e.href),'chapter-seven-reference.js','nodelink-logo-hold.js','nodelink-internal-search.js','nodelink-internal.css','final-chapter.js','final-chapter-mail.js','progress-reset.js']);return path.resolve(String(dir))===path.join(root,'public')?rows.filter(row=>!added.has(typeof row==='string'?row:row.name)):rows;};
 legacyFs.readFileSync=function(file,options){
   const resolved=path.resolve(String(file)),relative=path.relative(root,resolved).split(path.sep).join('/');
   const value=fs.readFileSync(file,options);
@@ -620,4 +627,4 @@ legacyFs.readFileSync=function(file,options){
   const canonical=canonicalPublic(relative,value);
   return typeof value==='string'?canonical.toString(typeof options==='string'?options:options?.encoding||'utf8'):canonical;
 };
-module.exports={root,baseline,order,entries,byHref,owned,cacheVersion,forwardPublic,canonicalPublic,legacyFs,legacyTestSource,assertLegacyTestCode,sha,livingEntry,livingSearchEntry,livingParagraph,archiveVersion,excludedNumbers,compactNumber,facilityEntries,facilitySearchEntries,chapterEntries,chapterSearchEntries,chapterFourEntries,chapterFourSearchEntries,chapterFiveEntries,chapterFiveSearchEntries,chapterSixEntries,chapterSixSearchEntries,chapterSixEvidenceEntries,chapterSixEvidenceSearchEntries,trialOperationEntry,trialOperationSearchEntry,yabooEntries,reportReferenceEntries,reportReferenceSearchEntry,endingEntries,chapterSevenEntries,publicationEntries,nodelinkEntries,chapterSevenFollowupEntries};
+module.exports={root,baseline,order,entries,byHref,owned,cacheVersion,forwardPublic,canonicalPublic,legacyFs,legacyTestSource,assertLegacyTestCode,sha,livingEntry,livingSearchEntry,livingParagraph,archiveVersion,excludedNumbers,compactNumber,facilityEntries,facilitySearchEntries,chapterEntries,chapterSearchEntries,chapterFourEntries,chapterFourSearchEntries,chapterFiveEntries,chapterFiveSearchEntries,chapterSixEntries,chapterSixSearchEntries,chapterSixEvidenceEntries,chapterSixEvidenceSearchEntries,trialOperationEntry,trialOperationSearchEntry,yabooEntries,reportReferenceEntries,reportReferenceSearchEntry,endingEntries,chapterSevenEntries,publicationEntries,nodelinkEntries,chapterSevenFollowupEntries,batDrawingEntry};

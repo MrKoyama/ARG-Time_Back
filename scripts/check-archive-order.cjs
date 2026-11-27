@@ -5,7 +5,9 @@ const {root,baseline,canonicalPublic}=bridge;
 const mid=require('./midroute-test-helper.cjs'),cacheVersion=bridge.archiveVersion;
 const priorEntries=[...bridge.entries,bridge.livingEntry,...mid.entries];
 const beforeYaboo=[...priorEntries.filter(e=>!bridge.excludedNumbers.has(e.number)).map(e=>({...e,previousNumber:e.number,number:bridge.compactNumber(e.number)})),...bridge.facilityEntries,...bridge.chapterEntries,...bridge.chapterFourEntries,...bridge.chapterFiveEntries,...bridge.chapterSixEntries,...bridge.chapterSixEvidenceEntries,bridge.trialOperationEntry];
-const entries=[...beforeYaboo.map(e=>({...e,previousNumber:e.number,number:e.number>=22?e.number+1:e.number})),...[...bridge.yabooEntries,...bridge.reportReferenceEntries,...bridge.endingEntries,...bridge.chapterSevenEntries,...bridge.publicationEntries,...bridge.nodelinkEntries,...bridge.chapterSevenFollowupEntries].map(e=>({...e,previousNumber:e.number}))].sort((a,b)=>a.number-b.number);
+const formerBatEntries=bridge.chapterSevenFollowupEntries.filter(e=>e.number>=110&&e.number<=116);
+const activeFollowupEntries=[...bridge.chapterSevenFollowupEntries.filter(e=>!formerBatEntries.includes(e)),bridge.batDrawingEntry];
+const entries=[...beforeYaboo.map(e=>({...e,previousNumber:e.number,number:e.number>=22?e.number+1:e.number})),...[...bridge.yabooEntries,...bridge.reportReferenceEntries,...bridge.endingEntries,...bridge.chapterSevenEntries,...bridge.publicationEntries,...bridge.nodelinkEntries,...activeFollowupEntries].map(e=>({...e,previousNumber:e.number}))].sort((a,b)=>a.number-b.number);
 const byHref=new Map(entries.map(e=>[e.href,e]));
 const read=name=>fs.readFileSync(path.join(root,'public',name),'utf8');
 function functionSource(source,name){
@@ -50,8 +52,8 @@ for(const name of fs.readdirSync(path.join(root,'public')).filter(n=>/\.(html|js
     assert(fs.existsSync(path.join(root,'public',m[1].split(/[?#]/)[0])),name+' missing '+m[1]);
   }
 }
-assert.equal(srcConsumers,125);assert.equal(numbered.size,entries.length);
-assert.deepEqual([...numbered.keys()].sort((a,b)=>a-b),Array.from({length:entries.length},(_,i)=>i+1));
+assert.equal(srcConsumers,126);assert.equal(numbered.size,112);
+assert.deepEqual([...numbered.keys()].sort((a,b)=>a-b),entries.map(e=>e.number));
 assert(!/data-page-number|archiveButton/.test(read('memo-dream.html')));
 const registries=fs.readdirSync(path.join(root,'public')).filter(n=>/\.(html|js)$/.test(n)&&read(n).includes('archiveTitleByNumber'));
 assert.equal(registries.length,13);
@@ -87,14 +89,15 @@ for(const name of registries){
   const mappingMatch=source.match(/\{[^{}\r\n]*"partners\.html":38[^{}\r\n]*\}/);assert(mappingMatch,name);
   const mapping=JSON.parse(mappingMatch[0]);assert.equal(Object.keys(mapping).length,entries.length);
   for(const e of entries){assert.equal(mapping[e.href],e.number,name);assert.equal(titles[e.number],e.title,name);}
-  for(let n=entries.length+1;n<=120;n++)assert.equal(titles[n],undefined,name);
+  assert.equal(Object.keys(titles).length,entries.length,name);
+  for(const n of [111,112,113,114,115,116,119,120])assert.equal(titles[n],undefined,name);
   for(const ex of ['search.html','business-search.html','chronect-search.html','chronect-hub-search.html'])assert.equal(mapping[ex],undefined);
   const globalMaps=[...source.matchAll(/(?:const|let)\s+(businessPageNumberByHref|pageNumberByHref)\s*=\s*(\{[^{}]*\})/g)].map(m=>'const '+m[1]+'='+m[2]+';').join('\n');
   const load=functionSource(source,'loadArchive'),save=functionSource(source,'saveArchive'),register=functionSource(source,'registerCurrentPage');
   const defs='const archiveStorageKey="timeback-page-archive-v1";const archiveTitleByNumber='+JSON.stringify(titles)+';let currentPage=null;'+globalMaps+'\n'+load+'\n'+save+'\n'+register;
   definitions.set(name,defs);
   function env(seed){let stored=typeof seed==='string'?seed:JSON.stringify(seed);const context=vm.createContext({window:{timebackProgress:{isCurrent:()=>true}},document:{body:{dataset:{}}},localStorage:{getItem(){return stored},setItem(k,v){assert.equal(k,'timeback-page-archive-v1');stored=v}}});vm.runInContext(defs,context);return{context,set:v=>stored=JSON.stringify(v)};}
-  for(const excluded of previousAll.filter(e=>bridge.excludedNumbers.has(e.number))){
+  for(const excluded of [...previousAll.filter(e=>bridge.excludedNumbers.has(e.number)),...formerBatEntries]){
     assert.equal(mapping[excluded.href],undefined,name+' excluded URL');
     const migrated=vm.runInContext('loadArchive()',env([excluded]).context);
     assert.equal(migrated.length,0,name+' excluded old record');

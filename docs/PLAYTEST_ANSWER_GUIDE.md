@@ -4,10 +4,10 @@
 
 ## 1. 現行版の情報・検索の基本仕様
 
-- 対象はリポジトリの現行実装。本編の起点は [No.1](https://missing-hours.pages.dev)。番号は共通アーカイブの登録どおりで、No.1〜118に欠番はない。管理上限は120。**No.119・120は未割当。**
+- 対象はリポジトリの現行実装。本編の起点は [No.1](https://missing-hours.pages.dev)。番号は共通アーカイブの登録どおりで、現行はNo.1〜110・117・118の112件。管理上限は120。**No.111〜116・119・120は未割当。**
 - 検索はサイト別の登録語の完全一致。前後空白を除去し、英字の大小を区別しない。本文検索・部分一致は行わない。Chronect企業サイトとChronect Hubは別の検索。ノードリンクはNo.92とNo.93〜97・99・100・102の検索欄で同じ辞書を使う。
-- Chronect Hubの特殊検索は半角の `##` を両側に付ける。最後の5語は進行条件付き。No.70〜79・81・87の特殊検索には閲覧順によるロックがない。
-- 表の検索語は、その行のページに**到達するための入力**。検索結果のカードを開くところまで含む。登録語は223件。先頭・末尾の空白と英字の大小を正規化すると、検索サイトと通常／特殊の区別を保った有効入力は222件。Businessの `TIME BACK FOR BUSINESS` と `TIME BACK for Business` は同じ結果を返すが、表では辞書上の両表記を掲載する。
+- Chronect Hubの特殊検索は半角の `##` を両側に付ける。新No.110への1語は進行条件付き。No.70〜79・81・87の特殊検索には閲覧順によるロックがない。
+- 表の検索語は、その行のページに**到達するための入力**。検索結果のカードを開くところまで含む。登録語は219件。先頭・末尾の空白と英字の大小を正規化すると、検索サイトと通常／特殊の区別を保った有効入力は218件。Businessの `TIME BACK FOR BUSINESS` と `TIME BACK for Business` は同じ結果を返すが、表では辞書上の両表記を掲載する。
 - リンク元は遷移先と異なるページを列挙し、同じ出発ページに複数の入口がある通常ナビゲーションはページ番号でまとめた。ページ内ジャンプと同じページに戻るロゴは省略。「—」は検索以外の到達方法がないことを示す。条件付き資料のリンクは、出発ページが表示できる状態で使う。
 - 既訪問ページの共通アーカイブからの再訪は全番号に共通。初回条件のあるページは表の条件を確認する。アーカイブの「すべての進行状況をリセット」は全進行を削除してNo.1へ戻る。エンディングの「分岐点に戻る」はNo.82へ戻り、到達記録を残す。
 
@@ -17,9 +17,9 @@
 | TIME BACK for Business 通常 | 41 |
 | Chronect企業サイト通常 | 70 |
 | Chronect Hub 通常 | 38 |
-| Chronect Hub 特殊 | 17（最終章5件を含む） |
+| Chronect Hub 特殊 | 13（最終章1件を含む） |
 | ノードリンク内部検索（通常） | 8 |
-| **合計** | **223** |
+| **合計** | **219** |
 
 ### 正式資料との照合で見つかった差
 
@@ -27,7 +27,7 @@
 - [検索とリンクの資料](09-search-and-links.md)の企業検索表に、プロジェクト、覚醒移行発表記事、一覧外の研究発表2件の旧番号が残る。現行では順にNo.17・24・登録外2件。
 - [謎と導線](05-puzzles-and-routes.md)には制作時点の番号・経路が混在する。現行の報告用資料→調査作業控えはNo.81の隠しリンク、ノードリンク後半の入口はNo.97→98。相沢への再連絡はNo.101・102・106〜109の実訪問で判定する。この資料の表と手順は、現行の入口・条件で統一した。
 
-## 2. 全118ページの一覧
+## 2. 登録済み112ページの一覧
 
 | ページ番号 | ページタイトル | 到達できる検索語（全件） | その他の到達方法・条件 | 概要 |
 | ---: | --- | --- | --- | --- |
@@ -71,7 +71,7 @@
 | 38 | [提携企業一覧 ｜ TIME BACK for Business](https://missing-hours.pages.dev/partners) | TIME BACK for Business 通常　`提携企業一覧`、`提携企業` | No.17の「代表的な提携企業を見る」。 | 代表的な提携5社の一覧。東央の検証分野と潜入先の候補を照合できる。 |
 | 39 | [トップページ ｜ 株式会社ノードリンク・ワークス](https://missing-hours.pages.dev/nodelink-works) | なし | No.38のノードリンク・ワークスの「企業サイトを見る」。 通常リンク元 No.92〜94、No.96、No.99。 | 人材会社ノードリンクの企業サイト。中途Web職・研修と、ロゴ長押しの導線。 |
 | 40 | [トップページ ｜ アクシオン・ロジスティクス株式会社](https://missing-hours.pages.dev/axion-logistics) | なし | No.38のアクシオン・ロジスティクスの「企業サイトを見る」。 | アクシオンの企業サイト。独立した物流会社としての事業と公開上の利用例。 |
-| 41 | [トップページ ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub) | なし | Hubのロゴ／「Chronect Hubへ戻る」。企業サイトからはNo.20→42、No.24→43、または一覧外の研究発表2件から対応するHub要旨に入れる。 通常リンク元 No.42〜66、No.70〜79、No.81、No.87、No.98、No.101、No.106〜112、No.114・115、`chronect-hub-research-20240711.html`、`chronect-hub-research-20251105.html`、Hub検索EX。 | Chronect Hubの検索入口。公開研究要旨と限定保存資料が、それぞれの公開範囲に応じて管理されると案内する。 |
+| 41 | [トップページ ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub) | なし | Hubのロゴ／「Chronect Hubへ戻る」。企業サイトからはNo.20→42、No.24→43、または一覧外の研究発表2件から対応するHub要旨に入れる。 通常リンク元 No.42〜66、No.70〜79、No.81、No.87、No.98、No.101、No.106〜110、`chronect-hub-research-20240711.html`、`chronect-hub-research-20251105.html`、Hub検索EX。 | Chronect Hubの検索入口。公開研究要旨と限定保存資料が、それぞれの公開範囲に応じて管理されると案内する。 |
 | 42 | [睡眠中の時間認知に関する研究要旨 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-research) | Chronect Hub 通常　`睡眠`、`時間認知`、`睡眠中の時間認知`、`睡眠中の時間認知に関する研究`、`睡眠中の時間認知に関する研究要旨` | No.20の公開研究要旨リンク。 | 睡眠中の時間認知に関する公開研究要旨。管理コードを使った資料検索への入口にもなる。 |
 | 43 | [短時間休息後の覚醒移行に関する検証要旨 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-research-20260218) | Chronect Hub 通常　`短時間休息後の覚醒移行に関する検証要旨`、`覚醒移行`、`短時間休息` | No.24の公開研究要旨リンク。 | 短時間休息後の覚醒移行に関する公開研究要旨。初期応答と継続操作の扱いを説明。 |
 | 44 | [セッション運用記録（参照用抜粋） ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-session) | Chronect Hub 通常　`TB-260917-4826` | — | まつだ本人の売却中の通過実績。公園→住宅間の細道→商店街と、資料識別番号を確認できる。 |
@@ -140,26 +140,20 @@
 | 107 | [SECOND SHIFT 業務実績・清算対応記録 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-second-shift-settlement) | なし | No.100の参照リンク。No.100訪問後に開ける。 | 同一セッションでの有償業務。法人から9,600円を受領し、本人への追加支給はなし。 |
 | 108 | [技能モデル生成・適用記録 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-skill-model-record) | なし | No.100の参照リンク。No.100訪問後に開ける。 | 別利用者U-2084の技能モデルSM-0142の第三者適用と、説明・個別同意の欠如。 |
 | 109 | [SECOND SHIFT 中長期事業戦略 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-second-shift-strategy) | なし | No.100の参照リンク。No.100訪問後に開ける。 | 労働市場の基盤を支配する中長期計画と、記憶隔離の経済的な利用。 |
-| 110 | [Behavior Assistance Terminal 製品仕様書 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-bat-spec) | Chronect Hub 特殊・条件付き　`##Behavior Assistance Terminal##`（No.86・90・105の累積到達） | — | 法人向け端末BATの仕様。別系統の売却・購入と共通制御機構を紹介。 |
-| 111 | [BAT制御系統図 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-bat-control) | Chronect Hub 特殊・条件付き　`##BAT制御系統##`（最終章解放済み＋No.110を実際に閲覧） | — | 管理通信・外部タスク・売却と購入・MMU・安全監視の系統図。外部タスクを拒否する際の範囲を説明。 |
-| 112 | [MMU — 記憶管理機構 詳細仕様 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-mmu-spec) | Chronect Hub 特殊・条件付き　`##MMU##`（最終章解放済み＋No.111を実際に閲覧） | — | MMUの標準プロファイルと参照境界。異常な組み合わせと緊急対応への手掛かり。 |
-| 113 | [機器設定・状態確認記録 ｜ BAT](https://missing-hours.pages.dev/bat-device-diagnostics) | なし | 最終章を解放しNo.110〜112を訪問。No.103まで受領済みの相沢に診断を依頼し、No.84の返信「これで合っていますか？」の添付を開く。 | 相沢のBAT診断。外部タスク拒否設定と、誤隔離、待機、安全監視などの状態を確認する。 |
-| 114 | [BAT緊急対応マニュアル ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-bat-emergency) | Chronect Hub 特殊・条件付き　`##BAT緊急対応##`（最終章解放済み＋No.112を実際に閲覧） | — | 診断から異常分類を決め、利用者向け緊急復旧が可能か確認するマニュアル。 |
-| 115 | [隔離記憶復旧手順書 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-memory-recovery) | Chronect Hub 特殊・条件付き　`##隔離記憶復旧##`（最終章解放済み＋No.114を実際に閲覧） | — | 本人の外部指示拒否を維持した正常化と、5処理の依存関係を示す復旧手順書。 |
-| 116 | [復旧処理結果 ｜ BAT](https://missing-hours.pages.dev/bat-recovery-report) | なし | No.84で設定・順序の照合に成功し、相沢本人の同意、復旧完了を経て届く添付を開く。 | 復旧結果。誤隔離記憶の参照が戻り、現在の記憶・拒否設定・安全監視を保持。 |
-| 117 | [TIME BACK、全サービス停止　元社員が内部資料を公開、経営責任の追及へ ｜ Yaboo!ニュース](https://missing-hours.pages.dev/yaboo-news-timeback-suspension) | なし | 最終章のNo.84で完成済みNo.83を手動添付・送信し、最後の返信を受信してから「後日談を読む」。 | 高瀬本人の証言と内部資料による告発、TIME BACK停止、経営責任の追及開始を報じる。 |
-| 118 | [ENDING「自分の時間」 ｜ TIME BACK](https://missing-hours.pages.dev/timeback-ending-own-time) | なし | 最終送信と最後の返信を完了し、No.117を開いて記事末尾の「その後」を選ぶ。 | 高瀬と相沢として生きた過去を取り戻し、今後を本人が決められる結末。 |
+| 110 | [BAT製品設計図 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-bat-drawing) | Chronect Hub 特殊・条件付き　`##Behavior Assistance Terminal##`（No.86・90・105の累積到達） | — | 外観三面図、分解構成図、開発時の検討スケッチ。 |
+| 117 | [TIME BACK、全サービス停止　元社員が内部資料を公開、経営責任の追及へ ｜ Yaboo!ニュース](https://missing-hours.pages.dev/yaboo-news-timeback-suspension) | なし | 旧ルートで最終送信と開示を達成済みの保存で再訪可能。 | 高瀬本人の証言と内部資料による告発、TIME BACK停止、経営責任の追及開始を報じる。 |
+| 118 | [ENDING「自分の時間」 ｜ TIME BACK](https://missing-hours.pages.dev/timeback-ending-own-time) | なし | 旧ルートで開示を達成した保存でNo.117を開き、記事末尾の「その後」を選ぶ。 | 高瀬と相沢として生きた過去を取り戻し、今後を本人が決められる結末。 |
 
 ## 3. アーカイブ登録外ページ一覧
 
-登録外は19ファイル（検索結果EX 4、一覧外ニュース12、研究要旨2、旧URL転送1）。No.92の検索結果モードを別行に補足した。
+登録外は26ファイル（下表の19件と旧BAT資料7件）。旧BAT資料は表示・検索・アーカイブ登録を停止している。No.92の検索結果モードを別行に補足した。 [旧資料の扱い](04-page-inventory.md)
 
 | 区分 | ページタイトル | 到達できる検索語（全件） | その他の到達方法・条件 | 概要 |
 | --- | --- | --- | --- | --- |
 | 検索結果EX | [サイト内検索｜TIME BACK](https://missing-hours.pages.dev/search) | なし | 検索フォームのある画面 No.3〜12、TIME BACK検索EX。 | 個人向け辞書の結果を表示する。 |
 | 検索結果EX | [検索結果｜TIME BACK for Business](https://missing-hours.pages.dev/business-search) | なし | 検索フォームのある画面 No.27〜38、Business検索EX。 | 法人向け辞書の結果を表示する。 |
 | 検索結果EX | [検索結果 ｜ Chronect](https://missing-hours.pages.dev/chronect-search) | なし | 検索フォームのある画面 No.13〜21、No.23〜26、一覧外ニュース12件（下表）、Chronect企業検索EX。 | Chronect企業サイトの辞書の結果を表示する。 |
-| 検索結果EX | [検索結果 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-search) | なし | 検索フォームのある画面 No.41〜66、No.70〜79、No.81、No.87、No.98、No.101、No.106〜112、No.114・115、`chronect-hub-research-20240711.html`、`chronect-hub-research-20251105.html`、Hub検索EX。 | Hubの通常・特殊検索結果。高瀬の氏名検索では0件文からNo.67へのリンクが出る。 |
+| 検索結果EX | [検索結果 ｜ Chronect Hub](https://missing-hours.pages.dev/chronect-hub-search) | なし | 検索フォームのある画面 No.41〜66、No.70〜79、No.81、No.87、No.98、No.101、No.106〜110、`chronect-hub-research-20240711.html`、`chronect-hub-research-20251105.html`、Hub検索EX。 | Hubの通常・特殊検索結果。高瀬の氏名検索では0件文からNo.67へのリンクが出る。 |
 | 一覧外ニュース | [短時間休息と認知回復に関する産学共同研究を開始 ｜ Chronect](https://missing-hours.pages.dev/chronect-news-20240305) | Chronect企業サイト通常　`短時間休息と認知回復に関する産学共同研究を開始`、`短時間休息`、`認知回復` | — | 短時間休息・認知回復に関する産学共同研究の開始。 |
 | 一覧外ニュース | [日常環境下での時間選択に関する予備研究を発表 ｜ Chronect](https://missing-hours.pages.dev/chronect-news-20240711) | Chronect企業サイト通常　`日常環境下での時間選択に関する予備研究を発表` | 通常リンク元 `chronect-hub-research-20240711.html`。 | 日常環境での時間選択の予備研究を発表。本文からHubの対応要旨を開ける。 |
 | 一覧外ニュース | [TIME BACK先行提供プログラムを開始しました ｜ Chronect](https://missing-hours.pages.dev/chronect-news-20241021) | Chronect企業サイト通常　`TIME BACK先行提供プログラムを開始しました`、`TIME BACK先行提供プログラム`、`先行提供` | — | TIME BACKの先行提供プログラム。 |
@@ -221,7 +215,12 @@
 | No.105 | ENDING 3「完全な告発」 | No.84でNo.103を受領し、No.80で高瀬作成版を手動添付して提出。No.104の「その後」へ。 | No.80・84・103〜105 |
 | No.86・90・105・118 | 分岐点に戻る | 完成済みのNo.83を復元してNo.82へ。旧社用アドレス宛てメールと2種類の提出は初期化。アーカイブ・相沢・最終章の進行は保持する。 | 各エンディングの「分岐点に戻る」 |
 | No.86・90・105→110 | 虫食い検索語を完成させる | 3結末の本文後の `B*h**i*r *s*i**a**e *e******`／`*e*av*o* A*s**t*n** ****i***`／`******** ****s***c* T*rm*nal` を重ね、Hubで `##Behavior Assistance Terminal##`。3結末をすべて実際に開いていること。 | No.86・90・105 |
-| No.110〜115・84 | BAT資料と診断を揃える | No.110を開いて `##BAT制御系統##` → No.111を開いて `##MMU##` → No.112を開いて `##BAT緊急対応##` → No.114を開いて `##隔離記憶復旧##`。No.110〜112を見てNo.103も受領済みなら、相沢に診断を頼める。No.113の受領・閲覧とNo.114・115の閲覧は順不同。相沢の診断会話とNo.110〜115の実訪問が照合の条件。 | No.84・103・110〜115 |
+| No.110 | BAT製品設計図を確認する | 図の部品番号・正式名称を照合できる。製品仕様書は今後の手掛かり。 | No.110 |
+
+### 旧最終章の照合（制作履歴・現行進行停止）
+
+| 対象 | 謎解き | 照合・操作 | 資料 |
+| --- | --- | --- | --- |
 | No.84 最終照合 ① | 異常分類 | `M-03`。参照設定が異常で隔離記憶が残存。データ整合性と安全監視は維持されている。 | No.112〜115 |
 | No.84 最終照合 ② | TASK_ACCEPT | `DENY`。改造目的である外部タスク指示の拒否は維持する。 | No.97・111・113・115 |
 | No.84 最終照合 ③ | REJECT_SCOPE | `TASK_ONLY`。拒否を当該外部タスクに限定する。 | No.111・113・115 |
@@ -262,7 +261,11 @@
 
 ### ENDING 4「自分の時間」 No.118
 
-1. No.86・90・105をすべて実際に開いた保存で、断片を合わせて `##Behavior Assistance Terminal##` とHub検索する。No.110を開き、`##BAT制御系統##` → No.111 → `##MMU##` → No.112へ。
+現行版では3結末の実訪問後に `##Behavior Assistance Terminal##` をHubで検索し、No.110「BAT製品設計図」を開く。旧BAT資料7件を登録・検索から外したため、最終章の新規進行はNo.110で一時停止する。No.117・118の旧到達済み保存は従来の条件で再訪できる。
+
+旧版の進行手順は制作履歴。
+
+1. 旧No.110の仕様書から `##BAT制御系統##` → 旧No.111 → `##MMU##` → 旧No.112へ。
 2. 相沢に診断を依頼し、受信添付No.113を実際に開く。並行して、No.112から `##BAT緊急対応##` でNo.114を開き、`##隔離記憶復旧##` でNo.115を開く。診断資料とマニュアルの閲覧順は自由。
 3. No.84で `M-03`、`DENY`、`TASK_ONLY`、`SESSION`、`DYNAMIC` を入力。`RECOVERY → NORMALIZE → RESTORE → MERGE → VERIFY` に並べて照合する。
 4. 相沢との会話を本人の同意まで進め、復旧結果No.116を受領。No.116を開いて結果を確認し、会話に戻って本人の記憶と救助要請についての返信を読む。

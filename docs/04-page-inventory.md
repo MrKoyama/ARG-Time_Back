@@ -1,8 +1,8 @@
 # 実装済みページ一覧
 
-## 2026-11-24 第7章後半と最終章
+## 現行の登録と旧資料の扱い
 
-現行アーカイブはNo.1〜118、上限120。No.119・120の2枠が未割当。公開HTMLは137件。
+現行アーカイブはNo.1〜110・117・118の112件、上限120。No.111〜116・119・120は未割当。公開HTMLは138件。 旧BAT資料7件を登録・検索から外したため、最終章の新規進行はNo.110で一時停止する。No.117・118の旧到達済み保存は従来の条件で再訪できる。
 
 No.94〜97・99は旧導線を終了し、異なるURLの資料に差し替えた。旧URLの記録は新資料の訪問に移行しない。No.98、No.1〜93の番号とURLは維持する。No.100〜105を追加し、検索結果EXは引き続き登録しない。
 
@@ -225,15 +225,11 @@ No.62〜68を改修。No.65・67・68を改題。アーカイブは1〜68、上�
 | 107 | [chronect-hub-second-shift-settlement.html](../public/chronect-hub-second-shift-settlement.html) | SECOND SHIFT 業務実績・清算対応記録 ｜ Chronect Hub | No.100から参照。SUB-117の業務実績、法人入金9,600円、売却報酬2,560円。 |
 | 108 | [chronect-hub-skill-model-record.html](../public/chronect-hub-skill-model-record.html) | 技能モデル生成・適用記録 ｜ Chronect Hub | No.100から参照。SM-0142を同一セッションで適用した実績と、取得元への説明・同意の記録。 |
 | 109 | [chronect-hub-second-shift-strategy.html](../public/chronect-hub-second-shift-strategy.html) | SECOND SHIFT 中長期事業戦略 ｜ Chronect Hub | No.100から参照。限定運用と市場拡大計画、記憶隔離の事業評価。 |
-| 110 | [chronect-hub-bat-spec.html](../public/chronect-hub-bat-spec.html) | Behavior Assistance Terminal 製品仕様書 ｜ Chronect Hub | 3つの結末の累積到達と特殊検索で解放。BATの製品概要。 |
-| 111 | [chronect-hub-bat-control.html](../public/chronect-hub-bat-control.html) | BAT制御系統図 ｜ Chronect Hub | No.110から特殊検索。BAPとTIRの入力系統、SCU・BAC・CAU・MMU・SMU。 |
-| 112 | [chronect-hub-mmu-spec.html](../public/chronect-hub-mmu-spec.html) | MMU — 記憶管理機構 詳細仕様 ｜ Chronect Hub | No.111から特殊検索。記憶管理プロファイルと参照境界。 |
-| 113 | [bat-device-diagnostics.html](../public/bat-device-diagnostics.html) | 機器設定・状態確認記録 ｜ BAT | No.84で相沢から受領する診断記録。設定値と安全状態。 |
-| 114 | [chronect-hub-bat-emergency.html](../public/chronect-hub-bat-emergency.html) | BAT緊急対応マニュアル ｜ Chronect Hub | No.112から特殊検索。異常分類と利用者向け緊急復旧の参照。 |
-| 115 | [chronect-hub-memory-recovery.html](../public/chronect-hub-memory-recovery.html) | 隔離記憶復旧手順書 ｜ Chronect Hub | No.114から特殊検索。設定正常化と復旧処理の依存関係。 |
-| 116 | [bat-recovery-report.html](../public/bat-recovery-report.html) | 復旧処理結果 ｜ BAT | 相沢の同意と復旧完了後、No.84で受領。記憶の参照復元と整合性。 |
-| 117 | [yaboo-news-timeback-suspension.html](../public/yaboo-news-timeback-suspension.html) | TIME BACK、全サービス停止　元社員が内部資料を公開、経営責任の追及へ ｜ Yaboo!ニュース | No.84で完成済みNo.83を手動送信し、最後の返信を受けた後に解放。本人による告発とサービス停止。 |
-| 118 | [timeback-ending-own-time.html](../public/timeback-ending-own-time.html) | ENDING「自分の時間」 ｜ TIME BACK | No.117の記事末尾から到達。記憶を取り戻した本人のこれから。 |
+| 110 | [chronect-hub-bat-drawing.html](../public/chronect-hub-bat-drawing.html) | BAT製品設計図 ｜ Chronect Hub | 3結末の累積到達と特殊検索で解放。外観三面図・分解構成図・検討スケッチを収録。 |
+| 117 | [yaboo-news-timeback-suspension.html](../public/yaboo-news-timeback-suspension.html) | TIME BACK、全サービス停止　元社員が内部資料を公開、経営責任の追及へ ｜ Yaboo!ニュース | 旧ルートで最終送信と開示を達成済みの保存で再訪可能。本人による告発とサービス停止。 |
+| 118 | [timeback-ending-own-time.html](../public/timeback-ending-own-time.html) | ENDING「自分の時間」 ｜ TIME BACK | 旧ルートの開示を達成した保存でNo.117の記事末尾から到達。記憶を取り戻した本人のこれから。 |
+
+旧No.110〜116（製品仕様書、制御系統図、MMU詳細仕様、機器設定・状態確認記録、緊急対応マニュアル、隔離記憶復旧手順書、復旧処理結果）は登録外。旧HTMLは改修用に保持し、旧No.110の訪問記録を新No.110へ移行しない。
 | EX | [chronect-hub-search.html](../public/chronect-hub-search.html) | 検索結果 ｜ Chronect Hub | 管理コードと公開研究の登録語を完全一致検索。アーカイブ対象外。 |
 | EX | [business-search.html](../public/business-search.html) | 検索結果｜TIME BACK for Business | 独立ホワイトリスト検索。アーカイブ登録対象外。 |
 | EX | [chronect-search.html](../public/chronect-search.html) | 検索結果 ｜ Chronect | 独立ホワイトリスト検索。アーカイブ登録対象外。 |

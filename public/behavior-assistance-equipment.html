@@ -12,10 +12,11 @@
   <title>行動支援機器・システム｜TIME BACK FOR BUSINESS</title>
   <style>
     .equipment-figure{margin:0;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:#eef3f6;box-shadow:var(--shadow)}
-    .equipment-figure img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+    .equipment-figure img{display:block;width:100%;height:auto}
     .equipment-figure figcaption{display:flex;justify-content:space-between;gap:20px;padding:15px 18px;color:var(--muted);background:#fff;font-size:.75rem}
     .equipment-figure figcaption strong{color:var(--navy)}
     .equipment-intro{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+    .equipment-operations{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:start}
     .equipment-copy h2{margin:0;color:var(--navy);font-size:clamp(1.55rem,3vw,2.15rem);line-height:1.55}
     .equipment-copy p{margin:17px 0 0;color:var(--muted);font-size:.93rem}
     .system-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -28,6 +29,7 @@
     .spec-table th{width:210px;color:var(--navy);background:#f3f8fb}
     .spec-table td{color:var(--muted)}
     @media(max-width:780px){.equipment-intro{grid-template-columns:1fr;gap:32px}.system-grid{grid-template-columns:1fr}.equipment-figure figcaption{flex-direction:column;gap:3px}.spec-table,.spec-table tbody,.spec-table tr,.spec-table th,.spec-table td{display:block}.spec-table th{width:auto;padding-bottom:7px;border-bottom:0}.spec-table td{padding-top:5px}}
+    @media(max-width:780px){.equipment-operations{grid-template-columns:1fr;gap:24px}}
   </style>
   <link rel="stylesheet" href="archive.css?v=20261029">
   <script src="progress-reset.js?v=20261124"></script>
@@ -44,7 +46,7 @@
     <section class="hero compact"><div class="hero-inner"><div><p class="eyebrow">ASSISTANCE HARDWARE</p><h1>行動支援機器・システム</h1><p class="hero-lead">Behavior Assistance Systemの状態検知と支援出力を統合し、利用者ごとに調整された行動支援を安定して運用するための専用機材です。</p></div></div></section>
 
     <section class="content-section"><div class="section-inner equipment-intro">
-      <figure class="equipment-figure"><img src="images/behavior-assistance-equipment.png" width="1536" height="1024" alt="白と銀色のフレームに複数の円形センサーを備えた頭部装着型の行動支援機材"><figcaption><strong>法人向け構成例</strong></figcaption></figure>
+      <figure class="equipment-figure"><img src="images/behavior-assistance-device.png" width="1448" height="1086" alt="白い外装と銀色のフレームを備えた頭部装着型の行動支援機器"><figcaption><strong>法人向け構成例</strong></figcaption></figure>
       <div class="equipment-copy"><p class="section-label">CONTROL INTERFACE</p><h2>検知と支援を、一つの装置で制御。</h2><p>頭部周辺に配置した複数のセンサーが、装着状態、姿勢変化、利用者の負荷を継続的に確認します。Behavior Assistance Platformから受け取った運用条件と組み合わせ、BASの案内、動作タイミング、安全停止を利用環境に合わせて調整します。</p><p>軽量フレームと非侵襲型の接触パッドを採用し、装着者ごとの頭部形状に合わせて技術担当者が初期調整を行います。</p></div>
     </div></section>
 
@@ -55,7 +57,10 @@
 
     <section class="content-section"><div class="section-inner">
       <div class="section-heading"><p class="section-label">OPERATION SPECIFICATION</p><h2>導入・運用条件</h2><p>本機材は単体では提供されず、Behavior Assistance Platformおよび法人向けBAS運用環境と組み合わせて使用します。</p></div>
-      <table class="spec-table"><tbody><tr><th scope="row">提供形態</th><td>法人契約に基づく貸与。一般販売は行っていません。</td></tr><tr><th scope="row">初期設定</th><td>認定技術担当者が装着調整、センサー校正、利用環境との接続確認を実施します。</td></tr><tr><th scope="row">利用前確認</th><td>装着状態、通信、安全基準、本人承認を確認した後にセッションを開始します。</td></tr><tr><th scope="row">保守</th><td>利用回数に応じた定期点検と、センサー部・接触パッドの交換を実施します。</td></tr></tbody></table>
+      <div class="equipment-operations">
+        <table class="spec-table"><tbody><tr><th scope="row">提供形態</th><td>法人契約に基づく貸与。一般販売は行っていません。</td></tr><tr><th scope="row">初期設定</th><td>認定技術担当者が装着調整、センサー校正、利用環境との接続確認を実施します。</td></tr><tr><th scope="row">利用前確認</th><td>装着状態、通信、安全基準、本人承認を確認した後にセッションを開始します。</td></tr><tr><th scope="row">保守</th><td>利用回数に応じた定期点検と、センサー部・接触パッドの交換を実施します。</td></tr></tbody></table>
+        <figure class="equipment-figure"><img src="images/behavior-assistance-device-wearing.png" width="1448" height="1086" alt="オフィスで頭部に行動支援機器を装着したスーツ姿の男性" loading="lazy" decoding="async"><figcaption><strong>オフィスでの装着イメージ</strong></figcaption></figure>
+      </div>
     </div></section>
 
     <section class="content-section tint"><div class="section-inner"><div class="management-panel"><div><p class="section-label">SAFE OPERATION</p><h2>利用者本人の承認を前提に作動。</h2><p>装置は、本人が確認したセッション条件と法人側の安全基準が一致した場合にのみ有効化されます。異常な負荷、装着ずれ、通信断、登録範囲外への移動を検知した場合は、安全を優先して支援内容を調整または停止します。</p></div><ul class="check-list"><li>非侵襲型センサーを採用</li><li>セッションごとの本人承認</li><li>端末単独での安全停止</li><li>利用・保守記録の監査</li></ul></div></div></section>

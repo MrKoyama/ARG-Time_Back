@@ -19,18 +19,10 @@
     117: 'yaboo-news-timeback-suspension.html',
     118: 'timeback-ending-own-time.html'
   };
-  const materials = [
-    { number: 110, term: 'behavior assistance terminal', title: 'Behavior Assistance Terminal 製品仕様書',
-      description: '法人利用者のセッション実行端末に関する製品仕様。' },
-    { number: 111, prior: 110, term: 'bat制御系統', title: 'BAT制御系統図',
-      description: 'BATの機能構成と各制御系統の連携。' },
-    { number: 112, prior: 111, term: 'mmu', title: 'MMU — 記憶管理機構 詳細仕様',
-      description: '記憶管理機構の設定とセッション処理に関する仕様。' },
-    { number: 114, prior: 112, term: 'bat緊急対応', title: 'BAT緊急対応マニュアル',
-      description: 'BATの状態確認と異常分類に関する資料。' },
-    { number: 115, prior: 114, term: '隔離記憶復旧', title: '隔離記憶復旧手順書',
-      description: '利用者向け復旧機能の実行条件と処理項目。' }
-  ];
+  const drawing = {
+    title: 'BAT製品設計図', href: 'chronect-hub-bat-drawing.html',
+    description: 'Behavior Assistance Terminalの外観設計および構成部品をまとめた限定内部資料。'
+  };
   const fields = [
     { code: 'CLASSIFICATION', label: '異常分類' },
     { code: 'TASK_ACCEPT', label: 'TASK_ACCEPT' },
@@ -113,15 +105,11 @@
   }
 
   function search(term) {
-    const material = materials.find(item => item.term === term.trim().toLocaleLowerCase('ja'));
-    if (!material) return null;
-    const archive = visited();
+    if (term.trim().toLocaleLowerCase('ja') !== 'behavior assistance terminal' || !allEndings(visited())) return null;
     const state = read();
-    if (!allEndings(archive)) return null;
-    if (material.prior && (!state.opened.includes(110) || !archive.has(urls[material.prior]))) return null;
-    if (!state.opened.includes(material.number) &&
-        !store({ ...state, opened: [...state.opened, material.number] })) return null;
-    return { title: material.title, href: urls[material.number], description: material.description };
+    // The retired specification used opened[110]. Its search state must not unlock the drawing.
+    if (state.drawingOpened !== true && !store({ ...state, drawingOpened: true })) return null;
+    return drawing;
   }
 
   function validate(answers, order) {
@@ -137,20 +125,18 @@
   window.timebackFinalChapter = { key, urls, read, update, isUnlocked, canDiagnose, canSolve, fields, actions, validate, search };
 
   const view = document.querySelector('[data-final-chapter-view]');
-  if (!view) return;
+  if (!view || !document.body.dataset.pageNumber) return;
   const number = Number(document.body.dataset.pageNumber);
   const locked = document.querySelector('[data-final-chapter-locked]');
   const archiveButton = document.getElementById('archiveButton');
   let previousAllowed;
   function renderPage() {
     const state = read();
-    let allowed = isUnlocked();
-    if (allowed) {
-      if (number === 113) allowed = state.diagnostics === true;
-      else if (number === 116) allowed = state.recovered === true;
-      else if (number === 117) allowed = state.reportSent === true && state.disclosed === true;
-      else if (number === 118) allowed = state.reportSent === true && state.disclosed === true && hasReferences([117]);
-      else allowed = state.opened.includes(number);
+    let allowed = false;
+    if (document.body.dataset.pageHref === drawing.href) {
+      allowed = allEndings(visited()) && state.drawingOpened === true;
+    } else if ((number === 117 || number === 118) && isUnlocked()) {
+      allowed = state.reportSent === true && state.disclosed === true && (number === 117 || hasReferences([117]));
     }
     if (allowed && previousAllowed === false) {
       // Let the shared archive register a page that became available in another tab.

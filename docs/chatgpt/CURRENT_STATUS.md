@@ -6,15 +6,15 @@ B01・B02・B06は作者の最終承認済み。No.35は生活動線に関する
 
 B03・B04・C08は作者最終承認により対応完了。高瀬との会話リセットも作者確認済み。C08は前半の固定日時、後半の本文、No.98の全4通を統一した表示形式が作者最終承認済み。 [メールと社内連絡の改修記録](../MAIL_CORRESPONDENCE_IMPLEMENTATION.md)
 
-全32件のうち対応完了23件、対応中1件、未着手8件。C09・C10は作者最終承認により対応完了。C06はENDING 1〜3の断片を文字単位のアスタリスク表記に差し替え、作者確認待ち。 [改善管理](../11-playtest-improvements.md)
+全32件のうち対応完了24件、対応中2件、未着手6件。C02・C11は対応中。No.33の画像改修は実装済み・作者確認待ち。C06はENDING 1〜3の断片を文字単位のアスタリスク表記に差し替え、作者の実装確認と最終承認を経て対応完了。C09・C10は作者最終承認により対応完了。 [改善管理](../11-playtest-improvements.md)
 
 ## 2026-11-24 本格テストプレイ向けの初期化
 
 共通アーカイブのリセットを全進行の初期化に置き換えた。確定後はNo.1へ戻る。公開No.82の開発用ボタンと強制完成処理は撤去済み。分岐点復帰や個別入力の正規リセット、公開外の回帰・結合テストは維持する。 [保存とテストの仕様](../07-development-and-design.md)・[検証記録](../10-audit-and-sources.md)
 
-## 2026-11-24 最終章の実装状況
+## 最終章の実装状況
 
-現行アーカイブはNo.1〜118、上限120。No.119・120の2枠が未割当。公開HTMLは137件。 No.110〜118とNo.84の診断・照合・復旧・最終送信、No.86・90・105の断片を実装済み。分岐点復帰と旧保存に対応する。独立初見プレイ、スマートフォン実機、公開環境は未確認。 [制作項目](../06-backlog.md)・[検証記録](../10-audit-and-sources.md)
+現行アーカイブはNo.1〜110・117・118の112件、上限120。No.111〜116・119・120は未割当。公開HTMLは138件。 No.110「BAT製品設計図」まで実装済み。旧BAT資料7件を登録・検索から外したため、最終章の新規進行はNo.110で一時停止する。No.117・118の旧到達済み保存は従来の条件で再訪できる。 次は製品仕様書、緊急対応マニュアルの順に制作する。No.33の製品単体・装着写真は掲載済み。研究施設の画像、相沢との会話・照合・復旧手順の再設計は後続作業。独立初見プレイ、スマートフォン実機、公開環境は未確認。 [制作項目](../06-backlog.md)・[検証記録](../10-audit-and-sources.md)
 
 ## 2026-11-24 ノードリンクの検索操作を改善
 
@@ -173,13 +173,13 @@ Hubは既存6資料＋今回3資料＝9資料。新59分類一覧、新60地域�
 
 2026-11-02：34の指定段落、Hub検索「生活動線」、新規58の指定研究要旨に続き、作者承認の43への「生活動線や」5文字挿入を実装。34＋43の共通語配置から既存Hub検索58への探索導線は実装完了。今回34・44・45・58・検索DB・番号・保存は未変更。製品更新通知・中盤以降の証拠・個別の秘密成果還元対応は保留。語句への気づき・入力は初見未検証で、開発検証と区別する。初見環境にはアクセスしていない。
 
-静的HTML/CSS/JavaScriptで構成。現行アーカイブはNo.1〜118、上限120。No.119・120の2枠が未割当。公開HTMLは137件。Hubの通常検索は27資料、特殊検索は従来12資料と、条件付きの最終章5資料。ノードリンク独自検索は7件。
+静的HTML/CSS/JavaScriptで構成。現行アーカイブはNo.1〜110・117・118の112件、上限120。No.111〜116・119・120は未割当。公開HTMLは138件。Hubの通常検索は27資料、特殊検索は従来12資料と、条件付きの最終章1資料。ノードリンク独自検索は7件。
 
 正式な開発環境は `C:\Users\koyam\Desktop\Web_ARG\ARG-Time_Back`。OneDriveからのローカル移行は完了。既存5コミットを取り込み、移行時HEADは `faf3d2045a18eaa4bace918d907031fb9711759e`。移行直後は未コミット作業もあり、当時のHEADだけではその時点のサイト・資料を再現できなかった。その後の作者によるコミットを経て、2026-10-30のBAS資料更新開始時は `5e63e8ef2a26cd38c362962d69b45ac542cfcff8`・作業ツリーcleanを確認した。11月2日の今回開始時は前回の12資料が未コミットで、これらを保護して今回のWeb・資料・テスト変更を追加した。コミット・プッシュは行っていない。最新状態は作業時に確認する。
 
 ## 2. 現行ページ一覧
 
-現行の登録はNo.1〜118。上限は120。タイトル・ファイル・ページ内容は[正本のページ一覧](../04-page-inventory.md)と現行実装を参照。
+現行の登録はNo.1〜110・117・118。上限は120。タイトル・ファイル・ページ内容は[正本のページ一覧](../04-page-inventory.md)と現行実装を参照。
 
 | 現行番号 | タイトル | 公開ファイル | ページ内容 |
 |---:|---|---|---|
@@ -215,7 +215,7 @@ Hubは既存6資料＋今回3資料＝9資料。新59分類一覧、新60地域�
 | 30 | 安全管理｜TIME BACK FOR BUSINESS | [`business-safety.html`](../../public/business-safety.html) | 法人の承認・同意・安全監視。 |
 | 31 | 導入の流れ｜TIME BACK FOR BUSINESS | [`business-flow.html`](../../public/business-flow.html) | 契約・登録・オリエンテーション、相談リンク。 |
 | 32 | Behavior Assistance Platform｜TIME BACK FOR BUSINESS | [`behavior-assistance-platform.html`](../../public/behavior-assistance-platform.html) | 従業員の稼働・移動・安全情報の管理画面イメージ。 |
-| 33 | 行動支援機器・システム｜TIME BACK FOR BUSINESS | [`behavior-assistance-equipment.html`](../../public/behavior-assistance-equipment.html) | 写真付きの専用機材紹介。固有機材名は書かない。 |
+| 33 | 行動支援機器・システム｜TIME BACK FOR BUSINESS | [`behavior-assistance-equipment.html`](../../public/behavior-assistance-equipment.html) | 製品単体とオフィスでの装着写真を掲載した専用機材紹介。固有機材名は書かない。 |
 | 34 | 利用前オリエンテーション｜TIME BACK FOR BUSINESS | [`pre-use-orientation.html`](../../public/pre-use-orientation.html) | 初回説明・操作確認・本人同意。 |
 | 35 | ユーザー参加型実証プログラム｜TIME BACK for Business | [`business-demonstration.html`](../../public/business-demonstration.html) | 実証プログラム、現行map、地域連携への語句。 |
 | 36 | 生活環境実証エリア｜TIME BACK for Business | [`business-demonstration-area.html`](../../public/business-demonstration-area.html) | 事業センター内の屋内模擬生活環境・設備。2026-10-26、通路・模擬売場の施設写真と原寸拡大リンクを追加。 |
@@ -292,15 +292,9 @@ Hubは既存6資料＋今回3資料＝9資料。新59分類一覧、新60地域�
 | 107 | SECOND SHIFT 業務実績・清算対応記録 ｜ Chronect Hub | [chronect-hub-second-shift-settlement.html](../../public/chronect-hub-second-shift-settlement.html) | No.100から参照。SUB-117の業務実績、法人入金9,600円、売却報酬2,560円。 |
 | 108 | 技能モデル生成・適用記録 ｜ Chronect Hub | [chronect-hub-skill-model-record.html](../../public/chronect-hub-skill-model-record.html) | No.100から参照。SM-0142を同一セッションで適用した実績と、取得元への説明・同意の記録。 |
 | 109 | SECOND SHIFT 中長期事業戦略 ｜ Chronect Hub | [chronect-hub-second-shift-strategy.html](../../public/chronect-hub-second-shift-strategy.html) | No.100から参照。限定運用と市場拡大計画、記憶隔離の事業評価。 |
-| 110 | Behavior Assistance Terminal 製品仕様書 ｜ Chronect Hub | [chronect-hub-bat-spec.html](../../public/chronect-hub-bat-spec.html) | 3つの結末の累積到達と特殊検索で解放。BATの製品概要。 |
-| 111 | BAT制御系統図 ｜ Chronect Hub | [chronect-hub-bat-control.html](../../public/chronect-hub-bat-control.html) | No.110から特殊検索。BAPとTIRの入力系統、SCU・BAC・CAU・MMU・SMU。 |
-| 112 | MMU — 記憶管理機構 詳細仕様 ｜ Chronect Hub | [chronect-hub-mmu-spec.html](../../public/chronect-hub-mmu-spec.html) | No.111から特殊検索。記憶管理プロファイルと参照境界。 |
-| 113 | 機器設定・状態確認記録 ｜ BAT | [bat-device-diagnostics.html](../../public/bat-device-diagnostics.html) | No.84で相沢から受領する診断記録。設定値と安全状態。 |
-| 114 | BAT緊急対応マニュアル ｜ Chronect Hub | [chronect-hub-bat-emergency.html](../../public/chronect-hub-bat-emergency.html) | No.112から特殊検索。異常分類と利用者向け緊急復旧の参照。 |
-| 115 | 隔離記憶復旧手順書 ｜ Chronect Hub | [chronect-hub-memory-recovery.html](../../public/chronect-hub-memory-recovery.html) | No.114から特殊検索。設定正常化と復旧処理の依存関係。 |
-| 116 | 復旧処理結果 ｜ BAT | [bat-recovery-report.html](../../public/bat-recovery-report.html) | 相沢の同意と復旧完了後、No.84で受領。記憶の参照復元と整合性。 |
-| 117 | TIME BACK、全サービス停止　元社員が内部資料を公開、経営責任の追及へ ｜ Yaboo!ニュース | [yaboo-news-timeback-suspension.html](../../public/yaboo-news-timeback-suspension.html) | No.84で完成済みNo.83を手動送信し、最後の返信を受けた後に解放。本人による告発とサービス停止。 |
-| 118 | ENDING「自分の時間」 ｜ TIME BACK | [timeback-ending-own-time.html](../../public/timeback-ending-own-time.html) | No.117の記事末尾から到達。記憶を取り戻した本人のこれから。 |
+| 110 | BAT製品設計図 ｜ Chronect Hub | [chronect-hub-bat-drawing.html](../../public/chronect-hub-bat-drawing.html) | 3結末の累積到達と特殊検索で解放。外観三面図・分解構成図・検討スケッチ。 |
+| 117 | TIME BACK、全サービス停止　元社員が内部資料を公開、経営責任の追及へ ｜ Yaboo!ニュース | [yaboo-news-timeback-suspension.html](../../public/yaboo-news-timeback-suspension.html) | 旧ルートで最終送信と開示を達成済みの保存で再訪可能。本人による告発とサービス停止。 |
+| 118 | ENDING「自分の時間」 ｜ TIME BACK | [timeback-ending-own-time.html](../../public/timeback-ending-own-time.html) | 旧ルートの開示を達成した保存でNo.117の記事末尾から到達。記憶を取り戻した本人のこれから。 |
 
 直前のNo.1〜42は同番号。セッション運用記録は旧45→現43、旧54〜59は現44〜49。旧43・44はHub要旨、旧46〜53は一覧外ニュースとして登録解除済み。現在も公開ファイルと既存の検索・リンクから閲覧できる。ニュース一覧外12件と対応Hub要旨2件、検索結果4件、旧夢記事URL転送1件はアーカイブ非登録。
 

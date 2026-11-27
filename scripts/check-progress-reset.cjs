@@ -29,6 +29,7 @@ const progress = {
   'timeback-investigation-tip-takase-v1': 'submitted',
   'timeback-web-operations-log-v1': '1',
   'timeback-final-chapter-v1': {
+    drawingOpened: true,
     opened: [110, 111, 112, 114, 115], mailProgress: 37, solved: true, diagnostics: true, consented: true,
     recovered: true, reportSent: true, disclosed: true, answers: { TASK_ACCEPT: 'DENY' }, order: ['RECOVERY']
   }
@@ -53,7 +54,7 @@ function checkPublicSources() {
     screens++;
   }
   assert.deepEqual([...usedKeys].sort(), [...keys].sort());
-  assert.equal(screens, 136);
+  assert.equal(screens, 137);
 }
 
 async function scenario({ evaluate, wait, visible, click, page, go, width, checkWidth, send, origin }) {
@@ -180,7 +181,7 @@ async function scenario({ evaluate, wait, visible, click, page, go, width, check
   const fileProgress = await gameValues();
   assert.deepEqual(JSON.parse(fileProgress[archiveKey]).map(page => page.number), [1]);
   assert.equal(fileProgress[reportKey], null);
-  console.log('PASS PROGRESS RESET: ' + keys.length + ' keys, 136 archive controls, cancellation/failure, fresh/partial/all endings, second tab, history, file URLs and four Chrome widths.');
+  console.log('PASS PROGRESS RESET: ' + keys.length + ' keys, 137 archive controls, cancellation/failure, fresh/partial/all endings, second tab, history, file URLs and four Chrome widths.');
 }
 
 checkPublicSources();
