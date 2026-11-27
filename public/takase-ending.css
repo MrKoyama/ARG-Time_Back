@@ -78,9 +78,12 @@
   border-top: 1px solid #cbc5bf;
   color: #575451;
   font: .875rem/1.6 ui-monospace, monospace;
+  font-variant-ligatures: none;
   text-align: center;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
+
+.ending-fragment > span { white-space: nowrap; }
 
 .ending-feedback, .ending-branch {
   padding-top: clamp(1.25rem, 3vw, 1.8rem);

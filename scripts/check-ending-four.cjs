@@ -5,9 +5,9 @@ const archiveKey = 'timeback-page-archive-v1';
 const finalKey = 'timeback-final-chapter-v1';
 const reportKey = 'timeback-investigation-report-v1';
 const priorEndings = [
-  { number: 86, href: 'timeback-ending-record.html', fragment: 'Behavior □□□□□□□□□□ □□□□□□□□' },
-  { number: 90, href: 'timeback-ending-blind-spot.html', fragment: '□□□□□□□□ Assistance □□□□□□□□' },
-  { number: 105, href: 'timeback-ending-full-disclosure.html', fragment: '□□□□□□□□ □□□□□□□□□□ Terminal' }
+  { number: 86, href: 'timeback-ending-record.html', fragment: 'B*h**i*r *s*i**a**e *e******' },
+  { number: 90, href: 'timeback-ending-blind-spot.html', fragment: '*e*av*o* A*s**t*n** ****i***' },
+  { number: 105, href: 'timeback-ending-full-disclosure.html', fragment: '******** ****s***c* T*rm*nal' }
 ];
 const pages = [
   'chronect-hub-bat-spec.html', 'chronect-hub-bat-control.html', 'chronect-hub-mmu-spec.html',
@@ -27,6 +27,16 @@ const form = '#final-recovery-form';
 const mail = 'takase-mail.html';
 
 async function scenario({ evaluate, wait, visible, click, input, page, go, width, checkWidth, scripted, returnToBranch }) {
+  const solution = terms[0];
+  const fragments = priorEndings.map(({ fragment }) => fragment);
+  assert(fragments.every(fragment => fragment.length === solution.length));
+  assert.deepEqual(fragments.map(fragment => fragment.replace(/[* ]/g, '').length), [9, 9, 8]);
+  assert.deepEqual(fragments.map(fragment => fragment.split(' ')[2].replace(/\*/g, '').length), [1, 1, 6]);
+  for (const [position, letter] of [...solution].entries()) {
+    const revealed = fragments.map(fragment => fragment[position]).filter(char => char !== '*');
+    assert.deepEqual(revealed, letter === ' ' ? [' ', ' ', ' '] : [letter], `Fragment position ${position + 1}`);
+  }
+
   async function put(key, value) {
     await evaluate(`localStorage.setItem(${JSON.stringify(key)}, ${JSON.stringify(JSON.stringify(value))})`);
   }
@@ -204,11 +214,28 @@ async function scenario({ evaluate, wait, visible, click, input, page, go, width
       await wait(visible(openedView));
       await checkWidth(href + ' @ ' + pixels);
     }
+    let wordLayout;
     for (const { href, fragment } of priorEndings) {
       await go(href);
-      assert.equal(await evaluate('document.querySelector(".ending-fragment").textContent.trim()'), fragment);
       await wait(visible('.ending-fragment'));
+      assert.equal(await evaluate('document.querySelector(".ending-fragment").textContent'), fragment);
       await checkWidth(href + ' @ ' + pixels);
+      const layout = await evaluate(`(() => {
+        const clue = document.querySelector('.ending-fragment');
+        const bounds = clue.getBoundingClientRect();
+        return [...clue.children].map(word => {
+          const box = word.getBoundingClientRect();
+          return {
+            font: getComputedStyle(word).fontFamily,
+            intact: word.getClientRects().length === 1 && box.left >= bounds.left && box.right <= bounds.right,
+            left: box.left - bounds.left, top: box.top - bounds.top, width: box.width
+          };
+        });
+      })()`);
+      assert.equal(layout.length, 3);
+      assert(layout.every(word => word.intact && word.font.includes('monospace')), href + ' @ ' + pixels);
+      wordLayout ??= layout;
+      assert.deepEqual(layout, wordLayout, href + ' word alignment @ ' + pixels);
     }
     await restartMail();
     await checkWidth('No.84 @ ' + pixels);
