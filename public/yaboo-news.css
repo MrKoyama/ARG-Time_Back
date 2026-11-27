@@ -195,12 +195,12 @@ html:has(.yaboo-tip-dialog[open], .yaboo-tip-elapsed[open]) { overflow: hidden; 
   font-size: clamp(1.35rem, 4vw, 2rem);
   text-align: center;
 }
-.yaboo-tip-elapsed::backdrop { background: #000; animation: yaboo-tip-darken 400ms ease-out both; }
-.yaboo-tip-elapsed p { margin: 0; outline: none; animation: yaboo-tip-elapsed 4s ease-in-out both; }
+.yaboo-tip-elapsed::backdrop { background: #000; animation: yaboo-tip-darken 250ms ease-out both; }
+.yaboo-tip-elapsed p { margin: 0; outline: none; animation: yaboo-tip-elapsed 2s ease-in-out both; }
 @keyframes yaboo-tip-darken { from { opacity: 0; } to { opacity: 1; } }
 @keyframes yaboo-tip-elapsed {
-  0%, 12%, 92%, 100% { opacity: 0; }
-  28%, 74% { opacity: 1; }
+  0%, 12.5%, 97.5%, 100% { opacity: 0; }
+  27.5%, 80% { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   .yaboo-tip-elapsed::backdrop, .yaboo-tip-elapsed p { animation: none; }

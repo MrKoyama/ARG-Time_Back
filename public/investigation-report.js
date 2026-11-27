@@ -457,7 +457,7 @@
     const submittedPanel = byId('tip-submitted');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const sendDuration = 2400;
-    const elapsedDuration = 4000;
+    const elapsedDuration = 2000;
     const reports = {
       player: {
         name: 'TIME BACKの売却時間帯における身体利用に関する調査報告書',

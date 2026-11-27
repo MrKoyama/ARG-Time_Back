@@ -154,9 +154,10 @@ runChrome(async ({ evaluate, wait, visible, click, page, go, width, checkWidth, 
   assert.equal(await evaluate('getComputedStyle(document.querySelector("#tip-elapsed p")).animationName'), 'none');
   await assertResumed('#tip-full-article');
 
-  await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'no-preference' }] });
   const timings = [];
   for (const pixels of [1440, 768, 390, 320]) {
+    const motion = pixels === 768 ? 'reduce' : 'no-preference';
+    await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: motion }] });
     await seed({ [reportKey]: complete, [aizawaKey]: received, [mailKey]: '4' });
     await width(pixels);
     await wait('innerWidth === ' + pixels);
@@ -203,14 +204,20 @@ runChrome(async ({ evaluate, wait, visible, click, page, go, width, checkWidth, 
     await wait(visible('#tip-elapsed'));
     await dialogFits('#tip-elapsed', pixels);
     assert.equal(await evaluate('document.querySelector("#tip-elapsed-title").textContent'), '数日後――');
-    if ([1440, 390].includes(pixels) && shotDir) {
-      await wait('Number(getComputedStyle(document.querySelector("#tip-elapsed p")).opacity) === 1');
+    const elapsedStyle = 'getComputedStyle(document.querySelector("#tip-elapsed-title"))';
+    if (motion === 'reduce') {
+      assert.equal(await evaluate(elapsedStyle + '.animationName'), 'none');
+      assert.equal(await evaluate(elapsedStyle + '.opacity'), '1');
+    } else {
+      assert.equal(await evaluate(elapsedStyle + '.animationDuration'), '2s');
+      await wait(elapsedStyle + '.opacity === "1"');
       await capture(pixels, 'elapsed');
+      await wait(elapsedStyle + '.opacity < 1');
     }
     await page(kind === 'player' ? playerArticle : takaseArticle);
     const elapsedIn = Math.round(await evaluate('performance.timeOrigin') - beforeElapsed);
-    assert(elapsedIn >= 3900 && elapsedIn <= 5200, 'Elapsed duration ' + elapsedIn);
-    timings.push({ pixels, sentIn, elapsedIn });
+    assert(elapsedIn >= 1900 && elapsedIn <= 2500, 'Elapsed duration ' + elapsedIn);
+    timings.push({ pixels, motion, sentIn, elapsedIn });
     await go(tip);
   }
 
