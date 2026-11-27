@@ -86,6 +86,24 @@ runChrome(async ({ evaluate, wait, visible, click, page, go, width, checkWidth, 
     assert(await evaluate('document.querySelector("#tip-submit").disabled'));
     return started;
   }
+  async function recordProgress(firstFrameOffset) {
+    await evaluate(`(() => {
+      const bar = document.querySelector('#tip-progress');
+      const label = document.querySelector('#tip-percent');
+      const sample = () => [label.textContent, bar.value];
+      const trace = window.tipProgressTrace = [];
+      new MutationObserver(() => trace.push(sample())).observe(label, { childList: true });
+      const requestFrame = window.requestAnimationFrame;
+      // Reproduce a first frame timestamp older than the click that started the animation.
+      window.requestAnimationFrame = callback => {
+        window.requestAnimationFrame = requestFrame;
+        return requestFrame.call(window, timestamp => {
+          callback(timestamp - ${firstFrameOffset});
+          window.tipFirstProgressFrame = sample();
+        });
+      };
+    })()`);
+  }
   async function assertResumed(link) {
     await reload();
     await wait(visible(link));
@@ -156,7 +174,7 @@ runChrome(async ({ evaluate, wait, visible, click, page, go, width, checkWidth, 
 
   const timings = [];
   for (const pixels of [1440, 768, 390, 320]) {
-    const motion = pixels === 768 ? 'reduce' : 'no-preference';
+    const motion = [768, 320].includes(pixels) ? 'reduce' : 'no-preference';
     await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: motion }] });
     await seed({ [reportKey]: complete, [aizawaKey]: received, [mailKey]: '4' });
     await width(pixels);
@@ -182,6 +200,7 @@ runChrome(async ({ evaluate, wait, visible, click, page, go, width, checkWidth, 
     await dialogFits('#tip-confirmation', pixels);
     await capture(pixels, 'confirmation');
     const source = await read([reportKey, aizawaKey, mailKey]);
+    await recordProgress(pixels >= 768 ? 80 : 0);
     const start = await sendTip();
     await dialogFits('#tip-sending', pixels);
     await wait('document.querySelector("#tip-progress").value >= 35');
@@ -189,7 +208,17 @@ runChrome(async ({ evaluate, wait, visible, click, page, go, width, checkWidth, 
     await wait(visible('#tip-receipt'));
     const sentIn = Math.round(await evaluate('performance.now()') - start);
     assert(sentIn >= 2400 && sentIn <= 4000, 'Sending duration ' + sentIn);
-    assert.equal(await evaluate('document.querySelector("#tip-progress").value'), 100);
+    assert.deepEqual(await evaluate('window.tipFirstProgressFrame'), ['0%', 0]);
+    const trace = await evaluate('window.tipProgressTrace');
+    assert.deepEqual(trace[0], ['0%', 0]);
+    assert.deepEqual(trace.at(-1), ['100%', 100]);
+    for (const [index, [label, value]] of trace.entries()) {
+      assert(Number.isInteger(value) && value >= 0 && value <= 100, `Progress value ${value}`);
+      assert.equal(label, `${value}%`);
+      assert(index === 0 || value >= trace[index - 1][1], 'Progress must not go backwards');
+    }
+    const checkpoints = [...new Set(trace.map(([, value]) => value))];
+    if (motion === 'reduce') assert.deepEqual(checkpoints, [0, 25, 50, 75, 100]);
     assert.deepEqual(await read([reportKey, aizawaKey, mailKey]), source);
     assert.deepEqual(await read([playerKey, takaseKey]), {
       [playerKey]: kind === 'player' ? 'submitted' : null,
@@ -217,7 +246,8 @@ runChrome(async ({ evaluate, wait, visible, click, page, go, width, checkWidth, 
     await page(kind === 'player' ? playerArticle : takaseArticle);
     const elapsedIn = Math.round(await evaluate('performance.timeOrigin') - beforeElapsed);
     assert(elapsedIn >= 1900 && elapsedIn <= 2500, 'Elapsed duration ' + elapsedIn);
-    timings.push({ pixels, motion, sentIn, elapsedIn });
+    timings.push({ pixels, kind, motion, sentIn, elapsedIn,
+      progress: motion === 'reduce' ? checkpoints.join(' → ') : `${checkpoints[0]} → ${checkpoints.at(-1)} (${checkpoints.length} values)` });
     await go(tip);
   }
 

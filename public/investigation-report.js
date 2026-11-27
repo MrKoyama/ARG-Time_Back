@@ -583,12 +583,13 @@
     function startSending() {
       setProgress(0);
       sending.showModal();
-      const start = performance.now();
+      let start;
       function update(now) {
-        const fraction = Math.min(1, (now - start) / sendDuration);
+        start ??= now;
+        const fraction = Math.min(1, Math.max(0, (now - start) / sendDuration));
         const step = reducedMotion.matches ? 25 : 1;
         const value = Math.floor(fraction * 100 / step) * step;
-        if (value !== progress.value) setProgress(value);
+        if (value > progress.value) setProgress(value);
         if (fraction < 1) {
           frame = window.requestAnimationFrame(update);
           return;
